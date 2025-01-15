@@ -16,7 +16,9 @@ import UserMain from './component/UserMain';
 import UserDetail from './component/UserDetail';
 import HisDetail from './component/HisDetail';
 import FumigatorPesticides from './component/FumigatorPesticides';
+import MyProfile from './component/MyProfile';
 import { AppData } from './AuthContext';
+import Uploader from './component/Uploader';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
@@ -29,6 +31,7 @@ function App() {
         <Navbar />
           <Routes>
             <Route path="/pest" element={<PestManagement />} />
+            <Route path="/uploader" element={<Uploader />} />
             <Route path="/promotion" element={<PromotionManagement />} />
             <Route path="/users" element={<UserManagement />} />
             <Route path="/" element={<Login />} />
@@ -42,6 +45,7 @@ function App() {
             <Route path="/selfDiagnosis" element={<SelfDiagnosis />}></Route>
             <Route path="/fieldGuide" element={<FieldGuide />}></Route>
             <Route path="/userMain" element={<UserMain />}></Route>
+            <Route path="/myProfile" element={<MyProfile />}></Route>
             <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
           </Routes>
         </AppData>

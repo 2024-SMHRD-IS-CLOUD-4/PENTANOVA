@@ -49,12 +49,9 @@ const Navbar = () => {
         </li>
       </ul>
     );
-    console.log('asdf')
     if (shareData.data) {
       if (isTrue) {
-        console.log('asdfas')
         if (shareData.data.isTrue2) {
-          console.log('qwerqwer')
           setNavContent(
             <ul>
               <li>
@@ -85,7 +82,6 @@ const Navbar = () => {
             </ul>
           );
         } else {
-          console.log('zxcv')
           setNavContent(
             <ul>
               <li>
@@ -101,6 +97,11 @@ const Navbar = () => {
               <li>
                 <NavLink to="/fumigatorPesticides" className={isActive => isActive ? 'active' : ''}>
                   농약 및 방제 정보
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/myProfile" className={isActive => isActive ? 'active' : ''}>
+                  내 정보 확인하기
                 </NavLink>
               </li>
               <li>
