@@ -1,5 +1,4 @@
 # Welcone To PENTANOVA!!😀 💻Work Space💻 
-### (~ END 2024-11-12)
 
 ---
 
