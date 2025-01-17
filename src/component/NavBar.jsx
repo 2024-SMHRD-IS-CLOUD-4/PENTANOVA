@@ -57,7 +57,7 @@ const Navbar = () => {
             <ul>
               <li>
                 <NavLink to="/dashboard" className={isActive => isActive ? 'active' : ''}>
-                  대시보드
+                  병해충 발병 통계
                 </NavLink>
               </li>
               <li>
