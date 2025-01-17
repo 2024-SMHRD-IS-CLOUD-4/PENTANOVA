@@ -30,11 +30,11 @@
     margin:0px;
     color:#333;
     box-sizing: border-box;
+    border-radius: 20px;
 }
 
 button{
     border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 20px;
     font-size: 14px;
     text-align: center;
     line-height: 0%;

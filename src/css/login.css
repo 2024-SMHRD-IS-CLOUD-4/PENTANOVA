@@ -11,7 +11,6 @@
     width: 300px;
     height: 390px;
     background-color: #E9E9E9;
-    border-radius: 20px;
 }
 
 .logo {
@@ -37,7 +36,6 @@
     width: 245px;
     height: 35px;
     background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 20px;
     text-align: center;
     line-height: 35px;
     margin-bottom: 10px;
@@ -48,7 +46,6 @@
     width: 38px;
     height: 27px;
     margin: 4px 0 0 4px;
-    border-radius: 20px;
     line-height: 27px;
     background-color: #fff;
     font-size: 12px;
@@ -86,12 +83,15 @@
 .loginBoxBt > button:first-child{
     margin-right: 12px;
 }
+
+
+
+
 /*로그인 페이지 왼쪽 하단 최근 공지사항 바로보기 박스*/
 #loginNoticeBox{
     width: 300px;
     height: 140px;
     background-color: rgba(51, 51, 51, 1);
-    border-radius: 20px;
     margin-top: 20px; 
     padding: 20px;
     pointer-events: unset;
@@ -115,11 +115,14 @@
     text-align: right;
 }
 
+
+
+
+
 /*로그인 페이지 오른쪽 날씨 박스*/
 #loginWeatherBox{
     width: 300px;
     height: 549px;
     float: right;
     background-color: #999;
-    border-radius: 20px;
 }
