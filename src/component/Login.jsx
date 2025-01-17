@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AppData } from '../AuthContext';
 import axios from 'axios'
 import logo from "../assets/logo.png";
@@ -95,7 +95,11 @@ const Login = () => {
             <button type="button">간편 로그인</button>
           </form>
           <button>아이디/비밀번호 찾기</button>
-          <button>회원가입</button>
+          <button>
+            <NavLink to="/join" className={isActive => isActive ? 'active' : ''}>
+              회원가입
+            </NavLink>
+          </button>
         </div>
       </div>
 
