@@ -39,13 +39,23 @@ const Navbar = () => {
     setNavContent(
       <ul>
         <li>
-          <NavLink to="/" className={isActive => isActive ? 'active' : ''}>
-            로그인
+          <NavLink to="/join" className={isActive => isActive ? 'active' : ''}>
+            회원가입
           </NavLink>
         </li>
         <li>
-          <NavLink to="/join" className={isActive => isActive ? 'active' : ''}>
-            회원가입
+          <NavLink to="/idFind" className={isActive => isActive ? 'active' : ''}>
+            아이디 찾기
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/pwFind" className={isActive => isActive ? 'active' : ''}>
+            비밀번호 찾기
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/" className={isActive => isActive ? 'active' : ''}>
+            로그인
           </NavLink>
         </li>
       </ul>

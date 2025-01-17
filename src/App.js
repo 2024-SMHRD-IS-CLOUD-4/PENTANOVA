@@ -18,6 +18,8 @@ import FumigatorPesticides from './component/FumigatorPesticides';
 import MyProfile from './component/MyProfile';
 import { AppData } from './function/AuthContext';
 import Uploader from './component/Uploader';
+import IdFind from './component/IdFind';
+import PwFind from './component/PwFind'; 
 import ChangeProfile from './component/ChangeProfile';
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
         <AppData value={{data : user, setData:setData}}>
         <Navbar />
           <Routes>
+            <Route path="/idFind" element={<IdFind />} />
+            <Route path="/pwFind" element={<PwFind />} />
             <Route path="/pest" element={<PestManagement />} />
             <Route path="/uploader" element={<Uploader />} />
             <Route path="/promotion" element={<PromotionManagement />} />

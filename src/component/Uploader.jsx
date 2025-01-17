@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function Uploader() {
+function ImageUploader() {
     const [file, setFile] = useState(null);
     const [imageBase64, setImageBase64] = useState('');
     const [predictions, setPredictions] = useState([]);
     const [responseMessage, setResponseMessage] = useState('');
+    const [startTime, setStartTime] = useState(null);
+    const [endTime, setEndTime] = useState(null);
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
         setFile(selectedFile);
-        console.log(selectedFile);
     };
 
     const handleSubmit = async (event) => {
@@ -37,9 +38,13 @@ function Uploader() {
             if (data.image) {
                 setImageBase64(data.image);
                 setPredictions(data.predictions);
+                setStartTime(data.start_time);
+                setEndTime(data.end_time);
             } else {
                 setImageBase64('');
                 setPredictions([]);
+                setStartTime(null);
+                setEndTime(null);
             }
         } catch (error) {
             console.error(error);
@@ -58,23 +63,27 @@ function Uploader() {
             {imageBase64 && (
                 <div>
                     <h2>분석 결과:</h2>
-                    <img 
-                        src={`data:image/jpeg;base64,${imageBase64}`} 
-                        alt="Analyzed Result" 
-                        style={{ maxWidth: '100%', height: 'auto' }} 
+                    <img
+                        src={`data:image/jpeg;base64,${imageBase64}`}
+                        alt="Analyzed Result"
+                        style={{ maxWidth: '100%', height: 'auto' }}
                     />
                     <ul>
                         {predictions.map((prediction, index) => (
                             <li key={index}>
-                                클래스: {prediction.class}, 신뢰도: {prediction.confidence.toFixed(2)}, 
-                                바운딩 박스: {JSON.stringify(prediction.bbox)}
+                                <p>클래스: {prediction.class}</p>
+                                <p>신뢰도: {prediction.confidence.toFixed(2)}</p>
+                                <p>입력 시간: {new Date(startTime * 1000).toLocaleString()}</p>
+                                <p>출력 시간: {new Date(endTime * 1000).toLocaleString()}</p>
+                                <p>소요 시간: {(endTime - startTime).toFixed(2)}초</p>
                             </li>
                         ))}
                     </ul>
+
                 </div>
             )}
         </div>
     );
 }
 
-export default Uploader;
+export default ImageUploader;

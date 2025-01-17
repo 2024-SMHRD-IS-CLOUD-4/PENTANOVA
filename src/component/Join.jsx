@@ -24,7 +24,7 @@ const Join = () => {
         try {
             const response = await axios.get(`http://localhost:8093/PTNV/user/idCheck/${formData.id}`);
             if (response.ok) {
-                setIdCheck("사용 가능한 아이디입니다.");
+                setIdCheck(response.data);
             } else {
                 const errorMessage = await response.data;
                 setIdCheck(errorMessage);
@@ -40,8 +40,7 @@ const Join = () => {
 
         try {
             const response = await axios.post('http://localhost:8093/PTNV/user/join', formData,{ 
-                headers: {
-                    'Content-Type': 'application/json',
+                headers: {                    'Content-Type': 'application/json',
                 },
             });
 
