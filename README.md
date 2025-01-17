@@ -29,7 +29,7 @@
 </details>
 
 
-- [ ] 양윤성 <details>
+- [x] 양윤성 <details>
   <summary>접기 / 펼치기</summary>
   약 00:00 ~ 00:10
 </details>
