@@ -28,5 +28,4 @@ const IdFind = () => {
     </div>
   )
 }
-
 export default IdFind

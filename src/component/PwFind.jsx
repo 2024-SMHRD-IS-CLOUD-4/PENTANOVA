@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react'
+import  {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 const PwFind = () => {
+  const navigate = useNavigate();
   let phoneRef = useRef();
   let idRef = useRef();
   let pwRef = useRef();
@@ -17,7 +19,7 @@ const PwFind = () => {
         },
       });
       console.log(response.data);
-      if (response.data == '일치') {
+      if (response.data) {
         setIsTrue(true);
       } else {
         setIsTrue(false);
@@ -30,18 +32,20 @@ const PwFind = () => {
   const setPw = async (e) => {
     e.preventDefault();
     let pw = pwRef.current.value;
+    let id = idRef.current.value;
     try {
-      const response = await axios.post(`http://localhost:8093/PTNV/user/pwFind`, null, {
+      const response = await axios.post(`http://localhost:8093/PTNV/user/updatePw`, null, {
         params: {
           id : id,
           pw : pw
         },
       });
       console.log(response.data);
-      if (response.data == '일치') {
-        setIsTrue(true);
+      if (response.data) {
+        alert('변경 성공')
+        navigate('/');
       } else {
-        setIsTrue(false);
+        alert('변경 실패')
       }
     } catch (error) {
       console.error('Error:', error);
