@@ -23,5 +23,4 @@ const Diagnosis = () => {
     </div>
   )
 }
-
 export default Diagnosis

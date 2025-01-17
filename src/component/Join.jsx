@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 const Join = () => {
     const [formData, setFormData] = useState({
         id: '',
         pw: '',
-        tel:'',
+        phone: '',
         nick: '',
-        location:'',
-        rank: 0,
+        location: '',
+        role: '일반사용자',
         institute: ''
     });
     const [idCheck, setIdCheck] = useState(null);
@@ -19,13 +20,13 @@ const Join = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleUsernameCheck = async () => {
+    const UserIdCheck = async () => {
         try {
-            const response = await fetch(`http://localhost:8093/PTNV/api/idCheck/${formData.id}`);
+            const response = await axios.get(`http://localhost:8093/PTNV/user/idCheck/${formData.id}`);
             if (response.ok) {
                 setIdCheck("사용 가능한 아이디입니다.");
             } else {
-                const errorMessage = await response.text();
+                const errorMessage = await response.data;
                 setIdCheck(errorMessage);
             }
         } catch (error) {
@@ -38,20 +39,18 @@ const Join = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8093/PTNV/api/join', { 
-                method: 'POST',
+            const response = await axios.post('http://localhost:8093/PTNV/user/join', formData,{ 
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
             });
 
-            if (response.ok) {
+            if (response.status === 200) {
                 alert('회원가입 성공!');
-                setFormData({id: '', pw: '', nick: '', tel: '', rank : 0, location: '', institute: '' });
+                setFormData({id: '', pw: '', nick: '', phone: '', rank : 0, location: '', institute: '' });
                 navigate('/');
             } else {
-                const errorMessage = await response.text();
+                const errorMessage = await response.data;
                 alert(`회원가입 실패!: ${errorMessage} `);
             }
         } catch (error) {
@@ -73,13 +72,13 @@ const Join = () => {
                         onChange={handleChange}
                         required
                     />
-                    <button type="button" onClick={handleUsernameCheck}>중복 확인</button>
+                    <button type="button" onClick={UserIdCheck}>중복 확인</button>
                     {idCheck && <p>{idCheck}</p>}
                 </div>
                 <div>
                     <label>비밀번호</label>
                     <input
-                        type="text"
+                        type="password"
                         name="pw"
                         value={formData.pw}
                         onChange={handleChange}
@@ -100,8 +99,8 @@ const Join = () => {
                     <label>전화번호</label>
                     <input
                         type="text"
-                        name="tel"
-                        value={formData.tel}
+                        name="phone"
+                        value={formData.phone}
                         onChange={handleChange}
                         required
                     />

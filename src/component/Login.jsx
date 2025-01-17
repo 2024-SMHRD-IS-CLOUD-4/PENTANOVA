@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppData } from '../AuthContext';
+import { AppData } from '../function/AuthContext';
 import axios from 'axios'
 
 const Login = () => {
@@ -19,9 +19,9 @@ const Login = () => {
       const user = {
         id: data.id,
         pw: data.pw,
-        rank: data.rank,
+        role: data.role,
         nick: data.nick,
-        tel: data.tel,
+        phone: data.phone,
         location: data.location,
         institute: data.institute,
         createdAt: data.createdAt,
@@ -30,8 +30,8 @@ const Login = () => {
       };
 
       sessionStorage.setItem("user", JSON.stringify(user));
-      if (user.rank == 0) {
-        navigate('/userMain')
+      if (user.role == '일반사용자') {
+        navigate('/diagnosis')
       } else {
         navigate('/dashboard');
       }
@@ -43,6 +43,7 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8093/PTNV/user/login', formData, {
@@ -53,8 +54,8 @@ const Login = () => {
       if (response.status === 200) {
         setData(response.data);
         shareData.setData(data);
-        console.log(shareData.data);
-        if (response.data.rank === 0) {
+        console.log(response.data);
+        if (response.data.role === '일반사용자') {
           setIsTrue2(false);
         } else {
           setIsTrue2(true);

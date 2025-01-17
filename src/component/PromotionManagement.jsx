@@ -1,6 +1,6 @@
 // pages/Dashboard.js
 import React from 'react';
-import { AppData } from '../AuthContext';
+import { AppData } from '../function/AuthContext';
 import { useContext } from 'react';
 
 const PromotionManagement = () => {

@@ -12,13 +12,13 @@ import DpDetail from './component/DpDetail';
 import HisDiagnosis from './component/HisDiagnosis';
 import SelfDiagnosis from './component/SelfDiagnosis';
 import FieldGuide from './component/FieldGuide';
-import UserMain from './component/UserMain';
 import UserDetail from './component/UserDetail';
 import HisDetail from './component/HisDetail';
 import FumigatorPesticides from './component/FumigatorPesticides';
 import MyProfile from './component/MyProfile';
-import { AppData } from './AuthContext';
+import { AppData } from './function/AuthContext';
 import Uploader from './component/Uploader';
+import ChangeProfile from './component/ChangeProfile';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
@@ -44,8 +44,8 @@ function App() {
             <Route path="/hisDiagnosis" element={<HisDiagnosis />}></Route>
             <Route path="/selfDiagnosis" element={<SelfDiagnosis />}></Route>
             <Route path="/fieldGuide" element={<FieldGuide />}></Route>
-            <Route path="/userMain" element={<UserMain />}></Route>
             <Route path="/myProfile" element={<MyProfile />}></Route>
+            <Route path="/changeProfile" element={<ChangeProfile />}></Route>
             <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
           </Routes>
         </AppData>

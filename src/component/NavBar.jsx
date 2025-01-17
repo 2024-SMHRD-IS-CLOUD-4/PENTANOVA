@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import '../css/NavBar.css';
-import { AppData } from '../AuthContext';
+import { AppData } from '../function/AuthContext';
 import { useContext, useEffect } from 'react';
 import { useState } from 'react';
 
@@ -29,6 +29,7 @@ const Navbar = () => {
     </ul>
   );
   const logout = () => {
+    navigate('/');
     setIsTrue(false);
     sessionStorage.clear();
     shareData.setData(null);

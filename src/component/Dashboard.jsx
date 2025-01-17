@@ -1,7 +1,7 @@
 // pages/Dashboard.js
 import React from 'react';
 import { useContext } from 'react'
-import { AppData } from '../AuthContext';
+import { AppData } from '../function/AuthContext';
 
 const Dashboard = () => {
   const shareData = useContext(AppData);
