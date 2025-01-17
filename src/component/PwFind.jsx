@@ -36,7 +36,6 @@ const PwFind = () => {
     try {
       const response = await axios.post(`http://localhost:8093/PTNV/user/updatePw`, null, {
         params: {
-          id : id,
           pw : pw
         },
       });

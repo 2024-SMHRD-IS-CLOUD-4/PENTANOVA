@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AppData } from '../function/AuthContext';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { AppData } from '../function/AuthContext.jsx';
 import axios from 'axios'
 import logo from "../assets/logo.png";
 import rightArrow from "../assets/right_arrow.png";
@@ -20,6 +20,13 @@ const Login = () => {
   let year = today.getFullYear();
   let month = ('0' + today.getMonth()+1).slice(-2);
   let day = ('0' + today.getDate()).slice(-2);
+
+  function joinClick(){
+    navigate('/Join');
+  }
+  function idPWClick(){
+    navigate('/IdFind')
+  }
 
   useEffect(() => {
     if (data) {
@@ -106,8 +113,8 @@ const Login = () => {
             <button type="button">간편 로그인</button>
           </form>
           <div class="loginBoxBt">
-            <button>아이디/비밀번호 찾기</button>
-            <button> 회원가입 </button>
+            <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
+            <button onClick={joinClick}>회원가입</button>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import "../css/jip.css"
 
 const Join = () => {
     const [formData, setFormData] = useState({
@@ -59,74 +60,91 @@ const Join = () => {
     };
 
     return (
-        <div>
-            <h2>회원가입</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>아이디</label>
-                    <input
-                        type="text"
-                        name="id" 
-                        value={formData.id}
-                        onChange={handleChange}
-                        required
-                    />
-                    <button type="button" onClick={UserIdCheck}>중복 확인</button>
-                    {idCheck && <p>{idCheck}</p>}
+        <div id="jipBody">
+            <div id="jipMainBox">
+                <div class="jipleftBox">
+                    <ul>
+                        <li><button>회원가입</button></li>
+                        <li><button>아이디찾기</button></li>
+                        <li><button>비밀번호 찾기</button></li>
+                    </ul>
                 </div>
-                <div>
-                    <label>비밀번호</label>
-                    <input
-                        type="password"
-                        name="pw"
-                        value={formData.pw}
-                        onChange={handleChange}
-                        required
-                    />
+                <div class="jipRightBox">
+                    <div id="joinBox">
+                        <h2>회원가입</h2>
+                        <div class="joinText">
+                            <form onSubmit={handleSubmit}>
+                                <div>
+                                    <label>아이디</label>
+                                    <input
+                                        type="text"
+                                        name="id" 
+                                        value={formData.id}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                    <button type="button" onClick={UserIdCheck}>중복 확인</button>
+                                    {idCheck && <p>{idCheck}</p>}
+                                </div>
+                                <div>
+                                    <label>비밀번호</label>
+                                    <input
+                                        type="password"
+                                        name="pw"
+                                        value={formData.pw}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label>비밀번호 확인</label>
+                                    <input
+                                        type="password"
+                                        name="pw"
+                                        value={formData.pw}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label>닉네임</label>
+                                    <input
+                                        type="text"
+                                        name="nick"
+                                        value={formData.nick}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label>전화번호</label>
+                                    <input
+                                        type="text"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label>지역</label>
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        value={formData.location}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label>알람여부를 선택해주세요</label>
+                                </div>
+                                <button type="submit">회원가입</button>
+                            </form>  
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label>닉네임</label>
-                    <input
-                        type="text"
-                        name="nick"
-                        value={formData.nick}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>전화번호</label>
-                    <input
-                        type="text"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>지역</label>
-                    <input
-                        type="text"
-                        name="location"
-                        value={formData.location}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>기관명</label>
-                    <input
-                        type="text"
-                        name="institute"
-                        value={formData.institute}
-                        onChange={handleChange}
-                        required
-                    />
-                    
-                </div>
-                <button type="submit">회원가입</button>
-            </form>
+            </div>
         </div>
     );
 };

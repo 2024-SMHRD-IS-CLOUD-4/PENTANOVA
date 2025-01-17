@@ -29,7 +29,6 @@ const Navbar = () => {
     </ul>
   );
   const logout = () => {
-    navigate('/');
     setIsTrue(false);
     sessionStorage.clear();
     shareData.setData(null);
@@ -39,23 +38,13 @@ const Navbar = () => {
     setNavContent(
       <ul>
         <li>
-          <NavLink to="/join" className={isActive => isActive ? 'active' : ''}>
-            회원가입
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/idFind" className={isActive => isActive ? 'active' : ''}>
-            아이디 찾기
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/pwFind" className={isActive => isActive ? 'active' : ''}>
-            비밀번호 찾기
-          </NavLink>
-        </li>
-        <li>
           <NavLink to="/" className={isActive => isActive ? 'active' : ''}>
             로그인
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/join" className={isActive => isActive ? 'active' : ''}>
+            회원가입
           </NavLink>
         </li>
       </ul>
@@ -67,7 +56,7 @@ const Navbar = () => {
             <ul>
               <li>
                 <NavLink to="/dashboard" className={isActive => isActive ? 'active' : ''}>
-                  병해충 발병 통계
+                  대시보드
                 </NavLink>
               </li>
               <li>
