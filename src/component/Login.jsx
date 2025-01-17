@@ -3,6 +3,9 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppData } from '../AuthContext';
 import axios from 'axios'
+import logo from "../assets/logo.png";
+import "../css/login.css";
+import "../css/all.css";
 
 const Login = () => {
   const shareData = useContext(AppData);
@@ -72,18 +75,33 @@ const Login = () => {
     }
   };
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <h2>로그인</h2>
-      <div>
-        <label htmlFor="id">아이디:</label>
-        <input type="text" name="id" id="id" onChange={handleChange} required />
+    //로그인박스, 공지사항 보기, 날씨 총 3개 박스 가운데 정렬하는 div
+    <div id="loginMainBox">
+      <div id="loginBox">
+        <img class="logo"src={logo} alt="GROWELL Logo" />
+        <div class="loginBox">
+          <form className="login-form" onSubmit={handleSubmit}>
+        
+            <div class="loginIdPwBox">
+                <label htmlFor="id">ID</label>
+                <input type="text" name="id" id="id" onChange={handleChange} required />
+            </div>
+
+            <div class="loginIdPwBox">
+              <label htmlFor="password">PW</label>
+              <input type="password" name="pw" id="password" onChange={handleChange} required />
+            </div>
+            <button type="submit">로그인</button>
+            <button type="button">간편 로그인</button>
+          </form>
+          <button>아이디/비밀번호 찾기</button>
+          <button>회원가입</button>
+        </div>
       </div>
-      <div>
-        <label htmlFor="password">비밀번호:</label>
-        <input type="password" name="pw" id="password" onChange={handleChange} required />
-      </div>
-      <button type="submit">로그인</button>
-    </form>
+
+    
+      
+    </div>
   );
 };
 export default Login;

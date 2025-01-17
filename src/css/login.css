@@ -1,0 +1,51 @@
+#loginMainBox {
+    position: relative;
+    display: block;
+    width: 618px;
+    margin: auto;
+    border:1px solid red;
+}
+
+#loginBox{
+    display: inline-block;
+    width: 300px;
+    height: 390px;
+    background-color: #E9E9E9;
+    border-radius: 20px;
+}
+
+.logo {
+    display:block;
+    width: 175px;
+    height: 40px;
+    margin: 65px auto 50px auto;
+}
+.loginBox{
+    width: 245px;
+    margin: 0 auto;
+
+}
+.loginBox > form > button{
+    width: 116px;
+    height: 35px;
+}
+.loginBox > form > button:first-child{
+    margin-right: 14px;
+}
+.loginIdPwBox{
+    display: inline-block;
+    width: 245px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    text-align: center;
+    line-height: 35px;
+    margin-bottom: 10px;
+}
+.loginIdPwBox > label{
+    width: 39px;
+    height: 27px;
+    background-color: #fff;
+    
+    font-size: 12px;
+}
