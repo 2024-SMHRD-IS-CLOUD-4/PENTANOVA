@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { AppData } from '../function/AuthContext';
 import axios from 'axios'
 import logo from "../assets/logo.png";
+import rightArrow from "../assets/right_arrow.png";
 import "../css/login.css";
 import "../css/all.css";
-
 const Login = () => {
   const shareData = useContext(AppData);
   const navigate = useNavigate();
@@ -16,6 +16,11 @@ const Login = () => {
     userId: '',
     userPw: ''
   });
+  const today = new Date();
+  let year = today.getFullYear();
+  let month = ('0' + today.getMonth()+1).slice(-2);
+  let day = ('0' + today.getDate()).slice(-2);
+
   useEffect(() => {
     if (data) {
       
@@ -33,7 +38,7 @@ const Login = () => {
       };
 
       sessionStorage.setItem("user", JSON.stringify(user));
-      if (user.role == '일반사용자') {
+      if (user.role === '일반사용자') {
         navigate('/diagnosis')
       } else {
         navigate('/dashboard');
@@ -78,33 +83,41 @@ const Login = () => {
   return (
     //로그인박스, 공지사항 보기, 날씨 총 3개 박스 가운데 정렬하는 div
     <div id="loginMainBox">
+      {/* 로그인 페이지 오른쪽 날씨 박스 */}
+      <div id="loginWeatherBox">
+        
+      </div>
+      {/* 로그인 페이지 왼쪽 상단 로그인 박스 */}
       <div id="loginBox">
-        <img class="logo"src={logo} alt="GROWELL Logo" />
+        <img class="logo" src={logo} alt="GROWELL Logo" />
         <div class="loginBox">
           <form className="login-form" onSubmit={handleSubmit}>
         
             <div class="loginIdPwBox">
                 <label htmlFor="id">ID</label>
-                <input type="text" name="id" id="id" onChange={handleChange} required />
+                <input type="text" name="id" id="id" placeholder='e-mail@gmail.com' onChange={handleChange} required />
             </div>
 
             <div class="loginIdPwBox">
               <label htmlFor="password">PW</label>
-              <input type="password" name="pw" id="password" onChange={handleChange} required />
+              <input type="password" name="pw" id="password" onChange={handleChange} required/>
             </div>
             <button type="submit">로그인</button>
             <button type="button">간편 로그인</button>
           </form>
-          <button>아이디/비밀번호 찾기</button>
-          <button>
-            <NavLink to="/join" className={isActive => isActive ? 'active' : ''}>
-              회원가입
-            </NavLink>
-          </button>
+          <div class="loginBoxBt">
+            <button>아이디/비밀번호 찾기</button>
+            <button> 회원가입 </button>
+          </div>
         </div>
       </div>
-
-    
+      {/* 로그인 페이지 왼쪽 하단 최근 공지사항 바로보기 박스 */}
+      <div id="loginNoticeBox"> {/*div 외부 링크로 이동시키는 방법 적용하기*/}
+          <img src={rightArrow} alt="공지사항 바로가기"/>
+          <p>{year}.{month}.{day}</p>
+          <h1>최근 공지사항 <br />바로보기</h1>
+          <p>한국농촌진흥청</p>
+      </div>
       
     </div>
   );
