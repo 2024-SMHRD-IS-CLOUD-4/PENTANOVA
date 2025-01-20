@@ -1,4 +1,4 @@
-# Welcone To PENTANOVA!!😀 💻Work Space💻 
+# Welcome To PENTANOVA!!😀 💻Work Space💻 
 
 ---
 
