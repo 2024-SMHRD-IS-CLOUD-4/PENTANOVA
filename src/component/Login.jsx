@@ -40,6 +40,7 @@ const Login = () => {
         location: data.location,
         institute: data.institute,
         createdAt: data.createdAt,
+        requsetAuth: data.rerequsetAuth,
         isTrue: true,
         isTrue2: isTrue2
       };

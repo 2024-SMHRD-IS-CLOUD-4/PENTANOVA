@@ -14,7 +14,6 @@ const UserManagement = () => {
     const userList = async () => {
       try {
         const response = await axios.get('http://localhost:8093/PTNV/user/userList');
-        console.log(response.data);
         setUsers(response.data);
       } catch (err) {
         setError(err);
@@ -34,6 +33,10 @@ const UserManagement = () => {
             navigate(`/userDetail?id=${user.id}`)
           }}>
             {user.nick}
+            {user.role}
+            {user.institute}
+            {user.phone}<br/>
+            {user.requestAuth?"O":"X"}
           </li>
         ))}
       </ul>
