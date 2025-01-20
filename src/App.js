@@ -21,6 +21,7 @@ import Uploader from './component/Uploader';
 import IdFind from './component/IdFind';
 import PwFind from './component/PwFind'; 
 import ChangeProfile from './component/ChangeProfile';
+import RequestAuth from './component/RequestAuth';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
@@ -32,6 +33,7 @@ function App() {
         <AppData value={{data : user, setData:setData}}>
         <Navbar />
           <Routes>
+            <Route path="/requestAuth" element={<RequestAuth />} />
             <Route path="/idFind" element={<IdFind />} />
             <Route path="/pwFind" element={<PwFind />} />
             <Route path="/pest" element={<PestManagement />} />

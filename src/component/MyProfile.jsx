@@ -56,7 +56,7 @@ const MyProfile = () => {
             </ul>
             <button onClick={()=>{navigate('/changeProfile')}}>수정하기</button>
             <button onClick={deleteUser}>회원탈퇴</button>
-            <button>권한 요청</button>
+            <button onClick={()=>{navigate('/requestAuth')}}>권한 요청</button>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import  {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 const PwFind = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const PwFind = () => {
     try {
       const response = await axios.post(`http://localhost:8093/PTNV/user/updatePw`, null, {
         params: {
-          pw : pw
+          pw: pw
         },
       });
       console.log(response.data);
