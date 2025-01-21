@@ -6,6 +6,7 @@ import PestManagement from './component/PestManagement';
 import PromotionManagement from './component/PromotionManagement';
 import UserManagement from './component/UserManagement';
 import Login from './component/Login';
+import Join from './component/Join';
 import Diagnosis from './component/Diagnosis';
 import DpDetail from './component/DpDetail';
 import HisDiagnosis from './component/HisDiagnosis';
@@ -17,6 +18,8 @@ import FumigatorPesticides from './component/FumigatorPesticides';
 import MyProfile from './component/MyProfile';
 import { AppData } from './function/AuthContext';
 import Uploader from './component/Uploader';
+import IdFind from './component/IdFind';
+import PwFind from './component/PwFind';
 import ChangeProfile from './component/ChangeProfile';
 import RequestAuth from './component/RequestAuth';
 import JipJoinPage from './component/JipJoinPage';
@@ -28,10 +31,13 @@ function App() {
   return (
     <Router>
       <div>
-        <AppData value={{data: user, setData: setData }}>
+        <AppData value={{ data: user, setData: setData }}>
           <Navbar />
           <Routes>
             <Route path="/jip" element={<JipJoinPage />} />
+            <Route path="/join" element={<Join />} />
+            <Route path="/idFind" element={<IdFind />} />
+            <Route path="/pwFind" element={<PwFind />} />
             <Route path="/requestAuth" element={<RequestAuth />} />
             <Route path="/pest" element={<PestManagement />} />
             <Route path="/uploader" element={<Uploader />} />
