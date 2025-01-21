@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import "../css/jip.css"
@@ -13,8 +13,13 @@ const Join = () => {
         role: '일반사용자',
         institute: ''
     });
+    const pwRef = useRef();
+    const [pwCheck, setPwCheck] = useState(null);
     const [idCheck, setIdCheck] = useState(null);
     const navigate = useNavigate();
+    const pwChecking = (e) => {
+        setPwCheck(e.target.value);
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -91,6 +96,7 @@ const Join = () => {
                                     <input
                                         type="password"
                                         name="pw"
+                                        ref={pwRef}
                                         value={formData.pw}
                                         onChange={handleChange}
                                         required
@@ -100,11 +106,11 @@ const Join = () => {
                                     <label>비밀번호 확인</label>
                                     <input
                                         type="password"
-                                        name="pw"
-                                        value={formData.pw}
-                                        onChange={handleChange}
+                                        name="pwCheck"
+                                        onChange={pwChecking}
                                         required
                                     />
+                                    {pwRef.current?(pwCheck!=pwRef.current.value?'불일치':null):null}
                                 </div>
                                 <div>
                                     <label>닉네임</label>

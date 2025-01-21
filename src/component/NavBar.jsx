@@ -43,7 +43,7 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/join" className={isActive => isActive ? 'active' : ''}>
+          <NavLink to="/jip" className={isActive => isActive ? 'active' : ''}>
             회원가입
           </NavLink>
         </li>

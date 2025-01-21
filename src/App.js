@@ -19,29 +19,31 @@ import MyProfile from './component/MyProfile';
 import { AppData } from './function/AuthContext';
 import Uploader from './component/Uploader';
 import IdFind from './component/IdFind';
-import PwFind from './component/PwFind'; 
+import PwFind from './component/PwFind';
 import ChangeProfile from './component/ChangeProfile';
 import RequestAuth from './component/RequestAuth';
+import JipJoinPage from './component/JipJoinPage';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
   const user = JSON.parse(storedUser);
-  const [data,setData] = useState();
+  const [data, setData] = useState();
   return (
     <Router>
       <div>
-        <AppData value={{data : user, setData:setData}}>
-        <Navbar />
+        <AppData value={{ data: user, setData: setData }}>
+          <Navbar />
           <Routes>
-            <Route path="/requestAuth" element={<RequestAuth />} />
+            <Route path="/jip" element={<JipJoinPage />} />
+            <Route path="/join" element={<Join />} />
             <Route path="/idFind" element={<IdFind />} />
             <Route path="/pwFind" element={<PwFind />} />
+            <Route path="/requestAuth" element={<RequestAuth />} />
             <Route path="/pest" element={<PestManagement />} />
             <Route path="/uploader" element={<Uploader />} />
             <Route path="/promotion" element={<PromotionManagement />} />
             <Route path="/users" element={<UserManagement />} />
             <Route path="/" element={<Login />} />
-            <Route path="/join" element={<Join />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/diagnosis" element={<Diagnosis />}></Route>
             <Route path="/dpDetail" element={<DpDetail />}></Route>
