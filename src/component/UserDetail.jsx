@@ -10,7 +10,7 @@ const UserDetail = () => {
   const userId = searchParams.get('id');
   const [user, setUser] = useState();
   const content = (
-    <p>권한 부여</p>
+      <button >권한 부여</button>
   )
   useEffect(() => {
     const userOne = async () => {
@@ -33,8 +33,9 @@ const UserDetail = () => {
       <h1>UserDetail</h1>
       {user ? user.nick : null}
       {user ? user.id : null}
-      {shareData.data.role == "관리자" ? (user ? (user.requestAuth?'O':'X') : null) : null}
+      {shareData.data.role == "관리자" ? (user ? (user.requestAuth ? content : null) : null) : null}
     </div>
   )
 }
+
 export default UserDetail

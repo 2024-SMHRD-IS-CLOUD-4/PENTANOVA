@@ -6,7 +6,6 @@ import PestManagement from './component/PestManagement';
 import PromotionManagement from './component/PromotionManagement';
 import UserManagement from './component/UserManagement';
 import Login from './component/Login';
-import Join from './component/Join';
 import Diagnosis from './component/Diagnosis';
 import DpDetail from './component/DpDetail';
 import HisDiagnosis from './component/HisDiagnosis';
@@ -18,30 +17,27 @@ import FumigatorPesticides from './component/FumigatorPesticides';
 import MyProfile from './component/MyProfile';
 import { AppData } from './function/AuthContext';
 import Uploader from './component/Uploader';
-import IdFind from './component/IdFind';
-import PwFind from './component/PwFind'; 
 import ChangeProfile from './component/ChangeProfile';
 import RequestAuth from './component/RequestAuth';
+import JipJoinPage from './component/JipJoinPage';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
   const user = JSON.parse(storedUser);
-  const [data,setData] = useState();
+  const [data, setData] = useState();
   return (
     <Router>
       <div>
-        <AppData value={{data : user, setData:setData}}>
-        <Navbar />
+        <AppData value={{data: user, setData: setData }}>
+          <Navbar />
           <Routes>
+            <Route path="/jip" element={<JipJoinPage />} />
             <Route path="/requestAuth" element={<RequestAuth />} />
-            <Route path="/idFind" element={<IdFind />} />
-            <Route path="/pwFind" element={<PwFind />} />
             <Route path="/pest" element={<PestManagement />} />
             <Route path="/uploader" element={<Uploader />} />
             <Route path="/promotion" element={<PromotionManagement />} />
             <Route path="/users" element={<UserManagement />} />
             <Route path="/" element={<Login />} />
-            <Route path="/join" element={<Join />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/diagnosis" element={<Diagnosis />}></Route>
             <Route path="/dpDetail" element={<DpDetail />}></Route>
