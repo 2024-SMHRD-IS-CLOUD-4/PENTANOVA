@@ -115,7 +115,11 @@ const Login = () => {
           </form>
           <div class="loginBoxBt">
             <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
-            <button onClick={joinClick}>회원가입</button>
+            <button>
+                <NavLink to="/jip" className={isActive => isActive ? 'active' : ''}>
+                  회원가입
+                </NavLink>
+              </button>
           </div>
         </div>
       </div>
