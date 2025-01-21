@@ -43,7 +43,6 @@ const Join = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await axios.post('http://localhost:8093/PTNV/user/join', formData,{ 
                 headers: {                    'Content-Type': 'application/json',

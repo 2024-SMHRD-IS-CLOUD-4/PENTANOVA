@@ -6,7 +6,7 @@ import PestManagement from './component/PestManagement';
 import PromotionManagement from './component/PromotionManagement';
 import UserManagement from './component/UserManagement';
 import Login from './component/Login';
-import Join from './component/Join';
+import Join from './component/join';
 import Diagnosis from './component/Diagnosis';
 import DpDetail from './component/DpDetail';
 import HisDiagnosis from './component/HisDiagnosis';

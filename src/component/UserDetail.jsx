@@ -1,17 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { AppData } from '../function/AuthContext';
 import axios from 'axios'
 
 
 const UserDetail = () => {
+  const navigate = useNavigate();
   const shareData = useContext(AppData);
   const [searchParams] = useSearchParams();
   const userId = searchParams.get('id');
   const [user, setUser] = useState();
-  const content = (
-      <button >권한 부여</button>
-  )
   useEffect(() => {
     const userOne = async () => {
       try {
@@ -28,6 +26,22 @@ const UserDetail = () => {
     };
     userOne();
   }, []);
+  const authorization = async() =>{
+    try {
+      const response = await axios.post('http://localhost:8093/PTNV/user/authorization',null,{
+        params : {
+          id : userId
+        }
+      });
+      alert('갱신 완료!');
+      navigate('/users');
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+  const content = (
+      <button onClick={authorization}>권한 부여</button>
+  )
   return (
     <div>
       <h1>UserDetail</h1>
