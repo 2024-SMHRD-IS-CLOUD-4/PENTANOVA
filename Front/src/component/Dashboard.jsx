@@ -3,58 +3,121 @@ import React from 'react';
 import { useContext } from 'react'
 import { AppData } from '../function/AuthContext';
 import { Grid, Paper } from '@mui/material';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS } from 'chart.js/auto'
+import { Bar, Line, Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, BarElement, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  ArcElement,
+  BarElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const today = new Date();
 const lastSixMonths = [];
+let monthNames = [];
 for (let i = 5; i >= 0; i--) {
-  const month = new Date(today.getFullYear(), today.getMonth() - i, 1); // 각 달의 1일로 설정
+  const month = new Date(today.getFullYear(), today.getMonth() - i, 1);
   const year = month.getFullYear();
-  const monthNumber = month.getMonth() + 1; // getMonth()는 0부터 시작하므로 1을 더함
-  const monthName = month.toLocaleString('default', { month: 'long' }); // 월 이름 (예: January, February)
+  const monthNumber = month.getMonth() + 1;
+  const monthName = month.toLocaleString('default', { month: 'long' });
   lastSixMonths.push({
-      year,
-      month: monthNumber,
-      monthName: monthName,
-      startDate: new Date(year, monthNumber - 1, 1),
-      endDate: new Date(year, monthNumber, 0) // 해당 달의 마지막 날
+    year,
+    month: monthNumber,
+    monthName: monthName,
+    startDate: new Date(year, monthNumber - 1, 1),
+    endDate: new Date(year, monthNumber, 0)
   });
+  monthNames.push(monthName);
 }
 
-const data = {
-  labels: lastSixMonths,
+const data1 = {
+  labels: monthNames,
   datasets: [
-      {
-          label: 'Sales',
-          data: [12, 19, 3, 5, 2, 3, 7],
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-  ],
+    {
+      label: '가입자',
+      data: [12, 19, 3, 5, 2, 3, 7],
+      backgroundColor: 'rgba(53, 10, 207, 0.5)',
+    }
+  ]
+};
+
+const data2 = {
+  labels: monthNames,
+  datasets: [
+    {
+      label: '이용 횟수',
+      data: [12, 19, 3, 5, 2, 3, 7],
+      backgroundColor: 'rgba(68, 11, 201, 0.5)',
+    }
+  ]
+}
+
+const data3 = {
+  labels: monthNames,
+  datasets: [
+    {
+      label: '병해충 분포',
+      data: [12, 19, 3],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+      ],
+      borderWidth: 1
+    }
+  ]
+}
+
+const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  cutoutPercentage: 50, // 도넛 안쪽의 빈 공간 비율 (0~100)
+  plugins: {
+      legend: {
+          position: 'block'
+      }
+  }
 };
 
 const Dashboard = () => {
-  console.log(lastSixMonths[1].monthName)
+  console.log(monthNames);
   const shareData = useContext(AppData);
   const storedUser = sessionStorage.getItem("user");
   const user = JSON.parse(storedUser);
   return (
     <div>
       <h1>대시보드 페이지입니다.</h1>
-      <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-                <Paper elevation={3} style={{ padding: 16 }}>
-                    <h2>Sales Chart</h2>
-                    <Bar data={data} />
-                </Paper>
-            </Grid>
-            <Grid item xs={12} md={6}>
-                <Paper elevation={3} style={{ padding: 16 }}>
-                    <h2>Another Component</h2>
-                    <p>This is another component in the dashboard.</p>
-                </Paper>
-            </Grid>
+      <Grid container spacing={1}>
+        <Grid item xs={12} md={6}>
+          <Paper elevation={3} style={{ padding: 16 }}>
+            <h2>가입 현황</h2>
+            <Bar data={data1} />
+          </Paper>
         </Grid>
+        <Grid item xs={12} md={6}>
+          <Paper elevation={3} style={{ padding: 16 }}>
+            <h2>이용 현황</h2>
+            <Line data = {data2}></Line>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Paper elevation={3} style={{ padding: 16 }}>
+            <h2>병해충 진단 분포</h2>
+            {/* <Pie data={data3} options={options} /> */}
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 };

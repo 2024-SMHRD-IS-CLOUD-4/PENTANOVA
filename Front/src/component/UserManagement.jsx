@@ -7,18 +7,14 @@ const UserManagement = () => {
 
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const userList = async () => {
       try {
         const response = await axios.get('http://localhost:8093/PTNV/user/userList');
         setUsers(response.data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
+      } catch (error) {
+        console.error('Error:', error);
       }
     };
     userList();
@@ -43,5 +39,4 @@ const UserManagement = () => {
     </div>
   );
 };
-
 export default UserManagement;
