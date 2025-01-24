@@ -12,6 +12,7 @@ const UserManagement = () => {
     const userList = async () => {
       try {
         const response = await axios.get('http://localhost:8093/PTNV/user/userList');
+        console.log(response.data);
         setUsers(response.data);
       } catch (error) {
         console.error('Error:', error);

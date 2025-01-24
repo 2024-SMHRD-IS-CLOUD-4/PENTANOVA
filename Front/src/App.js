@@ -23,6 +23,7 @@ import PwFind from './component/PwFind';
 import ChangeProfile from './component/ChangeProfile';
 import RequestAuth from './component/RequestAuth';
 import JipJoinPage from './component/JipJoinPage';
+import CropList from './component/CropList';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
@@ -55,6 +56,7 @@ function App() {
             <Route path="/myProfile" element={<MyProfile />}></Route>
             <Route path="/changeProfile" element={<ChangeProfile />}></Route>
             <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
+            <Route path="/crops" element={<CropList />}></Route>
           </Routes>
         </AppData>
       </div>

@@ -6,8 +6,6 @@ const DpList = () => {
 
     const navigate = useNavigate();
     const [dps, setDps] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
         const dpList = async () => {
@@ -15,10 +13,8 @@ const DpList = () => {
                 const response = await axios.get('http://localhost:8093/PTNV/dp/dpList');
                 console.log(response.data);
                 setDps(response.data);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
+            } catch (error) {
+                console.error('Error:', error);
             }
         };
         dpList();
@@ -27,10 +23,10 @@ const DpList = () => {
     return (
         <div>
             <h2>DpList</h2>
-            
+
             <ul>
                 {dps.map(dp => (
-                    <li key={dp.dp_num} onClick={()=>{
+                    <li key={dp.dp_num} onClick={() => {
                         navigate(`/dpDetail?id=${dp.dp_num}`)
                     }}>
                         {dp.name}
