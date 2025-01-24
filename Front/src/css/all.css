@@ -1,17 +1,17 @@
 @font-face {
-    font-family: 'GmarketSansBold';
+    font-family: 'GmarketSans';
     font-style: normal;
     font-weight: 700;
     src: url('../font/GMARKETSANSTTFBOLD.TTF') format('truetype');
 }
 @font-face {
-    font-family: 'GmarketSansMedium';
+    font-family: 'GmarketSans';
     font-style: normal;
     font-weight: 500;
     src: url('../font/GMARKETSANSTTFMEDIUM.TTF') format('truetype');
 }
 @font-face {
-    font-family: 'GmarketSansLight';
+    font-family: 'GmarketSans';
     font-style: normal;
     font-weight: 300;
     src: url('../font/GMARKETSANSTTFLIGHT.TTF') format('truetype');
