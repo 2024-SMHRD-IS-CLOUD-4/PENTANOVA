@@ -28,7 +28,8 @@ const Join = () => {
 
     const UserIdCheck = async () => {
         try {
-            const response = await axios.get(`http://localhost:8093/PTNV/user/idCheck/${formData.id}`);
+            const response = await axios.get(`${process.env.REACT_APP_connect}/user/idCheck/${formData.id}`);
+            console.log(response.data);
             if (response.ok) {
                 setIdCheck(response.data);
             } else {
@@ -45,7 +46,7 @@ const Join = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8093/PTNV/user/join', formData,{ 
+            const response = await axios.post(`${process.env.REACT_APP_connect}/PTNV/user/join`, formData,{ 
                 headers: {                    'Content-Type': 'application/json',
                 },
             });

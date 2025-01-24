@@ -26,7 +26,8 @@ const DpList = () => {
 
     return (
         <div>
-            DpList
+            <h2>DpList</h2>
+            
             <ul>
                 {dps.map(dp => (
                     <li key={dp.dp_num} onClick={()=>{

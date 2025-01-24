@@ -7,7 +7,7 @@ const IdFind = () => {
     e.preventDefault(); 
     let userphone = phoneRef.current.value;
     try {
-      const response = await axios.post(`http://localhost:8093/PTNV/user/idFind`, null, {
+      const response = await axios.post(`${process.env.connect}/user/idFind`, null, {
         params: {
           phone: userphone,
         },
