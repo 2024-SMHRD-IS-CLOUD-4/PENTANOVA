@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/dp")
 public class DpController {
 
@@ -38,18 +38,16 @@ public class DpController {
 	@GetMapping("/dpList")
 	public ResponseEntity<List<Disease_Pest>> getList(){
 		List<Disease_Pest> result = service.getList();
-		List<Disease_Pest> dtoList = result.stream()
-                .map(Disease_Pest::new)
-                .collect(Collectors.toList());
-		System.out.println(dtoList);
-		return ResponseEntity.ok(dtoList);
+		return ResponseEntity.ok(result);
+		
 	}
 	
-	@PostMapping("selectOne")
-	public ResponseEntity<Optional<Disease_Pest>> selcetOne(@RequestParam Long id) {
-		Optional<Disease_Pest> result = service.selectOne(id);
-		System.out.println();
-		return ResponseEntity.ok(result);
+	@PostMapping("/selectOne")
+	public ResponseEntity<Disease_Pest> selcetOne(@RequestParam Long dp_num) {
+		System.out.println("asdasd");
+		Optional<Disease_Pest> result = service.selectOne(dp_num);
+		Disease_Pest dp = result.get();
+		return ResponseEntity.ok(dp);
 	}
 	
 }

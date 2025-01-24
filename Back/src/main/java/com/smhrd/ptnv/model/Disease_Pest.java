@@ -32,15 +32,13 @@ public class Disease_Pest {
 	@SequenceGenerator(name = "disease_pest_seq", sequenceName = "disease_pest_seq", allocationSize = 1)
 	private Long dp_num;
 
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User id;
 
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "crop_num")
-	private Crop crop_num;
+	private Crop crop_num; 
 
 	@Column(length = 50, nullable = false)
 	private String name;
@@ -63,14 +61,4 @@ public class Disease_Pest {
 	@Column(length = 255)
 	private String img;
 
-	public Disease_Pest(Disease_Pest dp) {
-		this.dp_num = dp.getDp_num();
-		this.name = dp.getName();
-		this.category = dp.isCategory();
-		this.season = dp.getSeason();
-		this.region = dp.getRegion();
-		this.site = dp.getSite();
-		this.argu = dp.getArgu();
-		this.img = dp.getImg();
-	}
 }

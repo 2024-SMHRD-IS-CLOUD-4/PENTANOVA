@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.smhrd.ptnv.model.Crop;
 import com.smhrd.ptnv.model.Disease_Pest;
 import com.smhrd.ptnv.repository.DpRepository;
 
@@ -26,11 +27,11 @@ public class DpService {
 	}
 
 	public List<Disease_Pest> getList() {
-		return repository.findAll();
+		return repository.findAll(); 
 	}
 	
-	public Optional<Disease_Pest> selectOne(Long id) {
-		return repository.findById(id);
+	public Optional<Disease_Pest> selectOne(Long dp_num) {
+		return repository.findById(dp_num);
 	}
 	
 }
