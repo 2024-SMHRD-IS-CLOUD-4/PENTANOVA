@@ -114,7 +114,7 @@ const Dashboard = () => {
         <Grid item xs={12} md={6}>
           <Paper elevation={3} style={{ padding: 16 }}>
             <h2>병해충 진단 분포</h2>
-            {/* <Pie data={data3} options={options} /> */}
+            <Pie data={data3} />
           </Paper>
         </Grid>
       </Grid>
