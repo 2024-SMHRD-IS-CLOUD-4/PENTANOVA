@@ -46,10 +46,12 @@ const Join = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_connect}/PTNV/user/join`, formData,{ 
-                headers: {                    'Content-Type': 'application/json',
+            const response = await axios.post(`${process.env.REACT_APP_connect}/user/join`, formData,{ 
+                headers: {                    
+                    'Content-Type': 'application/json',
                 },
             });
+            console.log("asd");
 
             if (response.status === 200) {
                 alert('회원가입 성공!');

@@ -30,7 +30,6 @@ const Login = () => {
 
   useEffect(() => {
     if (data) {
-      
       const user = {
         id: data.id,
         pw: data.pw,

@@ -8,20 +8,22 @@ const DpList = () => {
     const [dps, setDps] = useState([]);
     const [searchParams] = useSearchParams();
     const crop_num = searchParams.get('crop_num');
-    console.log(crop_num);
     useEffect(() => {
         const dpList = async () => {
             try {
-                const response = await axios.get(`http://localhost:8093/PTNV/dp/dpList/${crop_num}`);
+                const response = await axios.get(`http://localhost:8093/PTNV/dp/dpList`);
                 console.log(response.data);
-                setDps(response.data);
+                response.data.map(dp => (
+                    console.log(dp),
+                    setDps(dps => [...dps,dp])
+                ))
             } catch (error) {
                 console.error('Error:', error);
             }
         };
         dpList();
     }, []);
-
+    console.log(dps);
     return (
         <div>
             <h2>DpList</h2>

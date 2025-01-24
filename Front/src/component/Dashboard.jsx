@@ -5,7 +5,7 @@ import { AppData } from '../function/AuthContext';
 import { Grid, Paper } from '@mui/material';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, BarElement, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-
+import { Chart } from 'chart.js/auto';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -59,11 +59,11 @@ const data2 = {
 }
 
 const data3 = {
-  labels: monthNames,
+  labels: ['경기도', '강원도', '충청도', '전라도', '경상도'],
   datasets: [
     {
       label: '병해충 분포',
-      data: [12, 19, 3],
+      data: [12, 19, 3, 5, 2],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -75,18 +75,19 @@ const data3 = {
         'rgba(255, 206, 86, 1)',
       ],
       borderWidth: 1
-    }
-  ]
+    }],
 }
 
-const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  cutoutPercentage: 50, // 도넛 안쪽의 빈 공간 비율 (0~100)
-  plugins: {
-      legend: {
-          position: 'block'
+
+const options = { // options 분리
+  scales: {
+    y: {
+      beginAtZero: true,
+      max: 100,
+      ticks: {
+        stepSize: 20
       }
+    }
   }
 };
 
@@ -108,16 +109,23 @@ const Dashboard = () => {
         <Grid item xs={12} md={6}>
           <Paper elevation={3} style={{ padding: 16 }}>
             <h2>이용 현황</h2>
-            <Line data = {data2}></Line>
+            <Line data={data2}></Line>
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
           <Paper elevation={3} style={{ padding: 16 }}>
             <h2>병해충 진단 분포</h2>
-            {/* <Pie data={data3} options={options} /> */}
+            <Bar data={data3} options={options} />
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Paper elevation={3} style={{ padding: 16 }}>
+            <h2>병해충 진단 분포</h2>
+            <Pie data={data3} />
           </Paper>
         </Grid>
       </Grid>
+      
     </div>
   );
 };

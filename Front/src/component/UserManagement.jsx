@@ -11,7 +11,7 @@ const UserManagement = () => {
   useEffect(() => {
     const userList = async () => {
       try {
-        const response = await axios.get('http://localhost:8093/PTNV/user/userList');
+        const response = await axios.get(`${process.env.REACT_APP_connect}/user/userList`);
         console.log(response.data);
         setUsers(response.data);
       } catch (error) {
