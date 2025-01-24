@@ -24,7 +24,7 @@ const CropList = () => {
                 <ul>
                     {crops.map(crop => (
                         <li key={crop.crop_num} onClick={() => { 
-                            navigate('/')
+                            navigate(`/dplist?crop_num=${crop.crop_num}`)
                         }}>
                             {crop.name}
                             <img src={require('../assets/appleMango.jpg')} />

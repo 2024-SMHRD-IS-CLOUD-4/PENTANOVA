@@ -9,6 +9,7 @@ import Login from './component/Login';
 import Join from './component/Join';
 import Diagnosis from './component/Diagnosis';
 import DpDetail from './component/DpDetail';
+import DpList from './component/DpList';
 import HisDiagnosis from './component/HisDiagnosis';
 import SelfDiagnosis from './component/SelfDiagnosis';
 import FieldGuide from './component/FieldGuide';
@@ -48,6 +49,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/diagnosis" element={<Diagnosis />}></Route>
             <Route path="/dpDetail" element={<DpDetail />}></Route>
+            <Route path="/dpList" element={<DpList />}></Route>
             <Route path="/userDetail" element={<UserDetail />}></Route>
             <Route path="/hisDetail" element={<HisDetail />}></Route>
             <Route path="/hisDiagnosis" element={<HisDiagnosis />}></Route>

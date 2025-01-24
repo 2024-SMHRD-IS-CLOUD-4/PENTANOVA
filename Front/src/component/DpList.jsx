@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios'
 
 const DpList = () => {
 
     const navigate = useNavigate();
     const [dps, setDps] = useState([]);
-
+    const [searchParams] = useSearchParams();
+    const crop_num = searchParams.get('crop_num');
+    console.log(crop_num);
     useEffect(() => {
         const dpList = async () => {
             try {
-                const response = await axios.get('http://localhost:8093/PTNV/dp/dpList');
+                const response = await axios.get(`http://localhost:8093/PTNV/dp/dpList/${crop_num}`);
                 console.log(response.data);
                 setDps(response.data);
             } catch (error) {
