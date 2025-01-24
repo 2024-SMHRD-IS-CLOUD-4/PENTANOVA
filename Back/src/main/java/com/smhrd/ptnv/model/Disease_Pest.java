@@ -32,11 +32,11 @@ public class Disease_Pest {
 	@SequenceGenerator(name = "disease_pest_seq", sequenceName = "disease_pest_seq", allocationSize = 1)
 	private Long dp_num;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "crop_num")
 	private Crop crop_num; 
 

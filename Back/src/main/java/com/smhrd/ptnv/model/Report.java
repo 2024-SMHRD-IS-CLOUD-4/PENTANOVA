@@ -30,7 +30,7 @@ public class Report extends BaseTimeEntity {
 	@SequenceGenerator(name = "report_seq", sequenceName = "report_seq", allocationSize = 1)
 	private Long report_num;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User id;
 	

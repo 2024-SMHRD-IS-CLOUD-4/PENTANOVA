@@ -30,11 +30,11 @@ public class History extends BaseTimeEntity {
 	@SequenceGenerator(name = "history_seq", sequenceName = "history_seq", allocationSize = 1)
 	private Long his_num;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User id;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="dp_num")
 	private Disease_Pest dp_num;
 	

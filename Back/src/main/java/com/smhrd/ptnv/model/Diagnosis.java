@@ -30,11 +30,11 @@ public class Diagnosis extends BaseTimeEntity {
 	@SequenceGenerator(name = "diagnosis_seq", sequenceName = "diagnosis_seq", allocationSize = 1)
 	private Long diag_num;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User id;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="dp_num")
 	private Disease_Pest dp_num;
 	

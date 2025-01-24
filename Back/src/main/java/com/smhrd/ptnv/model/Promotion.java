@@ -30,7 +30,7 @@ public class Promotion extends BaseTimeEntity {
 	@SequenceGenerator(name="promotion_seq", sequenceName = "promotion_seq", allocationSize = 1)
 	private Long pro_num;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User id;
 	

@@ -31,7 +31,7 @@ public class Crop {
 	@SequenceGenerator(name = "crop_seq", sequenceName = "crop_seq", allocationSize = 1)
 	private Long crop_num;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
 	private User id;
 	
