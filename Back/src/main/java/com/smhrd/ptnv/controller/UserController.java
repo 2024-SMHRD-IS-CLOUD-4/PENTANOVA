@@ -2,6 +2,8 @@ package com.smhrd.ptnv.controller;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+import org.hibernate.annotations.Parameter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,23 +11,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ws.server.endpoint.annotation.XPathParam;
 
 import com.smhrd.ptnv.model.User;
 import com.smhrd.ptnv.service.UserService;
 
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/user")
 public class UserController {
 	
 	private final UserService service;
 	
 	@PostMapping("/login")
-	public ResponseEntity<User> Login(@RequestBody User user) {
+	public ResponseEntity<User> login(@RequestBody User user) {
+		System.out.println(user.getId());
 		User result = service.login(user); 
 		if(result==null) {
 			return ResponseEntity.badRequest().body(result);
@@ -35,20 +40,19 @@ public class UserController {
 	}
 	
 	@GetMapping("/idCheck/{id}")
-	public ResponseEntity<String> IdCheck(@PathVariable String id){
+	public ResponseEntity<String> idCheck(@PathVariable String id){
 		boolean isTrue = service.idCheck(id);
 		if(isTrue) {
 			return ResponseEntity.ok("사용 가능 아이디");
 		}else {
-			return ResponseEntity.badRequest().body("이미 존재하는 아이디");
+			return ResponseEntity.ok("이미 존재하는 아이디");
 		}
 	}
 	
 	@PostMapping("/join")
-	public ResponseEntity<String> Join(@RequestBody User user) {
-		System.out.println(user);
+	public ResponseEntity<String> join(@RequestBody User user) {
+		System.out.println("asdfasdf");
 		User result = service.join(user); 
-		System.out.println(result);
 		if(result==null) {
 			return ResponseEntity.badRequest().body("로그인 실패");
 		}else {
@@ -59,8 +63,64 @@ public class UserController {
 	@GetMapping("/userList")
 	public ResponseEntity<List<User>> getList(){
 		List<User> result = service.getList();
-		System.out.println(result);
 		return ResponseEntity.ok(result);
-				
+	}
+	
+	@PostMapping("/authorization")
+	public void authorization(@RequestParam String id){
+		service.authorization(id);
+	}
+	
+	@PostMapping("/selectOne")
+	public ResponseEntity<User> selectOne(@RequestParam String id){
+		User result = service.selectOne(id);
+		return ResponseEntity.ok(result);
+	}
+	
+	@PostMapping("/idFind")
+	public ResponseEntity<String> idFind(@RequestParam String phone){
+		User result = service.idFind(phone);
+		if(result!=null) {
+			return ResponseEntity.ok(result.getId());
+		}else {
+			return ResponseEntity.ok("일치하는 데이터 없음.");
+		}
+	}
+	
+	@PostMapping("/pwFind")
+	public ResponseEntity<Boolean> pwFind(@RequestParam String id, @RequestParam String phone) {
+		User result = service.pwFind(id, phone);
+		if(result!=null) {
+			return ResponseEntity.ok(true);
+		}else {
+			return ResponseEntity.ok(false);
+		}
+	}
+	
+	@PostMapping("/updatePw")
+	public ResponseEntity<Boolean> updatePw(@RequestParam String id, @RequestParam String pw){
+		System.out.println(pw);
+		boolean result = service.updatePw(id, pw);
+		if(result) {
+			return ResponseEntity.ok(true);
+		}else {
+			return ResponseEntity.ok(false);
+		}
+	}
+	
+	@PostMapping("/sendAuth")
+	public ResponseEntity<Boolean> requestAuth(@RequestParam String id, @RequestParam Boolean requestAuth
+												,@RequestParam String institute) {
+		boolean isTrue = service.idCheck2(id);
+		if(isTrue) {
+			boolean result = service.requestAuth(id, institute, requestAuth);
+			if(result) {
+				return ResponseEntity.ok(true);
+			}else {
+				return ResponseEntity.ok(false);
+			}
+		}else {
+			return ResponseEntity.ok(false);
+		}
 	}
 }

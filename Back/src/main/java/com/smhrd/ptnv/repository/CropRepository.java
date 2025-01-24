@@ -7,5 +7,5 @@ import com.smhrd.ptnv.model.Crop;
 
 @Repository
 public interface CropRepository extends JpaRepository<Crop, Long>{
-
+	
 }

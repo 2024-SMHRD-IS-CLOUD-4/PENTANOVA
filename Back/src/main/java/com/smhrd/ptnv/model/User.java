@@ -1,5 +1,7 @@
 package com.smhrd.ptnv.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -27,18 +29,21 @@ public class User extends BaseTimeEntity {
 	private String pw;
 	
 	@Column(length=50,nullable = false)
-	private String tel;
+	private String phone;
 	
 	@Column(length=50,nullable = false)
 	private String nick;
 	
-	@Column(length=1,nullable = false)
-	private int rank;
+	@Column(length=20,nullable = false)
+	private String role;
 	
 	@Column(length=50,nullable = false)
 	private String location;
 	
 	@Column(length=30)
 	private String institute;
+	
+	@Column(nullable = false)
+	private boolean requestAuth = false;
 	
 }

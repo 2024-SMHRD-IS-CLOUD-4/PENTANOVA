@@ -5,7 +5,7 @@ import "../css/jip.css"
 
 const Join = () => {
     const [formData, setFormData] = useState({
-        id: '',
+        id: '예시. e-mail@gmail.com',
         pw: '',
         phone: '',
         nick: '',
