@@ -38,6 +38,9 @@ public class Diagnosis extends BaseTimeEntity {
 	@JoinColumn(name="dp_num")
 	private Disease_Pest dp_num;
 	
+	@Column(length=20, nullable = false)
+	private String diag_region;
+	
 	@Column(length=255)
 	private String diag_img;
 	
