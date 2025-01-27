@@ -16,7 +16,7 @@ public class DiagService {
 
 	private final DiagRepository repository;
 	
-	public Diagnosis addHs(Diagnosis hs) {
+	public Diagnosis addDiag(Diagnosis hs) {
 		Optional<Diagnosis> result = repository.findById(hs.getDiag_num());
 		if (result.isEmpty()) {
 			return repository.save(hs);
@@ -25,8 +25,12 @@ public class DiagService {
 		}
 	}
 	
-	public List<Diagnosis> getList() {
+	public List<Diagnosis> diagList() {
 		return repository.findAll();
 	}
 	
+	public Diagnosis selectOne(Long diag_num) {
+		Optional<Diagnosis> result= repository.findById(diag_num);
+		return result.get();
+	}
 }
