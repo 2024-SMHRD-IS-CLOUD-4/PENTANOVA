@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.17</version>
+        <version>3.4.1</version>
         <relativePath/>
     </parent>
     <groupId>com.smhrd</groupId>
@@ -14,7 +14,7 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
-        <java.version>8</java.version>
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
@@ -36,8 +36,8 @@
         </dependency>
         <dependency>
     		<groupId>com.oracle.database.jdbc</groupId>
-    		<artifactId>ojdbc8</artifactId>
-    		<version>19.14.0.0</version>
+    		<artifactId>ojdbc11</artifactId>
+    		<version>23.3.0.23.09</version>
 		</dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
