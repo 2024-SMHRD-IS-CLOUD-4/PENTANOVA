@@ -14,7 +14,7 @@ import HisDiagnosis from './component/HisDiagnosis';
 import SelfDiagnosis from './component/SelfDiagnosis';
 import FieldGuide from './component/FieldGuide';
 import UserDetail from './component/UserDetail';
-import HisDetail from './component/HisDetail';
+import DiagDetail from './component/DiagDetail';
 import FumigatorPesticides from './component/FumigatorPesticides';
 import MyProfile from './component/MyProfile';
 import { AppData } from './function/AuthContext';
@@ -25,6 +25,7 @@ import ChangeProfile from './component/ChangeProfile';
 import RequestAuth from './component/RequestAuth';
 import JipJoinPage from './component/JipJoinPage';
 import CropList from './component/CropList';
+import Address from './component/Address';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
@@ -51,7 +52,7 @@ function App() {
             <Route path="/dpDetail" element={<DpDetail />}></Route>
             <Route path="/dpList" element={<DpList />}></Route>
             <Route path="/userDetail" element={<UserDetail />}></Route>
-            <Route path="/hisDetail" element={<HisDetail />}></Route>
+            <Route path="/diagDetail" element={<DiagDetail />}></Route>
             <Route path="/hisDiagnosis" element={<HisDiagnosis />}></Route>
             <Route path="/selfDiagnosis" element={<SelfDiagnosis />}></Route>
             <Route path="/fieldGuide" element={<FieldGuide />}></Route>
@@ -59,6 +60,7 @@ function App() {
             <Route path="/changeProfile" element={<ChangeProfile />}></Route>
             <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
             <Route path="/crops" element={<CropList />}></Route>
+            <Route path="/address" element={<Address />}></Route>
           </Routes>
         </AppData>
       </div>

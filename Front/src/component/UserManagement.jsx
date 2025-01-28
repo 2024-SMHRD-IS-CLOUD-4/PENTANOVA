@@ -20,7 +20,7 @@ const UserManagement = () => {
     };
     userList();
   }, []);
-
+// user 컬럼 : REQUEST_AUTH CREATED_AT PW ROLE INSTITUTE ID LOCATION NICK PHONE
   return (
     <div>
       <h1>사용자 관리 페이지입니다.</h1>
@@ -32,7 +32,7 @@ const UserManagement = () => {
             {user.nick}
             {user.role}
             {user.institute}
-            {user.phone}<br/>
+            {user.phone}
             {user.requestAuth?"O":"X"}
           </li>
         ))}

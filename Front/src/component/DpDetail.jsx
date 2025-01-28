@@ -8,26 +8,28 @@ const DpDetail = () => {
   const [dp, setDp] = useState();
 
   useEffect(() => {
-    console.log("123123");
     const dpOne = async () => {
       try {
-        const response = await axios.post(`http://localhost:8093/PTNV/dp/selectOne`, null, {
+        console.log("123123");
+        const response = await axios.post(`${process.env.REACT_APP_connect}/dp/selectOne`, null, {
           params: {
             dp_num: dp_num
           },
         });
-        console.log(response.data)
         setDp(response.data);
       } catch (error) {
         console.error('Error:', error);
       }
-      dpOne();
     };
+    dpOne();
   }, []);
   return (
     <div>
       <h1>Dp Detail</h1>
       {dp ? dp.name : null}
+      {dp ? dp.name : null}
+      {dp ? dp.region : null}
+      {dp ? dp.region : null}
     </div>
   )
 }

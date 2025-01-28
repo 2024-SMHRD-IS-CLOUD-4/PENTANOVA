@@ -4,34 +4,30 @@ import axios from 'axios'
 
 const HisDiagnosis = () => {
   const navigate = useNavigate();
-  const [hts, setHts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [diags, setDiags] = useState([]);
 
   useEffect(() => {
-    const htList = async () => {
+    const diagList = async () => {
       try {
-        const response = await axios.get('http://localhost:8093/PTNV/his/htList');
+        const response = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`);
         console.log(response.data);
-        setHts(response.data);
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
+        setDiags(response.data);
+      } catch (error) {
+        console.error(error)
       }
     };
-    htList();
+    diagList();
   }, []);
 
   return (
     <div>
-      HisDiagnosis
+      DiagDiagnosis
       <ul>
-        {hts.map(ht => (
-          <li key={ht.his_num} onClick={() => {
-            navigate(`/hisDetail?id=${ht.his_num}`)
+        {diags.map(diag => (
+          <li key={diag.diag_num} onClick={() => {
+            navigate(`/diagDetail?id=${diag.diag_num}`)
           }}>
-            {ht.content}
+            {diag.diag_content}
           </li>
         ))}
       </ul>

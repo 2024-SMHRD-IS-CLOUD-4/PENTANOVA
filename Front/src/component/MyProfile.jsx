@@ -10,7 +10,7 @@ const MyProfile = () => {
     const navigate = useNavigate();
     const DeleteUser = async () => {
         try {
-            const response = await axios.delete(`http://localhost:8093/PTNV/user/deleteUser/${shareData.data.id}`);
+            const response = await axios.delete(`${process.env.REACT_APP_connect}/user/deleteUser/${shareData.data.id}`);
             console.log(response.data);
             alert("회원 탈퇴가 완료되었습니다.");
             shareData.setData(null);
@@ -42,10 +42,10 @@ const MyProfile = () => {
                     {shareData.data ? shareData.data.nick : null}
                 </li>
                 <li>
-                    {shareData.data ? (shareData.data.rank==0?'일반사용자':'관리자') : null}
+                    {shareData.data ? shareData.data.role : null}
                 </li>
                 <li>
-                    {shareData.data ? shareData.data.tel : null}
+                    {shareData.data ? shareData.data.phone : null}
                 </li>
                 <li>
                     {shareData.data ? shareData.data.location : null}

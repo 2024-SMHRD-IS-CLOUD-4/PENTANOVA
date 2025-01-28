@@ -5,7 +5,7 @@ const AddDp = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8093/PTNV/api/join', {
+            const response = await fetch(`${process.env.REACT_APP_connect}/user/join`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { AppData } from '../function/AuthContext.jsx';
+import { AppData } from '../function/AuthContext';
 import axios from 'axios'
 import logo from "../assets/logo.png";
 import rightArrow from "../assets/right_arrow.png";

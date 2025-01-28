@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import "../css/jip.css"
+import Address from './Address';
 
 const Join = () => {
     const [formData, setFormData] = useState({
@@ -16,11 +17,12 @@ const Join = () => {
     const pwRef = useRef();
     const [pwCheck, setPwCheck] = useState(null);
     const [idCheck, setIdCheck] = useState(null);
+    const addressRef = useRef();
     const navigate = useNavigate();
     const pwChecking = (e) => {
         setPwCheck(e.target.value);
     }
-
+    console.log(addressRef.current);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -126,14 +128,7 @@ const Join = () => {
                         />
                     </div>
                     <div>
-                        <label>지역</label>
-                        <input
-                            type="text"
-                            name="location"
-                            value={formData.location}
-                            onChange={handleChange}
-                            required
-                        />
+                        <Address ref={addressRef}/>
                     </div>
                     <div>
                         <label>알람여부를 선택해주세요</label>

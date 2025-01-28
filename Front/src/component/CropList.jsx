@@ -8,7 +8,7 @@ const CropList = () => {
     useEffect(() => {
         const cropList = async () => {
             try {
-                const response = await axios.get('http://localhost:8093/PTNV/crop/cropList');
+                const response = await axios.get(`${process.env.REACT_APP_connect}/crop/cropList`);
                 console.log(response.data);
                 setCrops(response.data);
             } catch (error) {

@@ -9,13 +9,14 @@ const RequestAuth = () => {
         const institute = instituteRef.current.value;
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8093/PTNV/user/sendAuth', null, {
+            const response = await axios.post(`${process.env.REACT_APP_connect}/user/sendAuth`, null, {
                 params: {
                     id : shareData.data.id,
                     requestAuth: 1,
                     institute : institute
                 }
             });
+            
             console.log(response.data);
             if(response.data){
                 alert('권한 요청 성공!')
