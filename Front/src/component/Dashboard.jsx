@@ -1,9 +1,9 @@
 // pages/Dashboard.js
-import React from 'react';
-import { useContext, useEffect, useState, useRef } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AppData } from '../function/AuthContext';
-import { Grid, Paper } from '@mui/material';
+import { Grid, Paper, Select } from '@mui/material';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, BarElement, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Chart } from 'chart.js/auto';
@@ -25,7 +25,6 @@ const monthNames = [];
 const monthNumbers = [];
 const months = [];
 const dpCount = [];
-const dpTypeCount = [0, 0];
 
 for (let i = 5; i >= 0; i--) {
   const month = new Date(today.getFullYear(), today.getMonth() - i, 1);
@@ -65,6 +64,7 @@ const options = {
 };
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [data1, setData1] = useState();
   const [data2, setData2] = useState();
   const [data3, setData3] = useState();
@@ -72,19 +72,28 @@ const Dashboard = () => {
   const [userList, setUserList] = useState([]);
   const [dpList, setDpList] = useState([]);
   const [diagList, setDiagList] = useState([]);
+  const [dpNames, setDpNames] = useState([]);
+  const [dpTypeCount, setDpTypeCount] = useState([0, 0]);
+
   let region = ['경기도', '강원도', '충청도', '전라도', '경상도']
   const userMonthCount = new Array(months.length).fill(0);
   const diagMonthCount = new Array(months.length).fill(0);
   let regionCount = new Array(region.length).fill(0);
   const shareData = useContext(AppData);
   let dpRef = useRef();
+  let dateRef1 = useRef();
+  let dateRef2 = useRef();
 
   const regionChangeData = async () => {
     const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
+    regionCount.fill(0);
     region.map((rg, idx) => {
       diagResponse.data.map(diag => {
+        console.log(dateRef1.current.value);
+        console.log(diag.createdAt.split('-')[1]);
         if (rg == diag.diag_region) {
           if (diag.dp_num.dp_num == dpRef.current.value) {
+            if(dateRef1.current.value == diag.createdAt.split('-')[1])
             regionCount[idx]++;
           }
         }
@@ -108,6 +117,28 @@ const Dashboard = () => {
           ],
           borderWidth: 1
         }],
+    })
+  }
+  const dateChangeData = async () => {
+    const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
+    const dpResponse = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`)
+    dpCount.fill(0);
+    dpResponse.data.map((dp, idx) => {
+      diagResponse.data.map(diag => {
+        if (diag.dp_num.dp_num == dp.dp_num) {
+          if (dateRef2.current.value == diag.createdAt.split('-')[1]) {
+            dpCount[idx]++;
+          }
+        }
+      })
+    });
+    setData4({
+      labels: dpNames,
+      datasets: [
+        {
+          data: dpCount
+        }
+      ]
     })
   }
 
@@ -148,6 +179,10 @@ const Dashboard = () => {
             }
           ]
         });
+        dpData.map(dp => {
+          dpNames.push(dp.name);
+          dpCount.push(0);
+        })
 
         months.map((month, idx) => {
           diagData.map(diag => {
@@ -156,6 +191,7 @@ const Dashboard = () => {
             }
           })
         });
+
         setData2({
           labels: monthNames,
           datasets: [
@@ -166,39 +202,18 @@ const Dashboard = () => {
             }
           ]
         });
-
-        console.log(dpTypeCount);
-        const dpNames = [];
-        dpData.map((dp, idx) => {
-          dpNames.push(dp.name);
-          dpCount.push(0);
-          diagData.map(diag => {
-            if (dp.dp_num == diag.dp_num.dp_num) {
-              dpCount[idx]++;
-            }
-          })
-        })
-
+        dateChangeData();
         regionChangeData();
 
-        setData4({
-          labels: dpNames,
-          datasets: [
-            {
-              data: dpCount
-            }
-          ]
-        })
       } catch (error) {
         console.error(error);
       }
     }
     getList();
-    console.log(dpRef.current.value);
   }, []);
-
   const storedUser = sessionStorage.getItem("user");
   const user = JSON.parse(storedUser);
+
   return (
     <div>
       <h1>대시보드 페이지입니다.</h1>
@@ -244,16 +259,31 @@ const Dashboard = () => {
               )
             })}
           </select>
+          <select ref={dateRef1} onChange={regionChangeData}>
+            <option value={months[5]}>최근 30일</option>
+            <option value={months[4]}>1달 전</option>
+            <option value={months[3]}>2달 전</option>
+            <option value={months[2]}>3달 전</option>
+            <option value={months[1]}>4달 전</option>
+            <option value={months[0]}>5달 전</option>
+          </select>
           <Paper elevation={3} style={{ padding: 16 }}>
             <h2>지역별 병해충 분포</h2>
             {data3 ? <Bar data={data3} options={options} /> : null}
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
-
+          <select ref={dateRef2} onChange={dateChangeData}>
+            <option value={months[5]}>최근 30일</option>
+            <option value={months[4]}>1달 전</option>
+            <option value={months[3]}>2달 전</option>
+            <option value={months[2]}>3달 전</option>
+            <option value={months[1]}>4달 전</option>
+            <option value={months[0]}>5달 전</option>
+          </select>
           <Paper elevation={3} style={{ padding: 16 }}>
             <h2>병해충 진단 분포</h2>
-            {data3 ? <Pie data={data4} /> : null}
+            {data4 ? <Pie data={data4} /> : null}
           </Paper>
         </Grid>
       </Grid>
@@ -261,7 +291,7 @@ const Dashboard = () => {
         <ul>
           {dpList.map((dp, idx) => {
             return (
-              <li key={dp.dp_num}>{dp.name}: {dpCount[idx]}회</li>
+              <li key={dp.dp_num}>{dp.name}: : {dpCount[idx]}회</li>
             )
           })}
         </ul>
