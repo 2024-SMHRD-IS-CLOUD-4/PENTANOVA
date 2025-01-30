@@ -33,7 +33,7 @@ function App() {
   const [data, setData] = useState();
   return (
     <Router>
-      <div>
+      <div id="body">
         <AppData value={{ data: user, setData: setData }}>
           <Navbar />
           <Routes>

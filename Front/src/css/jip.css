@@ -1,13 +1,16 @@
 #jipBody{
     width: 100%;
-    height: 100%;
+    max-width: 1440px;
+    min-height: 1024px;
     position:relative;
+    margin: auto;
 }
 #jipMainBox{
     width: 619px;
     overflow: hidden;
     margin: auto;
-    border: 1px solid red;
+    padding-top: 240px;
+    border-radius: 0px;
 }
 .jipRightBox{
     width:300px;
@@ -21,7 +24,7 @@
     height:670px;
     float: left;
     padding: 60px 30px;
-    border: 1px solid red;
+    background-color: rgba(253, 253, 253, 1);
 }
 .jipleftBox > ul{
     list-style: none;
@@ -48,4 +51,10 @@
     width: 100%;
     padding: 20px;
     background-color: rgba(255, 255, 255, 1);
+}
+
+/*배경 이미지 투명도 조절*/
+
+.bgimgFarmer ,.bgimgAppleM{
+    opacity: 60%;
 }
