@@ -25,20 +25,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @Table(name = "disease_pests")
-public class Disease_Pest {
-
+public class Disease_Pest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "disease_pest_seq")
 	@SequenceGenerator(name = "disease_pest_seq", sequenceName = "disease_pest_seq", allocationSize = 1)
-	private Long dp_num;
-
+	private Long dp_num;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
-	private User id;
-
+	private User id;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "crop_num")
-	private Crop crop_num; 
+	private Crop crop_num;
 
 	@Column(length = 50, nullable = false)
 	private String name;

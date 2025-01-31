@@ -24,7 +24,7 @@ import lombok.ToString;
 @Entity
 @Table(name="AI_Searchs")
 public class Ai_Search extends BaseTimeEntity {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ai_search_seq")
 	@SequenceGenerator(name="ai_search_seq", sequenceName = "ai_search_seq", allocationSize = 1)
