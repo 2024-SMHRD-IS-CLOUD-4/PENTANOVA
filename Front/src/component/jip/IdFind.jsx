@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react'
 import axios from 'axios'
+import "../../css/all.css"
+import "../../css/jip.css"
 const IdFind = () => {
   let phoneRef = useRef();
   const [resultText, setResultText] = useState();
@@ -19,9 +21,9 @@ const IdFind = () => {
   }
   return (
     <div>
-      <h1>IdFind</h1>
+      <h2>아이디 찾기</h2>
       <form onSubmit={idFind}>
-        <input type="text" ref={phoneRef} placeholder='전화번호를 입력해주세요.' /><br />
+        <input className='jipInput' type="text" ref={phoneRef} placeholder='전화번호를 입력해주세요.' /><br />
         <button type='submit'>아이디 찾기</button>
       </form>
       {resultText}

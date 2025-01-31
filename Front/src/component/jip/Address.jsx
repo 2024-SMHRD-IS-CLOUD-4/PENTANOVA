@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
-import "../css/all.css"
-import "../css/jip.css"
+import "../../css/all.css"
+import "../../css/jip.css"
 
 const Address = (props) => {
   const [zonecode, setZonecode] = useState('');
@@ -50,13 +50,13 @@ const Address = (props) => {
     <div>
       <div>
         <div>
-          <input value={address} />
           <button
             type="button"
             onClick={toggleHandler}
           >
             주소 찾기
           </button>
+          <input className='jipInput' value={address} />
         </div>
         {isOpen && (
           <div>

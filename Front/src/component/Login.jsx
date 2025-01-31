@@ -9,6 +9,7 @@ import farmer from "../assets/farmer.png"
 import appleM from "../assets/appleM.png"
 import "../css/login.css";
 import "../css/all.css";
+
 const Login = () => {
   const shareData = useContext(AppData);
   const navigate = useNavigate();
@@ -23,9 +24,6 @@ const Login = () => {
   let month = ('0' + today.getMonth()+1).slice(-2);
   let day = ('0' + today.getDate()).slice(-2);
 
-  function joinClick(){
-    navigate('/Join');
-  }
   function idPWClick(){
     navigate('/IdFind')
   }
@@ -118,10 +116,10 @@ const Login = () => {
             <div className="loginBoxBt">
               <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
               <button>
-                  <NavLink to="/jip" className={isActive => isActive ? 'active' : ''}>
-                    회원가입
-                  </NavLink>
-                </button>
+                <NavLink to="/jip" className={isActive => isActive ? 'active' : ''}>
+                  회원가입
+                </NavLink>
+              </button>
             </div>
           </div>
         </div>
@@ -132,9 +130,6 @@ const Login = () => {
             <h1>최근 공지사항 <br />바로보기</h1>
             <p>한국농촌진흥청</p>
         </div>
-        
-        
-
       </div>
       <img className="bgimgFarmer" src={farmer} alt="farmer" />
       <img className="bgimgAppleM"src={appleM} alt="appleM" />

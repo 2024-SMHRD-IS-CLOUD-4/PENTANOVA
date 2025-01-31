@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import "../css/jip.css"
+import "../../css/all.css"
+import "../../css/jip.css"
 import Address from './Address';
 
 const Join = () => {
@@ -76,7 +77,7 @@ const Join = () => {
                 <ul className="joinText">
                     <li>
                         <p><b>아이디</b><span>(이메일형식)</span>를 작성해주세요.</p>
-                        <input
+                        <input className='jipInput'
                         type="text"
                         name="id" 
                         value={formData.id}
@@ -90,6 +91,7 @@ const Join = () => {
                     <li>
                         <p><b>비밀번호</b>를 작성해주세요.</p>
                         <input
+                        className='jipInput'
                         type="password"
                         name="pw"
                         ref={pwRef}
@@ -102,6 +104,7 @@ const Join = () => {
                     <li>
                         <p><b>비밀번호</b>를 다시한번 작성해주세요.</p>
                         <input
+                        className='jipInput'
                         type="password"
                         name="pwCheck"
                         onChange={pwChecking}
@@ -113,6 +116,7 @@ const Join = () => {
                     <li>
                         <p><b>닉네임</b>을 작성해주세요.</p>
                         <input
+                        className='jipInput'
                         type="text"
                         name="nick"
                         value={formData.nick}
@@ -124,6 +128,7 @@ const Join = () => {
                     <li>
                         <p><b>연락처</b>를 작성해주세요.</p>
                         <input
+                        className='jipInput'
                         type="text"
                         name="phone"
                         value={formData.phone}

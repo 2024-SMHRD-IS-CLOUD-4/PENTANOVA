@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import '../css/jip.css';
 import '../css/all.css';
-import Join from './Join'
-import IdFind from './IdFind';
-import PwFind from './PwFind';
+import Join from './jip/Join'
+import IdFind from './jip/IdFind';
+import PwFind from './jip/PwFind';
 import farmer from "../assets/farmer.png"
 import appleM from "../assets/appleM.png"
 
@@ -45,7 +45,7 @@ function JipJoinPage() {
                         <ul>
                             <li><button onClick={join} style={buttonStyle('join')}>회원가입</button></li>
                             <li><button onClick={idFind} style={buttonStyle('idFind')}>아이디찾기</button></li>
-                            <li><button onClick={pwFind} style={buttonStyle('pwFind')}>비밀번호 찾기</button></li>
+                            <li><button onClick={pwFind} style={buttonStyle('pwFind')}>새 비밀번호 설정</button></li>
                         </ul>
                     </div>
                     <div class="jipRightBox">
