@@ -18,13 +18,10 @@ const Login = () => {
   });
   const today = new Date();
   let year = today.getFullYear();
-  let month = ('0' + today.getMonth()+1).slice(-2);
+  let month = ('0' + today.getMonth() + 1).slice(-2);
   let day = ('0' + today.getDate()).slice(-2);
 
-  function joinClick(){
-    navigate('/Join');
-  }
-  function idPWClick(){
+  function idPWClick() {
     navigate('/IdFind')
   }
 
@@ -58,7 +55,6 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
   const handleSubmit = async (e) => {
-    
     e.preventDefault();
     try {
       const response = await axios.post(`${process.env.REACT_APP_connect}/user/login`, formData, {
@@ -92,22 +88,22 @@ const Login = () => {
     <div id="loginMainBox">
       {/* 로그인 페이지 오른쪽 날씨 박스 */}
       <div id="loginWeatherBox">
-        
+
       </div>
       {/* 로그인 페이지 왼쪽 상단 로그인 박스 */}
       <div id="loginBox">
         <img class="logo" src={logo} alt="GROWELL Logo" />
         <div class="loginBox">
           <form className="login-form" onSubmit={handleSubmit}>
-        
+
             <div class="loginIdPwBox">
-                <label htmlFor="id">ID</label>
-                <input type="text" name="id" id="id" placeholder='e-mail@gmail.com' onChange={handleChange} required />
+              <label htmlFor="id">ID</label>
+              <input type="text" name="id" id="id" placeholder='e-mail@gmail.com' onChange={handleChange} required />
             </div>
 
             <div class="loginIdPwBox">
               <label htmlFor="password">PW</label>
-              <input type="password" name="pw" id="password" onChange={handleChange} required/>
+              <input type="password" name="pw" id="password" onChange={handleChange} required />
             </div>
             <button type="submit">로그인</button>
             <button type="button">간편 로그인</button>
@@ -115,21 +111,21 @@ const Login = () => {
           <div class="loginBoxBt">
             <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
             <button>
-                <NavLink to="/jip" className={isActive => isActive ? 'active' : ''}>
-                  회원가입
-                </NavLink>
-              </button>
+              <NavLink to="/jip" className={isActive => isActive ? 'active' : ''}>
+                회원가입
+              </NavLink>
+            </button>
           </div>
         </div>
       </div>
       {/* 로그인 페이지 왼쪽 하단 최근 공지사항 바로보기 박스 */}
       <div id="loginNoticeBox"> {/*div 외부 링크로 이동시키는 방법 적용하기*/}
-          <img src={rightArrow} alt="공지사항 바로가기"/>
-          <p>{year}.{month}.{day}</p>
-          <h1>최근 공지사항 <br />바로보기</h1>
-          <p>한국농촌진흥청</p>
+        <img src={rightArrow} alt="공지사항 바로가기" />
+        <p>{year}.{month}.{day}</p>
+        <h1>최근 공지사항 <br />바로보기</h1>
+        <p>한국농촌진흥청</p>
       </div>
-      
+
     </div>
   );
 };

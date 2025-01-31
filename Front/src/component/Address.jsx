@@ -4,6 +4,7 @@ import DaumPostcode from 'react-daum-postcode';
 const Address = (props) => {
   const [zonecode, setZonecode] = useState('');
   const [address, setAddress] = useState('');
+  const [sido, setSido] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
   const themeObj = {
@@ -19,9 +20,41 @@ const Address = (props) => {
   };
 
   const completeHandler = (data) => {
-    const { address, zonecode } = data;
+    let { address, zonecode, sido } = data;
+    
+    switch(sido){
+      case '서울' : 
+      case '인천' :
+      case '경기' :
+        setSido('경기도')
+        break;
+      case '강원':
+        setSido('강원특별자치도')
+        break; 
+      case '충북':
+      case '충남':
+      case '대전':
+      case '세종특별자치시':
+        setSido('충청도')
+        break; 
+      case '전북특별자치도':
+      case '전남':
+      case '제주특별자치도':
+      case '광주':
+        setSido('전라도')
+        break;
+      case '경북':
+      case '경남':
+      case '대구':
+      case '울산':
+      case '부산':
+        setSido('경상도')
+        break; 
+    }
     setZonecode(zonecode);
     setAddress(address);
+    props.onAddressChange(address, zonecode, sido);
+    setIsOpen(false);
   };
 
   const closeHandler = (state) => {
@@ -38,6 +71,7 @@ const Address = (props) => {
 
   const addressHandler = (event) => {
     setAddress(event.target.value);
+    props.onAddressChange(event.target.value, zonecode);
   };
 
   const zonecodeHandler = (event) => {
@@ -48,8 +82,6 @@ const Address = (props) => {
     <div>
       <div>
         <div>
-          우편 번호 : 
-          <input value={address} />
           <button
             type="button"
             onClick={toggleHandler}
@@ -67,7 +99,6 @@ const Address = (props) => {
             />
           </div>
         )}
-
       </div>
     </div>
   );
