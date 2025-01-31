@@ -48,6 +48,14 @@ button:hover{
     cursor: pointer;
 }
 
+.button01{
+    width: 116px;
+    height: 35px;
+}
+.button01:first-of-type{
+    margin-right: 13px;
+}
+
 /*배경 이미지*/
 
 .bgimgFarmer {

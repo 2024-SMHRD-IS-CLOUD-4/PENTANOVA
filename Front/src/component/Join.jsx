@@ -73,7 +73,7 @@ const Join = () => {
         <div id="joinBox">
             <h2>회원가입</h2>
             <form onSubmit={handleSubmit}>
-                <ul class="joinText">
+                <ul className="joinText">
                     <li>
                         <p><b>아이디</b><span>(이메일형식)</span>를 작성해주세요.</p>
                         <input
@@ -140,7 +140,7 @@ const Join = () => {
                         <p><b>알람여부</b>를 선택해주세요.</p>
                     </li>
                 </ul>
-                <button type="submit">회원가입</button>
+                <button className="button01" type="submit">회원가입</button>
             </form>  
         </div>
     );
