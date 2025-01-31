@@ -64,8 +64,6 @@ const options = {
 };
 
 const Dashboard = () => {
-  console.log(today.getDay);
-  console.log(today-30);
   const navigate = useNavigate();
   const [data1, setData1] = useState();
   const [data2, setData2] = useState();

@@ -46,12 +46,11 @@ const Login = () => {
         isTrue: true,
         isTrue2: isTrue2
       };
-
       sessionStorage.setItem("user", JSON.stringify(user));
-      if (user.role === '일반사용자') {
+      if (data.role === '일반사용자') {
         navigate('/diagnosis')
       } else {
-        navigate('/dashboard');
+        navigate('/dashboard')
       }
     }
   }, [data, navigate]);
@@ -71,13 +70,9 @@ const Login = () => {
       if (response.status === 200) {
         setData(response.data);
         shareData.setData(data);
-        console.log(response.data);
-        if (response.data.role === '일반사용자') {
-          setIsTrue2(false);
-        } else {
-          setIsTrue2(true);
-        }
+       
         alert('로그인 성공!');
+        
       }
     } catch (error) {
       if (error.response) {
