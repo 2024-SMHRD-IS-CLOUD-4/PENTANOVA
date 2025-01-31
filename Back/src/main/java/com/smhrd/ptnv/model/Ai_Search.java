@@ -22,13 +22,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="promotions")
+@Table(name="AI_Searchs")
 public class Ai_Search extends BaseTimeEntity {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="promotion_seq")
-	@SequenceGenerator(name="promotion_seq", sequenceName = "promotion_seq", allocationSize = 1)
-	private Long pro_num;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ai_search_seq")
+	@SequenceGenerator(name="ai_search_seq", sequenceName = "ai_search_seq", allocationSize = 1)
+	private Long ai_num;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
