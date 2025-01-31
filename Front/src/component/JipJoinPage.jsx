@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/jip.css';
 import '../css/all.css';
 import Join from './jip/Join'
@@ -6,12 +6,22 @@ import IdFind from './jip/IdFind';
 import PwFind from './jip/PwFind';
 import farmer from "../assets/farmer.png"
 import appleM from "../assets/appleM.png"
+import { useSearchParams } from 'react-router-dom';
 
 function JipJoinPage() {
-    const [showJoin, setShowJoin] = useState(true);
+    const [searchParams] = useSearchParams();
+    const [showJoin, setShowJoin] = useState(false);
     const [showIdFind, setShowIdFind] = useState(false);
     const [showPwFind, setShowPwFind] = useState(false);
     const [selectedButton, setSelectedButton] = useState('join'); // 현재 선택된 버튼 추적
+    useEffect(()=>{
+        let type = searchParams.get('type');
+        if(type=='id'){
+            setShowIdFind(true);
+        }else{
+            setShowJoin(true);
+        }
+    },[])
     const join = () => {
         setSelectedButton('join');
         setShowJoin(true);

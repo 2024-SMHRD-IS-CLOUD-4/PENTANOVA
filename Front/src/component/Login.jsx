@@ -25,10 +25,10 @@ const Login = () => {
   let day = ('0' + today.getDate()).slice(-2);
 
   function joinClick(){
-    navigate('/Join');
+    navigate('/jip');
   }
   function idPWClick(){
-    navigate('/IdFind')
+    navigate('/jip?type=id')
   }
 
   useEffect(() => {
@@ -111,11 +111,7 @@ const Login = () => {
           </form>
           <div class="loginBoxBt">
             <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
-            <button>
-                <NavLink to="/jip" className={isActive => isActive ? 'active' : ''}>
-                  회원가입
-                </NavLink>
-              </button>
+            <button onClick={joinClick}>회원가입</button>
           </div>
         </div>
       </div>
