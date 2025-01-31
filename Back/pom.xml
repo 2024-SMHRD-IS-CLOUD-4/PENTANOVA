@@ -29,6 +29,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+<<<<<<< HEAD
 	
 	<dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -36,6 +37,18 @@
             <version>3.0.4</version>
    	</dependency>  
 		
+=======
+        
+			
+		<dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+			
+		
+        
+>>>>>>> 8c92f94a3d7d1128fa5640e8cff3298bc34be0b6
 
         <dependency>
     		<groupId>com.oracle.database.jdbc</groupId>
