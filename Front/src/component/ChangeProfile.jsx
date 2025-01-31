@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { AppData } from '../function/AuthContext';
+import Address from './Address';
 
 const ChangeProfile = () => {
 
@@ -8,10 +9,10 @@ const ChangeProfile = () => {
     const [formData, setFormData] = useState({
         id: shareData.data.id,
         pw: '',
-        phone : '',
+        phone: '',
         nick: '',
         location: '',
-        role : shareData.data.role,
+        role: shareData.data.role,
         institute: ''
     });
     const handleChange = (e) => {
@@ -23,7 +24,7 @@ const ChangeProfile = () => {
 
         try {
             console.log(formData);
-            const response = await axios.patch('http://localhost:8093/PTNV/user/update', formData, {
+            const response = await axios.patch(`${process.env.REACT_APP_connect}/user/update`, formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -44,19 +45,26 @@ const ChangeProfile = () => {
             }
         }
     }
+    const institute = (
+        <li>
+            <label>소속 기관 : </label><input type="text" name="institute" value={formData.institute} onChange={handleChange} placeholder={shareData.data.institute} readOnly/>
+        </li>
+    );
 
     return (
 
         <div>
             <h1>ChangeProfile</h1>
             <form onSubmit={updateData}>
-                <label>아이디 : </label><input type="text" value={shareData.data.id} readOnly /><br />
-                <label>비밀번호 : </label><input type="password" name="pw" value={formData.pw} onChange={handleChange} /><br />
-                <label>전화번호 : </label><input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder={shareData.data.phone} /><br />
-                <label>닉네임 : </label><input type="text" name="nick" value={formData.nick} onChange={handleChange} placeholder={shareData.data.nick} /><br />
-                <label>지역 : </label><input type="text" name="location" value={formData.location} onChange={handleChange} placeholder={shareData.data.location} /><br />
-                <label>소속 기관 : </label><input type="text" name="institute" value={formData.institute} onChange={handleChange} placeholder={shareData.data.institute} />
-                <br /><button type='submit' onClick={updateData}>수정하기</button>
+                <ul>
+                    <li><label>아이디 : </label><input type="text" value={shareData.data.id} readOnly /></li>
+                    <li><label>비밀번호 : </label><input type="password" name="pw" value={formData.pw} onChange={handleChange} /></li>
+                    <li><label>전화번호 : </label><input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder={shareData.data.phone} /></li>
+                    <li><label>닉네임 : </label><input type="text" name="nick" value={formData.nick} onChange={handleChange} placeholder={shareData.data.nick} /></li>
+                    <Address></Address>
+                    {formData.role == '관리자' ? { institute } : null}
+                </ul>
+                <button type='submit' onClick={updateData}>수정하기</button>
             </form>
         </div>
     )

@@ -4,6 +4,8 @@ import '../css/all.css';
 import Join from './Join'
 import IdFind from './IdFind';
 import PwFind from './PwFind';
+import farmer from "../assets/farmer.png"
+import appleM from "../assets/appleM.png"
 
 function JipJoinPage() {
     const [showJoin, setShowJoin] = useState(true);
@@ -43,6 +45,8 @@ function JipJoinPage() {
                         {showPwFind && <PwFind />}
                     </div>
                 </div>
+                <img class="bgimgFarmer" src={farmer} alt="farmer" />
+                <img class="bgimgAppleM"src={appleM} alt="appleM" />
             </div>
         </div>
     )

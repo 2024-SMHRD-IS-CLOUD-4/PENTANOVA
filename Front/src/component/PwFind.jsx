@@ -12,7 +12,7 @@ const PwFind = () => {
     let id = idRef.current.value;
     let phone = phoneRef.current.value;
     try {
-      const response = await axios.post(`http://localhost:8093/PTNV/user/pwFind`, null, {
+      const response = await axios.post(`${process.env.REACT_APP_connect}/user/pwFind`, null, {
         params: {
           phone: phone,
           id: id
@@ -34,7 +34,7 @@ const PwFind = () => {
     let pw = pwRef.current.value;
     let id = idRef.current.value;
     try {
-      const response = await axios.post(`http://localhost:8093/PTNV/user/updatePw`, null, {
+      const response = await axios.post(`${process.env.REACT_APP_connect}/user/updatePw`, null, {
         params: {
           pw: pw
         },

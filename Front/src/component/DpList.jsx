@@ -11,7 +11,7 @@ const DpList = () => {
     useEffect(() => {
         const dpList = async () => {
             try {
-                const response = await axios.get(`http://localhost:8093/PTNV/dp/dpList`);
+                const response = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`);
                 console.log(response.data);
                 response.data.map(dp => (
                     console.log(dp),

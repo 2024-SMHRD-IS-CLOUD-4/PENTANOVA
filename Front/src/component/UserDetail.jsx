@@ -12,7 +12,7 @@ const UserDetail = () => {
   const [user, setUser] = useState();
   const authorization = async () => {
     try {
-      const response = await axios.post('http://localhost:8093/PTNV/user/authorization', null, {
+      const response = await axios.post(`${process.env.REACT_APP_connect}/user/authorization`, null, {
         params: {
           id: userId
         },
@@ -29,7 +29,7 @@ const UserDetail = () => {
   useEffect(() => {
     const userOne = async () => {
       try {
-        const response = await axios.post('http://localhost:8093/PTNV/user/selectOne', null, {
+        const response = await axios.post(`${process.env.REACT_APP_connect}/user/selectOne`, null, {
           params: {
             id: userId
           },
@@ -51,4 +51,5 @@ const UserDetail = () => {
     </div>
   )
 }
+
 export default UserDetail

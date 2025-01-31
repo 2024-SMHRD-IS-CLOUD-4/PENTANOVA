@@ -4,6 +4,7 @@ import '../css/NavBar.css';
 import { AppData } from '../function/AuthContext';
 import { useContext, useEffect } from 'react';
 import { useState } from 'react';
+import { AuthProvider } from '../function/AuthContext';
 
 const Navbar = () => {
   const shareData = useContext(AppData);
