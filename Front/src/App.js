@@ -6,7 +6,7 @@ import PestManagement from './component/PestManagement';
 import PromotionManagement from './component/PromotionManagement';
 import UserManagement from './component/UserManagement';
 import Login from './component/Login';
-import Join from './component/Join';
+import Join from './component/jip/Join';
 import Diagnosis from './component/Diagnosis';
 import DpDetail from './component/DpDetail';
 import DpList from './component/DpList';
@@ -19,13 +19,13 @@ import FumigatorPesticides from './component/FumigatorPesticides';
 import MyProfile from './component/MyProfile';
 import { AppData } from './function/AuthContext';
 import Uploader from './component/Uploader';
-import IdFind from './component/IdFind';
-import PwFind from './component/PwFind';
+import IdFind from './component/jip/IdFind';
+import PwFind from './component/jip/PwFind';
 import ChangeProfile from './component/ChangeProfile';
 import RequestAuth from './component/RequestAuth';
 import JipJoinPage from './component/JipJoinPage';
 import CropList from './component/CropList';
-import Address from './component/Address';
+import Address from './component/jip/Address';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
@@ -33,7 +33,7 @@ function App() {
   const [data, setData] = useState();
   return (
     <Router>
-      <div>
+      <div id="body">
         <AppData value={{ data: user, setData: setData }}>
           <Navbar />
           <Routes>

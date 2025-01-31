@@ -1,9 +1,20 @@
+/*로그인 배경 전체 박스*/
+#loginBody{
+    position: relative;
+    width:100%;
+    max-width: 1440px;
+    min-height: 1024px;
+    margin: 0px auto;
+    border-radius: 0px;
+}
+
 /*로그인 페이지 왼쪽 상단 로그인 박스*/
 #loginMainBox {
     position: relative;
     display: block;
     width: 618px;
-    margin: auto;
+    margin: 0px auto;
+    padding-top: 240px;
 }
 
 #loginBox{
@@ -18,18 +29,12 @@
     width: 175px;
     height: 40px;
     margin: 65px auto 50px auto;
+    border-radius: 0px;
 }
 .loginBox{
     width: 245px;
     margin: 0 auto;
 
-}
-.loginBox > form > button{
-    width: 116px;
-    height: 35px;
-}
-.loginBox > form > button:first-of-type{
-    margin-right: 13px;
 }
 .loginIdPwBox{
     display: inline-block;
@@ -54,6 +59,7 @@
     width:180px;
     font-weight: 300;
     border: none;
+    border-radius: 0px;
     border-bottom: 1px solid #E9E9E9;
     background-color: rgba(255, 255, 255, 0.0);
 }
@@ -79,6 +85,7 @@
     color: #333;
     font-weight: 500;
     background-color: rgba(255, 255, 255, 0.0);
+    
 }
 .loginBoxBt > button:first-child{
     margin-right: 12px;
@@ -91,7 +98,7 @@
 #loginNoticeBox{
     width: 300px;
     height: 140px;
-    background-color: rgba(51, 51, 51, 1);
+    background-color: rgba(76, 126, 65, 1);
     margin-top: 20px; 
     padding: 20px;
     pointer-events: unset;
@@ -114,8 +121,6 @@
 #loginNoticeBox>p:last-of-type{
     text-align: right;
 }
-
-
 
 
 

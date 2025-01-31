@@ -25,101 +25,101 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
-	
+
 	private final UserService service;
-	
+
 	@PostMapping("/login")
 	public ResponseEntity<User> login(@RequestBody User user) {
 		System.out.println(user.getId());
-		User result = service.login(user); 
-		if(result==null) {
+		User result = service.login(user);
+		if (result == null) {
 			return ResponseEntity.badRequest().body(result);
-		}else {
+		} else {
 			return ResponseEntity.ok(result);
 		}
 	}
-	
+
 	@GetMapping("/idCheck/{id}")
-	public ResponseEntity<String> idCheck(@PathVariable String id){
+	public ResponseEntity<String> idCheck(@PathVariable String id) {
 		boolean isTrue = service.idCheck(id);
-		if(isTrue) {
+		if (isTrue) {
 			return ResponseEntity.ok("사용 가능 아이디");
-		}else {
+		} else {
 			return ResponseEntity.ok("이미 존재하는 아이디");
 		}
 	}
-	
+
 	@PostMapping("/join")
 	public ResponseEntity<String> join(@RequestBody User user) {
 		System.out.println("asdfasdf");
-		User result = service.join(user); 
-		if(result==null) {
+		User result = service.join(user);
+		if (result == null) {
 			return ResponseEntity.badRequest().body("로그인 실패");
-		}else {
+		} else {
 			return ResponseEntity.ok("로그인 성공");
 		}
 	}
-	
+
 	@GetMapping("/userList")
-	public ResponseEntity<List<User>> getList(){
+	public ResponseEntity<List<User>> getList() {
 		List<User> result = service.getList();
 		return ResponseEntity.ok(result);
 	}
-	
+
 	@PostMapping("/authorization")
-	public void authorization(@RequestParam String id){
+	public void authorization(@RequestParam String id) {
 		service.authorization(id);
 	}
-	
+
 	@PostMapping("/selectOne")
-	public ResponseEntity<User> selectOne(@RequestParam String id){
+	public ResponseEntity<User> selectOne(@RequestParam String id) {
 		User result = service.selectOne(id);
 		return ResponseEntity.ok(result);
 	}
-	
+
 	@PostMapping("/idFind")
-	public ResponseEntity<String> idFind(@RequestParam String phone){
+	public ResponseEntity<String> idFind(@RequestParam String phone) {
 		User result = service.idFind(phone);
-		if(result!=null) {
+		if (result != null) {
 			return ResponseEntity.ok(result.getId());
-		}else {
+		} else {
 			return ResponseEntity.ok("일치하는 데이터 없음.");
 		}
 	}
-	
+
 	@PostMapping("/pwFind")
 	public ResponseEntity<Boolean> pwFind(@RequestParam String id, @RequestParam String phone) {
 		User result = service.pwFind(id, phone);
-		if(result!=null) {
+		if (result != null) {
 			return ResponseEntity.ok(true);
-		}else {
+		} else {
 			return ResponseEntity.ok(false);
 		}
 	}
-	
+
 	@PostMapping("/updatePw")
-	public ResponseEntity<Boolean> updatePw(@RequestParam String id, @RequestParam String pw){
+	public ResponseEntity<Boolean> updatePw(@RequestParam String id, @RequestParam String pw) {
 		System.out.println(pw);
 		boolean result = service.updatePw(id, pw);
-		if(result) {
+		if (result) {
 			return ResponseEntity.ok(true);
-		}else {
+		} else {
 			return ResponseEntity.ok(false);
 		}
 	}
-	
+
 	@PostMapping("/sendAuth")
-	public ResponseEntity<Boolean> requestAuth(@RequestParam String id, @RequestParam Boolean requestAuth
-												,@RequestParam String institute) {
+	public ResponseEntity<Boolean> requestAuth(@RequestParam String id, @RequestParam Boolean requestAuth,
+			@RequestParam String institute) {
 		boolean isTrue = service.idCheck2(id);
-		if(isTrue) {
+		if (isTrue) {
 			boolean result = service.requestAuth(id, institute, requestAuth);
-			if(result) {
+			if (result) {
 				return ResponseEntity.ok(true);
-			}else {
+			} else {
 				return ResponseEntity.ok(false);
 			}
-		}else {
+		} else {
 			return ResponseEntity.ok(false);
 		}
 	}
