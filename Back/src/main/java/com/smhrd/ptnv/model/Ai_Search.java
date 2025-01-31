@@ -23,7 +23,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 @Table(name="promotions")
-public class Promotion extends BaseTimeEntity {
+public class Ai_Search extends BaseTimeEntity {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="promotion_seq")

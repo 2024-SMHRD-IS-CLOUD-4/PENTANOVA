@@ -49,9 +49,6 @@ public class Disease_Pest {
 	@Column(length = 50, nullable = false)
 	private String season;
 
-	@Column(length = 50, nullable = false)
-	private String region;
-
 	@Column(length = 20, nullable = false)
 	private String site;
 
