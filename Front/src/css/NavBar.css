@@ -1,4 +1,6 @@
 .navbar {
+    position: absolute;
+    z-index: 1;
     background-color: #f0f0f0; /* 배경색 */
     padding: 10px;
   }

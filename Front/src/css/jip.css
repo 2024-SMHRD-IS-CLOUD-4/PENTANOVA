@@ -1,7 +1,8 @@
 #jipBody{
-    width: 100%;
+    width: 100vw;
     max-width: 1440px;
-    min-height: 1024px;
+    height: 100vh;
+    max-height: 1024px;
     position:relative;
     margin: auto;
 }
@@ -52,6 +53,37 @@
     padding: 20px;
     background-color: rgba(255, 255, 255, 1);
 }
+
+.joinText{
+    list-style: none;
+}
+
+.joinText > li{
+    width: 198px;
+    margin-bottom:25px;
+}
+
+.joinText > li:last-child{
+    margin-bottom:0px;
+}
+
+.joinText > li > p{
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.joinText > li > p > b{
+    font-weight: 500;
+}
+.joinText > li > input{
+    width: 198px;
+    font-size: 10px;
+    color: rgba(209, 209, 209, 1);
+    border: none;
+    border-bottom: 0.5px solid rgba(209, 209, 209, 1);
+    border-radius: 0px;
+}
+
 
 /*배경 이미지 투명도 조절*/
 

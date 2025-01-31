@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
+import "../css/all.css"
+import "../css/jip.css"
 
 const Address = (props) => {
   const [zonecode, setZonecode] = useState('');
@@ -48,7 +50,6 @@ const Address = (props) => {
     <div>
       <div>
         <div>
-          우편 번호 : 
           <input value={address} />
           <button
             type="button"

@@ -62,7 +62,7 @@ const ChangeProfile = () => {
                     <li><label>전화번호 : </label><input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder={shareData.data.phone} /></li>
                     <li><label>닉네임 : </label><input type="text" name="nick" value={formData.nick} onChange={handleChange} placeholder={shareData.data.nick} /></li>
                     <Address></Address>
-                    {formData.role == '관리자' ? { institute } : null}
+                    {formData.role === '관리자' ? { institute } : null}
                 </ul>
                 <button type='submit' onClick={updateData}>수정하기</button>
             </form>
