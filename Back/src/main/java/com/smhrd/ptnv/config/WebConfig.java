@@ -12,6 +12,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("http://211.188.53.71:3000", "http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
-              .allowCredentials(true);
+                .allowCredentials(true); // 메서드 체인 끝
     }
 }
