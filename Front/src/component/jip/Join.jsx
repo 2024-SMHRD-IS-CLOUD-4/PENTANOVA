@@ -25,14 +25,15 @@ const Join = () => {
     }
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name === 'addressDetail') {
-            let location = parentSido + "/" + parentAddress + "/" + addressDetailRef.current.value;
+        if (name === 'address') {
+            let location = parentSido + "/" + parentAddress;
+            console.log(location);
             setFormData({ ...formData, location: location });
         } else {
             setFormData({ ...formData, [name]: value });
         }
     };
-
+    
     const UserIdCheck = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_connect}/user/idCheck/${formData.id}`);
@@ -72,9 +73,9 @@ const Join = () => {
     };
     const [parentAddress, setParentAddress] = useState('');
     const [parentSido, setParentSido] = useState('');
-    const handleAddressChange = (address, sido) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const handleAddressChange = (address, sido, isOpen) => {
         setParentAddress(address);
-    
         const regionMap = {
             '서울': '경기도',
             '인천': '경기도',
@@ -94,7 +95,12 @@ const Join = () => {
             '울산': '경상도',
             '부산': '경상도',
         };
-    
+        if(isOpen){
+            if (addressRef) {
+                let location = parentSido + "/" + parentAddress;
+                setFormData({ ...formData, location: location });
+            } 
+        }
         setParentSido(regionMap[sido] || '');  // Default to empty string if no match
     };
     return (
@@ -118,14 +124,14 @@ const Join = () => {
                     </li>
                     <li>
                         <p><b>비밀번호</b>를 작성해주세요.</p>
-		                <input
+                        <input
                             className='jipInput'
                             type="password"
                             name="pw"
                             ref={pwRef}
                             value={formData.pw}
                             onChange={handleChange}
-		                    placeholder='8자 이상 작성해주세요.'
+                            placeholder='8자 이상 작성해주세요.'
                             required
                         />
                     </li>
@@ -139,7 +145,7 @@ const Join = () => {
                             placeholder='동일한 비밀번호로 다시한번 작성해주세요.'
                             required
                         />
-                        {pwRef.current?(pwCheck!==pwRef.current.value?'불일치':null):null}
+                        {pwRef.current ? (pwCheck !== pwRef.current.value ? '불일치' : null) : null}
                     </li>
                     <li>
                         <p><b>닉네임</b>을 작성해주세요.</p>
@@ -169,15 +175,13 @@ const Join = () => {
                         <p><b>지역</b>을 선택해주세요.</p>
                         <Address onAddressChange={handleAddressChange} />
                         <input className='jipInput' value={parentSido} />
-                        주소 : <input className='jipInput' name="address" value={parentAddress} onChange={handleChange} ref={addressRef} required /><br />
-                        상세 주소 : <input className='jipInput' name='addressDetail' onChange={handleChange} ref={addressDetailRef} required />
                     </li>
                     <li>
                         <p><b>알람여부</b>를 선택해주세요.</p>
                     </li>
                 </ul>
                 <button className="button01" type="submit">회원가입</button>
-            </form>  
+            </form>
         </div>
     );
 };
