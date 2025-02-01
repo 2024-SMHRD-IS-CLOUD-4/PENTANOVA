@@ -30,7 +30,6 @@ public class UserController {
 
 	@PostMapping("/login")
 	public ResponseEntity<User> login(@RequestBody User user) {
-		System.out.println(user.getId());
 		User result = service.login(user);
 		if (result == null) {
 			return ResponseEntity.badRequest().body(result);
@@ -51,7 +50,6 @@ public class UserController {
 
 	@PostMapping("/join")
 	public ResponseEntity<String> join(@RequestBody User user) {
-		System.out.println("asdfasdf");
 		User result = service.join(user);
 		if (result == null) {
 			return ResponseEntity.badRequest().body("로그인 실패");

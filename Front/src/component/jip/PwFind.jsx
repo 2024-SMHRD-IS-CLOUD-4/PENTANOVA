@@ -55,7 +55,7 @@ const PwFind = () => {
   }
 
   return (
-    <div>
+    <div  id="pwFBox">
       <h2>새 비밀번호 설정</h2>
       <form onSubmit={pwFind}>
         <ul className="joinText">
@@ -71,7 +71,7 @@ const PwFind = () => {
             <input className='jipInput' type="text" ref={phoneRef} placeholder='전화번호를 입력해주세요.' required />
           </li>
         </ul>
-        <button type='submit'>회원 확인</button>
+        <button className='button01' type='submit'>회원 확인</button>
       </form>
       <form onSubmit={setPw}>
         <ul className="joinText">
@@ -84,7 +84,7 @@ const PwFind = () => {
           <input className='jipInput' type="text" placeholder='동일한 비밀번호로 다시한번 작성해주세요.' required />
           </li>
         </ul>
-        <button type='submit'>새 비밀번호 설정</button>
+        <button className='button01' type='submit'>새 비밀번호 설정</button>
       </form>
     </div>
   )

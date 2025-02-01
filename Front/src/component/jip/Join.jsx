@@ -25,7 +25,7 @@ const Join = () => {
     }
     const handleChange = (e) => {
         const { name, value } = e.target;
-        if (name == 'addressDetail') {
+        if (name === 'addressDetail') {
             let location = parentSido + "/" + parentAddress + "/" + addressDetailRef.current.value;
             setFormData({ ...formData, location: location });
         } else {
@@ -74,44 +74,38 @@ const Join = () => {
     const [parentSido, setParentSido] = useState('');
     const handleAddressChange = (address, sido) => {
         setParentAddress(address);
-        switch (sido) {
-            case '서울':
-            case '인천':
-            case '경기':
-                setParentSido('경기도')
-                break;
-            case '강원':
-                setParentSido('강원특별자치도')
-                break;
-            case '충북':
-            case '충남':
-            case '대전':
-            case '세종특별자치시':
-                setParentSido('충청도')
-                break;
-            case '전북특별자치도':
-            case '전남':
-            case '제주특별자치도':
-            case '광주':
-                setParentSido('전라도')
-                break;
-            case '경북':
-            case '경남':
-            case '대구':
-            case '울산':
-            case '부산':
-                setParentSido('경상도')
-                break;
-        }
+    
+        const regionMap = {
+            '서울': '경기도',
+            '인천': '경기도',
+            '경기': '경기도',
+            '강원': '강원특별자치도',
+            '충북': '충청도',
+            '충남': '충청도',
+            '대전': '충청도',
+            '세종특별자치시': '충청도',
+            '전북특별자치도': '전라도',
+            '전남': '전라도',
+            '제주특별자치도': '전라도',
+            '광주': '전라도',
+            '경북': '경상도',
+            '경남': '경상도',
+            '대구': '경상도',
+            '울산': '경상도',
+            '부산': '경상도',
+        };
+    
+        setParentSido(regionMap[sido] || '');  // Default to empty string if no match
     };
     return (
         <div id="joinBox">
             <h2>회원가입</h2>
-            <div class="joinText">
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>아이디</label>
+            <form onSubmit={handleSubmit}>
+                <ul className="joinText">
+                    <li>
+                        <p><b>아이디</b><span>(이메일형식)</span>를 작성해주세요.</p>
                         <input
+                            className='jipInput'
                             type="text"
                             name="id"
                             value={formData.id}
@@ -121,60 +115,69 @@ const Join = () => {
                         />
                         <button type="button" onClick={UserIdCheck}>중복 확인</button>
                         {idCheck && <p>{idCheck}</p>}
-                    </div>
-                    <div>
-                        <label>비밀번호</label>
-                        <input
+                    </li>
+                    <li>
+                        <p><b>비밀번호</b>를 작성해주세요.</p>
+		                <input
+                            className='jipInput'
                             type="password"
                             name="pw"
                             ref={pwRef}
                             value={formData.pw}
                             onChange={handleChange}
+		                    placeholder='8자 이상 작성해주세요.'
                             required
                         />
-                    </div>
-                    <div>
-                        <label>비밀번호 확인</label>
+                    </li>
+                    <li>
+                        <p><b>비밀번호</b>를 다시한번 작성해주세요.</p>
                         <input
+                            className='jipInput'
                             type="password"
                             name="pwCheck"
                             onChange={pwChecking}
+                            placeholder='동일한 비밀번호로 다시한번 작성해주세요.'
                             required
                         />
-                        {pwRef.current ? (pwCheck != pwRef.current.value ? '불일치' : null) : null}
-                    </div>
-                    <div>
-                        <label>닉네임</label>
+                        {pwRef.current?(pwCheck!==pwRef.current.value?'불일치':null):null}
+                    </li>
+                    <li>
+                        <p><b>닉네임</b>을 작성해주세요.</p>
                         <input
+                            className='jipInput'
                             type="text"
                             name="nick"
                             value={formData.nick}
                             onChange={handleChange}
+                            placeholder='2글자 이상 작성해주세요.'
                             required
                         />
-                    </div>
-                    <div>
-                        <label>전화번호</label>
+                    </li>
+                    <li>
+                        <p><b>연락처</b>를 작성해주세요.</p>
                         <input
+                            className='jipInput'
                             type="text"
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
+                            placeholder='예시. 01012345678'
                             required
                         />
-                    </div>
-                    <div>
+                    </li>
+                    <li>
+                        <p><b>지역</b>을 선택해주세요.</p>
                         <Address onAddressChange={handleAddressChange} />
-                        <input value={parentSido} /><br />
-                        주소 : <input name="address" value={parentAddress} onChange={handleChange} ref={addressRef} required /><br />
-                        상세 주소 : <input name='addressDetail' onChange={handleChange} ref={addressDetailRef} required />F
-                    </div>
-                    <div>
-                        <label>알람여부를 선택해주세요</label>
-                    </div>
-                    <button type="submit">회원가입</button>
-                </form>
-            </div>
+                        <input className='jipInput' value={parentSido} />
+                        주소 : <input className='jipInput' name="address" value={parentAddress} onChange={handleChange} ref={addressRef} required /><br />
+                        상세 주소 : <input className='jipInput' name='addressDetail' onChange={handleChange} ref={addressDetailRef} required />
+                    </li>
+                    <li>
+                        <p><b>알람여부</b>를 선택해주세요.</p>
+                    </li>
+                </ul>
+                <button className="button01" type="submit">회원가입</button>
+            </form>  
         </div>
     );
 };

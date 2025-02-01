@@ -15,22 +15,17 @@ import lombok.RequiredArgsConstructor;
 public class DiagService {
 
 	private final DiagRepository repository;
-	
-	public Diagnosis addDiag(Diagnosis hs) {
-		Optional<Diagnosis> result = repository.findById(hs.getDiag_num());
-		if (result.isEmpty()) {
-			return repository.save(hs);
-		} else {
-			return result.get();
-		}
+
+	public void addDiag(Diagnosis diag) {
+		repository.save(diag);
 	}
-	
+
 	public List<Diagnosis> diagList() {
 		return repository.findAll();
 	}
-	
+
 	public Diagnosis selectOne(Long diag_num) {
-		Optional<Diagnosis> result= repository.findById(diag_num);
+		Optional<Diagnosis> result = repository.findById(diag_num);
 		return result.get();
 	}
 }

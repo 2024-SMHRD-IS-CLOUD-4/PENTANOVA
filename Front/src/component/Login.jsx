@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect, useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AppData } from '../function/AuthContext';
 import axios from 'axios'
 import logo from "../assets/logo.png";
@@ -89,44 +89,51 @@ const Login = () => {
     }
   };
   return (
-    //로그인박스, 공지사항 보기, 날씨 총 3개 박스 가운데 정렬하는 div
-    <div id="loginMainBox">
-      {/* 로그인 페이지 오른쪽 날씨 박스 */}
-      <div id="loginWeatherBox">
-        
-      </div>
-      {/* 로그인 페이지 왼쪽 상단 로그인 박스 */}
-      <div id="loginBox">
-        <img class="logo" src={logo} alt="GROWELL Logo" />
-        <div class="loginBox">
-          <form className="login-form" onSubmit={handleSubmit}>
-        
-            <div class="loginIdPwBox">
-                <label htmlFor="id">ID</label>
-                <input type="text" name="id" id="id" placeholder='e-mail@gmail.com' onChange={handleChange} required />
-            </div>
+    <div id='loginBody'>
+      {/* 로그인박스, 공지사항 보기, 날씨 총 3개 박스 가운데 정렬하는 div */}
+      <div id="loginMainBox">
+        {/* 로그인 페이지 오른쪽 날씨 박스 */}
+        <div id="loginWeatherBox">
+          
+        </div>
+        {/* 로그인 페이지 왼쪽 상단 로그인 박스 */}
+        <div id="loginBox">
+          <img class="logo" src={logo} alt="GROWELL Logo" />
+          <div class="loginBox">
+            <form className="login-form" onSubmit={handleSubmit}>
+          
+              <div class="loginIdPwBox">
+                  <label htmlFor="id">ID</label>
+                  <input type="text" name="id" id="id" placeholder='e-mail@gmail.com' onChange={handleChange} required />
+              </div>
 
-            <div class="loginIdPwBox">
-              <label htmlFor="password">PW</label>
-              <input type="password" name="pw" id="password" onChange={handleChange} required/>
+              <div class="loginIdPwBox">
+                <label htmlFor="password">PW</label>
+                <input type="password" name="pw" id="password" onChange={handleChange} required/>
+              </div>
+              <button className='button01'  type="submit">로그인</button>
+              <button className='button01'  type="button">간편 로그인</button>
+            </form>
+            <div class="loginBoxBt">
+              <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
+              <button onClick={joinClick}>회원가입</button>
             </div>
-            <button type="submit">로그인</button>
-            <button type="button">간편 로그인</button>
-          </form>
-          <div class="loginBoxBt">
-            <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
-            <button onClick={joinClick}>회원가입</button>
           </div>
         </div>
+        {/* 로그인 페이지 왼쪽 하단 최근 공지사항 바로보기 박스 */}
+        <div id="loginNoticeBox"> {/*div 외부 링크로 이동시키는 방법 적용하기*/}
+            <img src={rightArrow} alt="공지사항 바로가기"/>
+            <p>{year}.{month}.{day}</p>
+            <h1>최근 공지사항 <br />바로보기</h1>
+            <p>한국농촌진흥청</p>
+        </div>
+
+        
+        
       </div>
-      {/* 로그인 페이지 왼쪽 하단 최근 공지사항 바로보기 박스 */}
-      <div id="loginNoticeBox"> {/*div 외부 링크로 이동시키는 방법 적용하기*/}
-          <img src={rightArrow} alt="공지사항 바로가기"/>
-          <p>{year}.{month}.{day}</p>
-          <h1>최근 공지사항 <br />바로보기</h1>
-          <p>한국농촌진흥청</p>
-      </div>
-      
+      {/* 배경 이미지 */}
+      <img class="bgimgFarmer" src={farmer} alt="farmer" />
+      <img class="bgimgAppleM"src={appleM} alt="appleM" />
     </div>
   );
 };

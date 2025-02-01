@@ -16,10 +16,12 @@ function JipJoinPage() {
     const [selectedButton, setSelectedButton] = useState('join'); // 현재 선택된 버튼 추적
     useEffect(()=>{
         let type = searchParams.get('type');
-        if(type=='id'){
+        if(type==='id'){
             setShowIdFind(true);
+            setSelectedButton('idFind')
         }else{
             setShowJoin(true);
+            setSelectedButton('join');
         }
     },[])
     const join = () => {
