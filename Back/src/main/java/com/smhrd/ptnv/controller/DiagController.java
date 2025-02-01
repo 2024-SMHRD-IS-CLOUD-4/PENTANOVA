@@ -41,4 +41,11 @@ public class DiagController {
 		return ResponseEntity.ok(result);
 	}
 	
+	@PostMapping("/addDiag")
+	public void addDiag(@RequestBody Diagnosis diag) {
+		System.out.println(diag);
+		System.out.println("asdasd");
+		service.addDiag(diag);
+	}
+	
 }
