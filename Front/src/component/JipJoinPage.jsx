@@ -61,7 +61,7 @@ function JipJoinPage() {
                             <li><button onClick={join} style={buttonStyle('join')}>회원가입</button></li>
                             <li><button onClick={idFind} style={buttonStyle('idFind')}>아이디찾기</button></li>
                             <li><button onClick={pwFind} style={buttonStyle('pwFind')}>새 비밀번호 설정</button></li>
-                            <li className='jipLiLast'><button onClick={loginClick} style={buttonStyle('pwFind')}>로그인하러가기</button></li>
+                            <li className='jipLiLast'><button onClick={loginClick} >로그인하러가기</button></li>
                         </ul>
                     </div>
                     <div class="jipRightBox">
