@@ -10,6 +10,8 @@ const PwFind = () => {
   let idRef = useRef();
   let pwRef = useRef();
   const [isTure, setIsTrue] = useState(false);
+  const [showAuth, setShowAuth] = useState(true);
+  const [showChange, setShowChange] = useState(false);
   const pwFind = async (e) => {
     e.preventDefault();
     let id = idRef.current.value;
@@ -21,11 +23,16 @@ const PwFind = () => {
           id: id
         },
       });
-      console.log(response.data);
       if (response.data) {
         setIsTrue(true);
+        setShowChange(true);
+        setShowAuth(false);
+        console.log('qwe')
       } else {
         setIsTrue(false);
+        setShowChange(false);
+        setShowAuth(true);
+        alert('재확인!')
       }
     } catch (error) {
       console.error('Error:', error);
@@ -56,8 +63,8 @@ const PwFind = () => {
 
   return (
     <div  id="pwFBox">
-      <h2>새 비밀번호 설정</h2>
-      <form onSubmit={pwFind}>
+      <h2>비밀번호 재설정</h2>
+      {showAuth && <form onSubmit={pwFind}>
         <ul className="joinText">
           <li>
             <p><b>아이디</b><span>(이메일형식)</span>를 작성해주세요.</p>
@@ -72,8 +79,8 @@ const PwFind = () => {
           </li>
         </ul>
         <button className='button01' type='submit'>회원 확인</button>
-      </form>
-      <form onSubmit={setPw}>
+      </form>}
+      {showChange && <form onSubmit={setPw}>
         <ul className="joinText">
           <li>
             <p><b>새로운 비밀번호</b>를 작성해주세요.</p>
@@ -84,8 +91,8 @@ const PwFind = () => {
           <input className='jipInput' type="text" placeholder='동일한 비밀번호로 다시한번 작성해주세요.' required />
           </li>
         </ul>
-        <button className='button01' type='submit'>새 비밀번호 설정</button>
-      </form>
+        <button className='button01' type='submit'>비밀번호 재설정</button>
+      </form>}
     </div>
   )
 }
