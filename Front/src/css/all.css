@@ -38,7 +38,6 @@
 button{
     border: 1px solid rgba(255, 255, 255, 0.4);
     font-size: 14px;
-    text-align: center;
     line-height: 0%;
 }
 
@@ -48,12 +47,16 @@ button:hover{
     cursor: pointer;
 }
 
+form{
+    display: inline-block;
+    width: 100%;
+}
+
 .button01{
+    display: block;
     width: 116px;
     height: 35px;
-}
-.button01:first-of-type{
-    margin-right: 13px;
+    margin: 30px auto;
 }
 
 /*배경 이미지*/

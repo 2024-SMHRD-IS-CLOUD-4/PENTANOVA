@@ -8,7 +8,7 @@
 }
 #jipMainBox{
     width: 619px;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin: auto;
     padding-top: 240px;
     border-radius: 0px;
@@ -88,6 +88,9 @@
     border-radius: 0px;
 }
 
+.jipLiLast{
+    margin-top: 170%;
+}
 
 /*배경 이미지 투명도 조절*/
 

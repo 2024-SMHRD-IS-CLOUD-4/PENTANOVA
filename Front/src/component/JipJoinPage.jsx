@@ -6,13 +6,14 @@ import IdFind from './jip/IdFind';
 import PwFind from './jip/PwFind';
 import farmer from "../assets/farmer.png"
 import appleM from "../assets/appleM.png"
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function JipJoinPage() {
     const [searchParams] = useSearchParams();
     const [showJoin, setShowJoin] = useState(false);
     const [showIdFind, setShowIdFind] = useState(false);
     const [showPwFind, setShowPwFind] = useState(false);
+    const navigate = useNavigate();
     const [selectedButton, setSelectedButton] = useState('join'); // 현재 선택된 버튼 추적
     useEffect(()=>{
         let type = searchParams.get('type');
@@ -43,7 +44,9 @@ function JipJoinPage() {
         setShowIdFind(false);
         setShowPwFind(true);
     }
-
+    function loginClick(){
+        navigate('/');
+      }
     // 선택된 버튼에 스타일을 추가하는 함수
     const buttonStyle = (button) => {
         return selectedButton === button ? {fontWeight: '700', color: '#333', fontSize:'22px'} : {} ;
@@ -58,6 +61,7 @@ function JipJoinPage() {
                             <li><button onClick={join} style={buttonStyle('join')}>회원가입</button></li>
                             <li><button onClick={idFind} style={buttonStyle('idFind')}>아이디찾기</button></li>
                             <li><button onClick={pwFind} style={buttonStyle('pwFind')}>새 비밀번호 설정</button></li>
+                            <li className='jipLiLast'><button onClick={loginClick} style={buttonStyle('pwFind')}>로그인하러가기</button></li>
                         </ul>
                     </div>
                     <div class="jipRightBox">
