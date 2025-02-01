@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { AppData } from '../function/AuthContext'
-import useConfirm from '../function/UseConfirm';
+import { AppData } from '../../function/AuthContext'
+import useConfirm from '../../function/UseConfirm';
 import axios from 'axios'
 
 const MyProfile = () => {
@@ -33,7 +33,7 @@ const MyProfile = () => {
     }
     return (
         <div>
-            <h1>MyProfile</h1>
+            <h2>MyProfile</h2>
             <ul>
                 <li>
                     {shareData.data ? shareData.data.id: null}

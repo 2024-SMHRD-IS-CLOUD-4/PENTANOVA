@@ -1,5 +1,5 @@
 import React from 'react'
-import DpList from './DpList';
+import DpList from './user/DpList';
 
 const FieldGuide = () => {
 

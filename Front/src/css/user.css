@@ -1,0 +1,21 @@
+#userBody{
+    width: 100vw;
+    height: 100vh;
+    display: inline-block;
+    border-radius: 0px;
+}
+#userMainBox{
+    width: fit-content;
+    margin: auto;
+}
+#userLeftBox, #userRightBox{
+    width: 393px;
+    height: 852px;
+    float: left;
+}
+#userLeftBox{
+    border: 1px solid rgba(248, 248, 248, 1);
+}
+#userRightBox{
+    background-color: rgba(248, 248, 248, 1);
+}

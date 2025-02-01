@@ -1,30 +1,31 @@
 import React, { createContext, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './component/Login';
+import Join from './component/jip/Join';
+import IdFind from './component/jip/IdFind';
+import PwFind from './component/jip/PwFind';
 import Navbar from './component/NavBar';
 import Dashboard from './component/Dashboard'; // 각 페이지 컴포넌트 import
 import PestManagement from './component/PestManagement';
 import PromotionManagement from './component/PromotionManagement';
 import UserManagement from './component/UserManagement';
-import Login from './component/Login';
-import Join from './component/jip/Join';
-import Diagnosis from './component/Diagnosis';
-import DpDetail from './component/DpDetail';
-import DpList from './component/DpList';
-import HisDiagnosis from './component/HisDiagnosis';
-import SelfDiagnosis from './component/SelfDiagnosis';
+import Diagnosis from './component/user/Diagnosis';
+import DpDetail from './component/user/DpDetail';
+import DpList from './component/user/DpList';
+import HisDiagnosis from './component/user/HisDiagnosis';
+import SelfDiagnosis from './component/user/SelfDiagnosis';
 import FieldGuide from './component/FieldGuide';
 import UserDetail from './component/UserDetail';
 import DiagDetail from './component/DiagDetail';
-import FumigatorPesticides from './component/FumigatorPesticides';
-import MyProfile from './component/MyProfile';
+import FumigatorPesticides from './component/user/FumigatorPesticides';
+import MyProfile from './component/user/MyProfile';
 import { AppData } from './function/AuthContext';
-import Uploader from './component/Uploader';
-import IdFind from './component/jip/IdFind';
-import PwFind from './component/jip/PwFind';
+import Uploader from './component/user/AiDiagnosis';
 import ChangeProfile from './component/ChangeProfile';
 import RequestAuth from './component/RequestAuth';
 import JipJoinPage from './component/JipJoinPage';
 import CropList from './component/CropList';
+import UserJoinPage from './component/UserJoinPage';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
@@ -60,6 +61,7 @@ function App() {
             <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
             <Route path="/auth" element={<FumigatorPesticides />}></Route>
             <Route path="/crops" element={<CropList />}></Route>
+            <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
           </Routes>
         </AppData>
       </div>
