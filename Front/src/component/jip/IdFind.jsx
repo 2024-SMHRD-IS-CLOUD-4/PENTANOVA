@@ -20,10 +20,32 @@ const IdFind = () => {
     }
   }
   return (
-    <div>
+    <div id="joinBox">
       <h2>아이디 찾기</h2>
       <form onSubmit={idFind}>
-        <input className='jipInput' type="text" ref={phoneRef} placeholder='전화번호를 입력해주세요.' /><br />
+        <ul className='joinText'>
+          <li>
+              <p><b>닉네임</b>을 작성해주세요.</p>
+              <input
+                  className='jipInput'
+                  type="text"
+                  name="nick"
+                  placeholder='회원가입 시 작성한 닉네임을 작성해주세요.'
+                  required
+              />
+          </li>
+          <li>
+              <p><b>연락처</b>를 작성해주세요.</p>
+              <input
+                  className='jipInput'
+                  type="text"
+                  name="phone"
+                  ref={phoneRef}
+                  placeholder='회원가입 시 작성한 연락처를 작성해주세요.'
+                  required
+              />
+          </li>
+        </ul>
         <button className="button01" type='submit'>아이디 찾기</button>
       </form>
       {resultText}
