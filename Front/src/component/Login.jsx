@@ -68,9 +68,13 @@ const Login = () => {
         },
       });
       if (response.status === 200) {
+        if(response.data.role=='일반사용자'){
+          setIsTrue2(false);
+        }else{
+          setIsTrue2(true);
+        }
         setData(response.data);
         shareData.setData(data);
-       
         alert('로그인 성공!');
         
       }

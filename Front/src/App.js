@@ -25,7 +25,6 @@ import ChangeProfile from './component/ChangeProfile';
 import RequestAuth from './component/RequestAuth';
 import JipJoinPage from './component/JipJoinPage';
 import CropList from './component/CropList';
-import Address from './component/jip/Address';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
@@ -59,8 +58,8 @@ function App() {
             <Route path="/myProfile" element={<MyProfile />}></Route>
             <Route path="/changeProfile" element={<ChangeProfile />}></Route>
             <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
+            <Route path="/auth" element={<FumigatorPesticides />}></Route>
             <Route path="/crops" element={<CropList />}></Route>
-            <Route path="/address" element={<Address />}></Route>
           </Routes>
         </AppData>
       </div>

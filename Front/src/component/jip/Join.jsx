@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import "../../css/jip.css"
-import Address from './Address';
+import Address from '../api/Address';
 
 const Join = () => {
     const [formData, setFormData] = useState({
