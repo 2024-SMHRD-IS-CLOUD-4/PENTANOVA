@@ -24,7 +24,7 @@ const IdFind = () => {
       <h2>아이디 찾기</h2>
       <form onSubmit={idFind}>
         <input className='jipInput' type="text" ref={phoneRef} placeholder='전화번호를 입력해주세요.' /><br />
-        <button type='submit'>아이디 찾기</button>
+        <button className="button01" type='submit'>아이디 찾기</button>
       </form>
       {resultText}
     </div>

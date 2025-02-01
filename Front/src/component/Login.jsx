@@ -106,8 +106,8 @@ const Login = () => {
               <label htmlFor="password">PW</label>
               <input type="password" name="pw" id="password" onChange={handleChange} required/>
             </div>
-            <button type="submit">로그인</button>
-            <button type="button">간편 로그인</button>
+            <button className='button01'  type="submit">로그인</button>
+            <button className='button01'  type="button">간편 로그인</button>
           </form>
           <div class="loginBoxBt">
             <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
@@ -122,6 +122,8 @@ const Login = () => {
           <h1>최근 공지사항 <br />바로보기</h1>
           <p>한국농촌진흥청</p>
       </div>
+      <img class="bgimgFarmer" src={farmer} alt="farmer" />
+      <img class="bgimgAppleM"src={appleM} alt="appleM" />
       
     </div>
   );

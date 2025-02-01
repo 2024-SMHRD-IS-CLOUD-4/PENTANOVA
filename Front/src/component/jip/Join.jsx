@@ -107,10 +107,10 @@ const Join = () => {
     return (
         <div id="joinBox">
             <h2>회원가입</h2>
-            <div class="joinText">
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>아이디</label>
+            <form onSubmit={handleSubmit}>
+                <ul className="joinText">
+                    <li>
+                        <p><b>아이디</b><span>(이메일형식)</span>를 작성해주세요.</p>
                         <input
                             type="text"
                             name="id"
@@ -121,60 +121,65 @@ const Join = () => {
                         />
                         <button type="button" onClick={UserIdCheck}>중복 확인</button>
                         {idCheck && <p>{idCheck}</p>}
-                    </div>
-                    <div>
-                        <label>비밀번호</label>
-                        <input
+                    </li>
+                    <li>
+                        <p><b>비밀번호</b>를 작성해주세요.</p>
+		                <input
                             type="password"
                             name="pw"
                             ref={pwRef}
                             value={formData.pw}
                             onChange={handleChange}
+		                    placeholder='8자 이상 작성해주세요.'
                             required
                         />
-                    </div>
-                    <div>
-                        <label>비밀번호 확인</label>
+                    </li>
+                    <li>
+                        <p><b>비밀번호</b>를 다시한번 작성해주세요.</p>
                         <input
-                            type="password"
-                            name="pwCheck"
-                            onChange={pwChecking}
-                            required
+                        type="password"
+                        name="pwCheck"
+                        onChange={pwChecking}
+                        placeholder='동일한 비밀번호로 다시한번 작성해주세요.'
+                        required
                         />
-                        {pwRef.current ? (pwCheck != pwRef.current.value ? '불일치' : null) : null}
-                    </div>
-                    <div>
-                        <label>닉네임</label>
+                        {pwRef.current?(pwCheck!=pwRef.current.value?'불일치':null):null}
+                    </li>
+                    <li>
+                        <p><b>닉네임</b>을 작성해주세요.</p>
                         <input
-                            type="text"
-                            name="nick"
-                            value={formData.nick}
-                            onChange={handleChange}
-                            required
+                        type="text"
+                        name="nick"
+                        value={formData.nick}
+                        onChange={handleChange}
+                        placeholder='2글자 이상 작성해주세요.'
+                        required
                         />
-                    </div>
-                    <div>
-                        <label>전화번호</label>
+                    </li>
+                    <li>
+                        <p><b>연락처</b>를 작성해주세요.</p>
                         <input
-                            type="text"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            required
+                        type="text"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder='예시. 01012345678'
+                        required
                         />
-                    </div>
-                    <div>
+                    </li>
+                    <li>
+                        <p><b>지역</b>을 선택해주세요.</p>
                         <Address onAddressChange={handleAddressChange} />
                         <input value={parentSido} /><br />
                         주소 : <input name="address" value={parentAddress} onChange={handleChange} ref={addressRef} required /><br />
                         상세 주소 : <input name='addressDetail' onChange={handleChange} ref={addressDetailRef} required />F
-                    </div>
-                    <div>
-                        <label>알람여부를 선택해주세요</label>
-                    </div>
-                    <button type="submit">회원가입</button>
-                </form>
-            </div>
+                    </li>
+                    <li>
+                        <p><b>알람여부</b>를 선택해주세요.</p>
+                    </li>
+                </ul>
+                <button className="button01" type="submit">회원가입</button>
+            </form>  
         </div>
     );
 };
