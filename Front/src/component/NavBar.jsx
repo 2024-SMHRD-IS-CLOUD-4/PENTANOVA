@@ -17,7 +17,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/join" className={isActive => isActive ? 'active' : ''}>
+        <NavLink to="/join?type=j" className={isActive => isActive ? 'active' : ''}>
           회원가입
         </NavLink>
       </li>
@@ -50,7 +50,7 @@ const Navbar = () => {
       </ul>
     );
     if (shareData.data) {
-      if (isTrue) {
+      console.log(isTrue)
         if (shareData.data.isTrue2) {
           setNavContent(
             <ul>
@@ -114,7 +114,6 @@ const Navbar = () => {
         }
       }
 
-    }
   }, [shareData.data, navigate]);
 
   return (

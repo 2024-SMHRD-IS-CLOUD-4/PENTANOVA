@@ -89,12 +89,10 @@ const Dashboard = () => {
     regionCount.fill(0);
     region.map((rg, idx) => {
       diagResponse.data.map(diag => {
-        console.log(dateRef1.current.value);
-        console.log(diag.createdAt.split('-')[1]);
         if (rg == diag.diag_region) {
           if (diag.dp_num.dp_num == dpRef.current.value) {
-            if(dateRef1.current.value == diag.createdAt.split('-')[1])
-            regionCount[idx]++;
+            if (dateRef1.current.value == diag.createdAt.split('-')[1])
+              regionCount[idx]++;
           }
         }
       })
@@ -122,6 +120,7 @@ const Dashboard = () => {
   const dateChangeData = async () => {
     const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
     const dpResponse = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`)
+    
     dpCount.fill(0);
     dpResponse.data.map((dp, idx) => {
       diagResponse.data.map(diag => {
@@ -179,7 +178,7 @@ const Dashboard = () => {
             }
           ]
         });
-        dpData.map(dp => {
+        dpResponse.data.map(dp => {
           dpNames.push(dp.name);
           dpCount.push(0);
         })

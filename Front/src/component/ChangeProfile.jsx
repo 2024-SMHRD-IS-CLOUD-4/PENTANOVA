@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { AppData } from '../function/AuthContext';
-import Address from './Address';
+import Address from './jip/Address';
+import "../css/all.css"
 
 const ChangeProfile = () => {
 

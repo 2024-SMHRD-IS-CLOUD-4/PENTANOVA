@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import "../../css/all.css"
+import "../../css/jip.css"
+
 const PwFind = () => {
   const navigate = useNavigate();
   let phoneRef = useRef();
@@ -53,15 +56,35 @@ const PwFind = () => {
 
   return (
     <div>
-      <h1>PwFind</h1>
+      <h2>새 비밀번호 설정</h2>
       <form onSubmit={pwFind}>
-        <input type="text" ref={idRef} placeholder='아이디(이메일)를 입력해주세요.' required /><br />
-        <input type="text" ref={phoneRef} placeholder='전화번호를 입력해주세요.' required /><br />
-        <button type='submit'>비밀번호 찾기</button>
+        <ul className="joinText">
+          <li>
+            <p><b>아이디</b><span>(이메일형식)</span>를 작성해주세요.</p>
+            <input className='jipInput' type="text" ref={idRef} placeholder='아이디(이메일)를 입력해주세요.' required />
+          </li>
+          <li>
+            <p><b>닉네임</b>을 작성해주세요.</p>
+          </li>
+          <li>
+            <p><b>연락처</b>를 작성해주세요.</p>
+            <input className='jipInput' type="text" ref={phoneRef} placeholder='전화번호를 입력해주세요.' required />
+          </li>
+        </ul>
+        <button type='submit'>회원 확인</button>
       </form>
       <form onSubmit={setPw}>
-        <input type="text" ref={pwRef} placeholder='수정할 비밀번호 작성' required />
-        <button type='submit'>비밀번호 수정</button>
+        <ul className="joinText">
+          <li>
+            <p><b>새로운 비밀번호</b>를 작성해주세요.</p>
+            <input className='jipInput' type="text" ref={pwRef} placeholder='8자 이상 작성해주세요.' required />
+          </li>
+          <li>
+          <p><b>비밀번호</b>를 다시한번 작성해주세요.</p>
+          <input className='jipInput' type="text" placeholder='동일한 비밀번호로 다시한번 작성해주세요.' required />
+          </li>
+        </ul>
+        <button type='submit'>새 비밀번호 설정</button>
       </form>
     </div>
   )
