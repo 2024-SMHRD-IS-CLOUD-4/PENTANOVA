@@ -27,7 +27,6 @@ const PwFind = () => {
         setIsTrue(true);
         setShowChange(true);
         setShowAuth(false);
-        console.log('qwe')
       } else {
         setIsTrue(false);
         setShowChange(false);

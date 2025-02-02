@@ -58,7 +58,7 @@ function App() {
             <Route path="/myProfile" element={<MyProfile />}></Route>
             <Route path="/changeProfile" element={<ChangeProfile />}></Route>
             <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
-            <Route path="/auth" element={<FumigatorPesticides />}></Route>
+            <Route path="/kakao/callback" element={<FumigatorPesticides />}></Route>
             <Route path="/crops" element={<CropList />}></Route>
           </Routes>
         </AppData>
