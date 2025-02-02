@@ -26,7 +26,7 @@ const DpList = () => {
     console.log(dps);
     return (
         <div>
-            <h2>DpList</h2>
+            <h2>병해충 도감</h2>
 
             <ul>
                 {dps.map(dp => (

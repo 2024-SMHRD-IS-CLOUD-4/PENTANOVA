@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AppData } from '../../function/AuthContext';
 
-const ImageUploader = () => {
+const AiDiagnosis = () => {
     const shareData = useContext(AppData);
     const navigate = useNavigate();
     const [file, setFile] = useState(null);
@@ -119,4 +119,4 @@ const ImageUploader = () => {
     );
 }
 
-export default ImageUploader;
+export default AiDiagnosis;

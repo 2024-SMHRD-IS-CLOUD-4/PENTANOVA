@@ -67,8 +67,8 @@ const Login = () => {
           'Content-Type': 'application/json'
         },
       });
-      if (response.status === 200) {
-        if(response.data.role=='일반사용자'){
+      if (response.status == 200) {
+        if(response.data.role == '일반사용자'){
           setIsTrue2(false);
         }else{
           setIsTrue2(true);
