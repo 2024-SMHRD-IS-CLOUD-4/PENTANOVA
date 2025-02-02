@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AppData } from '../function/AuthContext';
+import { AppData } from '../../function/AuthContext';
 
 const ImageUploader = () => {
     const shareData = useContext(AppData);

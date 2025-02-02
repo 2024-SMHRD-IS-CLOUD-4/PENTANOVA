@@ -1,6 +1,6 @@
 // pages/Dashboard.js
 import React, { useEffect, useState } from 'react';
-import DpList from './DpList';
+import DpList from './user/DpList';
 import axios from 'axios'
 import CropList from './CropList';
 
