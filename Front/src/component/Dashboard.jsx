@@ -227,7 +227,7 @@ const Dashboard = () => {
                 <span>{diag.dp_num.crop_num.name}</span>
                 <span>{diag.dp_num.name}</span>
                 <span>{diag.diag_region}</span>
-                <span>{diag.id.nick}</span>
+                <span>{diag.user.nick}</span>
                 <span>{diag.createdAt.split('T')[0]}</span>
               </li>
             )

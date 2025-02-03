@@ -26,6 +26,9 @@ import JipJoinPage from './component/JipJoinPage';
 import CropList from './component/CropList';
 import LoginApi from './component/api/LoginApi'
 import UserJoinPage from './component/UserJoinPage';
+import AccessObjectStorage from './component/api/AccessObjectStorage';
+import KakaoAlarm from './component/api/KakaoAlarm';
+import Test from './component/Test';
 import { AppData } from './function/AuthContext';
 
 function App() {
@@ -40,6 +43,7 @@ function App() {
           <Routes>
             <Route path="/jip" element={<JipJoinPage />} />
             <Route path="/join" element={<Join />} />
+            <Route path="/asdasd" element={<KakaoAlarm />} />
             <Route path="/idFind" element={<IdFind />} />
             <Route path="/pwFind" element={<PwFind />} />
             <Route path="/requestAuth" element={<RequestAuth />} />
@@ -63,6 +67,8 @@ function App() {
             <Route path="/kakao/callback" element={<LoginApi />}></Route>
             <Route path="/crops" element={<CropList />}></Route>
             <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
+            <Route path="/object" element={<AccessObjectStorage />}></Route>
+            <Route path="/test" element={<Test/>}></Route>
           </Routes>
         </AppData>
       </div>
