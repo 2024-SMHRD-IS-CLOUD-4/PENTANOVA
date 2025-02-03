@@ -49,7 +49,7 @@ const Login = () => {
       };
       sessionStorage.setItem("user", JSON.stringify(user));
       if (data.role === '일반사용자') {
-        navigate('/diagnosis')
+        navigate('/UserJoinPage')
       } else {
         navigate('/dashboard')
       }
