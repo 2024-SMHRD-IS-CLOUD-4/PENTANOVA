@@ -32,6 +32,10 @@
     display: block;
     border: 1px solid rgba(248, 248, 248, 1);
     padding: 13% 8%;
+    background-image: url(../assets/farmerFit.png);
+    background-position: 5% bottom;
+    background-size: 183px;
+    background-repeat: no-repeat;
 }
 .bgArrowImg{
     width: 100%;
