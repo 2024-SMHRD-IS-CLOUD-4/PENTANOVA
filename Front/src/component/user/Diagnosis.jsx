@@ -14,7 +14,7 @@ const Diagnosis = ({setActiveState}) => {
   return (
     <div id='diMainBox'>
       <div className='diTitle'>
-        <img src={logo} alt="GROWELL" />
+        <img className='bigLogo' src={logo} alt="GROWELL" />
         <p>AI · 자가 병해충 진단</p>
       </div>
       <button className="userButton" onClick={aiDiagnosis}>

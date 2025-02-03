@@ -11,7 +11,7 @@ const FumigatorPesticides = ({setActiveState}) => {
   return (
     <div id='fpMainBox'>
       <div className='diTitle'>
-        <img src={logo} alt="GROWELL" />
+        <img className='bigLogo' src={logo} alt="GROWELL" />
         <p>농약 및 방제 정보</p>
       </div>
       <button className="userButton" onClick={pesticides}>
