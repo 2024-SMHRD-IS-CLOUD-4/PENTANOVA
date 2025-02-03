@@ -9,7 +9,7 @@ import appleM from "../assets/appleM.png"
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function JipJoinPage() {
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const [showJoin, setShowJoin] = useState(false);
     const [showIdFind, setShowIdFind] = useState(false);
     const [showPwFind, setShowPwFind] = useState(false);

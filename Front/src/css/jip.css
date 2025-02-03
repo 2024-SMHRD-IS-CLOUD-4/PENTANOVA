@@ -47,11 +47,6 @@
 
 /*회원가입 조절 박스*/
 
-#joinBox > h2, #pwFBox > h2{
-    font-size: 26px;
-    text-align: center;
-    margin-bottom:40px;
-}
 .joinText{
     width: 100%;
     padding: 20px;
