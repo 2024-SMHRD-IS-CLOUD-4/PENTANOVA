@@ -12,6 +12,8 @@ import DpDetail from './component/user/DpDetail';
 import DpList from './component/user/DpList';
 import MyProfile from './component/user/MyProfile';
 import FumigatorPesticides from './component/user/FumigatorPesticides';
+import Fumigator from './component/user/Fumigator'
+import Pesticides from './component/user/Pesticides'
 import Navbar from './component/NavBar';
 import Dashboard from './component/Dashboard'; // 각 페이지 컴포넌트 import
 import PestManagement from './component/PestManagement';
@@ -49,20 +51,22 @@ function App() {
             <Route path="/users" element={<UserManagement />} />
             <Route path="/" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/diagnosis" element={<Diagnosis />}></Route>
-            <Route path="/dpDetail" element={<DpDetail />}></Route>
-            <Route path="/dpList" element={<DpList />}></Route>
-            <Route path="/userDetail" element={<UserDetail />}></Route>
-            <Route path="/diagDetail" element={<DiagDetail />}></Route>
-            <Route path="/hisDiagnosis" element={<HisDiagnosis />}></Route>
-            <Route path="/selfDiagnosis" element={<SelfDiagnosis />}></Route>
-            <Route path="/fieldGuide" element={<FieldGuide />}></Route>
-            <Route path="/myProfile" element={<MyProfile />}></Route>
-            <Route path="/changeProfile" element={<ChangeProfile />}></Route>
-            <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
-            <Route path="/kakao/callback" element={<LoginApi />}></Route>
-            <Route path="/crops" element={<CropList />}></Route>
-            <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
+            <Route path="/diagnosis" element={<Diagnosis />} />
+            <Route path="/dpDetail" element={<DpDetail />} />
+            <Route path="/dpList" element={<DpList />} />
+            <Route path="/userDetail" element={<UserDetail />} />
+            <Route path="/diagDetail" element={<DiagDetail />} />
+            <Route path="/hisDiagnosis" element={<HisDiagnosis />} />
+            <Route path="/selfDiagnosis" element={<SelfDiagnosis />} />
+            <Route path="/fieldGuide" element={<FieldGuide />} />
+            <Route path="/myProfile" element={<MyProfile />} />
+            <Route path="/changeProfile" element={<ChangeProfile />} />
+            <Route path="/fumigatorPesticides" element={<FumigatorPesticides /> } />
+            <Route path="/Fumigator" element={<Fumigator />} />
+            <Route path="/Pesticides" element={<Pesticides />} />
+            <Route path="/kakao/callback" element={<LoginApi />} />
+            <Route path="/crops" element={<CropList />} />
+            <Route path="/UserJoinPage" element={<UserJoinPage />} />
           </Routes>
         </AppData>
       </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import '../css/all.css';
 import '../css/user.css';
-import MyProfile from './user/MyProfile.jsx';
+import RightArrow from '../assets/right_arrow_black.png'
 import Diagnosis from './user/Diagnosis.jsx';
 import AiDiagnosis from './user/AiDiagnosis.jsx'
 import SelfDiagnosis from './user/SelfDiagnosis.jsx';
@@ -10,12 +10,17 @@ import HisDiagnosis from './user/HisDiagnosis.jsx';
 import DpList from './user/DpList.jsx';
 import DpDetail from './user/DpDetail.jsx';
 import FumigatorPesticides from './user/FumigatorPesticides';
+import Fumigator from './user/Fumigator.jsx'
+import Pesticides from './user/Pesticides.jsx'
+import PesticidesDetail from './user/PesticidesDetail.jsx'
+import MyProfile from './user/MyProfile.jsx';
 import HoverArrow from './user/HoverArrow.jsx'
-import RightArrow from '../assets/right_arrow_black.png'
+
 
 const UserJoinPage = () => {
     const [searchParams, SetSearchParams] = useSearchParams();
     const [selectedButton, setSelectedButton] = useState('Diagnosis');// 현재 선택된 버튼 추적
+    
     const [showDiagnosis, setShowDiagnosis] = useState(false);
     const [showMyProfile, setShowMyProfile] = useState(false);
     const [showAiDiagnosis, setShowAiDiagnosis] = useState(false);
@@ -23,6 +28,8 @@ const UserJoinPage = () => {
     const [showHisDiagnosis, setShowHisDiagnosis] = useState(false);
     const [showDpList, setShowDpList] = useState(false);
     const [showFumigatorPesticides, setShowFumigatorPesticides] = useState(false);
+    const [showFumigator, setShowFumigator] = useState(false);
+    const [showPesticides, setShowPesticides] = useState(false);
 
     const buttonStyle = (button) => {
         return selectedButton === button ? {
@@ -45,6 +52,8 @@ const UserJoinPage = () => {
         setShowHisDiagnosis(buttonType ==='HisDiagnosis')
         setShowDpList(buttonType === 'DpList')
         setShowFumigatorPesticides(buttonType === 'FumigatorPesticides')
+        setShowFumigator(buttonType === 'Fumigator')
+        setShowPesticides(buttonType === 'Pesticides')
     };
 
     const diagnosis = () => setActiveState('Diagnosis');
@@ -54,6 +63,8 @@ const UserJoinPage = () => {
     const hisDiagnosis = () => setActiveState('HisDiagnosis');
     const dpList = () => setActiveState('DpList');
     const fumigatorPesticides = () => setActiveState('FumigatorPesticides');
+    const fumigator = () => setActiveState('Fumigator');
+    const pesticides = () => setActiveState('Pesticides');
     
     return (
     <div id="userBody">
@@ -66,19 +77,41 @@ const UserJoinPage = () => {
                             <button onClick={diagnosis} style={buttonStyle('Diagnosis')}>병해충 진단</button>
                         </HoverArrow>
                         <ul className='togle'>
-                            <li><HoverArrow><button onClick={aiDiagnosis} style={buttonStyle('AiDiagnosis')}>AI 진단</button></HoverArrow></li>
-                            <li><HoverArrow><button onClick={selfDiagnosis} style={buttonStyle('SelfDiagnosis')}>자가진단</button></HoverArrow></li>
-                            <li><HoverArrow><button onClick={hisDiagnosis} style={buttonStyle('HisDiagnosis')}>진단 이력 관리</button></HoverArrow></li>
+                            <li>
+                                <HoverArrow>
+                                    <button onClick={aiDiagnosis} style={buttonStyle('AiDiagnosis')}>AI 진단</button>
+                                </HoverArrow>
+                            </li>
+                            <li>
+                                <HoverArrow>
+                                    <button onClick={selfDiagnosis} style={buttonStyle('SelfDiagnosis')}>자가진단</button>
+                                </HoverArrow>
+                            </li>
+                            <li>
+                                <HoverArrow>
+                                    <button onClick={hisDiagnosis} style={buttonStyle('HisDiagnosis')}>진단 이력 관리</button>
+                                </HoverArrow>
+                            </li>
                         </ul>
                     </li>
                     <li>
                         <HoverArrow><button onClick={dpList} style={buttonStyle('DpList')}>병해충 도감</button></HoverArrow>
                     </li>
                     <li>
-                        <HoverArrow><button>농약 및 방제 정보</button></HoverArrow>
+                        <HoverArrow>
+                            <button onClick={fumigatorPesticides} style={buttonStyle('FumigatorPesticides')}>농약 및 방제 정보</button>
+                        </HoverArrow>
                         <ul className='togle'>
-                            <li><HoverArrow><button onClick={fumigatorPesticides} style={buttonStyle('FumigatorPesticides')}>농약 정보</button></HoverArrow></li>
-                            <li><HoverArrow><button>방제 정보</button></HoverArrow></li>
+                            <li>
+                                <HoverArrow>
+                                    <button onClick={pesticides} style={buttonStyle('Pesticides')}>농약 정보</button>
+                                </HoverArrow>
+                            </li>
+                            <li>
+                                <HoverArrow>
+                                    <button onClick={fumigator} style={buttonStyle('Fumigator')}>방제 정보</button>
+                                </HoverArrow>
+                            </li>
                         </ul>
                     </li>
                     <li>
@@ -94,6 +127,8 @@ const UserJoinPage = () => {
                 {showHisDiagnosis && <HisDiagnosis />}
                 {showDpList && <DpList />}
                 {showFumigatorPesticides && <FumigatorPesticides />}
+                {showPesticides && <Pesticides />}
+                {showFumigator && <Fumigator />}
             </div>
         </div>
     </div>
