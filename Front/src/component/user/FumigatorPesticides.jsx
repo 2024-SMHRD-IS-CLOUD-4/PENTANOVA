@@ -1,10 +1,15 @@
 import React from 'react'
 
+
 const FumigatorPesticides = () => {
+
+  
   return (
     <div>
-        FumigatorPesticides
-        
+      <br></br>
+      <br></br>
+      FumigatorPesticides
+
     </div>
   )
 }

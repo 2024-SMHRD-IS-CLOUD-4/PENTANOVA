@@ -4,9 +4,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 const Diagnosis = () => {
   return (
     <div>
+      <br />
+      <br />
       Diagnosis <br />
       <button>
-        <NavLink to="/uploader" className={isActive => isActive ? 'active' : ''}>
+        <NavLink to="/AiDiagnosis" className={isActive => isActive ? 'active' : ''}>
           AI 병해충진단
         </NavLink>
       </button><br />
@@ -23,4 +25,4 @@ const Diagnosis = () => {
     </div>
   )
 }
-export default Diagnosis
+export default Diagnosis;

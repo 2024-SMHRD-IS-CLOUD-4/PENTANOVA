@@ -34,7 +34,13 @@
 .loginBox{
     width: 245px;
     margin: 0 auto;
-
+}
+.loginBox > form > button{
+    float: left;
+    margin: 0px;
+}
+.loginBox > form > button:first-of-type{
+    margin: 0px 13px 0px 0px;
 }
 .loginIdPwBox{
     display: inline-block;

@@ -22,40 +22,11 @@ const Address = (props) => {
   };
 
   const completeHandler = (data) => {
-    let { address, zonecode, sido } = data;
-    
-    switch(sido){
-      case '서울' : 
-      case '인천' :
-      case '경기' :
-        setSido('경기도')
-        break;
-      case '강원':
-        setSido('강원특별자치도')
-        break; 
-      case '충북':
-      case '충남':
-      case '대전':
-      case '세종특별자치시':
-        setSido('충청도')
-        break; 
-      case '전북특별자치도':
-      case '전남':
-      case '제주특별자치도':
-      case '광주':
-        setSido('전라도')
-        break;
-      case '경북':
-      case '경남':
-      case '대구':
-      case '울산':
-      case '부산':
-        setSido('경상도')
-        break; 
-    }
+    let { address, sido } = data;
+
     setZonecode(zonecode);
     setAddress(address);
-    props.onAddressChange(address, zonecode, sido);
+    props.onAddressChange(address, sido, isOpen);
     setIsOpen(false);
   };
 
@@ -76,9 +47,6 @@ const Address = (props) => {
     props.onAddressChange(event.target.value, zonecode);
   };
 
-  const zonecodeHandler = (event) => {
-    setAddress(event.target.value);
-  };
 
   return (
     <div>
