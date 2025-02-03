@@ -123,7 +123,7 @@ const UserJoinPage = () => {
                 {showSelfDiagnosis && <SelfDiagnosis />}
                 {showHisDiagnosis && <HisDiagnosis />}
                 {showDpList && <DpList />}
-                {showFumigatorPesticides && <FumigatorPesticides />}
+                {showFumigatorPesticides && <FumigatorPesticides setActiveState={setActiveState} />}
                 {showPesticides && <Pesticides />}
                 {showFumigator && <Fumigator />}
             </div>
