@@ -24,6 +24,7 @@ import ChangeProfile from './component/ChangeProfile';
 import RequestAuth from './component/RequestAuth';
 import JipJoinPage from './component/JipJoinPage';
 import CropList from './component/CropList';
+import LoginApi from './component/api/LoginApi'
 import UserJoinPage from './component/UserJoinPage';
 import { AppData } from './function/AuthContext';
 
@@ -59,7 +60,7 @@ function App() {
             <Route path="/myProfile" element={<MyProfile />}></Route>
             <Route path="/changeProfile" element={<ChangeProfile />}></Route>
             <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
-            <Route path="/auth" element={<FumigatorPesticides />}></Route>
+            <Route path="/kakao/callback" element={<LoginApi />}></Route>
             <Route path="/crops" element={<CropList />}></Route>
             <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
           </Routes>

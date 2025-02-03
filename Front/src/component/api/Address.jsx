@@ -22,11 +22,11 @@ const Address = (props) => {
   };
 
   const completeHandler = (data) => {
-    let { address, sido} = data;
-    
+    let { address, sido } = data;
+
     setZonecode(zonecode);
     setAddress(address);
-    props.onAddressChange(address, sido, isOpen );
+    props.onAddressChange(address, sido, isOpen);
     setIsOpen(false);
   };
 

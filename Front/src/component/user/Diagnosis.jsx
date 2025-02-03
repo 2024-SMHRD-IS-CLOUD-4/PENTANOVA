@@ -4,6 +4,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 const Diagnosis = () => {
   return (
     <div>
+      <br />
+      <br />
       Diagnosis <br />
       <button>
         <NavLink to="/AiDiagnosis" className={isActive => isActive ? 'active' : ''}>
