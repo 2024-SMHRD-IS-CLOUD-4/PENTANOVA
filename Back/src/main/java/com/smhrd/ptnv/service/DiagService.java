@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.smhrd.ptnv.model.Diagnosis;
+import com.smhrd.ptnv.model.User;
 import com.smhrd.ptnv.repository.DiagRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,10 @@ public class DiagService {
 
 	public List<Diagnosis> diagList() {
 		return repository.findAll();
+	}
+	
+	public List<Diagnosis> myDiagList(User user){
+		return repository.findAllByUser(user);
 	}
 
 	public Diagnosis selectOne(Long diag_num) {

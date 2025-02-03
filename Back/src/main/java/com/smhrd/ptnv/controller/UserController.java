@@ -31,6 +31,7 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<User> login(@RequestBody User user) {
 		User result = service.login(user);
+		System.out.println(result);
 		if (result == null) {
 			return ResponseEntity.badRequest().body(result);
 		} else {

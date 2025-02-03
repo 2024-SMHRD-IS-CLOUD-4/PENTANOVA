@@ -32,7 +32,7 @@ public class Diagnosis extends BaseTimeEntity {
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="user_id")
-	private User id;
+	private User user;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="dp_num")
