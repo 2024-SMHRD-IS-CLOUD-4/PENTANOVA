@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AppData } from '../../function/AuthContext';
+import '../../css/all.css'
+import '../../css/user.css'
+import logo from '../../assets/logo.png'
 
 const HisDiagnosis = () => {
   const navigate = useNavigate();
@@ -22,8 +25,8 @@ const HisDiagnosis = () => {
   }, []);
 
   return (
-    <div>
-      DiagDiagnosis
+    <div id="hdMAinBox">
+      <img className='smallLogo' src={logo} alt="GROWELL" />
       <ul>
         {diags.map(diag => (
           <li key={diag.diag_num} onClick={() => {

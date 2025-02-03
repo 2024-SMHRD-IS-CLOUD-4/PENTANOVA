@@ -115,6 +115,7 @@ const UserJoinPage = () => {
                         <HoverArrow><button onClick={myProfile} style={buttonStyle('MyProfile')}>내정보 확인하기</button></HoverArrow>
                     </li>
                 </ul>
+                <button>로그아웃</button>
             </div>
             <div id="userRightBox">
                 {showDiagnosis && <Diagnosis setActiveState={setActiveState} />}
