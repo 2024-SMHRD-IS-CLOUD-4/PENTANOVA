@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
 import '../css/all.css';
 import '../css/user.css';
 import RightArrow from '../assets/right_arrow_black.png'
@@ -8,20 +7,18 @@ import AiDiagnosis from './user/AiDiagnosis.jsx'
 import SelfDiagnosis from './user/SelfDiagnosis.jsx';
 import HisDiagnosis from './user/HisDiagnosis.jsx';
 import DpList from './user/DpList.jsx';
-import DpDetail from './user/DpDetail.jsx';
+//import DpDetail from './user/DpDetail.jsx';
 import FumigatorPesticides from './user/FumigatorPesticides';
 import Fumigator from './user/Fumigator.jsx'
 import Pesticides from './user/Pesticides.jsx'
-import PesticidesDetail from './user/PesticidesDetail.jsx'
+//import PesticidesDetail from './user/PesticidesDetail.jsx'
 import MyProfile from './user/MyProfile.jsx';
 import HoverArrow from './user/HoverArrow.jsx'
 
 
 const UserJoinPage = () => {
-    const [searchParams, SetSearchParams] = useSearchParams();
     const [selectedButton, setSelectedButton] = useState('Diagnosis');// 현재 선택된 버튼 추적
-    
-    const [showDiagnosis, setShowDiagnosis] = useState(false);
+    const [showDiagnosis, setShowDiagnosis] = useState(true); // 페이지 처음 로딩 시 Diagnosis 메뉴 활성화
     const [showMyProfile, setShowMyProfile] = useState(false);
     const [showAiDiagnosis, setShowAiDiagnosis] = useState(false);
     const [showSelfDiagnosis, setShowSelfDiagnosis] = useState(false);
