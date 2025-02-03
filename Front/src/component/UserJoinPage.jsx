@@ -85,6 +85,11 @@ const UserJoinPage = () => {
                                 </HoverArrow>
                             </li>
                             <li>
+                                <button onClick={() => setActiveState('SelfDiagnosis')} style={buttonStyle('SelfDiagnosis')}>
+                                    자가진단
+                                </button>
+                            </li>
+                            <li>
                                 <HoverArrow>
                                     <button onClick={hisDiagnosis} style={buttonStyle('HisDiagnosis')}>진단 이력 관리</button>
                                 </HoverArrow>

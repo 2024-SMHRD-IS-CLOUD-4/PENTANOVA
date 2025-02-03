@@ -58,12 +58,66 @@
 #userRightBox{
     background-color: rgba(248, 248, 248, 1);
 }
+/*병해충 진단 Diagnosis*/
+#diMainBox{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-top:80px;
+    text-align: center;
+}
+
+.diTitle{
+    margin-bottom: 20%;
+}
+
+.diTitle > img{
+    width: 223px;
+    height: 50px;
+    border-radius: 0px;
+}
+.diTitle > p{
+    font-size: 20px;
+    margin-top: 13px;
+}
+.userButton{
+    width: 268px;
+    height: 100px;
+    background-color: rgba(76, 126, 65, 1);
+    margin-bottom: 37px;
+}
+.userButton:last-child{
+    margin-bottom: 0px;
+}
+.userButton:hover{
+    background-color: rgba(76, 126, 65, 1);
+    box-shadow: 10%;
+}
+.userButton h2{
+    font-weight: 700;
+    color: white;
+    box-sizing: content-box;
+    margin: 3% 0px 12% 0px;
+}
+.userButton p{
+    font-weight: 500;
+    color: white;
+}
+.userButton .active{
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    text-decoration: none;
+}
 
 /*AI 진단 AiDiagnosis*/
 /*자가진단 SelfDiagnosis*/
 /*진단이력관리 HisDiagnosis*/
 /*병해충 도감 DpList*/
 /*농약 및 방제 정보 FumigatorPesticides*/
+
+
 /*농약 정보 Pesticides*/
 /*농약정보 상세 PesticidesDetail*/
 /*방제 정보 Fumigator*/
