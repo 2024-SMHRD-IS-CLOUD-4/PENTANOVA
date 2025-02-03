@@ -14,71 +14,72 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.smhrd.ptnv.model.BucketFileDto;
 
 import lombok.RequiredArgsConstructor;
 
-@Service  
-@RequiredArgsConstructor  
-public class BucketService {  
-  
-    private final AmazonS3Client amazonS3Client;  
-  
-    @Value("${spring.s3.bucket}")  
-    private String bucketName;  
-  
-    @Value("${file.upload-dir}")  
-    private String uploadDir;  
-  
-    public String getUuidFileName(String fileName) {  
-        String ext = fileName.substring(fileName.indexOf(".") + 1);  
-        return UUID.randomUUID().toString() + "." + ext;  
-    }  
-    public List<BucketFileDto> uploadFilesSample(List<MultipartFile> multipartFiles){  
-  
-        return uploadFiles(multipartFiles, "sample-folder");  
-    }  
-  
-    //NOTICE: filePath의 맨 앞에 /는 안붙여도됨. ex) history/images  
-    public List<BucketFileDto> uploadFiles(List<MultipartFile> multipartFiles, String filePath) {  
-  
-        List<BucketFileDto> s3files = new ArrayList<>();  
-  
-        for (MultipartFile multipartFile : multipartFiles) {  
-  
-            String originalFileName = multipartFile.getOriginalFilename();  
-            String uploadFileName = getUuidFileName(originalFileName);  
-            String uploadFileUrl = "";  
-  
-            ObjectMetadata objectMetadata = new ObjectMetadata();  
-            objectMetadata.setContentLength(multipartFile.getSize());  
-            objectMetadata.setContentType(multipartFile.getContentType());  
-  
-            try (InputStream inputStream = multipartFile.getInputStream()) {  
-  
-                String keyName = filePath + "/" + uploadFileName;  
-  
-                // S3에 폴더 및 파일 업로드  
-                amazonS3Client.putObject(  
-                        new PutObjectRequest(bucketName, keyName, inputStream, objectMetadata)  
-                                .withCannedAcl(CannedAccessControlList.PublicRead));  
-  
-                // S3에 업로드한 폴더 및 파일 URL  
-                uploadFileUrl = "https://kr.object.ncloudstorage.com/"+ bucketName + "/" + keyName;  
-  
-            } catch (IOException e) {  
-                e.printStackTrace();  
-            }  
-  
-            s3files.add(  
-            		BucketFileDto.builder()  
-                            .originalFileName(originalFileName)  
-                            .uploadFileName(uploadFileName)  
-                            .uploadFilePath(filePath)  
-                            .uploadFileUrl(uploadFileUrl)  
-                            .build());  
-        }  
-  
-        return s3files;  
-    }  
+@Service
+@RequiredArgsConstructor
+public class BucketService {
+
+	private final AmazonS3Client amazonS3Client;
+
+	@Value("${spring.s3.bucket}")
+	private String bucketName;
+
+	@Value("${file.upload-dir}")
+	private String uploadDir;
+
+	public String getUuidFileName(String fileName) {
+		String ext = fileName.substring(fileName.indexOf(".") + 1);
+		return UUID.randomUUID().toString() + "." + ext;
+	}
+
+	public List<BucketFileDto> uploadFilesSample(List<MultipartFile> multipartFiles) {
+
+		return uploadFiles(multipartFiles, "sample-folder");
+	}
+
+	// NOTICE: filePath의 맨 앞에 /는 안붙여도됨. ex) history/images
+	public List<BucketFileDto> uploadFiles(List<MultipartFile> multipartFiles, String filename) {
+
+		List<BucketFileDto> s3files = new ArrayList<>();
+
+		for (MultipartFile multipartFile : multipartFiles) {
+
+			String originalFileName = multipartFile.getOriginalFilename();
+			String uploadFileName = filename;
+			String uploadFileUrl = "";
+
+			ObjectMetadata objectMetadata = new ObjectMetadata();
+			objectMetadata.setContentLength(multipartFile.getSize());
+			objectMetadata.setContentType(multipartFile.getContentType());
+
+			try (InputStream inputStream = multipartFile.getInputStream()) {
+
+				String keyName = "HisDiagnosis/" + uploadFileName;
+
+				amazonS3Client.putObject(new PutObjectRequest(bucketName, keyName, inputStream, objectMetadata)
+						.withCannedAcl(CannedAccessControlList.PublicRead));
+
+				uploadFileUrl = "https://kr.object.ncloudstorage.com/" + bucketName + keyName;
+			} catch (IOException e) {
+				System.out.println("asdasd");
+				e.printStackTrace();
+			}
+
+			s3files.add(BucketFileDto.builder().originalFileName(originalFileName).uploadFileName(uploadFileName)
+					.uploadFilePath("/HisDiagnosis").uploadFileUrl(uploadFileUrl).build());
+		}
+
+		return s3files;
+	}
+
+	public S3ObjectInputStream getImages(String path) {
+		S3Object s3Object = amazonS3Client.getObject(bucketName, path);
+		S3ObjectInputStream s3ObjectInputStream = s3Object.getObjectContent();
+		return s3ObjectInputStream;
+	}
 }
