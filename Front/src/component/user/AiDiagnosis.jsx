@@ -87,7 +87,7 @@ const AiDiagnosis = () => {
 
     return (
         <div>
-            <h1>이미지 업로드 및 분석</h1>
+            <h2>이미지 업로드 및 분석</h2>
             <form onSubmit={handleSubmit}>
                 <input type="file" onChange={handleFileChange} accept="image/*" />
                 <button type="submit">업로드 및 분석</button>

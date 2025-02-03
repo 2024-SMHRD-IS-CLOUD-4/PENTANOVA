@@ -12,6 +12,8 @@ import DpDetail from './component/user/DpDetail';
 import DpList from './component/user/DpList';
 import MyProfile from './component/user/MyProfile';
 import FumigatorPesticides from './component/user/FumigatorPesticides';
+import Fumigator from './component/user/Fumigator'
+import Pesticides from './component/user/Pesticides'
 import Navbar from './component/NavBar';
 import Dashboard from './component/Dashboard'; // 각 페이지 컴포넌트 import
 import PestManagement from './component/PestManagement';
@@ -67,8 +69,6 @@ function App() {
             <Route path="/kakao/callback" element={<LoginApi />}></Route>
             <Route path="/crops" element={<CropList />}></Route>
             <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
-            <Route path="/object" element={<AccessObjectStorage />}></Route>
-            <Route path="/test" element={<Test/>}></Route>
           </Routes>
         </AppData>
       </div>
