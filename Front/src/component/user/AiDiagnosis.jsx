@@ -12,6 +12,7 @@ const AiDiagnosis = () => {
     const [responseMessage, setResponseMessage] = useState('');
     const [startTime, setStartTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
+    const [image, setImage] = useState();
     const [formData2, setFormData2] = useState({
         dp_num: {
             dp_num: 1,
@@ -19,7 +20,7 @@ const AiDiagnosis = () => {
         diag_content: '',
         diag_region: shareData.data.location.split('/')[0],
         diag_img: '',
-        id:{
+        id: {
             id: shareData.data.id
         }
 
@@ -27,6 +28,8 @@ const AiDiagnosis = () => {
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
+        console.log(selectedFile)
+        console.log(typeof selectedFile)
         setFile(selectedFile);
     };
 
@@ -47,7 +50,7 @@ const AiDiagnosis = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-
+            setImage(response.data);
             const data = response.data;
             setResponseMessage(data.message);
 
@@ -71,18 +74,35 @@ const AiDiagnosis = () => {
     };
 
     const saveData = async () => {
-        console.log(predictions[0].confidence.toFixed(2));
-        console.log(formData2);
+        const uploadFile = new FormData();
+        const today = new Date();
+        const date = (JSON.stringify(today));
+        const filename = date.split('.')[0] + '(애플망고)';
+        const reviseFilename = filename.replace(/"/g, "");
+        uploadFile.append('files', file);
+        uploadFile.append('filename', reviseFilename);
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_connect}/bucket/upload`, uploadFile, {
+                headers: {
+                    'Content-Type': "multipart/form-data"
+                },
+            });
+        } catch (error) {
+            console.error(error);
+        }
+
         try {
             await axios.post(`${process.env.REACT_APP_connect}/diag/addDiag`, formData2, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            navigate('/hisDiagnosis');
+            // navigate('/hisDiagnosis');
         } catch (error) {
             console.error(error);
         }
+
+
     }
 
     return (
@@ -115,6 +135,7 @@ const AiDiagnosis = () => {
                     <button onClick={saveData}>저장하기</button>
                 </div>
             )}
+            <button onClick={saveData}>저장하기</button>
         </div>
     );
 }

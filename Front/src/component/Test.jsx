@@ -1,39 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const Test = () => {
-    const [image, setImage] = useState(null);
-    const formData = new FormData();
-    const handleImageChange = (event) => {
-        setImage(event.target.files[0]);
-    };
-
-    const submit = async (e) => {
-        e.preventDefault();
-
-        const formData = new FormData();
-        formData.append('files', image);
-
-        try {
-            const response = await axios.post(`${process.env.REACT_APP_connect}/bucket/upload`, formData, {
-                headers: {
-                    'Content-Type': "multipart/form-data"
-                }
-            });
-            console.log(response.data);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const [imageUrl, setImageUrl] = useState(null);
+    const imageName = 'appleMango.jpg';
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_connect}/bucket/getImages/${imageName}`)
+            .then(response => response.blob())
+            .then(blob => setImageUrl(URL.createObjectURL(blob)));
+    }, [imageName]);
     return (
         <div>
             <br />
             <br />
             <h1>테스트</h1>
-            <form onSubmit={submit}>
-                <input type="file" onChange={handleImageChange} />
-                <button type="submit">업로드</button>
-            </form>
+            <div>
+                {imageUrl && <img src={imageUrl} alt={imageName} />}
+            </div>
+
         </div>
     )
 }
