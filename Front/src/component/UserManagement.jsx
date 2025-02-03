@@ -23,17 +23,20 @@ const UserManagement = () => {
 // user 컬럼 : REQUEST_AUTH CREATED_AT PW ROLE INSTITUTE ID LOCATION NICK PHONE
   return (
     <div>
+      <br />
+      <br />
       <h1>사용자 관리 페이지입니다.</h1>
       <ul>
         {users.map(user => (
           <li key={user.id} onClick={() => {
             navigate(`/userDetail?id=${user.id}`)
           }}>
+            {user.id}
             {user.nick}
             {user.role}
             {user.institute}
             {user.phone}
-            {user.requestAuth?"O":"X"}
+            {user.role=='일반사용자'?(user.requestAuth?"O":"X"):null}
           </li>
         ))}
       </ul>

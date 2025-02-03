@@ -68,6 +68,7 @@ function App() {
             <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
             <Route path="/kakao/callback" element={<LoginApi />}></Route>
             <Route path="/crops" element={<CropList />}></Route>
+            <Route path="/test" element={<Test />}></Route>
             <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
           </Routes>
         </AppData>
