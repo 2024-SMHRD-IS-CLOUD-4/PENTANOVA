@@ -1,21 +1,25 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import '../../css/all.css'
+import '../../css/user.css'
+import logo from '../../assets/logo.png'
 
-const FumigatorPesticides = () => {
+const FumigatorPesticides = ({setActiveState}) => {
+
+  const fumigator = () => setActiveState('Fumigator');
+  const pesticides = () => setActiveState('Pesticides');
 
   return (
-    <div>
-      <h2>농약 및 방제 정보</h2>
-      <button>
-        <NavLink to="/Pesticides" className={isActive => isActive ? 'active' : ''}>
-          농약 검색
-        </NavLink>
-      </button><br />
-      <button>
-        <NavLink to="/Fumigator" className={isActive => isActive ? 'active' : ''}>
-          방제 정보
-        </NavLink>
-      </button><br />
+    <div id='fpMainBox'>
+      <div className='diTitle'>
+        <img className='bigLogo' src={logo} alt="GROWELL" />
+        <p>농약 및 방제 정보</p>
+      </div>
+      <button className="userButton" onClick={pesticides}>
+        <h2>농약 검색</h2>
+      </button>
+      <button className="userButton" onClick={fumigator}>
+        <h2>방제 정보</h2>
+      </button>
     </div>
   )
 }

@@ -24,28 +24,38 @@ import lombok.RequiredArgsConstructor;
 public class DiagController {
 
 	private final DiagService service;
-	
+
 	@GetMapping("/diagList")
-	public ResponseEntity<List<Diagnosis>> login() {
-		List<Diagnosis> result = service.diagList(); 
-		if(result==null) {
-			return ResponseEntity.badRequest().body(result);
-		}else {
+	public ResponseEntity<List<Diagnosis>> diagList() {
+		List<Diagnosis> result = service.diagList();
+		if (result == null) {
+			return ResponseEntity.ok(null);
+		} else {
 			return ResponseEntity.ok(result);
 		}
 	}
 	
+	@GetMapping("/myDiagList")
+	public ResponseEntity<List<Diagnosis>> myDiagList(@RequestParam String id) {
+		User user = new User();
+		user.setId(id);
+		List<Diagnosis> result = service.myDiagList(user);
+		if (result == null) {
+			return ResponseEntity.ok(null);
+		} else {
+			return ResponseEntity.ok(result);
+		}
+	}
+
 	@PostMapping("/selectOne")
 	public ResponseEntity<Diagnosis> selectOne(@RequestParam Long diag_num) {
 		Diagnosis result = service.selectOne(diag_num);
 		return ResponseEntity.ok(result);
 	}
-	
+
 	@PostMapping("/addDiag")
 	public void addDiag(@RequestBody Diagnosis diag) {
-		System.out.println(diag);
-		System.out.println("asdasd");
 		service.addDiag(diag);
 	}
-	
+
 }
