@@ -69,6 +69,8 @@ public class UserController {
 		service.authorization(id);
 	}
 
+	
+	
 	@PostMapping("/selectOne")
 	public ResponseEntity<User> selectOne(@RequestParam String id) {
 		User result = service.selectOne(id);
@@ -106,6 +108,11 @@ public class UserController {
 		}
 	}
 
+	@PostMapping("/loginApi")
+	public void loginApi(@RequestParam String code) {
+		System.out.println(code);
+	}
+	
 	@PostMapping("/sendAuth")
 	public ResponseEntity<Boolean> requestAuth(@RequestParam String id, @RequestParam Boolean requestAuth,
 			@RequestParam String institute) {
