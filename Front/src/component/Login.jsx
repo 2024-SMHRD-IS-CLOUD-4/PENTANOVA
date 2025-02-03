@@ -68,17 +68,16 @@ const Login = () => {
           'Content-Type': 'application/json'
         },
       });
-      if (response.status == 200) {
         if (response.data.role == '일반사용자') {
           setIsTrue2(false);
         } else {
           setIsTrue2(true);
         }
+        console.log(response.data);
         setData(response.data);
         shareData.setData(data);
         alert('로그인 성공!');
 
-      }
     } catch (error) {
       if (error.response) {
         alert('로그인 실패 : 아이디와 비밀번호를 확인하세요');

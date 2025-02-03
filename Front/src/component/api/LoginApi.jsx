@@ -8,12 +8,31 @@ const LoginApi = () => {
   const redirectUri = 'http://localhost:3000/kakao/callback';
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
   const [data, setData] = useState(null);
   const [isTrue2, setIsTrue2] = useState(true);
   const code = new URL(window.location.href).searchParams.get("code");
 
   useEffect(() => {
+    const kakaoLogin = async () => {
+      try {
+        const response = await axios.post(`${process.env.REACT_APP_connect}/kakao/login`, null, {
+          params: {
+            code: code
+          }
+        })
+        setData(response.data.user);
+        if (response.data.user.role == '일반사용자') {
+          setIsTrue2(false);
+        } else {
+          setIsTrue2(true);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    kakaoLogin();
+
     if (data) {
       const user = {
         id: data.id,
@@ -30,31 +49,13 @@ const LoginApi = () => {
       };
       console.log(data)
       sessionStorage.setItem("user", JSON.stringify(user));
-      if (data.role === '일반사용자') {
+      if (data.pw) {
         navigate('/diagnosis')
       } else {
         navigate('/dashboard')
       }
     }
-    const kakaoLogin = async () => {
-      try {
-        const response = await axios.post(`${process.env.REACT_APP_connect}/kakao/login`, null, {
-          params: {
-            code: code
-          }
-        })
-        setData(response.data.user);
-        if (response.data.user.role == '일반사용자') {
-          setIsTrue2(false);
-        } else {
-          setIsTrue2(true);
-        }
-        console.log(response.data)
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    kakaoLogin();
+
   }, [data]);
   const loginButton = () => {
     window.location.href = kakaoURL

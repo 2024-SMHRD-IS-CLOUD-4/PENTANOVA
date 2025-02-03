@@ -59,7 +59,7 @@ const ChangeProfile = () => {
             <form onSubmit={updateData}>
                 <ul>
                     <li><label>아이디 : </label><input type="text" value={shareData.data.id} readOnly /></li>
-                    <li><label>비밀번호 : </label><input type="password" name="pw" value={formData.pw} onChange={handleChange} /></li>
+                    {shareData.data.pw?<li><label>비밀번호 : </label><input type="password" name="pw" value={formData.pw} onChange={handleChange} /></li>:null}
                     <li><label>전화번호 : </label><input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder={shareData.data.phone} /></li>
                     <li><label>닉네임 : </label><input type="text" name="nick" value={formData.nick} onChange={handleChange} placeholder={shareData.data.nick} /></li>
                     <Address></Address>

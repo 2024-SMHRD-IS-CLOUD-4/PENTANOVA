@@ -50,7 +50,6 @@ const Navbar = () => {
       </ul>
     );
     if (shareData.data) {
-      console.log(isTrue)
         if (shareData.data.isTrue2) {
           setNavContent(
             <ul>
@@ -69,11 +68,11 @@ const Navbar = () => {
                   홍보문구 관리
                 </NavLink>
               </li>
-              <li>
+              {shareData.data.role=='최고관리자'?<li>
                 <NavLink to="/users" className={isActive => isActive ? 'active' : ''}>
                   사용자 관리
                 </NavLink>
-              </li>
+              </li>:null}
               <li>
                 <NavLink to="/" onClick={() => logout()} className={isActive => isActive ? 'active' : ''}>
                   로그아웃

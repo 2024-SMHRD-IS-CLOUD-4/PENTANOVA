@@ -12,6 +12,8 @@ import DpDetail from './component/user/DpDetail';
 import DpList from './component/user/DpList';
 import MyProfile from './component/user/MyProfile';
 import FumigatorPesticides from './component/user/FumigatorPesticides';
+import Fumigator from './component/user/Fumigator'
+import Pesticides from './component/user/Pesticides'
 import Navbar from './component/NavBar';
 import Dashboard from './component/Dashboard'; // 각 페이지 컴포넌트 import
 import PestManagement from './component/PestManagement';
@@ -26,6 +28,9 @@ import JipJoinPage from './component/JipJoinPage';
 import CropList from './component/CropList';
 import LoginApi from './component/api/LoginApi'
 import UserJoinPage from './component/UserJoinPage';
+import AccessObjectStorage from './component/api/AccessObjectStorage';
+import KakaoAlarm from './component/api/KakaoAlarm';
+import Test from './component/Test';
 import { AppData } from './function/AuthContext';
 
 function App() {
@@ -40,6 +45,7 @@ function App() {
           <Routes>
             <Route path="/jip" element={<JipJoinPage />} />
             <Route path="/join" element={<Join />} />
+            <Route path="/asdasd" element={<KakaoAlarm />} />
             <Route path="/idFind" element={<IdFind />} />
             <Route path="/pwFind" element={<PwFind />} />
             <Route path="/requestAuth" element={<RequestAuth />} />
