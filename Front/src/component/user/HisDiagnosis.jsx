@@ -19,17 +19,17 @@ const HisDiagnosis = () => {
         setDiags(response.data);
       } catch (error) {
         if (error.response) {
-          // 서버가 응답을 했지만 오류가 발생한 경우
-          console.error("Error response:", error.response);
-          console.error("Status code:", error.response.status);
-          console.error("Error details:", error.response.data);
-        } else if (error.request) {
-          // 서버로 요청은 했지만 응답이 없을 경우
-          console.error("Error request:", error.request);
-        } else {
-          // 요청을 설정하는 과정에서 문제가 발생한 경우
-          console.error("Error message:", error.message);
-        }
+        // 서버가 응답을 했지만 오류가 발생한 경우
+        console.error("Error response:", error.response);
+        console.error("Status code:", error.response.status);
+        console.error("Error details:", error.response.data);
+      } else if (error.request) {
+        // 서버로 요청은 했지만 응답이 없을 경우
+        console.error("Error request:", error.request);
+      } else {
+        // 요청을 설정하는 과정에서 문제가 발생한 경우
+        console.error("Error message:", error.message);
+      }
       }
     };
     diagList();

@@ -131,8 +131,34 @@
 #adConBox{
     width: 340px;
     height: 600px;
-    margin: 0px auto;
-    border: 1px solid red;
+    margin: 40px auto;
+}
+.adConBox{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.adConBox .userButton:not(:last-of-type){
+    margin-top: 5%;
+}
+.adConBox ul{
+    width: 100%;
+    height: 20%;
+}
+.adResult{
+    margin: 5% 0;
+    background-image: url('../assets/right_arrow_black.png');
+    background-repeat: no-repeat;
+    background-position: 95% center;
+}
+.adResult > span{
+    font-size: 18px;
+    color: #555;
+    margin-right: 30%;
+}
+.adResult:hover > span{
+    font-weight: 700;
 }
 
 /*자가진단 SelfDiagnosis*/
@@ -247,10 +273,10 @@
 
 /*병해충 도감 DpList*/
 /*농약 및 방제 정보 FumigatorPesticides*/
-#fpMainBox .userButton, #sdMainBox .userButton{
+#fpMainBox .userButton, #sdMainBox .userButton, #adConBox .userButton{
     height: 72px;
 }
-#fpMainBox .userButton > h2, #sdMainBox .userButton > h2{
+#fpMainBox .userButton > h2, #sdMainBox .userButton > h2, #adConBox .userButton > h2{
     margin-top: 13%;
 }
 
