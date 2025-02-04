@@ -7,11 +7,11 @@ import AiDiagnosis from './user/AiDiagnosis.jsx'
 import SelfDiagnosis from './user/SelfDiagnosis.jsx';
 import HisDiagnosis from './user/HisDiagnosis.jsx';
 import DpList from './user/DpList.jsx';
-//import DpDetail from './user/DpDetail.jsx';
+// import DpDetail from './user/DpDetail.jsx';
 import FumigatorPesticides from './user/FumigatorPesticides';
 import Fumigator from './user/Fumigator.jsx'
 import Pesticides from './user/Pesticides.jsx'
-//import PesticidesDetail from './user/PesticidesDetail.jsx'
+// import PesticidesDetail from './user/PesticidesDetail.jsx'
 import MyProfile from './user/MyProfile.jsx';
 import HoverArrow from './user/HoverArrow.jsx'
 
@@ -19,14 +19,16 @@ import HoverArrow from './user/HoverArrow.jsx'
 const UserJoinPage = () => {
     const [selectedButton, setSelectedButton] = useState('Diagnosis');// 현재 선택된 버튼 추적
     const [showDiagnosis, setShowDiagnosis] = useState(true); // 페이지 처음 로딩 시 Diagnosis 메뉴 활성화
-    const [showMyProfile, setShowMyProfile] = useState(false);
     const [showAiDiagnosis, setShowAiDiagnosis] = useState(false);
     const [showSelfDiagnosis, setShowSelfDiagnosis] = useState(false);
     const [showHisDiagnosis, setShowHisDiagnosis] = useState(false);
     const [showDpList, setShowDpList] = useState(false);
+    // const [showDpDetail, setShowDpDetail] = useState(false);
     const [showFumigatorPesticides, setShowFumigatorPesticides] = useState(false);
     const [showFumigator, setShowFumigator] = useState(false);
     const [showPesticides, setShowPesticides] = useState(false);
+    // const [showPesticidesDetail, setShowPesticidesDetail] = useState(false);
+    const [showMyProfile, setShowMyProfile] = useState(false);
 
     const buttonStyle = (button) => {
         return selectedButton === button ? {
@@ -45,12 +47,14 @@ const UserJoinPage = () => {
         setShowDiagnosis(buttonType === 'Diagnosis');
         setShowAiDiagnosis(buttonType === 'AiDiagnosis');
         setShowSelfDiagnosis(buttonType === 'SelfDiagnosis');
-        setShowMyProfile(buttonType === 'MyProfile');
         setShowHisDiagnosis(buttonType ==='HisDiagnosis')
         setShowDpList(buttonType === 'DpList')
+        // setShowDpDetail(buttonType === 'DpDetail')
         setShowFumigatorPesticides(buttonType === 'FumigatorPesticides')
         setShowFumigator(buttonType === 'Fumigator')
         setShowPesticides(buttonType === 'Pesticides')
+        // setShowPesticidesDetail(buttonType === 'PesticidesDetail')
+        setShowMyProfile(buttonType === 'MyProfile');
     };
 
     const diagnosis = () => setActiveState('Diagnosis');
@@ -59,9 +63,11 @@ const UserJoinPage = () => {
     const selfDiagnosis = () => setActiveState('SelfDiagnosis');
     const hisDiagnosis = () => setActiveState('HisDiagnosis');
     const dpList = () => setActiveState('DpList');
+    // const dpDetail = () => setActiveState('DpDetail');
     const fumigatorPesticides = () => setActiveState('FumigatorPesticides');
     const fumigator = () => setActiveState('Fumigator');
     const pesticides = () => setActiveState('Pesticides');
+    // const pesticidesDetail = () => setActiveState('PesticidesDetail');
     
     return (
     <div id="userBody">
@@ -115,6 +121,7 @@ const UserJoinPage = () => {
                         <HoverArrow><button onClick={myProfile} style={buttonStyle('MyProfile')}>내정보 확인하기</button></HoverArrow>
                     </li>
                 </ul>
+                <button>로그아웃</button>
             </div>
             <div id="userRightBox">
                 {showDiagnosis && <Diagnosis setActiveState={setActiveState} />}
@@ -123,9 +130,11 @@ const UserJoinPage = () => {
                 {showSelfDiagnosis && <SelfDiagnosis />}
                 {showHisDiagnosis && <HisDiagnosis />}
                 {showDpList && <DpList />}
+                {/* {showDpDetail && <DpDetail />} */}
                 {showFumigatorPesticides && <FumigatorPesticides setActiveState={setActiveState} />}
-                {showPesticides && <Pesticides />}
                 {showFumigator && <Fumigator />}
+                {showPesticides && <Pesticides />}
+                {/* {showPesticidesDetail && <PesticidesDetail />} */}
             </div>
         </div>
     </div>

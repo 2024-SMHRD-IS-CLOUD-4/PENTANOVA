@@ -4,7 +4,7 @@ import '../css/all.css';
 import Join from './jip/Join'
 import IdFind from './jip/IdFind';
 import PwFind from './jip/PwFind';
-import farmer from "../assets/farmer.png"
+import farmer from "../assets/farmerFit.png"
 import appleM from "../assets/appleM.png"
 import { useNavigate, useSearchParams } from 'react-router-dom';
 

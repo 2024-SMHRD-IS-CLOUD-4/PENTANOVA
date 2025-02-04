@@ -13,6 +13,7 @@
     width: 393px;
     height: 852px;
     float: left;
+    overflow: hidden;
 }
 
 .smallLogo{
@@ -32,6 +33,10 @@
     display: block;
     border: 1px solid rgba(248, 248, 248, 1);
     padding: 13% 8%;
+    background-image: url(../assets/farmerFit.png);
+    background-position: 5% bottom;
+    background-size: 183px;
+    background-repeat: no-repeat;
 }
 .bgArrowImg{
     width: 100%;
@@ -73,7 +78,7 @@
     background-color: rgba(248, 248, 248, 1);
 }
 /*병해충 진단 Diagnosis*/
-#diMainBox, #fpMainBox, #sdMainBox, #hdMainBox{
+#diMainBox, #fpMainBox, #sdMainBox{
     position: relative;
     width: 100%;
     height: 100%;
@@ -122,15 +127,23 @@
 }
 
 /*AI 진단 AiDiagnosis*/
+
+#adConBox{
+    width: 340px;
+    height: 600px;
+    margin: 0px auto;
+    border: 1px solid red;
+}
+
 /*자가진단 SelfDiagnosis*/
 
-#sdMainBox, #hdMainBox{
+#sdMainBox{
     padding-top:30px;
 }
-#sdMainBox ul{
+#sdMainBox ul, #hdConBox{
     width: 80%;
     margin-top: 20%;
-    margin: 20% auto 10% auto;
+    margin: 10% auto 10% auto;
 }
 #sdMainBox li{
     text-align: left;
@@ -169,41 +182,6 @@
 
 
 /*진단이력관리 HisDiagnosis*/
-
-#hdMainBox > ul{
-    width: 320px;
-    margin: 0px auto;
-}
-#hdMainBox li{
-    display: ;
-    width: 100%;
-    height: 95px;
-    background-color: #fff;
-}
-#hdMainBox button{
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-}
-#hdMainBox button:hover{
-    background-color: #fff;
-}
-#hdMainBox button > *{
-    display: block;
-}
-#hdMainBox .hdTitle{
-    display: block;
-    width: 73px;
-    height: 19px;
-    background-color: rgba(76, 126, 65, 1);
-}
-#hdMainBox .hdDate{
-    display: block;
-    float: right;
-}
-
-
-
 /*병해충 도감 DpList*/
 /*농약 및 방제 정보 FumigatorPesticides*/
 #fpMainBox .userButton, #sdMainBox .userButton{

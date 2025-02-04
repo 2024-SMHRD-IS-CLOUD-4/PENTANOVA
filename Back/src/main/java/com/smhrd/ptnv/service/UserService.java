@@ -45,7 +45,7 @@ public class UserService {
 	}
 
 	public List<User> getList() {
-		return repository.findAllByRole("일반사용자");
+		return repository.findAll();
 	}
 
 	public List<User> getList2() {
