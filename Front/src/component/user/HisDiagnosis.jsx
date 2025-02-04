@@ -27,6 +27,71 @@ const HisDiagnosis = () => {
   return (
     <div id="hdMAinBox">
       <img className='smallLogo' src={logo} alt="GROWELL" />
+      <div id='hdConBox'>
+        <div className='hdConBox'>
+          <p>
+            <span className='hdTitle'>AI 진단</span>
+            <span className='hdDate'>2024.01.12</span>
+          </p>
+          <p className='hdName'>작물 명 : 감</p>
+          <p className='hdResult'>검은점무늬병 : 82%</p>
+          <span className='hdDetail'>상세보기</span>
+        </div>
+        <div className='hdConBox'>
+          <p>
+            <span className='hdTitle'>AI 진단</span>
+            <span className='hdDate'>2024.01.12</span>
+          </p>
+          <p className='hdName'>작물 명 : 감</p>
+          <p className='hdResult'>검은점무늬병 : 82%</p>
+          <span className='hdDetail'>상세보기</span>
+        </div>
+        <div className='hdConBox'>
+          <p>
+            <span className='hdTitle'>AI 진단</span>
+            <span className='hdDate'>2024.01.12</span>
+          </p>
+          <p className='hdName'>작물 명 : 감</p>
+          <p className='hdResult'>검은점무늬병 : 82%</p>
+          <span className='hdDetail'>상세보기</span>
+        </div>
+        <div className='hdConBox'>
+          <p>
+            <span className='hdTitle'>AI 진단</span>
+            <span className='hdDate'>2024.01.12</span>
+          </p>
+          <p className='hdName'>작물 명 : 감</p>
+          <p className='hdResult'>검은점무늬병 : 82%</p>
+          <span className='hdDetail'>상세보기</span>
+        </div>
+        <div className='hdConBox'>
+          <p>
+            <span className='hdTitle'>AI 진단</span>
+            <span className='hdDate'>2024.01.12</span>
+          </p>
+          <p className='hdName'>작물 명 : 감</p>
+          <p className='hdResult'>검은점무늬병 : 82%</p>
+          <span className='hdDetail'>상세보기</span>
+        </div>
+        <div className='hdConBox'>
+          <p>
+            <span className='hdTitle'>AI 진단</span>
+            <span className='hdDate'>2024.01.12</span>
+          </p>
+          <p className='hdName'>작물 명 : 감</p>
+          <p className='hdResult'>검은점무늬병 : 82%</p>
+          <span className='hdDetail'>상세보기</span>
+        </div>
+        <div className='hdConBox'>
+          <p>
+            <span className='hdTitle'>AI 진단</span>
+            <span className='hdDate'>2024.01.12</span>
+          </p>
+          <p className='hdName'>작물 명 : 감</p>
+          <p className='hdResult'>검은점무늬병 : 82%</p>
+          <span className='hdDetail'>상세보기</span>
+        </div>
+      </div>
       <ul>
         {diags.map(diag => (
           <li key={diag.diag_num} onClick={() => {
