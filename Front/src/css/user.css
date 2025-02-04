@@ -78,7 +78,7 @@
     background-color: rgba(248, 248, 248, 1);
 }
 /*병해충 진단 Diagnosis*/
-#diMainBox, #fpMainBox, #sdMainBox, #hdMAinBox{
+#diMainBox, #fpMainBox, #sdMainBox, #hdMAinBox, #adMainBox{
     position: relative;
     width: 100%;
     height: 100%;
@@ -127,9 +127,17 @@
 }
 
 /*AI 진단 AiDiagnosis*/
+
+#adConBox{
+    width: 340px;
+    height: 600px;
+    margin: 0px auto;
+    border: 1px solid red;
+}
+
 /*자가진단 SelfDiagnosis*/
 
-#sdMainBox, #hdMAinBox{
+#sdMainBox, #hdMAinBox, #adMainBox{
     padding-top:30px;
 }
 #sdMainBox ul, #hdConBox{
@@ -236,7 +244,6 @@
 .hdName{
     display: block;
 }
-
 
 /*병해충 도감 DpList*/
 /*농약 및 방제 정보 FumigatorPesticides*/
