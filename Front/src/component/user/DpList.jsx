@@ -11,7 +11,7 @@ const DpList = () => {
     useEffect(() => {
         const dpList = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`);
+                const response = await axios.get(`${process.env.REACT_APP_connect}/dp/dpListByCrop?crop_num=${crop_num}`);
                 console.log(response.data);
                 response.data.map(dp => (
                     console.log(dp),

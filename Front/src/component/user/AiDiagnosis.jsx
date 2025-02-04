@@ -13,6 +13,7 @@ const AiDiagnosis = () => {
     const [startTime, setStartTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
     const [image, setImage] = useState();
+    const [imagescr, setImagescr] = useState();
     const [formData2, setFormData2] = useState({
         dp_num: {
             dp_num: 1,
@@ -25,11 +26,8 @@ const AiDiagnosis = () => {
         }
 
     });
-
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
-        console.log(selectedFile)
-        console.log(typeof selectedFile)
         setFile(selectedFile);
     };
 
@@ -53,6 +51,7 @@ const AiDiagnosis = () => {
             setImage(response.data);
             const data = response.data;
             setResponseMessage(data.message);
+            console.log(response.data)
 
             if (data.image) {
                 setImageBase64(data.image);
@@ -60,12 +59,16 @@ const AiDiagnosis = () => {
                 setStartTime(data.start_time);
                 setEndTime(data.end_time);
                 setFormData2({ ...formData2, diag_img: '..', diag_content: data.predictions[0].confidence.toFixed(2) });
+                setImagescr(
+                    `data:image/png;base64,${data.image}`
+                )
             } else {
                 setImageBase64('');
                 setPredictions([]);
                 setStartTime(null);
                 setEndTime(null);
             }
+
 
         } catch (error) {
             console.error(error);
@@ -77,9 +80,21 @@ const AiDiagnosis = () => {
         const uploadFile = new FormData();
         const today = new Date();
         const date = (JSON.stringify(today));
-        const filename = date.split('.')[0] + '(애플망고)';
+        const filename = date.split('.')[0] + '(appleMango)';
         const reviseFilename = filename.replace(/"/g, "");
-        uploadFile.append('files', file);
+        // const s123 = fetch(`data:image/png;base64,${imageBase64}`)
+        //     .then(response => response.blob())
+        //     .then(blob => {
+        //         const url = window.URL.createObjectURL(blob);
+        //         const a = document.createElement('a');
+        //         a.href = url;
+        //         a.download = filename; // 파일명 지정
+        //         document.body.appendChild(a);
+        //         a.click();
+        //         window.URL.revokeObjectURL(url);
+        //     })
+        //     .catch(error => console.error('Error downloading image:', error));
+        uploadFile.append('img', imageBase64);
         uploadFile.append('filename', reviseFilename);
         try {
             const response = await axios.post(`${process.env.REACT_APP_connect}/bucket/upload`, uploadFile, {
@@ -126,8 +141,6 @@ const AiDiagnosis = () => {
                             <li key={index}>
                                 <p>클래스: {prediction.class}</p>
                                 <p>신뢰도: {prediction.confidence.toFixed(2)}</p>
-                                {/* <p>입력 시간: {new Date(startTime * 1000).toLocaleString()}</p>
-                                <p>출력 시간: {new Date(endTime * 1000).toLocaleString()}</p> */}
                                 <p>소요 시간: {(endTime - startTime).toFixed(2)}초</p>
                             </li>
                         ))}
@@ -135,7 +148,6 @@ const AiDiagnosis = () => {
                     <button onClick={saveData}>저장하기</button>
                 </div>
             )}
-            <button onClick={saveData}>저장하기</button>
         </div>
     );
 }

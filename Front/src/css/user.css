@@ -73,7 +73,7 @@
     background-color: rgba(248, 248, 248, 1);
 }
 /*병해충 진단 Diagnosis*/
-#diMainBox, #fpMainBox, #sdMainBox{
+#diMainBox, #fpMainBox, #sdMainBox, #hdMainBox{
     position: relative;
     width: 100%;
     height: 100%;
@@ -124,7 +124,7 @@
 /*AI 진단 AiDiagnosis*/
 /*자가진단 SelfDiagnosis*/
 
-#sdMainBox{
+#sdMainBox, #hdMainBox{
     padding-top:30px;
 }
 #sdMainBox ul{
@@ -169,6 +169,41 @@
 
 
 /*진단이력관리 HisDiagnosis*/
+
+#hdMainBox > ul{
+    width: 320px;
+    margin: 0px auto;
+}
+#hdMainBox li{
+    display: ;
+    width: 100%;
+    height: 95px;
+    background-color: #fff;
+}
+#hdMainBox button{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+#hdMainBox button:hover{
+    background-color: #fff;
+}
+#hdMainBox button > *{
+    display: block;
+}
+#hdMainBox .hdTitle{
+    display: block;
+    width: 73px;
+    height: 19px;
+    background-color: rgba(76, 126, 65, 1);
+}
+#hdMainBox .hdDate{
+    display: block;
+    float: right;
+}
+
+
+
 /*병해충 도감 DpList*/
 /*농약 및 방제 정보 FumigatorPesticides*/
 #fpMainBox .userButton, #sdMainBox .userButton{
