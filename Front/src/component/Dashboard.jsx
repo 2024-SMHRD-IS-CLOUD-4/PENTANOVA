@@ -219,7 +219,7 @@ const Dashboard = () => {
 
       <div>
         <ul>
-          {diagList.map(diag => {
+          {/* {diagList.map(diag => {
             return (
               <li key={diag.diag_num}>
                 <span>실시간 병해충 진단 현황</span>
@@ -231,7 +231,7 @@ const Dashboard = () => {
                 <span>{diag.createdAt.split('T')[0]}</span>
               </li>
             )
-          })}
+          })} */}
           <span>질병:{dpTypeCount[1]}회,해충:{dpTypeCount[0]}회</span>
 
         </ul>

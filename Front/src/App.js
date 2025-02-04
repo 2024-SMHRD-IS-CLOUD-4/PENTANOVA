@@ -33,6 +33,8 @@ import KakaoAlarm from './component/api/KakaoAlarm';
 import Test from './component/Test';
 import { AppData } from './function/AuthContext';
 
+import Test2 from './component/Test2';
+
 function App() {
   const storedUser = sessionStorage.getItem("user");
   const user = JSON.parse(storedUser);
@@ -69,6 +71,7 @@ function App() {
             <Route path="/kakao/callback" element={<LoginApi />}></Route>
             <Route path="/crops" element={<CropList />}></Route>
             <Route path="/test" element={<Test />}></Route>
+            <Route path="/test2" element={<Test2 />}></Route>
             <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
           </Routes>
         </AppData>

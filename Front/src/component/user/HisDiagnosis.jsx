@@ -36,6 +36,19 @@ const HisDiagnosis = () => {
   }, [userData]);
 
   return (
+    <div id="hdMainBox">
+      <img className='smallLogo' src={logo} alt="GROWELL" />
+      <ul>
+        <li>
+          <button>
+            <p className='hdTitle'><span>AI 진단</span>2024.01.12<span></span></p>
+            <p className='hdName'>작물명 : 감</p>
+            <p className='hdResule'>검은 점무늬병 70%</p>
+            <span ckassName='hdSerch'>상세보기</span>
+          </button>
+        </li>
+      </ul>
+      <ul>
     <div id="hdMAinBox">
       <img className='smallLogo' src={logo} alt="GROWELL" />
       <div id='hdConBox'>
