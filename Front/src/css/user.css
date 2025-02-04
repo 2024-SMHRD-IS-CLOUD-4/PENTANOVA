@@ -190,7 +190,7 @@
     background-color: rgba(217, 217, 217, 1);
     background-clip: padding-box;
     border: 3px solid transparent;
-    bottom: ;order-radius: 10px;
+    border-radius: 10px;
 }
 #hdConBox::-webkit-scrollbar-track{/*스크롤 디자인 수정*/
     background-color: rgba(217, 217, 217, 0);
