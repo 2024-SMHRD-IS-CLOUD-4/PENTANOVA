@@ -17,7 +17,7 @@ const AiDiagnosis = () => {
     const [startTime, setStartTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
     const [image, setImage] = useState();
-    const [imageSrc, setImageSrc] = useState(null);  // 이미지 미리보기 상태
+    const [imageSrc, setImageSrc] = useState(null);
     const [formData2, setFormData2] = useState({
         dp_num: {
             dp_num: 1,
@@ -81,7 +81,7 @@ const AiDiagnosis = () => {
                 setStartTime(data.start_time);
                 setEndTime(data.end_time);
                 setFormData2({ ...formData2, diag_img: reviseFilename + ".png", diag_content: data.predictions[0].confidence.toFixed(2) });
-                setImagescr(
+                setImageSrc(
                     `data:image/png;base64,${data.image}`
                 )
             } else {

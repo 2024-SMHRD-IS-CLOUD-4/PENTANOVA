@@ -6,10 +6,9 @@ import logo from '../../assets/logo.png'
 
 const HisDiagnosis = () => {
   const navigate = useNavigate();
-  const [diags, setDiags] = useState([{}]);
+  const [diags, setDiags] = useState([]);
   const userData = useContext(AppData);
-  const [imageUrls, setImageUrls] = useState();
-
+  const [imageUrls, setImageUrls] = useState([{}]);
   useEffect(() => {
     const diagList = async () => {
       try {
@@ -18,7 +17,7 @@ const HisDiagnosis = () => {
         setDiags(response1.data);
         const imagePromises = response1.data.map(diag => {
           return axios.get(`${process.env.REACT_APP_connect}/bucket/getImages/HisDiagnosis/${diag.diag_img}`, {
-            responseType: 'blob' // 중요: blob 형태로 응답 받기
+            responseType: 'blob'
           }).then(response2 => {
             return {
               [diag.name]: URL.createObjectURL(response2.data)
@@ -32,7 +31,6 @@ const HisDiagnosis = () => {
             setImageUrls(newImageUrls);
           }).catch(error => {
             console.error("Error fetching images:", error);
-            // 에러 처리 로직 추가 (예: 사용자에게 메시지 표시)
           });
 
       } catch (error) {
@@ -58,10 +56,11 @@ const HisDiagnosis = () => {
       <div id="hdMAinBox">
         <img className='smallLogo' src={logo} alt="GROWELL" />
         <div id='hdConBox'>
-          {diags.map(diag => (
+          {diags?diags.map(diag => (
             <div className='hdConBox' key={diag.diag_num} onClick={() => {
               navigate(`/diagDetail?id=${diag.diag_num}`)
             }}>
+              <img src={imageUrls[diag.name]} width="80px" height="80px"/>
               <p>
                 <span className='hdTitle'>AI 진단</span>
                 <span className='hdDate'>{diag.createdAt.split('T')[0]}</span>
@@ -69,9 +68,8 @@ const HisDiagnosis = () => {
               <p className='hdName'>작물 명 : {diag.dp_num.crop.name}</p>
               <p className='hdResult'>{diag.dp_num.name} : {Number(diag.diag_content) * 100}%</p>
               <span className='hdDetail'>상세보기</span>
-              {/* <img src={imageUrls["${diag.name}"]} alt="" /> */}
             </div>
-          ))}
+          )):null}
         </div>
       </div>
     </div>
