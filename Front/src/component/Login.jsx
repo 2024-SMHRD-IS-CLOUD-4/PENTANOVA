@@ -14,8 +14,8 @@ import "../css/all.css";
 const Login = () => {
   const shareData = useContext(AppData);
   const navigate = useNavigate();
-  const [data, setData] = useState(null);
-  const [isTrue2, setIsTrue2] = useState(true);
+  const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [formData, setFormData] = useState({
     userId: '',
     userPw: ''
@@ -24,42 +24,37 @@ const Login = () => {
   let year = today.getFullYear();
   let month = ('0' + (today.getMonth() + 1)).slice(-2);
   let day = ('0' + today.getDate()).slice(-2);
+  useEffect(() => {
+    const storedUser = sessionStorage.getItem("user");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+      shareData.setData(parsedUser);
+      setIsLoggedIn(true);
+    }
+  }, []);
 
+  useEffect(() => {
+    // 로그인 상태에 따라 페이지 이동
+    if (isLoggedIn) {
+      if (user.role === '일반사용자') {
+        navigate('/UserJoinPage');
+      } else {
+        navigate('/dashboard');
+      }
+    }
+  }, [isLoggedIn, navigate, user]); // isLoggedIn 의존성 추가
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
   function joinClick() {
     navigate('/jip');
   }
   function idPWClick() {
     navigate('/jip?type=id')
   }
-
-  useEffect(() => {
-    if (data) {
-      const user = {
-        id: data.id,
-        pw: data.pw,
-        role: data.role,
-        nick: data.nick,
-        phone: data.phone,
-        location: data.location,
-        institute: data.institute,
-        createdAt: data.createdAt,
-        requsetAuth: data.rerequsetAuth,
-        isTrue: true,
-        isTrue2: isTrue2
-      };
-      sessionStorage.setItem("user", JSON.stringify(user));
-      if (data.role === '일반사용자') {
-        navigate('/UserJoinPage')
-      } else {
-        navigate('/dashboard')
-      }
-    }
-  }, [data, navigate]);
-
-  const handleChange = (e) => { 
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -68,15 +63,27 @@ const Login = () => {
           'Content-Type': 'application/json'
         },
       });
-        if (response.data.role == '일반사용자') {
-          setIsTrue2(false);
-        } else {
-          setIsTrue2(true);
-        }
-        console.log(response.data);
-        setData(response.data);
-        shareData.setData(data);
-        alert('로그인 성공!');
+
+      const userData = response.data;
+      const user = {
+        id: userData.id,
+        pw: userData.pw,
+        role: userData.role,
+        nick: userData.nick,
+        phone: userData.phone,
+        location: userData.location,
+        institute: userData.institute,
+        createdAt: userData.createdAt,
+        requsetAuth: userData.rerequsetAuth,
+        isTrue: true,
+        isTrue2: userData.role === '일반사용자' ? false : true
+      };
+
+      sessionStorage.setItem("user", JSON.stringify(user));
+      setUser(user); // user state 업데이트
+      shareData.setData(user); // AppData context 업데이트
+      setIsLoggedIn(true);
+      alert('로그인 성공!');
 
     } catch (error) {
       if (error.response) {
@@ -88,6 +95,7 @@ const Login = () => {
       }
     }
   };
+
   return (
     <div id='loginBody'>
       {/* 로그인박스, 공지사항 보기, 날씨 총 3개 박스 가운데 정렬하는 div */}
@@ -112,7 +120,7 @@ const Login = () => {
                 <input type="password" name="pw" id="password" onChange={handleChange} required />
               </div>
               <button className='button01' type="submit">로그인</button>
-              <button className='button01' type="button" onClick={()=> navigate('/kakao/callback')}>간편 로그인</button>
+              <button className='button01' type="button" onClick={() => navigate('/kakao/callback')}>간편 로그인</button>
             </form>
             <div class="loginBoxBt">
               <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
