@@ -25,6 +25,8 @@ const DiagDetail = () => {
     }, []);
     return (
         <div>
+            <br />
+            <br />
             DiagDetail<br/>
             {diag?diag.diag_num:null}
         </div>

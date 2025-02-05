@@ -1,18 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 const CropList = () => {
-    const [crops, setCrops] = useState([]);
     const navigate = useNavigate();
+    const [imageUrls, setImageUrls] = useState([{}]);
+    const [crops, setCrops] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         const cropList = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_connect}/crop/cropList`);
-                console.log(response.data);
                 setCrops(response.data);
+
+                const imagePromises = response.data.map(crop =>
+                    fetch(`${process.env.REACT_APP_connect}/bucket/getImages/Crops/${crop.img}`)
+                        .then(response => response.blob())
+                        .then(blob => ({
+                            [crop.name]: URL.createObjectURL(blob)
+                        }))
+                );
+
+                Promise.all(imagePromises)
+                    .then(images => {
+                        const newImageUrls = images.reduce((acc, curr) => ({...acc, ...curr}), {});
+                        setImageUrls(newImageUrls);
+                        setLoading(false);
+                    });
+                    
             } catch (error) {
-                console.error('Error:', error);
+                console.error(error);
             }
         };
         cropList();
@@ -20,18 +37,9 @@ const CropList = () => {
     return (
         <div>
             <h1>CropList</h1>
-            <div>
-                <ul>
-                    {crops.map(crop => (
-                        <li key={crop.crop_num} onClick={() => { 
-                            navigate(`/dplist?crop_num=${crop.crop_num}`)
-                        }}>
-                            {crop.name}
-                            <img src={require('../assets/appleMango.jpg')} />
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            {Object.keys(imageUrls).map((key, idx) => (
+                <img key={key} src={imageUrls[key]} alt={key} onClick={()=>navigate('/dpList?')}/>
+            ))}
         </div>
     )
 }

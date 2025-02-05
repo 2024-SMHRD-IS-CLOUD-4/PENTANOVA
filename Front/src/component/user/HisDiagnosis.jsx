@@ -37,7 +37,7 @@ const HisDiagnosis = () => {
 
   return (
     <div id="hdMainBox">
-      <img className='smallLogo' src={logo} alt="GROWELL" />
+      {/* <img className='smallLogo' src={logo} alt="GROWELL" />
       <ul>
         <li>
           <button>
@@ -47,8 +47,7 @@ const HisDiagnosis = () => {
             <span ckassName='hdSerch'>상세보기</span>
           </button>
         </li>
-      </ul>
-      <ul>
+      </ul> */}
     <div id="hdMAinBox">
       <img className='smallLogo' src={logo} alt="GROWELL" />
       <div id='hdConBox'>
@@ -57,12 +56,11 @@ const HisDiagnosis = () => {
               navigate(`/diagDetail?id=${diag.diag_num}`)
             }}>
               <p>
-              {diag.diag_content}
                 <span className='hdTitle'>AI 진단</span>
-                <span className='hdDate'>2024.01.12</span>
+                <span className='hdDate'>{diag.createdAt.split('T')[0]}</span>
               </p>
-              <p className='hdName'>작물 명 : 감</p>
-              <p className='hdResult'>검은점무늬병 : 82%</p>
+              <p className='hdName'>작물 명 : {diag.dp_num.crop.name}</p>
+              <p className='hdResult'>{diag.dp_num.name} : {Number(diag.diag_content)*100}%</p>
               <span className='hdDetail'>상세보기</span>
               
             </div>
@@ -77,6 +75,7 @@ const HisDiagnosis = () => {
           ))}
         </ul> */}
       </div>
+    </div>
     </div>
   )
 }

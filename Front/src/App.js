@@ -30,10 +30,10 @@ import LoginApi from './component/api/LoginApi'
 import UserJoinPage from './component/UserJoinPage';
 import AccessObjectStorage from './component/api/AccessObjectStorage';
 import KakaoAlarm from './component/api/KakaoAlarm';
-import Test from './component/Test';
+import Test from './test/Test';
 import { AppData } from './function/AuthContext';
 
-import Test2 from './component/Test2';
+import Test2 from './test/Test2';
 
 function App() {
   const storedUser = sessionStorage.getItem("user");
