@@ -5,6 +5,7 @@ import { AppData } from '../../function/AuthContext';
 import logo from '../../assets/logo.png'
 import '../../css/all.css'
 import '../../css/user.css'
+import arrow from '../../assets/right_arrow_black.png'
 
 const AiDiagnosis = () => {
     const shareData = useContext(AppData);
@@ -16,7 +17,7 @@ const AiDiagnosis = () => {
     const [startTime, setStartTime] = useState(null);
     const [endTime, setEndTime] = useState(null);
     const [image, setImage] = useState();
-    const [imagescr, setImagescr] = useState();
+    const [imageSrc, setImageSrc] = useState(null);  // 이미지 미리보기 상태
     const [formData2, setFormData2] = useState({
         dp_num: {
             dp_num: 1,
@@ -36,7 +37,17 @@ const AiDiagnosis = () => {
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
+        console.log(selectedFile)
+        console.log(typeof selectedFile)
         setFile(selectedFile);
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImageSrc(reader.result);  // 파일 읽은 후, 이미지 URL을 상태에 저장
+            };
+            reader.readAsDataURL(file);  // 파일을 데이터 URL로 읽기
+        }
     };
 
     const handleSubmit = async (event) => {
@@ -63,7 +74,6 @@ const AiDiagnosis = () => {
             setImage(response.data);
             const data = response.data;
             setResponseMessage(data.message);
-            console.log(response.data)
 
             if (data.image) {
                 setImageBase64(data.image);
@@ -81,7 +91,6 @@ const AiDiagnosis = () => {
                 setEndTime(null);
             }
 
-
         } catch (error) {
             console.error(error);
             setResponseMessage(error.response?.data?.error || '이미지 업로드 실패');
@@ -92,7 +101,7 @@ const AiDiagnosis = () => {
         document.getElementById('fileInput').click();  // 파일 선택 대화상자 트리거
     };
 
-    const saveData = async () => {
+    const saveData = async () => { 
         const uploadFile = new FormData();
 
         uploadFile.append('img', imageBase64);
@@ -122,44 +131,62 @@ const AiDiagnosis = () => {
 
     /*숫자에 맞춰 텍스트 반영하여 표시하기*/
     const classMapping = {
-        14: "정상"
+        0 : "정상",
+        999 : "정상",
+        7 : "그을음병",
+        15 : "총채벌레"
     };
+
+
     return (
-        <div>
-            {responseMessage && <p>{responseMessage}</p>}
-            <div id='adMainBox'>
-                <img className='smallLogo' src={logo} alt="GROWELL" />
-                <div id='adConBox'>
-                    {imageBase64 ? (
-                        <div>
-                            <img
-                                src={`data:image/jpeg;base64,${imageBase64}`}
-                                alt="Analyzed Result"
-                                style={{ maxWidth: '100%', height: 'auto' }}
-                            />
-                            <ul>
-                                {predictions.map((prediction, index) => (
+        <div id='adMainBox'>
+            <img className='smallLogo' src={logo} alt="GROWELL" />
+            <div id='adConBox'>
+                {imageBase64 ? (
+                    <div className='adConBox'>
+                        <img
+                            src={`data:image/jpeg;base64,${imageBase64}`}
+                            alt="Analyzed Result"
+                            style={{ maxWidth: '100%', height: 'auto' }}
+                        />
+                        <ul>
+                            {predictions.slice(0, 3).map((prediction, index) => (
+                                <li key={index}>
+                                    <p className='adResult'><span>{classMapping[prediction.class] || "알 수 없음"}</span> <span>{(prediction.confidence * 100).toFixed(0)}%</span></p>
                                     <li key={index}>
                                         <p>클래스: {prediction.class}</p>
                                         <p>신뢰도: {prediction.confidence.toFixed(2)}</p>
                                         <p>소요 시간: {(endTime - startTime).toFixed(2)}초</p>
                                     </li>
-                                ))}
-                            </ul>
-                            <button onClick={saveData}>저장하기</button>
-                        </div>
-                    ) : (
-                        <div>
+                                </li>
+                            ))}
+                        </ul>
+                        <button className="userButton" onClick={saveData}><h2>저장하기</h2></button>
+                    </div>
+                ) : (
+                    <div className='adConBox'>
+                        {/* 선택된 이미지 미리보기 */}
+                        {imageSrc ? (
+                            <div style={{ width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <img 
+                                    src={imageSrc} 
+                                    alt="Selected" 
+                                    style={{ maxWidth: '100%', height: 'auto' }} 
+                                />
+                            </div>
+                        ):(
                             <div style={{ backgroundColor: '#d3d3d3', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                                 <p>이미지를 업로드해주세요.</p>
                             </div>
-                            <form onSubmit={handleSubmit}>
-                                <input type="file" onChange={handleFileChange} accept="image/*" />
-                                <button type="submit">업로드 및 분석</button>
-                            </form>
-                        </div>
-                    )}
-                </div>
+                        )}
+                        
+                        <form onSubmit={handleSubmit}>
+                            <input type="file" onChange={handleFileChange} accept="image/*"/>
+                            <button className="userButton" type="submit"><h2>이미지 업로드</h2></button>
+                            <button className="userButton" type="submit"><h2>AI 분석 시작</h2></button>
+                        </form>
+                    </div>
+                )}
             </div>
         </div>
     );

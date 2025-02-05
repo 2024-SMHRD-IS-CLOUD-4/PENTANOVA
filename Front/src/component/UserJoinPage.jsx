@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import '../css/all.css';
 import '../css/user.css';
 import RightArrow from '../assets/right_arrow_black.png'
 import Diagnosis from './user/Diagnosis.jsx';

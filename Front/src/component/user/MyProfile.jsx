@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppData } from '../../function/AuthContext'
 import useConfirm from '../../function/UseConfirm';
 import axios from 'axios'
+import logo from '../../assets/logo.png'
 
 const MyProfile = () => {
     const confirm = useConfirm();

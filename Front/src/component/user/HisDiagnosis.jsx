@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AppData } from '../../function/AuthContext';
-import '../../css/all.css'
-import '../../css/user.css'
 import logo from '../../assets/logo.png'
 
 const HisDiagnosis = () => {
@@ -27,14 +25,14 @@ const HisDiagnosis = () => {
             };
           });
         });
-        
+
         Promise.all(imagePromises)
           .then(images => {
             const newImageUrls = images.reduce((acc, curr) => ({ ...acc, ...curr }), {});
             setImageUrls(newImageUrls);
           }).catch(error => {
-              console.error("Error fetching images:", error);
-              // 에러 처리 로직 추가 (예: 사용자에게 메시지 표시)
+            console.error("Error fetching images:", error);
+            // 에러 처리 로직 추가 (예: 사용자에게 메시지 표시)
           });
 
       } catch (error) {
@@ -50,8 +48,8 @@ const HisDiagnosis = () => {
           // 요청을 설정하는 과정에서 문제가 발생한 경우
           console.error("Error message:", error.message);
         }
-      };
-    }
+      }
+    };
     diagList();
   }, []);
 
@@ -74,7 +72,6 @@ const HisDiagnosis = () => {
               {/* <img src={imageUrls["${diag.name}"]} alt="" /> */}
             </div>
           ))}
-          
         </div>
       </div>
     </div>

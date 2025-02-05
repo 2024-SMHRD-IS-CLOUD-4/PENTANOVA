@@ -1,8 +1,13 @@
 import React from 'react'
+import logo from '../../assets/logo.png'
 
 function PesticidesDetail() {
   return (
-    <div>농약 상세정보</div>
+    <div id='pestMainBox'>
+      <img className='bigLogo' src={logo} alt="GROWELL" />
+      농약 상세정보
+      
+    </div>
   )
 }
 
