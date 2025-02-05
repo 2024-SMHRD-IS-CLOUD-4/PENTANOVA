@@ -20,27 +20,26 @@ const Test = () => {
                             [crop.name]: URL.createObjectURL(blob)
                         }))
                 );
-
                 Promise.all(imagePromises)
                     .then(images => {
-                        const newImageUrls = images.reduce((acc, curr) => ({...acc, ...curr}), {});
+                        const newImageUrls = images.reduce((acc, curr) => ({ ...acc, ...curr }), {});
                         setImageUrls(newImageUrls);
                         setLoading(false);
                     });
-                    
             } catch (error) {
                 console.error(error);
             }
         };
         cropList();
     }, []);
+
     return (
         <div>
             <br />
             <br />
             <h1>테스트</h1>
             {Object.keys(imageUrls).map((key, idx) => (
-                <img key={key} src={imageUrls[key]} alt={key} onClick={()=>navigate('/dpList?')}/>
+                <img key={key} src={imageUrls[key]} alt={key} onClick={() => navigate('/dpList?')} />
             ))}
 
         </div>

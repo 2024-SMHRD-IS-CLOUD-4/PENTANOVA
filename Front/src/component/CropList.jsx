@@ -23,11 +23,11 @@ const CropList = () => {
 
                 Promise.all(imagePromises)
                     .then(images => {
-                        const newImageUrls = images.reduce((acc, curr) => ({...acc, ...curr}), {});
+                        const newImageUrls = images.reduce((acc, curr) => ({ ...acc, ...curr }), {});
                         setImageUrls(newImageUrls);
                         setLoading(false);
                     });
-                    
+
             } catch (error) {
                 console.error(error);
             }
@@ -38,7 +38,7 @@ const CropList = () => {
         <div>
             <h1>CropList</h1>
             {Object.keys(imageUrls).map((key, idx) => (
-                <img key={key} src={imageUrls[key]} alt={key} onClick={()=>navigate('/dpList?')}/>
+                <img key={key} src={imageUrls[key]} alt={key} onClick={() => navigate('/dpList?')} />
             ))}
         </div>
     )

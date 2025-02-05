@@ -8,15 +8,35 @@ import logo from '../../assets/logo.png'
 
 const HisDiagnosis = () => {
   const navigate = useNavigate();
-  const [diags, setDiags] = useState([]);
+  const [diags, setDiags] = useState([{}]);
   const userData = useContext(AppData);
+  const [imageUrls, setImageUrls] = useState();
 
   useEffect(() => {
     const diagList = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_connect}/diag/myDiagList?id=${userData.data.id}`);
-        console.log(response.data);
-        setDiags(response.data);
+        const response1 = await axios.get(`${process.env.REACT_APP_connect}/diag/myDiagList?id=${userData.data.id}`);
+        console.log(response1.data);
+        setDiags(response1.data);
+        const imagePromises = response1.data.map(diag => {
+          return axios.get(`${process.env.REACT_APP_connect}/bucket/getImages/HisDiagnosis/${diag.diag_img}`, {
+            responseType: 'blob' // 중요: blob 형태로 응답 받기
+          }).then(response2 => {
+            return {
+              [diag.name]: URL.createObjectURL(response2.data)
+            };
+          });
+        });
+        
+        Promise.all(imagePromises)
+          .then(images => {
+            const newImageUrls = images.reduce((acc, curr) => ({ ...acc, ...curr }), {});
+            setImageUrls(newImageUrls);
+          }).catch(error => {
+              console.error("Error fetching images:", error);
+              // 에러 처리 로직 추가 (예: 사용자에게 메시지 표시)
+          });
+
       } catch (error) {
         if (error.response) {
           // 서버가 응답을 했지만 오류가 발생한 경우
@@ -30,28 +50,17 @@ const HisDiagnosis = () => {
           // 요청을 설정하는 과정에서 문제가 발생한 경우
           console.error("Error message:", error.message);
         }
-      }
-    };
+      };
+    }
     diagList();
-  }, [userData]);
+  }, []);
 
   return (
     <div id="hdMainBox">
-      {/* <img className='smallLogo' src={logo} alt="GROWELL" />
-      <ul>
-        <li>
-          <button>
-            <p className='hdTitle'><span>AI 진단</span>2024.01.12<span></span></p>
-            <p className='hdName'>작물명 : 감</p>
-            <p className='hdResule'>검은 점무늬병 70%</p>
-            <span ckassName='hdSerch'>상세보기</span>
-          </button>
-        </li>
-      </ul> */}
-    <div id="hdMAinBox">
-      <img className='smallLogo' src={logo} alt="GROWELL" />
-      <div id='hdConBox'>
-        {diags.map(diag => (
+      <div id="hdMAinBox">
+        <img className='smallLogo' src={logo} alt="GROWELL" />
+        <div id='hdConBox'>
+          {diags.map(diag => (
             <div className='hdConBox' key={diag.diag_num} onClick={() => {
               navigate(`/diagDetail?id=${diag.diag_num}`)
             }}>
@@ -60,22 +69,14 @@ const HisDiagnosis = () => {
                 <span className='hdDate'>{diag.createdAt.split('T')[0]}</span>
               </p>
               <p className='hdName'>작물 명 : {diag.dp_num.crop.name}</p>
-              <p className='hdResult'>{diag.dp_num.name} : {Number(diag.diag_content)*100}%</p>
+              <p className='hdResult'>{diag.dp_num.name} : {Number(diag.diag_content) * 100}%</p>
               <span className='hdDetail'>상세보기</span>
-              
+              {/* <img src={imageUrls["${diag.name}"]} alt="" /> */}
             </div>
           ))}
-        {/* <ul>
-          {diags.map(diag => (
-            <li key={diag.diag_num} onClick={() => {
-              navigate(`/diagDetail?id=${diag.diag_num}`)
-            }}>
-              {diag.diag_content}
-            </li>
-          ))}
-        </ul> */}
+          
+        </div>
       </div>
-    </div>
     </div>
   )
 }
