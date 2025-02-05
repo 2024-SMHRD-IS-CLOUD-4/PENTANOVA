@@ -55,7 +55,7 @@ const HisDiagnosis = () => {
     <div id="hdMainBox">
       <img className='smallLogo' src={logo} alt="GROWELL" />
       <div id='hdConBox'>
-        <div className='hdConBox'>
+        {/* <div className='hdConBox'>
           <p>
             <span className='hdTitle'>AI 진단</span>
             <span className='hdDate'>2025.02.05</span>
@@ -63,21 +63,7 @@ const HisDiagnosis = () => {
           <p className='hdName'>작물 명 : 감자</p>
           <p className='hdResult'>감자썩음병 76%</p>
           <span className='hdDetail'>상세보기</span>
-        </div>
-        {diags.map(diag => (
-          <div className='hdConBox' key={diag.diag_num} onClick={() => {
-            navigate(`/diagDetail?id=${diag.diag_num}`)
-          }}>
-            <p>
-              <span className='hdTitle'>AI 진단</span>
-              <span className='hdDate'>{diag.createdAt ? diag.createdAt.split('T')[0] : '날짜 없음'}</span>
-            </p>
-            <p className='hdName'>작물 명 : {diag.dp_num.crop.name}</p>
-            <p className='hdResult'>{diag.dp_num.name} : {Number(diag.diag_content) * 100}%</p>
-            <span className='hdDetail'>상세보기</span>
-            {/* <img src={imageUrls["${diag.name}"]} alt="" /> */}
-          </div>
-        ))}
+        </div> */}
         {diags.length > 0 ? (
           diags
             .filter(diag => diag && diag.createdAt)  // 유효한 데이터만 필터링
@@ -87,11 +73,15 @@ const HisDiagnosis = () => {
               }}>
                 <p>
                   <span className='hdTitle'>AI 진단</span>
-                  <span className='hdDate'>{diag.createdAt.split('T')[0]}</span>
+                  <span className='hdDate'>{diag.createdAt ? diag.createdAt.split('T')[0] : '날짜 없음'}</span>
                 </p>
-                <p className='hdName'>작물 명 : {diag.dp_num?.crop?.name || '정보 없음'}</p>
-                <p className='hdResult'>{diag.dp_num?.name || '병명 없음'} : {Number(diag.diag_content) * 100}%</p>
-                <span className='hdDetail'>상세보기</span>
+                <div>
+                  <img src={imageUrls[diag.name]} alt='description'/>
+                  <p className='hdName'>
+                    <p>작물 명 : {diag.dp_num.crop.name}</p>
+                    <p>진단병명 : {diag.dp_num.name}&emsp;{Number(diag.diag_content) * 100}%</p>
+                  </p>
+                </div>
               </div>
             ))
         ) : (
