@@ -72,7 +72,6 @@ public class BucketService {
 			s3files.add(BucketFileDto.builder().originalFileName(originalFileName).uploadFileName(uploadFileName)
 					.uploadFilePath("/HisDiagnosis").uploadFileUrl(uploadFileUrl).build());
 		}
-		System.out.println("aqwdqwd");
 		return s3files;
 	}
 
