@@ -81,7 +81,7 @@ const AiDiagnosis = () => {
                 setStartTime(data.start_time);
                 setEndTime(data.end_time);
                 setFormData2({ ...formData2, diag_img: reviseFilename + ".png", diag_content: data.predictions[0].confidence.toFixed(2) });
-                setImagescr(
+                setImageSrc(
                     `data:image/png;base64,${data.image}`
                 )
             } else {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../../css/all.css'
 import '../../css/user.css'
-import React from 'react'
 import logo from '../../assets/logo.png'
 import axios from 'axios'
 
