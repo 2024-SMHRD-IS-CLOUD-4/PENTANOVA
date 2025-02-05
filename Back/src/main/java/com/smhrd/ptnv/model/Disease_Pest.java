@@ -35,7 +35,7 @@ public class Disease_Pest {
 	private User id;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "crop_num")
-	private Crop crop_num;
+	private Crop crop;
 
 	@Column(length = 50, nullable = false)
 	private String name;

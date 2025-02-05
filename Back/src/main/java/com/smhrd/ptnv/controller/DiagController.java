@@ -55,6 +55,7 @@ public class DiagController {
 
 	@PostMapping("/addDiag")
 	public void addDiag(@RequestBody Diagnosis diag) {
+		System.out.println(diag);
 		service.addDiag(diag);
 	}
 

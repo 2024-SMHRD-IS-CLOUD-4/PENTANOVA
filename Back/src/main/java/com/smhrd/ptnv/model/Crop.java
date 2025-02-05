@@ -41,15 +41,6 @@ public class Crop {
 	@Column(length=20,nullable=false)
 	private String type;
 	
-	@Column(length=50,nullable=false)
-	private String region;
-	
-	@Column(length=50,nullable=false)
-	private String cul_season;
-	
-	@Column(length=50,nullable=false)
-	private String gro_period;
-	
 	@Column(length=255)
 	private String img;
 }

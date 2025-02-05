@@ -11,4 +11,5 @@ import com.smhrd.ptnv.model.Disease_Pest;
 @Repository
 public interface DpRepository extends JpaRepository<Disease_Pest, Long>{
 
+	List<Disease_Pest> findAllByCrop(Crop crop);
 }

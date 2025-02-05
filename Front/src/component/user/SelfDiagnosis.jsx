@@ -41,6 +41,7 @@ const SelfDiagnosis = () => {
               return <option key={idx} value={crop.crop_num}>
                 {crop.name}
               </option>;
+
             })}
           </select>
         </li>
