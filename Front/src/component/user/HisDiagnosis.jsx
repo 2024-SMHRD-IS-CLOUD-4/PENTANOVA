@@ -48,7 +48,7 @@ const HisDiagnosis = () => {
           </button>
         </li>
       </ul>
-      <ul>
+    
     <div id="hdMAinBox">
       <img className='smallLogo' src={logo} alt="GROWELL" />
       <div id='hdConBox'>
@@ -77,6 +77,7 @@ const HisDiagnosis = () => {
           ))}
         </ul> */}
       </div>
+    </div>
     </div>
   )
 }
