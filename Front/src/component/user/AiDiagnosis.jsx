@@ -2,8 +2,6 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AppData } from '../../function/AuthContext';
-import '../../css/all.css'
-import '../../css/user.css'
 import logo from '../../assets/logo.png'
 import arrow from '../../assets/right_arrow_black.png'
 

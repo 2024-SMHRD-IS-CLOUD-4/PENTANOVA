@@ -32,6 +32,7 @@ import AccessObjectStorage from './component/api/AccessObjectStorage';
 import KakaoAlarm from './component/api/KakaoAlarm';
 import Test from './component/Test';
 import { AppData } from './function/AuthContext';
+import './css/all.css';
 
 import Test2 from './component/Test2';
 

@@ -2,8 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AppData } from '../../function/AuthContext';
-import '../../css/all.css'
-import '../../css/user.css'
 import logo from '../../assets/logo.png'
 
 const HisDiagnosis = () => {
@@ -38,24 +36,20 @@ const HisDiagnosis = () => {
   return (
     <div id="hdMainBox">
       <img className='smallLogo' src={logo} alt="GROWELL" />
-      <ul>
-        <li>
-          <button>
-            <p className='hdTitle'><span>AI 진단</span>2024.01.12<span></span></p>
-            <p className='hdName'>작물명 : 감</p>
-            <p className='hdResule'>검은 점무늬병 70%</p>
-            <span ckassName='hdSerch'>상세보기</span>
-          </button>
-        </li>
-      </ul>
-    
-    <div id="hdMAinBox">
-      <img className='smallLogo' src={logo} alt="GROWELL" />
       <div id='hdConBox'>
+        <div className='hdConBox'>
+          <p>
+            <span className='hdTitle'>AI 진단</span>
+            <span className='hdDate'>2024.01.12</span>
+          </p>
+          <p className='hdName'>작물 명 : 감</p>
+          <p className='hdResult'>검은점무늬병 : 82%</p>
+          <span className='hdDetail'>상세보기</span>
+        </div>
         {diags.map(diag => (
             <div className='hdConBox' key={diag.diag_num} onClick={() => {
               navigate(`/diagDetail?id=${diag.diag_num}`)
-            }}>
+              }}>
               <p>
               {diag.diag_content}
                 <span className='hdTitle'>AI 진단</span>
@@ -66,7 +60,7 @@ const HisDiagnosis = () => {
               <span className='hdDetail'>상세보기</span>
               
             </div>
-          ))}
+        ))}
         {/* <ul>
           {diags.map(diag => (
             <li key={diag.diag_num} onClick={() => {
@@ -77,7 +71,6 @@ const HisDiagnosis = () => {
           ))}
         </ul> */}
       </div>
-    </div>
     </div>
   )
 }
