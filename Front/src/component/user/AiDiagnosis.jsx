@@ -97,10 +97,6 @@ const AiDiagnosis = () => {
         }
     };
 
-    const handleButtonClick = () => {
-        document.getElementById('fileInput').click();  // 파일 선택 대화상자 트리거
-    };
-
     const saveData = async () => { 
         const uploadFile = new FormData();
 
@@ -153,11 +149,11 @@ const AiDiagnosis = () => {
                             {predictions.slice(0, 3).map((prediction, index) => (
                                 <li key={index}>
                                     <p className='adResult'><span>{classMapping[prediction.class] || "알 수 없음"}</span> <span>{(prediction.confidence * 100).toFixed(0)}%</span></p>
-                                    <li key={index}>
+                                    {/* <li key={index}>
                                         <p>클래스: {prediction.class}</p>
                                         <p>신뢰도: {prediction.confidence.toFixed(2)}</p>
                                         <p>소요 시간: {(endTime - startTime).toFixed(2)}초</p>
-                                    </li>
+                                    </li> */}
                                 </li>
                             ))}
                         </ul>
@@ -176,15 +172,22 @@ const AiDiagnosis = () => {
                             </div>
                         ):(
                             <div style={{ backgroundColor: '#d3d3d3', width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <p>이미지를 업로드해주세요.</p>
+                                <p>이미지를 <br/>업로드해주세요.</p>
                             </div>
                         )}
                         
                         <form onSubmit={handleSubmit}>
-                            <input type="file" onChange={handleFileChange} accept="image/*"/>
-                            <button className="userButton" type="submit"><h2>이미지 업로드</h2></button>
+                            <label htmlFor="adFileUp" >
+                                <div className="userButtonDiv" type="submit"><h2>이미지 업로드</h2></div>
+                            </label>
+                            <input type="file" name='adFileUp' id='adFileUp' onChange={handleFileChange} accept="image/*"/>
                             <button className="userButton" type="submit"><h2>AI 분석 시작</h2></button>
                         </form>
+                        {responseMessage === "예측값이 너무 낮아 탐지할 수 없습니다." && (
+                            <p style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
+                                {responseMessage}
+                            </p>
+                        )}
                     </div>
                 )}
             </div>

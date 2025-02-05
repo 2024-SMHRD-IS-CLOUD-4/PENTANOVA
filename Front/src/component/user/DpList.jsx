@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios'
+import logo from '../../assets/logo.png'
+import DpDetail from './DpDetail.jsx';
 
 const DpList = () => {
-
     const navigate = useNavigate();
     const [dps, setDps] = useState([]);
     const [searchParams] = useSearchParams();
@@ -25,18 +26,44 @@ const DpList = () => {
     }, []);
     console.log(dps);
     return (
-        <div>
-            <h2>병해충 도감</h2>
-
-            <ul>
-                {dps.map(dp => (
-                    <li key={dp.dp_num} onClick={() => {
-                        navigate(`/dpDetail?id=${dp.dp_num}`)
-                    }}>
-                        {dp.name}
-                    </li>
-                ))}
-            </ul>
+        /*병해충 도감*/
+        <div id='dlMainBox'>
+            <img className='smallLogo' src={logo} alt="GROWELL" />
+            <div id="dlConBox">
+                <div id='dlConBoxSearch'>
+                    <select name="dl03" id="dlchose01">
+                        <option value="dl0301">전체</option>
+                    </select>
+                    <select name="dl03" id="dlchose02">
+                        <option value="dl0301">작물 선택</option>
+                    </select>
+                    <select name="dl03" id="dlchose03">
+                        <option value="dl0301">병/해충</option>
+                    </select>
+                    <input type="text" placeholder='검색할 단어를 작성해주세요.'/>
+                    <button>검색하기</button>
+                </div>
+                <div id='dlConBoxResult'>
+                    {/* 반복 박스 */}
+                    {dps.length === 0 ? (
+                        <p>검색 결과가 없습니다.</p>
+                    ) : (
+                        dps.map(dp => (
+                            <div className='dlConBox' key={dp.dp_num} onClick={() => {
+                                navigate(`/dpDetail?id=${dp.dp_num}`)
+                            }}>
+                                <div className='dlConImg'>
+                                    <img src="" alt="dlimg" />
+                                </div>
+                                <div className='dlConTitle'>
+                                    <p><span>애플망고</span><span>병 / 해충</span></p>
+                                    <h3>{dp.name}</h3>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
+            </div>
         </div>
     )
 }
