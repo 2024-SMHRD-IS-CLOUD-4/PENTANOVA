@@ -26,8 +26,14 @@ public class DpService {
 		}
 	}
 
-	public List<Disease_Pest> getList() {
+	public List<Disease_Pest> dpList() {
 		return repository.findAll(); 
+	}
+	
+	public List<Disease_Pest> dpListByCrop(Long crop_num) {
+		Crop crop = new Crop();
+		crop.setCrop_num(crop_num);
+		return repository.findAllByCrop(crop); 
 	}
 	
 	public Optional<Disease_Pest> selectOne(Long dp_num) {

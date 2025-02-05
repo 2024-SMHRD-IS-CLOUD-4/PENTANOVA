@@ -44,13 +44,13 @@ public class BucketService {
 
 	// NOTICE: filePath의 맨 앞에 /는 안붙여도됨. ex) history/images
 	public List<BucketFileDto> uploadFiles(List<MultipartFile> multipartFiles, String filename) {
-
+		
 		List<BucketFileDto> s3files = new ArrayList<>();
 
 		for (MultipartFile multipartFile : multipartFiles) {
 
 			String originalFileName = multipartFile.getOriginalFilename();
-			String uploadFileName = filename;
+			String uploadFileName = filename+".png";
 			String uploadFileUrl = "";
 
 			ObjectMetadata objectMetadata = new ObjectMetadata();
@@ -66,14 +66,13 @@ public class BucketService {
 
 				uploadFileUrl = "https://kr.object.ncloudstorage.com/" + bucketName + keyName;
 			} catch (IOException e) {
-				System.out.println("asdasd");
 				e.printStackTrace();
 			}
 
 			s3files.add(BucketFileDto.builder().originalFileName(originalFileName).uploadFileName(uploadFileName)
 					.uploadFilePath("/HisDiagnosis").uploadFileUrl(uploadFileUrl).build());
 		}
-
+		System.out.println("aqwdqwd");
 		return s3files;
 	}
 

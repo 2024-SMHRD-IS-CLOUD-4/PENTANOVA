@@ -23,25 +23,30 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/dp")
 public class DpController {
 
-	private final DpService service;	
+	private final DpService service;
 
 	@PostMapping("/addDp")
-	public ResponseEntity<Disease_Pest> addDp(Disease_Pest dp){
+	public ResponseEntity<Disease_Pest> addDp(Disease_Pest dp) {
 		Disease_Pest result = service.addDp(dp);
-		if(result==null) {
+		if (result == null) {
 			return ResponseEntity.badRequest().body(result);
-		}else {
+		} else {
 			return ResponseEntity.ok(result);
 		}
 	}
-	
+
 	@GetMapping("/dpList")
-	public ResponseEntity<List<Disease_Pest>> getList(){
-		List<Disease_Pest> result = service.getList();
+	public ResponseEntity<List<Disease_Pest>> dpList() {
+		List<Disease_Pest> result = service.dpList();
 		return ResponseEntity.ok(result);
-		
 	}
-	
+
+	@GetMapping("/dpListByCrop")
+	public ResponseEntity<List<Disease_Pest>> dpListByCrop(@RequestParam Long crop_num) {
+		List<Disease_Pest> result = service.dpListByCrop(crop_num);
+		return ResponseEntity.ok(result);
+	}
+
 	@PostMapping("/selectOne")
 	public ResponseEntity<Disease_Pest> selcetOne(@RequestParam Long dp_num) {
 		System.out.println("asdasd");
@@ -49,5 +54,5 @@ public class DpController {
 		Disease_Pest dp = result.get();
 		return ResponseEntity.ok(dp);
 	}
-	
+
 }
