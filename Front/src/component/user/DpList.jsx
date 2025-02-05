@@ -33,12 +33,6 @@ const DpList = () => {
         };
         dpList();
     }, []);
-    console.log(dpData.data[0]);
-    if (dpData.data[0]) {
-        console.log("qweqdas");
-    } else {
-        console.log("없음");
-    }
     return (
         <div>
             <h2>병해충 도감</h2>
@@ -47,6 +41,7 @@ const DpList = () => {
                 {dps.map((dp, idx) => (
                     <li key={dp.dp_num} onClick={() => {
                         navigate(`/dpDetail?id=${dp.dp_num}`)
+                        
                     }}>
                         {dp.name}
                     </li>
