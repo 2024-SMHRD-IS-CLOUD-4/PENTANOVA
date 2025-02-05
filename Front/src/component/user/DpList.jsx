@@ -35,6 +35,7 @@ const DpList = () => {
         };
         dpList();
     }, []);
+    
     return (
         /*병해충 도감*/
         <div id='dlMainBox'>
@@ -69,7 +70,7 @@ const DpList = () => {
                                     <img src="" alt="dlimg" />
                                 </div>
                                 <div className='dlConTitle'>
-                                    <p><span>애플망고</span><span>병 / 해충</span></p>
+                                    <p><span>애플망고</span><span>{dp.category?"해충":"질병"}</span></p>
                                     <h3>{dp.name}</h3>
                                 </div>
                             </div>

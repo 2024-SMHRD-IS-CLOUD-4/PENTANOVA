@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const UserJoinPage = () => {
+    const shareData = useContext(AppData);
     const [selectedButton, setSelectedButton] = useState('Diagnosis');// 현재 선택된 버튼 추적
     const [showDiagnosis, setShowDiagnosis] = useState(true); // 페이지 처음 로딩 시 Diagnosis 메뉴 활성화
     const [showAiDiagnosis, setShowAiDiagnosis] = useState(false);
@@ -82,7 +83,7 @@ const UserJoinPage = () => {
         <div id="userBody">
             <div id="userMainBox">
                 <div id="userLeftBox">
-                    <h3>농부01<span>님</span></h3>
+                    <h3>{shareData.data.id}<span>님</span></h3>
                     <ul id="userMenuBox">
                         <li>
                             <HoverArrow>
