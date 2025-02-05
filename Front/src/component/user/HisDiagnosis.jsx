@@ -55,15 +55,6 @@ const HisDiagnosis = () => {
     <div id="hdMainBox">
       <img className='smallLogo' src={logo} alt="GROWELL" />
       <div id='hdConBox'>
-        {/* <div className='hdConBox'>
-          <p>
-            <span className='hdTitle'>AI 진단</span>
-            <span className='hdDate'>2025.02.05</span>
-          </p>
-          <p className='hdName'>작물 명 : 감자</p>
-          <p className='hdResult'>감자썩음병 76%</p>
-          <span className='hdDetail'>상세보기</span>
-        </div> */}
         {diags.length > 0 ? (
           diags
             .filter(diag => diag && diag.createdAt)  // 유효한 데이터만 필터링

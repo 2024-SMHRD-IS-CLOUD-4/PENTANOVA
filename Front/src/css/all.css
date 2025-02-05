@@ -81,6 +81,35 @@ form{
     margin: 30px auto;
 }
 
+/*select*/
+select{
+    padding: 2% 9% 2% 4%;
+    margin-right: 0px;
+    margin-right: 5%;
+    appearance: none;
+    color: rgba(153, 153, 153, 1);
+    background-color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(241, 241, 241, 1);
+    background-image: url('../assets/down_arrow_gray01.png');
+    background-repeat: no-repeat;
+    background-position: 95% center;
+}
+select:last-child{
+    margin-right: 0;
+}
+select:hover{
+    color: rgba(85, 85, 85, 1);
+    border: 1px solid rgba(153, 153, 153, 1);
+    background-image: url('../assets/down_arrow_gray02.png');
+}
+select:focus{
+    box-shadow: 0 0 1px 1px rgba(85, 85, 85, 1);
+    box-shadow: 0 0 0 1px -moz-mac-focusring;
+    outline: none;
+    color: rgba(85, 85, 85, 1);
+    background-image: url('../assets/down_arrow_gray02.png');
+}
+
 /*배경 이미지*/
 
 .bgimgFarmer {
