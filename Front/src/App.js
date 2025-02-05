@@ -32,6 +32,7 @@ import AccessObjectStorage from './component/api/AccessObjectStorage';
 import KakaoAlarm from './component/api/KakaoAlarm';
 import Test from './test/Test';
 import { AppData } from './function/AuthContext';
+import { DpData } from './function/AuthContext';
 import './css/all.css';
 
 import Test2 from './test/Test2';
@@ -39,42 +40,45 @@ import Test2 from './test/Test2';
 function App() {
   const storedUser = sessionStorage.getItem("user");
   const user = JSON.parse(storedUser);
-  const [data, setData] = useState();
+  const [userdata, setUserData] = useState();
+  const [dpData, setDpData] = useState([]);
   return (
     <Router>
       <div id="body">
-        <AppData value={{ data: user, setData: setData }}>
-          <Navbar />
-          <Routes>
-            <Route path="/jip" element={<JipJoinPage />} />
-            <Route path="/join" element={<Join />} />
-            <Route path="/asdasd" element={<KakaoAlarm />} />
-            <Route path="/idFind" element={<IdFind />} />
-            <Route path="/pwFind" element={<PwFind />} />
-            <Route path="/requestAuth" element={<RequestAuth />} />
-            <Route path="/pest" element={<PestManagement />} />
-            <Route path="/aiDiagnosis" element={<AiDiagnosis />} />
-            <Route path="/promotion" element={<PromotionManagement />} />
-            <Route path="/users" element={<UserManagement />} />
-            <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/diagnosis" element={<Diagnosis />}></Route>
-            <Route path="/dpDetail" element={<DpDetail />}></Route>
-            <Route path="/dpList" element={<DpList />}></Route>
-            <Route path="/userDetail" element={<UserDetail />}></Route>
-            <Route path="/diagDetail" element={<DiagDetail />}></Route>
-            <Route path="/hisDiagnosis" element={<HisDiagnosis />}></Route>
-            <Route path="/selfDiagnosis" element={<SelfDiagnosis />}></Route>
-            <Route path="/fieldGuide" element={<FieldGuide />}></Route>
-            <Route path="/myProfile" element={<MyProfile />}></Route>
-            <Route path="/changeProfile" element={<ChangeProfile />}></Route>
-            <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
-            <Route path="/kakao/callback" element={<LoginApi />}></Route>
-            <Route path="/crops" element={<CropList />}></Route>
-            <Route path="/test" element={<Test />}></Route>
-            <Route path="/test2" element={<Test2 />}></Route>
-            <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
-          </Routes>
+        <AppData value={{ data: user, setData: setUserData }}>
+          <DpData value={{ data: dpData, setData: setDpData }}>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/jip" element={<JipJoinPage />} />
+              <Route path="/join" element={<Join />} />
+              <Route path="/idFind" element={<IdFind />} />
+              <Route path="/pwFind" element={<PwFind />} />
+              <Route path="/requestAuth" element={<RequestAuth />} />
+              <Route path="/pest" element={<PestManagement />} />
+              <Route path="/aiDiagnosis" element={<AiDiagnosis />} />
+              <Route path="/promotion" element={<PromotionManagement />} />
+              <Route path="/users" element={<UserManagement />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/diagnosis" element={<Diagnosis />}></Route>
+              <Route path="/dpDetail" element={<DpDetail />}></Route>
+              <Route path="/dpList" element={<DpList />}></Route>
+              <Route path="/selfDiagnosis" element={<SelfDiagnosis />}></Route>
+              <Route path="/userDetail" element={<UserDetail />}></Route>
+              <Route path="/diagDetail" element={<DiagDetail />}></Route>
+              <Route path="/hisDiagnosis" element={<HisDiagnosis />}></Route>
+              <Route path="/fieldGuide" element={<FieldGuide />}></Route>
+              <Route path="/myProfile" element={<MyProfile />}></Route>
+              <Route path="/changeProfile" element={<ChangeProfile />}></Route>
+              <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
+              <Route path="/kakao/callback" element={<LoginApi />}></Route>
+              <Route path="/crops" element={<CropList />}></Route>
+              <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
+              <Route path="/asdasd" element={<KakaoAlarm />} />
+              <Route path="/test" element={<Test />}></Route>
+              <Route path="/test2" element={<Test2 />}></Route>
+            </Routes>
+          </DpData>
         </AppData>
       </div>
     </Router>

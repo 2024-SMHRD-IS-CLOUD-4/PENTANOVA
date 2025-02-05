@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react'
 
 export const AppData = createContext();
+export const DpData = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
