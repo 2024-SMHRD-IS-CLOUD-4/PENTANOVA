@@ -43,6 +43,7 @@ const SelfDiagnosis = () => {
         <li>
           <p>작물 선택 <span style={{ color: 'red' }}>(필수)</span></p>
           <select name="crops">
+            <option value="choiseNone">작물 선택</option>
             {dps.map(dp => {
               <option key={dp.crop} value="choiseNone">{dp.crop.name}</option>
             })}

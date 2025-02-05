@@ -6,7 +6,7 @@ import logo from '../../assets/logo.png'
 
 const HisDiagnosis = () => {
   const navigate = useNavigate();
-  const [diags, setDiags] = useState([{}]);
+  const [diags, setDiags] = useState([]);
   const userData = useContext(AppData);
   const [imageUrls, setImageUrls] = useState();
 
@@ -55,24 +55,32 @@ const HisDiagnosis = () => {
 
   return (
     <div id="hdMainBox">
-      <div id="hdMAinBox">
-        <img className='smallLogo' src={logo} alt="GROWELL" />
-        <div id='hdConBox'>
-          {diags.map(diag => (
-            <div className='hdConBox' key={diag.diag_num} onClick={() => {
-              navigate(`/diagDetail?id=${diag.diag_num}`)
-            }}>
-              <p>
-                <span className='hdTitle'>AI 진단</span>
-                <span className='hdDate'>{diag.createdAt.split('T')[0]}</span>
-              </p>
-              <p className='hdName'>작물 명 : {diag.dp_num.crop.name}</p>
-              <p className='hdResult'>{diag.dp_num.name} : {Number(diag.diag_content) * 100}%</p>
-              <span className='hdDetail'>상세보기</span>
-              {/* <img src={imageUrls["${diag.name}"]} alt="" /> */}
-            </div>
-          ))}
+      <img className='smallLogo' src={logo} alt="GROWELL" />
+      <div id='hdConBox'>
+        <div className='hdConBox'>
+          <p>
+            <span className='hdTitle'>AI 진단</span>
+            <span className='hdDate'>2025.02.05</span>
+          </p>
+          <p className='hdName'>작물 명 : 감자</p>
+          <p className='hdResult'>감자썩음병 76%</p>
+          <span className='hdDetail'>상세보기</span>
+          {/* <img src={imageUrls["${diag.name}"]} alt="" /> */}
         </div>
+        {diags.map(diag => (
+          <div className='hdConBox' key={diag.diag_num} onClick={() => {
+            navigate(`/diagDetail?id=${diag.diag_num}`)
+          }}>
+            <p>
+              <span className='hdTitle'>AI 진단</span>
+              <span className='hdDate'>{diag.createdAt ? diag.createdAt.split('T')[0] : '날짜 없음'}</span>
+            </p>
+            <p className='hdName'>작물 명 : {diag.dp_num.crop.name}</p>
+            <p className='hdResult'>{diag.dp_num.name} : {Number(diag.diag_content) * 100}%</p>
+            <span className='hdDetail'>상세보기</span>
+            {/* <img src={imageUrls["${diag.name}"]} alt="" /> */}
+          </div>
+        ))}
       </div>
     </div>
   )
