@@ -1,30 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios'
 import logo from '../../assets/logo.png'
-import DpDetail from './DpDetail.jsx';
+// import DpDetail from './DpDetail.jsx';
+import { DpData } from '../../function/AuthContext';
 
 const DpList = () => {
+    const dpData = useContext(DpData);
     const navigate = useNavigate();
     const [dps, setDps] = useState([]);
     const [searchParams] = useSearchParams();
     const crop_num = searchParams.get('crop_num');
+    let [asd, setAsd] = useState([]) ;
     useEffect(() => {
         const dpList = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`);
                 console.log(response.data);
-                response.data.map(dp => (
-                    console.log(dp),
-                    setDps(dps => [...dps,dp])
+                response.data.map((dp, idx) => (
+                    dpData.data.map(dp_num=>{
+                        if(dp.dp_num==dp_num){
+                            setDps(dps => [...dps, dp])
+                        }
+                    })
                 ))
             } catch (error) {
                 console.error('Error:', error);
             }
+            setAsd(dpData);
         };
         dpList();
     }, []);
-    console.log(dps);
     return (
         /*병해충 도감*/
         <div id='dlMainBox'>
@@ -46,7 +52,10 @@ const DpList = () => {
                 <div id='dlConBoxResult'>
                     {/* 반복 박스 */}
                     {dps.length === 0 ? (
-                        <p>검색 결과가 없습니다.</p>
+                        <div className='dlConBox' >
+                            <p>검색 결과가 없습니다.</p>
+                        </div>
+                        
                     ) : (
                         dps.map(dp => (
                             <div className='dlConBox' key={dp.dp_num} onClick={() => {
@@ -64,6 +73,7 @@ const DpList = () => {
                     )}
                 </div>
             </div>
+
         </div>
     )
 }

@@ -136,7 +136,7 @@ const UserJoinPage = () => {
                     {showDiagnosis && <Diagnosis setActiveState={setActiveState} />}
                     {showMyProfile && <MyProfile />}
                     {showAiDiagnosis && <AiDiagnosis />}
-                    {showSelfDiagnosis && <SelfDiagnosis />}
+                    {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState}/>}
                     {showHisDiagnosis && <HisDiagnosis />}
                     {showDpList && <DpList />}
                     {/* {showDpDetail && <DpDetail />} */}
