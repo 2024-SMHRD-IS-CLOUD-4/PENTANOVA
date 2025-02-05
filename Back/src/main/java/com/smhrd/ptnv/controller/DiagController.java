@@ -58,5 +58,7 @@ public class DiagController {
 		System.out.println(diag);
 		service.addDiag(diag);
 	}
+	
+	
 
 }

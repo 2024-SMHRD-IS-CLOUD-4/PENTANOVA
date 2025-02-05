@@ -27,17 +27,26 @@ public class DpService {
 	}
 
 	public List<Disease_Pest> dpList() {
-		return repository.findAll(); 
+		return repository.findAll();
 	}
-	
+
 	public List<Disease_Pest> dpListByCrop(Long crop_num) {
 		Crop crop = new Crop();
 		crop.setCrop_num(crop_num);
-		return repository.findAllByCrop(crop); 
+		return repository.findAllByCrop(crop);
 	}
-	
+
 	public Optional<Disease_Pest> selectOne(Long dp_num) {
 		return repository.findById(dp_num);
 	}
-	
+
+	public Long[] selfCheck(Disease_Pest dp) {
+		List<Disease_Pest> result = repository.findByCropOrSeasonAndSiteAndArgu(dp.getCrop(), dp.getSeason(),
+				dp.getSite(), dp.getArgu());
+		Long[] arr = new Long[result.size()];
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = result.get(i).getDp_num();
+		}
+		return arr;
+	}
 }
