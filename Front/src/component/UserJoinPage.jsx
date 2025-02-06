@@ -138,7 +138,7 @@ const UserJoinPage = () => {
                 <div id="userRightBox">
                     {showDiagnosis && <Diagnosis setActiveState={setActiveState} />}
                     {showMyProfile && <MyProfile />}
-                    {showAiDiagnosis && <AiDiagnosis />}
+                    {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
                     {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} />}
                     {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
                     {showDpList && <DpList setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}

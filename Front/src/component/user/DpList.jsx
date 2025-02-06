@@ -5,12 +5,13 @@ import logo from '../../assets/logo.png'
 // import DpDetail from './DpDetail.jsx';
 import { DpData } from '../../function/AuthContext';
 
-const DpList = ({setActiveState, setDpNum})  => {
+const DpList = ({ setActiveState, setDpNum }) => {
     const dpData = useContext(DpData);
     const [dps, setDps] = useState([]);
     const [searchParams] = useSearchParams();
     const crop_num = searchParams.get('crop_num');
-    let [asd, setAsd] = useState([]);
+    const [imageUrls, setImageUrls] = useState([{}]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         const dpList = async () => {
             try {
@@ -27,10 +28,29 @@ const DpList = ({setActiveState, setDpNum})  => {
                         setDps(dps => [...dps, dp])
                     }
                 })
+                const imagePromises = response.data.map(dp =>
+                    fetch(`${process.env.REACT_APP_connect}/bucket/getImages/DiseasePests/${dp.crop.eng_name}/${dp.img}`,{
+                        method: "GET",
+                        headers:{
+                            "Content-Type": "application/json; charset=utf-8"
+                        }
+                    })
+                        .then(response => response.blob())
+                        .then(blob => ({
+                            [dp.name]: URL.createObjectURL(blob)
+                        }))
+                );
+
+                Promise.all(imagePromises)
+                    .then(images => {
+                        const newImageUrls = images.reduce((acc, curr) => ({ ...acc, ...curr }), {});
+                        setImageUrls(newImageUrls);
+                        setLoading(false);
+                    });
+
             } catch (error) {
                 console.error('Error:', error);
             }
-            setAsd(dpData);
         };
         dpList();
     }, []);
@@ -51,7 +71,7 @@ const DpList = ({setActiveState, setDpNum})  => {
                         <option value={false}>병</option>
                         <option value={true}>해충</option>
                     </select>
-                    <input type="text" placeholder='검색할 단어를 작성해주세요.'/>
+                    <input type="text" placeholder='검색할 단어를 작성해주세요.' />
                     <button>검색하기</button>
                 </div>
                 <div id='dlConBoxResult'>
@@ -60,18 +80,18 @@ const DpList = ({setActiveState, setDpNum})  => {
                         <div className='dlConBox' >
                             <p>검색 결과가 없습니다.</p>
                         </div>
-                        
+
                     ) : (
-                        dps.map(dp => (
+                        dps.map((dp, idx) => (
                             <div className='dlConBox' key={dp.dp_num} onClick={() => {
                                 setDpNum(dp.dp_num);
                                 setActiveState('DpDetail');
                             }}>
                                 <div className='dlConImg'>
-                                    <img src="" alt={dp.name} />
+                                <img key={idx} src={imageUrls[dp.name]} />
                                 </div>
                                 <div className='dlConTitle'>
-                                    <p><span>{dp.crop.name}</span><span>{dp.category?"해충":"질병"}</span></p>
+                                    <p><span>{dp.crop.name}</span><span>{dp.category ? "해충" : "질병"}</span></p>
                                     <h3>{dp.name}</h3>
                                 </div>
                             </div>
