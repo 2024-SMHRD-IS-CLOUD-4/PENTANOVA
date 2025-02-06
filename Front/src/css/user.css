@@ -152,7 +152,7 @@
 
 #adConBox{
     width: 340px;
-    height: 600px;
+    height: 80%;
     margin: 40px auto;
 }
 
@@ -213,7 +213,7 @@
 }
 .adConBox ul{
     width: 100%;
-    height: 20%;
+    height: 15%;
 }
 .adResult{
     margin: 5% 0;
