@@ -18,6 +18,7 @@ const AiDiagnosis = () => {
     const [endTime, setEndTime] = useState(null);
     const [image, setImage] = useState();
     const [imageSrc, setImageSrc] = useState(null);
+    const [dpName, setDpName] = useState(null);
     const [formData2, setFormData2] = useState({
         dp_num: {
             dp_num: 1,
@@ -37,8 +38,6 @@ const AiDiagnosis = () => {
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
-        console.log(selectedFile)
-        console.log(typeof selectedFile)
         setFile(selectedFile);
         const file = event.target.files[0];
         if (file) {
@@ -66,12 +65,21 @@ const AiDiagnosis = () => {
         formData.append('file', file);
 
         try {
-            const response = await axios.post('http://192.168.219.68:8000/upload_image', formData, {
+            // const response = await axios.post('http://192.168.219.68:8000/upload_image', formData, {
+            const response = await axios.post('http://112.217.124.195:30333/upload_image', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
             setImage(response.data);
+            console.log(response.data);
+            if(response.data.detected_classes[0]==1){
+                setDpName("총채벌레")
+            }else if(response.data.detected_classes[0]==2){
+                setDpName("그을음병")
+            }else{
+                setDpName("정상")
+            }
             const data = response.data;
             setResponseMessage(data.message);
 
@@ -148,7 +156,7 @@ const AiDiagnosis = () => {
                         <ul>
                             {predictions.slice(0, 3).map((prediction, index) => (
                                 <li key={index}>
-                                    <p className='adResult'><span>{classMapping[prediction.class] || "알 수 없음"}</span> <span>{(prediction.confidence * 100).toFixed(0)}%</span></p>
+                                    <p className='adResult'><span>{dpName || "알 수 없음"}</span> <span>{(prediction.confidence * 100).toFixed(0)}%</span></p>
                                     {/* <li key={index}>
                                         <p>클래스: {prediction.class}</p>
                                         <p>신뢰도: {prediction.confidence.toFixed(2)}</p>

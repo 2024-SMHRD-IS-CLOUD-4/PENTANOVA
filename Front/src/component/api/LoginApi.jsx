@@ -1,37 +1,67 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AppData } from '../../function/AuthContext';
 
 
 const LoginApi = () => {
-  const clientId = '22192e7a34b82d69230ba35d1b252067';
-  const redirectUri = 'http://localhost:3000/kakao/callback';
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`
+ 
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [isTrue2, setIsTrue2] = useState(true);
   const code = new URL(window.location.href).searchParams.get("code");
+  const shareData = useContext(AppData);
+  const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   useEffect(() => {
-    const kakaoLogin = async () => {
-      try {
-        const response = await axios.post(`${process.env.REACT_APP_connect}/kakao/login`, null, {
-          params: {
-            code: code
-          }
-        })
-        setData(response.data.user);
-        if (response.data.user.role == '일반사용자') {
-          setIsTrue2(false);
-        } else {
-          setIsTrue2(true);
-        }
-      } catch (error) {
-        console.error(error);
-      }
+    const storedUser = sessionStorage.getItem("user");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+      shareData.setData(parsedUser);
+      setIsLoggedIn(true);
     }
 
-    kakaoLogin();
+  const kakaoLogin = async () => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_connect}/kakao/login`, null, {
+        params: {
+          code: code
+        }
+      })
+      console.log(response.data);
+      const userData = response.data.user;
+      const user = {
+        id: userData.id,
+        pw: userData.pw,
+        role: userData.role,
+        nick: userData.nick,
+        phone: userData.phone,
+        location: userData.location,
+        institute: userData.institute,
+        createdAt: userData.createdAt,
+        requsetAuth: userData.rerequsetAuth,
+        isTrue: true,
+        isTrue2: userData.role === '일반사용자' ? false : true
+      };
+
+      sessionStorage.setItem("user", JSON.stringify(user));
+      setUser(user);
+      shareData.setData(user);
+      setIsLoggedIn(true);
+      alert('로그인 성공!');
+    } catch (error) {
+      if (error.response) {
+        alert('로그인 실패 ');
+      } else if (error.request) {
+        alert('서버로부터 응답이 없습니다. 서버 상태를 확인해주세요.');
+      } else {
+        alert('서버와 연결할 수 없습니다.');
+      }
+    }
+  }
 
     if (data) {
       const user = {
@@ -55,15 +85,23 @@ const LoginApi = () => {
         navigate('/dashboard')
       }
     }
-
+    kakaoLogin();
   }, [data]);
-  const loginButton = () => {
-    window.location.href = kakaoURL
-  }
+
+  useEffect(() => {
+    // 로그인 상태에 따라 페이지 이동
+    if (isLoggedIn) {
+      if (user.role === '일반사용자') {
+        navigate('/UserJoinPage');
+      } else {
+        navigate('/dashboard');
+      }
+    }
+  }, [isLoggedIn, navigate, user]);
+  
 
   return (
     <div>
-      <button onClick={loginButton} className='button01'>카카오 로그인</button>
     </div>
   )
 }

@@ -55,6 +55,14 @@ const Login = () => {
   function idPWClick() {
     navigate('/jip?type=id')
   }
+
+  const loginButton = () => {
+    const clientId = '22192e7a34b82d69230ba35d1b252067';
+    const redirectUri = 'http://localhost:3000/kakao/callback';
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`
+    window.location.href = kakaoURL
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -80,8 +88,8 @@ const Login = () => {
       };
 
       sessionStorage.setItem("user", JSON.stringify(user));
-      setUser(user); // user state 업데이트
-      shareData.setData(user); // AppData context 업데이트
+      setUser(user);
+      shareData.setData(user);
       setIsLoggedIn(true);
       alert('반갑습니다! 사용자님');
 
@@ -120,7 +128,7 @@ const Login = () => {
                 <input type="password" name="pw" id="password" onChange={handleChange} required />
               </div>
               <button className='button01' type="submit">로그인</button>
-              <button className='button01' type="button" onClick={() => navigate('/kakao/callback')}>간편 로그인</button>
+              <button className='button01' type="button" onClick={loginButton}>카카오 로그인</button>
             </form>
             <div className="loginBoxBt">
               <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
