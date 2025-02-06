@@ -126,7 +126,7 @@ const SelfDiagnosis = ({setActiveState}) => {
           <select name="argu" onChange={handleSelect}>
             <option>작물 피해 특징 선택</option>
             {dps.map(dp => {
-              return <option>{dp.argu}</option>
+              return <option>{dp.argu}</option> 
             })}
           </select>
         </li>
