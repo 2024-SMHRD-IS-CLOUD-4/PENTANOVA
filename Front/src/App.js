@@ -74,7 +74,7 @@ function App() {
               <Route path="/kakao/callback" element={<LoginApi />}></Route>
               <Route path="/crops" element={<CropList />}></Route>
               <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
-              <Route path="/asdasd" element={<KakaoAlarm />} />
+              <Route path="/alarm" element={<KakaoAlarm />} />
               <Route path="/test" element={<Test />}></Route>
               <Route path="/test2" element={<Test2 />}></Route>
             </Routes>

@@ -7,7 +7,7 @@ const Test2 = () => {
     const sickKey = '2';
     const test = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_connect}/test`)
+            const response = await axios.get(`${process.env.REACT_APP_connect}/api/getDpApi`)
             console.log(response.data);
         } catch (error) {
             console.error(error);
