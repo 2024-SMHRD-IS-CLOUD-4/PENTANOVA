@@ -10,6 +10,7 @@
     padding-top: 86px;
 }
 #userLeftBox, #userRightBox{
+    position: relative;
     width: 393px;
     height: 852px;
     float: left;
@@ -71,9 +72,16 @@
     padding-left: 8% ;
 }
 
+#logoutButton{
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 /*스크롤바 컨트롤*/
 
-#dlConBoxResult, #hdConBox, #pestConBoxResult{
+#dlConBoxResult, #hdConBox, #pestConBoxResult {
     width: 100%;
     height: 80%;
     overflow-y: scroll;
@@ -100,13 +108,17 @@
     height: 72px;
 }
 
-#dlConBoxSearch button,#pestSerch button, #myConBox button{
+#dlConBoxSearch button,#pestSerch button, #myConBox button, #logoutButton{
     width: 90px;
     height: 30px;
     line-height: 30px;
     background-color: #fff;
     border: 1px solid #f1f1f1;
     color: #999;
+}
+#dlConBoxSearch button:hover,#pestSerch button:hover, #logoutButton:hover{
+    border: 1px solid rgba(153, 153, 153, 1);
+    color: #555;
 }
 
 /*컨텐츠박스*/
@@ -219,7 +231,7 @@
 #adFileUp{
     display: none;
 }
-label:hover{
+label:hover, #dlConBoxResult .dlConBox{
     cursor: pointer;
 }
 .userButtonDiv{
@@ -322,15 +334,13 @@ label:hover{
     margin-top: 5%;
 }
 
-#dlConBoxSearch button:hover,#pestSerch button:hover{
-    border: 1px solid rgba(153, 153, 153, 1);
-    color: #555;
-}
+
+
 #dlConBoxResult, #pestConBoxResult{
     background-color: #fff;
     margin-top: 22px;
 }
-.dlConBox, .pestResult{
+.dlConBox{
     width: 100%;
     height: 135px;
     margin: 0 auto;
@@ -379,12 +389,28 @@ label:hover{
 
 
 /*농약 정보 Pesticides*/
-#pestSerch{
+#pestContentBox{
+    height: 80%;
+}
+#pestSerch, .pestResult{
     text-align: left;
 }
 .pestResult{
-    
+    padding-top: 30px;
+}
+.pestResult img{
+    width: 7px;
+    margin: 0 2%;
+}
+.pestResult h2{
     text-align: left;
+    margin-top: 16px;
+    margin-bottom: 30px;
+}
+.pestResult h2>span{
+    font-size: 16px;
+    float: right;
+    margin-top: 3%;
 }
 /*농약정보 상세 PesticidesDetail*/
 /*방제 정보 Fumigator*/
@@ -402,13 +428,13 @@ label:hover{
 #myConBox ul{
     margin-top: 40px;
 }
-#myConBox li{
+#myConBox li, .pestResult div{
     border-bottom: 1px solid #ededed;
     padding-top: 30px;
     padding-bottom: 2px;
     border-radius: 0px;
 }
-#myConBox li:first-child{
+#myConBox li:first-child, .pestResult div{
     padding-top: 0;
 }
 #myConBox li>p>button{

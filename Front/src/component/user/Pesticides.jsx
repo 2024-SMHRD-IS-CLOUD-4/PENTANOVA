@@ -28,36 +28,6 @@ function Pesticides() {
             </div>
           </div>
           {/* 반복하는 곳 종료 */}
-          <div className='pestResult'>
-            <div>
-              <p>감 <img src={arrow} alt="arrow" /> 꼭지나방</p>
-              <h2>유원델타린<span>유원에코사이언스㈜</span></h2>
-            </div>
-          </div>
-          <div className='pestResult'>
-            <div>
-              <p>감 <img src={arrow} alt="arrow" /> 꼭지나방</p>
-              <h2>유원델타린<span>유원에코사이언스㈜</span></h2>
-            </div>
-          </div>
-          <div className='pestResult'>
-            <div>
-              <p>감 <img src={arrow} alt="arrow" /> 꼭지나방</p>
-              <h2>유원델타린<span>유원에코사이언스㈜</span></h2>
-            </div>
-          </div>
-          <div className='pestResult'>
-            <div>
-              <p>감 <img src={arrow} alt="arrow" /> 꼭지나방</p>
-              <h2>유원델타린<span>유원에코사이언스㈜</span></h2>
-            </div>
-          </div>
-          <div className='pestResult'>
-            <div>
-              <p>감 <img src={arrow} alt="arrow" /> 꼭지나방</p>
-              <h2>유원델타린<span>유원에코사이언스㈜</span></h2>
-            </div>
-          </div>
         </div>
         {/* {dps.length === 0 ? (
               <div className='dlConBox' >

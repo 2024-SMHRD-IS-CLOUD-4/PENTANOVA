@@ -36,14 +36,14 @@ const Login = () => {
 
   useEffect(() => {
     // 로그인 상태에 따라 페이지 이동
-    if (isLoggedIn) {
+    if (isLoggedIn && user) {  // ✅ user가 null이 아닐 때만 실행
       if (user.role === '일반사용자') {
         navigate('/UserJoinPage');
       } else {
         navigate('/dashboard');
       }
     }
-  }, [isLoggedIn, navigate, user]); // isLoggedIn 의존성 추가
+  }, [isLoggedIn, navigate, user]);  // isLoggedIn 의존성 추가
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -91,7 +91,7 @@ const Login = () => {
       setUser(user);
       shareData.setData(user);
       setIsLoggedIn(true);
-      alert('로그인 성공!');
+      alert('반갑습니다! 사용자님');
 
     } catch (error) {
       if (error.response) {
