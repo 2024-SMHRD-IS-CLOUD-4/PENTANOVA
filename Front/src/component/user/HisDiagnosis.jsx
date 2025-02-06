@@ -20,7 +20,7 @@ const HisDiagnosis = () => {
             responseType: 'blob'
           }).then(response2 => {
             return {
-              [diag.name]: URL.createObjectURL(response2.data)
+              [diag.diag_num]: URL.createObjectURL(response2.data)
             };
           });
         });
@@ -67,7 +67,7 @@ const HisDiagnosis = () => {
                   <span className='hdDate'>{diag.createdAt ? diag.createdAt.split('T')[0] : '날짜 없음'}</span>
                 </p>
                 <div>
-                  <img src={imageUrls[diag.name]} alt='description'/>
+                  <img src={imageUrls[diag.diag_num]} alt='description'/>
                   <p className='hdName'>
                     <p>작물 명 : {diag.dp_num.crop.name}</p>
                     <p>진단병명 : {diag.dp_num.name}&emsp;{Number(diag.diag_content) * 100}%</p>
