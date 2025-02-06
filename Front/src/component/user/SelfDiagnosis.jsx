@@ -90,50 +90,52 @@ const SelfDiagnosis = ({setActiveState}) => {
   return (
     <div id='sdMainBox'>
       <img className='smallLogo' src={logo} alt="GROWELL" />
-      <ul>
-        <li>
-          <p>작물 선택 <span style={{ color: 'red' }}>(필수)</span></p>
-          <select name="crop" onChange={handleSelect}>
-            <option>작물 선택</option>
-            {crops.map((crop, idx) => {
-              return <option key={idx} value={crop.crop_num}>
-                {crop.name}
-              </option>;
-            })}
-          </select>
-        </li>
-        <li>
-          <p>피해 위치 <span style={{ color: 'red' }} >(필수)</span></p>
-          <select name="site" onChange={handleSelect}>
-            <option>작물 피해 위치 선택</option>
-            {sites.map(site => {
-              return <option value={site}>{site}</option>
-            })}
-          </select>
-        </li>
-        <li>
-          <p>발병 시기 <span>(선택)</span></p>
-          <select name="time" onChange={handleSelect}>
-            <option>월 선택</option>
-            {months.map((month, idx) => {
-              return <option value={month}>{month}월</option>
-            })}
-          </select>
-        </li>
-        
-        <li>
-          <p>피해 특징 <span>(선택)</span></p>
-          <select name="argu" onChange={handleSelect}>
-            <option>작물 피해 특징 선택</option>
-            {dps.map(dp => {
-              return <option>{dp.argu}</option> 
-            })}
-          </select>
-        </li>
-      </ul>
-      <button className="userButton" onClick={handleSubmit}>
-        <h2>검색하기</h2>
-      </button>
+      <div id='sdConBox'>
+        <ul>
+          <li>
+            <p>작물 선택 <span style={{ color: 'red' }}>(필수)</span></p>
+            <select name="crop" onChange={handleSelect}>
+              <option>작물 선택</option>
+              {crops.map((crop, idx) => {
+                return <option key={idx} value={crop.crop_num}>
+                  {crop.name}
+                </option>;
+              })}
+            </select>
+          </li>
+          <li>
+            <p>피해 위치 <span style={{ color: 'red' }} >(필수)</span></p>
+            <select name="site" onChange={handleSelect}>
+              <option>작물 피해 위치 선택</option>
+              {sites.map(site => {
+                return <option value={site}>{site}</option>
+              })}
+            </select>
+          </li>
+          <li>
+            <p>발병 시기 <span>(선택)</span></p>
+            <select name="time" onChange={handleSelect}>
+              <option>월 선택</option>
+              {months.map((month, idx) => {
+                return <option value={month}>{month}월</option>
+              })}
+            </select>
+          </li>
+          
+          <li>
+            <p>피해 특징 <span>(선택)</span></p>
+            <select name="argu" onChange={handleSelect}>
+              <option>작물 피해 특징 선택</option>
+              {dps.map(dp => {
+                return <option>{dp.argu}</option> 
+              })}
+            </select>
+          </li>
+        </ul>
+        <button className="userButton" onClick={handleSubmit}>
+          <h2>검색하기</h2>
+        </button>
+      </div>
     </div>
   )
 }

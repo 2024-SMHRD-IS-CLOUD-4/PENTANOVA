@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios'
 import logo from '../../assets/logo.png'
-// import DpDetail from './DpDetail.jsx';
 import { DpData } from '../../function/AuthContext';
 
 const DpList = ({ setActiveState, setDpNum }) => {

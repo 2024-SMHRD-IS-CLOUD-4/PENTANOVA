@@ -5,7 +5,8 @@ import useConfirm from '../../function/UseConfirm';
 import axios from 'axios'
 import logo from '../../assets/logo.png'
 
-const MyProfile = () => {
+const MyProfile = ({setActiveState}) => {
+    const hisDiagnosis = () => setActiveState('HisDiagnosis');
     const confirm = useConfirm();
     const shareData = useContext(AppData);
     const navigate = useNavigate();
@@ -65,7 +66,7 @@ const MyProfile = () => {
                         <p>{shareData.data ? shareData.data.institue : null}</p>
                     </li>
                 </ul>
-                <button>AI, 자가 진단 이력 관리</button>
+                <button onClick={hisDiagnosis}>AI, 자가 진단 이력 관리</button>
                 <button onClick={()=>{navigate('/changeProfile')}}>회원정보 수정</button>
                 <button onClick={deleteUser}>회원탈퇴</button>             
             </div>

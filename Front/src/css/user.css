@@ -72,12 +72,13 @@
     padding-left: 8% ;
 }
 
-#logoutButton{
+#userBtnNav{
     position: absolute;
-    bottom: 25px;
+    bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
 }
+
 
 /*스크롤바 컨트롤*/
 
@@ -128,12 +129,22 @@
     color: #555;
 }
 
+#logoutButton, #sdConBox .userButton{
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 /*컨텐츠박스*/
 #userRightBox{
     background-color: rgba(248, 248, 248, 1);
+    /* background-image: url('../assets/test_icon.png');
+    background-repeat: no-repeat;
+    background-position: center 97%; */
 }
 
-#diMainBox, #fpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox, #fumMainBox{
+#diMainBox, #fpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #diMainBox ,#myMainBox, #fumMainBox{
     position: relative;
     width: 100%;
     height: 100%;
@@ -141,19 +152,15 @@
     text-align: center;
 }
 
-#sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox, #fumMainBox{
+#sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox, #fumMainBox, #diMainBox{
     padding-top:30px;
 }
-#sdMainBox ul, #hdConBox, #pestContentBox, #dlConBox, #myConBox, #fumConBox{
+#sdConBox, #hdConBox, #pestContentBox, #dlConBox, #myConBox, #fumConBox, #diConBox, #adConBox{
+    position: relative;
     width: 80%;
+    height: 80%;
     margin-top: 20%;
     margin: 10% auto 10% auto;
-}
-
-#adConBox{
-    width: 340px;
-    height: 80%;
-    margin: 40px auto;
 }
 
 /*병해충 진단 Diagnosis*/
@@ -337,8 +344,6 @@ label:hover, #dlConBoxResult .dlConBox{
     margin-top: 5%;
 }
 
-
-
 #dlConBoxResult, #pestConBoxResult{
     background-color: #fff;
     margin-top: 22px;
@@ -388,6 +393,126 @@ label:hover, #dlConBoxResult .dlConBox{
     width: 100%;
     height: auto;
 }
+/*병해충 도감 상세*/
+#diConBox{
+    display: inline-block;
+    background-color: #fff;
+}
+
+#diConBox > div > p:first-child{
+    display: block;
+    width:137px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    border: 1px solid #f1f1f1;
+    margin: 20px auto;
+}
+#diConBox > div > h2{
+    margin-bottom: 0;
+}
+#diConBox > div > p:nth-child(3){
+    font-size: 10px;
+    font-weight: 300;
+    margin: 10px 0;
+}
+
+#diConBox img{
+    width: 90%;
+    height: 184px;
+}
+#diConBox > div > div{
+    width: 250px;
+    margin: 30px auto;
+}
+#diConBox > div > div > p{
+    text-align: left;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+.tab_menu{
+    position:relative;
+}
+.tab_menu .list{
+    overflow:hidden;
+}
+.tab_menu .list li{
+    float:left; 
+    margin-right:5px;
+}
+.tab_menu .list li:first-child{
+    margin-left:10px;
+}
+.tab_menu .list li:last-child{
+    margin-right:0px;
+}
+.tab_menu .list .btn{
+    display: block;
+    width: 95px;
+    height: 30px;
+    line-height: 30px;
+    background-color: rgba(209, 209, 209, 1);
+    border: 1px solid #f1f1f1;
+    font-size:14px;
+    text-decoration: none;
+    color:#f1f1f1;
+}
+.tab_menu .list .btn:hover{
+    background-color: rgba(153, 153, 153, 1);
+}
+.tab_menu .list li.is_on .btn{
+    background-color: rgba(76, 126, 65, 1);
+}
+#tab1{
+    padding: 0 20px;
+}
+#tab2 > p{
+    width: 70%;
+    margin: 10px auto;
+    font-size: 16px;
+    font-weight: 500;
+}
+#tab2 > p > span{
+    float: right;
+    font-size: 14px;
+    font-weight: 300;
+}
+#tab3 > p{
+    width: 90%;
+    font-size: 12px;
+    margin: 5% auto;
+}
+#tab3 > p > span{
+    display: inline-block;
+    width: 80px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 15%;
+}
+#tab3 > p:nth-child(1) > span{
+    background-color: rgba(250, 184, 43, 1);
+}
+#tab3 > p:nth-child(2) > span{
+    background-color: rgba(76, 126, 65, 1);
+}
+.tab_menu .cont_area .cont{
+    position:absolute; 
+    top:40px; 
+    left:50%;
+    transform: translate(-50%); 
+    text-align:left; 
+    width:90%; 
+    height:130px; 
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 160%;
+}
+
 /*농약 및 방제 정보 FumigatorPesticides*/
 
 
@@ -431,10 +556,6 @@ label:hover, #dlConBoxResult .dlConBox{
 .fumConBox select{
     width: 100%;
     text-align: center;
-}
-
-.fumBtnTogle{
-
 }
 
 /*내정보 확인하기*/

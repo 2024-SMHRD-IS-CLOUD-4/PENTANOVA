@@ -16,7 +16,6 @@ import HoverArrow from './user/HoverArrow.jsx'
 import { AppData } from '../function/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 
-
 const UserJoinPage = () => {
     const [selectedButton, setSelectedButton] = useState('Diagnosis');// 현재 선택된 버튼 추적
     const [showDiagnosis, setShowDiagnosis] = useState(true); // 페이지 처음 로딩 시 Diagnosis 메뉴 활성화
@@ -137,7 +136,7 @@ const UserJoinPage = () => {
                 </div>
                 <div id="userRightBox">
                     {showDiagnosis && <Diagnosis setActiveState={setActiveState} />}
-                    {showMyProfile && <MyProfile />}
+                    {showMyProfile && <MyProfile  setActiveState={setActiveState} />}
                     {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
                     {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} />}
                     {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
@@ -147,6 +146,15 @@ const UserJoinPage = () => {
                     {showFumigator && <Fumigator />}
                     {showPesticides && <Pesticides />}
                     {/* {showPesticidesDetail && <PesticidesDetail />} */}
+                    <nav id='userBtnNav'>
+                        <button id='userNavChange'></button>
+                        <button id='userNavDi'>
+                            <img src="../" alt="" />
+                        </button>
+                        <button id='userNavDp'></button>
+                        <button id='userNavFP'></button>
+                        <button id='userNavMy'></button>
+                    </nav>
                 </div>
             </div>
         </div>
