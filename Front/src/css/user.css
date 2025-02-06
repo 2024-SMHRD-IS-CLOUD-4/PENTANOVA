@@ -73,6 +73,13 @@
 
 /*스크롤바 컨트롤*/
 
+#dlConBoxResult, #hdConBox, #pestConBoxResult{
+    width: 100%;
+    height: 80%;
+    overflow-y: scroll;
+    scrollbar-gutter : stable both-edges;
+}
+
 #hdConBox::-webkit-scrollbar, #dlConBoxResult::-webkit-scrollbar, #pestConBoxResult::-webkit-scrollbar{/*스크롤 디자인 수정*/
     width: 15px;
 }
@@ -87,18 +94,51 @@
     border-radius: 10px;
 }
 
+/*버튼 컨트롤*/
+
+#fpMainBox .userButton, #sdMainBox .userButton, #adConBox .userButton, .userButtonDiv{
+    height: 72px;
+}
+
+#dlConBoxSearch button,#pestSerch button, #myConBox button{
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #fff;
+    border: 1px solid #f1f1f1;
+    color: #999;
+}
+
 /*컨텐츠박스*/
 #userRightBox{
     background-color: rgba(248, 248, 248, 1);
 }
-/*병해충 진단 Diagnosis*/
-#diMainBox, #fpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox{
+
+#diMainBox, #fpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox{
     position: relative;
     width: 100%;
     height: 100%;
     padding-top:80px;
     text-align: center;
 }
+
+#sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox{
+    padding-top:30px;
+}
+#sdMainBox ul, #hdConBox, #pestContentBox, #dlConBox, #myConBox{
+    width: 80%;
+    margin-top: 20%;
+    margin: 10% auto 10% auto;
+}
+
+#adConBox{
+    width: 340px;
+    height: 600px;
+    margin: 40px auto;
+}
+
+/*병해충 진단 Diagnosis*/
+
 
 .diTitle{
     margin-bottom: 20%;
@@ -143,11 +183,6 @@
 
 /*AI 진단 AiDiagnosis*/
 
-#adConBox{
-    width: 340px;
-    height: 600px;
-    margin: 40px auto;
-}
 .adConBox{
     position: relative;
     width: 100%;
@@ -196,14 +231,7 @@ label:hover{
 
 /*자가진단 SelfDiagnosis*/
 
-#sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox{
-    padding-top:30px;
-}
-#sdMainBox ul, #hdConBox, #pestContentBox, #dlConBox{
-    width: 80%;
-    margin-top: 20%;
-    margin: 10% auto 10% auto;
-}
+
 #sdMainBox li{
     text-align: left;
 }
@@ -279,12 +307,7 @@ label:hover{
 #dlConBox{
     height: 80%;
 }
-#dlConBoxResult, #hdConBox, #pestConBoxResult{
-    width: 100%;
-    height: 80%;
-    overflow-y: scroll;
-    scrollbar-gutter : stable both-edges;
-}
+
 #dlConBoxSearch, #pestSerch{
     width: 100%;
 }
@@ -298,14 +321,7 @@ label:hover{
     background-color: transparent;
     margin-top: 5%;
 }
-#dlConBoxSearch button,#pestSerch button{
-    width: 90px;
-    height: 30px;
-    line-height: 30px;
-    background-color: #fff;
-    border: 1px solid #f1f1f1;
-    color: #999;
-}
+
 #dlConBoxSearch button:hover,#pestSerch button:hover{
     border: 1px solid rgba(153, 153, 153, 1);
     color: #555;
@@ -360,9 +376,7 @@ label:hover{
     height: auto;
 }
 /*농약 및 방제 정보 FumigatorPesticides*/
-#fpMainBox .userButton, #sdMainBox .userButton, #adConBox .userButton, .userButtonDiv{
-    height: 72px;
-}
+
 
 /*농약 정보 Pesticides*/
 #pestSerch{
@@ -375,3 +389,52 @@ label:hover{
 /*농약정보 상세 PesticidesDetail*/
 /*방제 정보 Fumigator*/
 /*내정보 확인하기*/
+#myConBox{
+    height: 80%;
+    background-color: #fff;
+    padding: 40px;
+    text-align: left;
+}
+#myConBox h3{
+    text-align: left;
+    margin-top: 10px;
+}
+#myConBox ul{
+    margin-top: 40px;
+}
+#myConBox li{
+    border-bottom: 1px solid #ededed;
+    padding-top: 30px;
+    padding-bottom: 2px;
+    border-radius: 0px;
+}
+#myConBox li:first-child{
+    padding-top: 0;
+}
+#myConBox li>p>button{
+    float: right;
+}
+#myConBox li>p>span{
+    font-size: 10px;
+    font-weight: 300;
+}
+#myConBox li>p:last-child{
+    font-weight: 300;
+    color: #555;
+    margin-top: 5px;
+}
+#myConBox button:nth-child(4){
+    display: block; 
+    width: 100%;
+    background-color: rgba(76, 126, 65, 1);
+    color: #fff;
+    margin-bottom: 10px;
+}
+#myConBox button:nth-child(5){
+    width: initial;
+    padding: 0 6%;
+}
+#myConBox button:nth-child(6){
+    float: right;
+}
+

@@ -33,31 +33,42 @@ const MyProfile = () => {
         }
     }
     return (
-        <div>
-            <h2>MyProfile</h2>
-            <ul>
-                <li>
-                    {shareData.data ? shareData.data.id: null}
-                </li>
-                <li>
-                    {shareData.data ? shareData.data.nick : null}
-                </li>
-                <li>
-                    {shareData.data ? shareData.data.role : null}
-                </li>
-                <li>
-                    {shareData.data ? shareData.data.phone : null}
-                </li>
-                <li>
-                    {shareData.data ? shareData.data.location : null}
-                </li>
-                <li>
-                    {shareData.data ? shareData.data.institue : null}
-                </li>
-            </ul>
-            <button onClick={()=>{navigate('/changeProfile')}}>수정하기</button>
-            <button onClick={deleteUser}>회원탈퇴</button>
-            <button onClick={()=>{navigate('/requestAuth')}}>권한 요청</button>
+        // 내 정보 확인하기
+        <div id='myMainBox'>
+            <img className='smallLogo' src={logo} alt="GROWELL" />
+
+            <div id='myConBox'>
+                <p>반갑습니다!<span></span></p>
+                <h3>{shareData.data.nick}<span> 님</span></h3>
+                <ul>
+                    <li>
+                        <p>아이디<span>(이메일형식)</span></p>
+                        <p>{shareData.data ? shareData.data.id: null}</p>
+                    </li>
+                    <li>
+                        <p>비밀번호</p>
+                        <p>{shareData.data ? shareData.data.pw: null}</p>
+                    </li>
+                    <li>
+                        <p>회원 등급<button onClick={()=>{navigate('/requestAuth')}}>권한 요청</button></p>
+                        <p>{shareData.data ? shareData.data.role : null}</p>
+                    </li>
+                    <li>
+                        <p>연락처</p>
+                        <p>{shareData.data ? shareData.data.phone : null}</p>
+                    </li>
+                    <li>
+                        <p>지역</p>
+                        <p>{shareData.data ? shareData.data.location : null}</p>
+                    </li>
+                    <li> 
+                        <p>{shareData.data ? shareData.data.institue : null}</p>
+                    </li>
+                </ul>
+                <button>AI, 자가 진단 이력 관리</button>
+                <button onClick={()=>{navigate('/changeProfile')}}>회원정보 수정</button>
+                <button onClick={deleteUser}>회원탈퇴</button>             
+            </div>
         </div>
     )
 }

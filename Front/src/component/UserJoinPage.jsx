@@ -84,7 +84,7 @@ const UserJoinPage = () => {
         <div id="userBody">
             <div id="userMainBox">
                 <div id="userLeftBox">
-                    <h3>{shareData.data.id}<span>님</span></h3>
+                    <h3>{shareData.data.nick}<span> 님</span></h3>
                     <ul id="userMenuBox">
                         <li>
                             <HoverArrow>
