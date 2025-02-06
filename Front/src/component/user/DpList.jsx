@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import axios from 'axios'
 import logo from '../../assets/logo.png'
 // import DpDetail from './DpDetail.jsx';
@@ -7,7 +7,6 @@ import { DpData } from '../../function/AuthContext';
 
 const DpList = ({setActiveState, setDpNum})  => {
     const dpData = useContext(DpData);
-    const navigate = useNavigate();
     const [dps, setDps] = useState([]);
     const [searchParams] = useSearchParams();
     const crop_num = searchParams.get('crop_num');
@@ -35,7 +34,7 @@ const DpList = ({setActiveState, setDpNum})  => {
         };
         dpList();
     }, []);
-    console.log(dps)
+    // console.log(dps)
     return (
         /*병해충 도감*/
         <div id='dlMainBox'>

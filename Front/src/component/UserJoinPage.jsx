@@ -108,7 +108,9 @@ const UserJoinPage = () => {
                             </ul>
                         </li>
                         <li>
-                            <HoverArrow><button onClick={dpList} style={buttonStyle('DpList')}>병해충 도감</button></HoverArrow>
+                            <HoverArrow>
+                                <button onClick={dpList} style={buttonStyle('DpList')}>병해충 도감</button>
+                            </HoverArrow>
                         </li>
                         <li>
                             <HoverArrow>
@@ -138,7 +140,7 @@ const UserJoinPage = () => {
                     {showMyProfile && <MyProfile />}
                     {showAiDiagnosis && <AiDiagnosis />}
                     {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} />}
-                    {showHisDiagnosis && <HisDiagnosis />}
+                    {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
                     {showDpList && <DpList setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
                     {showDpDetail && <DpDetail dpNum={dpNum} />}
                     {showFumigatorPesticides && <FumigatorPesticides setActiveState={setActiveState} />}
