@@ -6,7 +6,7 @@ import AiDiagnosis from './user/AiDiagnosis.jsx'
 import SelfDiagnosis from './user/SelfDiagnosis.jsx';
 import HisDiagnosis from './user/HisDiagnosis.jsx';
 import DpList from './user/DpList.jsx';
-// import DpDetail from './user/DpDetail.jsx';
+import DpDetail from './user/DpDetail.jsx';
 import FumigatorPesticides from './user/FumigatorPesticides';
 import Fumigator from './user/Fumigator.jsx'
 import Pesticides from './user/Pesticides.jsx'
@@ -25,7 +25,7 @@ const UserJoinPage = () => {
     const [showSelfDiagnosis, setShowSelfDiagnosis] = useState(false);
     const [showHisDiagnosis, setShowHisDiagnosis] = useState(false);
     const [showDpList, setShowDpList] = useState(false);
-    // const [showDpDetail, setShowDpDetail] = useState(false);
+    const [showDpDetail, setShowDpDetail] = useState(false);
     const [showFumigatorPesticides, setShowFumigatorPesticides] = useState(false);
     const [showFumigator, setShowFumigator] = useState(false);
     const [showPesticides, setShowPesticides] = useState(false);
@@ -33,6 +33,7 @@ const UserJoinPage = () => {
     const [showMyProfile, setShowMyProfile] = useState(false);
     const userData = useContext(AppData);
     const navigate = useNavigate();
+    const [dpNum, setDpNum] = useState();
 
     const buttonStyle = (button) => {
         return selectedButton === button ? {
@@ -53,7 +54,7 @@ const UserJoinPage = () => {
         setShowSelfDiagnosis(buttonType === 'SelfDiagnosis');
         setShowHisDiagnosis(buttonType === 'HisDiagnosis')
         setShowDpList(buttonType === 'DpList')
-        // setShowDpDetail(buttonType === 'DpDetail')
+        setShowDpDetail(buttonType === 'DpDetail')
         setShowFumigatorPesticides(buttonType === 'FumigatorPesticides')
         setShowFumigator(buttonType === 'Fumigator')
         setShowPesticides(buttonType === 'Pesticides')
@@ -67,7 +68,7 @@ const UserJoinPage = () => {
     const selfDiagnosis = () => setActiveState('SelfDiagnosis');
     const hisDiagnosis = () => setActiveState('HisDiagnosis');
     const dpList = () => setActiveState('DpList');
-    // const dpDetail = () => setActiveState('DpDetail');
+    const dpDetail = () => setActiveState('DpDetail');
     const fumigatorPesticides = () => setActiveState('FumigatorPesticides');
     const fumigator = () => setActiveState('Fumigator');
     const pesticides = () => setActiveState('Pesticides');
@@ -137,10 +138,10 @@ const UserJoinPage = () => {
                     {showDiagnosis && <Diagnosis setActiveState={setActiveState} />}
                     {showMyProfile && <MyProfile />}
                     {showAiDiagnosis && <AiDiagnosis />}
-                    {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState}/>}
+                    {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} />}
                     {showHisDiagnosis && <HisDiagnosis />}
-                    {showDpList && <DpList />}
-                    {/* {showDpDetail && <DpDetail />} */}
+                    {showDpList && <DpList setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
+                    {showDpDetail && <DpDetail dpNum={dpNum} />}
                     {showFumigatorPesticides && <FumigatorPesticides setActiveState={setActiveState} />}
                     {showFumigator && <Fumigator />}
                     {showPesticides && <Pesticides />}

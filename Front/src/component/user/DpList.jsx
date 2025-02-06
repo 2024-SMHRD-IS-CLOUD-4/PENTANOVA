@@ -5,7 +5,7 @@ import logo from '../../assets/logo.png'
 // import DpDetail from './DpDetail.jsx';
 import { DpData } from '../../function/AuthContext';
 
-const DpList = () => {
+const DpList = ({setActiveState, setDpNum})  => {
     const dpData = useContext(DpData);
     const navigate = useNavigate();
     const [dps, setDps] = useState([]);
@@ -35,7 +35,7 @@ const DpList = () => {
         };
         dpList();
     }, []);
-    
+    console.log(dps)
     return (
         /*병해충 도감*/
         <div id='dlMainBox'>
@@ -49,7 +49,8 @@ const DpList = () => {
                         <option value="dl0301">작물 선택</option>
                     </select>
                     <select name="dl03" id="dlchose03">
-                        <option value="dl0301">병/해충</option>
+                        <option value={false}>병</option>
+                        <option value={true}>해충</option>
                     </select>
                     <input type="text" placeholder='검색할 단어를 작성해주세요.'/>
                     <button>검색하기</button>
@@ -64,13 +65,14 @@ const DpList = () => {
                     ) : (
                         dps.map(dp => (
                             <div className='dlConBox' key={dp.dp_num} onClick={() => {
-                                navigate(`/dpDetail?id=${dp.dp_num}`)
+                                setDpNum(dp.dp_num);
+                                setActiveState('DpDetail');
                             }}>
                                 <div className='dlConImg'>
                                     <img src="" alt="dlimg" />
                                 </div>
                                 <div className='dlConTitle'>
-                                    <p><span>애플망고</span><span>{dp.category?"해충":"질병"}</span></p>
+                                    <p><span>{dp.crop.name}</span><span>{dp.category?"해충":"질병"}</span></p>
                                     <h3>{dp.name}</h3>
                                 </div>
                             </div>
@@ -78,17 +80,6 @@ const DpList = () => {
                     )}
                 </div>
             </div>
-
-            <ul>
-                {dps.map((dp, idx) => (
-                    <li key={dp.dp_num} onClick={() => {
-                        navigate(`/dpDetail?id=${dp.dp_num}`)
-                        
-                    }}>
-                        {dp.name}
-                    </li>
-                ))}
-            </ul>
         </div>
     )
 }

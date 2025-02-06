@@ -129,7 +129,7 @@ const Login = () => {
           </div>
         </div>
         {/* 로그인 페이지 왼쪽 하단 최근 공지사항 바로보기 박스 */}
-        <div id="loginNoticeBox"> {/*div 외부 링크로 이동시키는 방법 적용하기*/}
+        <div id="loginNoticeBox" onClick={()=> window.location.href='https://www.rda.go.kr/main/mainPage.do'}> {/*div 외부 링크로 이동시키는 방법 적용하기*/}
           <img src={rightArrow} alt="공지사항 바로가기" />
           <p>{year}.{month}.{day}</p>
           <h1>최근 공지사항 <br />바로보기</h1>
