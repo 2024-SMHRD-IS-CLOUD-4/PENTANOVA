@@ -73,9 +73,9 @@ const AiDiagnosis = () => {
             });
             setImage(response.data);
             console.log(response.data);
-            if(response.data.detected_classes[0]==1){
+            if(response.data.detected_classes[0]===1){
                 setDpName("총채벌레")
-            }else if(response.data.detected_classes[0]==2){
+            }else if(response.data.detected_classes[0]===2){
                 setDpName("그을음병")
             }else{
                 setDpName("정상")
@@ -132,15 +132,6 @@ const AiDiagnosis = () => {
 
 
     }
-
-    /*숫자에 맞춰 텍스트 반영하여 표시하기*/
-    const classMapping = {
-        0 : "정상",
-        999 : "정상",
-        7 : "그을음병",
-        15 : "총채벌레"
-    };
-
 
     return (
         <div id='adMainBox'>

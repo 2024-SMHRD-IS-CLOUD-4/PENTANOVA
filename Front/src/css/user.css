@@ -104,6 +104,13 @@
 
 /*버튼 컨트롤*/
 
+.userButton, .userButtonDiv{
+    width: 268px;
+    height: 100px;
+    background-color: rgba(76, 126, 65, 1);
+    margin-bottom: 20px;
+}
+
 #fpMainBox .userButton, #sdMainBox .userButton, #adConBox .userButton, .userButtonDiv{
     height: 72px;
 }
@@ -161,12 +168,7 @@
     font-size: 20px;
     margin-top: 13px;
 }
-.userButton, .userButtonDiv{
-    width: 268px;
-    height: 100px;
-    background-color: rgba(76, 126, 65, 1);
-    margin-bottom: 20px;
-}
+
 .userButton:last-child{
     margin-bottom: 0px;
 }

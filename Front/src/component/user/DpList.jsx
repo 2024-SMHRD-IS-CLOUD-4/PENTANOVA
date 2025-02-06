@@ -19,7 +19,7 @@ const DpList = ({setActiveState, setDpNum})  => {
                 response.data.map((dp, idx) => {
                     if (dpData.data[0]) {
                         dpData.data.map(dp_num => {
-                            if (dp.dp_num == dp_num) {
+                            if (dp.dp_num === dp_num) {
                                 setDps(dps => [...dps, dp])
                             }
                         })
