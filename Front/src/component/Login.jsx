@@ -106,23 +106,23 @@ const Login = () => {
         </div>
         {/* 로그인 페이지 왼쪽 상단 로그인 박스 */}
         <div id="loginBox">
-          <img class="logo" src={logo} alt="GROWELL Logo" />
-          <div class="loginBox">
+          <img className="logo" src={logo} alt="GROWELL Logo" />
+          <div className="loginBox">
             <form className="login-form" onSubmit={handleSubmit}>
 
-              <div class="loginIdPwBox">
+              <div className="loginIdPwBox">
                 <label htmlFor="id">ID</label>
                 <input type="text" name="id" id="id" placeholder='e-mail@gmail.com' onChange={handleChange} required />
               </div>
 
-              <div class="loginIdPwBox">
+              <div className="loginIdPwBox">
                 <label htmlFor="password">PW</label>
                 <input type="password" name="pw" id="password" onChange={handleChange} required />
               </div>
               <button className='button01' type="submit">로그인</button>
               <button className='button01' type="button" onClick={() => navigate('/kakao/callback')}>간편 로그인</button>
             </form>
-            <div class="loginBoxBt">
+            <div className="loginBoxBt">
               <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
               <button onClick={joinClick}>회원가입</button>
             </div>
@@ -138,8 +138,8 @@ const Login = () => {
 
       </div>
       {/* 배경 이미지 */}
-      <img class="bgimgFarmer" src={farmer} alt="farmer" />
-      <img class="bgimgAppleM" src={appleM} alt="appleM" />
+      <img className="bgimgFarmer" src={farmer} alt="farmer" />
+      <img className="bgimgAppleM" src={appleM} alt="appleM" />
     </div>
   );
 };
