@@ -126,7 +126,7 @@
     background-color: rgba(248, 248, 248, 1);
 }
 
-#diMainBox, #fpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox{
+#diMainBox, #fpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox, #fumMainBox{
     position: relative;
     width: 100%;
     height: 100%;
@@ -134,10 +134,10 @@
     text-align: center;
 }
 
-#sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox{
+#sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox, #fumMainBox{
     padding-top:30px;
 }
-#sdMainBox ul, #hdConBox, #pestContentBox, #dlConBox, #myConBox{
+#sdMainBox ul, #hdConBox, #pestContentBox, #dlConBox, #myConBox, #fumConBox{
     width: 80%;
     margin-top: 20%;
     margin: 10% auto 10% auto;
@@ -261,11 +261,12 @@ label:hover, #dlConBoxResult .dlConBox{
 }
 
 /*진단이력관리 HisDiagnosis*/
-
-
+#hdConBox{
+    width: 90%;
+}
 .hdConBox{
     position: relative;
-    width: 320px;
+    width: 100%;
     height: 95px;
     padding: 12px 23px;
     margin: 0 auto;
@@ -349,7 +350,7 @@ label:hover, #dlConBoxResult .dlConBox{
     border-bottom: 1px solid #ededed;
     border-radius: 0px;
 }
-.dlConBox:last-child, .pestResult:last-child{
+.dlConBox:last-child, .pestResult:last-child, .fumResult div:last-child{
     border-bottom: none;
 }
 .dlConTitle{
@@ -414,6 +415,26 @@ label:hover, #dlConBoxResult .dlConBox{
 }
 /*농약정보 상세 PesticidesDetail*/
 /*방제 정보 Fumigator*/
+#fumConBox{
+    height: 80%;
+    margin-top: 0;
+}
+.fumConBox{
+    width: 100%;
+    height: 100%;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+}
+.fumConBox select{
+    width: 100%;
+    text-align: center;
+}
+
+.fumBtnTogle{
+
+}
+
 /*내정보 확인하기*/
 #myConBox{
     height: 80%;
@@ -428,13 +449,13 @@ label:hover, #dlConBoxResult .dlConBox{
 #myConBox ul{
     margin-top: 40px;
 }
-#myConBox li, .pestResult div{
+#myConBox li, .pestResult div, .fumResult div{
     border-bottom: 1px solid #ededed;
     padding-top: 30px;
     padding-bottom: 2px;
     border-radius: 0px;
 }
-#myConBox li:first-child, .pestResult div{
+#myConBox li:first-child, .pestResult div, .fumResult div{
     padding-top: 0;
 }
 #myConBox li>p>button{

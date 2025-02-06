@@ -4,7 +4,7 @@ import axios from 'axios'
 import { AppData } from '../../function/AuthContext';
 import logo from '../../assets/logo.png'
 
-const HisDiagnosis = () => {
+const HisDiagnosis = ({setActiveState, setDpNum}) => {
   const navigate = useNavigate();
   const [diags, setDiags] = useState([]);
   const userData = useContext(AppData);
@@ -60,7 +60,8 @@ const HisDiagnosis = () => {
             .filter(diag => diag && diag.createdAt)  // 유효한 데이터만 필터링
             .map(diag => (
               <div className='hdConBox' key={diag.diag_num} onClick={() => {
-                navigate(`/diagDetail?id=${diag.diag_num}`);
+                setDpNum(diag.dp_num.dp_num);
+                setActiveState('DpDetail');
               }}>
                 <p>
                   <span className='hdTitle'>AI 진단</span>
