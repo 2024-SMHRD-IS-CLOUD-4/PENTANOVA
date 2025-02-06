@@ -140,7 +140,7 @@ const AiDiagnosis = ({ setActiveState }) => {
         setImageBase64(null);
         setImageSrc(null)
     }
-    
+
     /*숫자에 맞춰 텍스트 반영하여 표시하기*/
     const classMapping = {
         0: "정상",
