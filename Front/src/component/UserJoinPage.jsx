@@ -84,7 +84,7 @@ const UserJoinPage = () => {
         <div id="userBody">
             <div id="userMainBox">
                 <div id="userLeftBox">
-                    <h3>{shareData.data.nick}<span> 님</span></h3>
+                    <h3>{shareData.data?.nick || '비회원'}<span> 님</span></h3>
                     <ul id="userMenuBox">
                         <li>
                             <HoverArrow>
@@ -132,7 +132,7 @@ const UserJoinPage = () => {
                             <HoverArrow><button onClick={myProfile} style={buttonStyle('MyProfile')}>내정보 확인하기</button></HoverArrow>
                         </li>
                     </ul>
-                    <button onClick={logout}>로그아웃</button>
+                    <button id="logoutButton" onClick={logout}>로그아웃</button>
                 </div>
                 <div id="userRightBox">
                     {showDiagnosis && <Diagnosis setActiveState={setActiveState} />}

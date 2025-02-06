@@ -69,7 +69,7 @@ const DpList = ({setActiveState, setDpNum})  => {
                                 setActiveState('DpDetail');
                             }}>
                                 <div className='dlConImg'>
-                                    <img src="" alt="dlimg" />
+                                    <img src="" alt={dp.name} />
                                 </div>
                                 <div className='dlConTitle'>
                                     <p><span>{dp.crop.name}</span><span>{dp.category?"해충":"질병"}</span></p>
