@@ -13,6 +13,8 @@ import Pesticides from './user/Pesticides.jsx'
 // import PesticidesDetail from './user/PesticidesDetail.jsx'
 import MyProfile from './user/MyProfile.jsx';
 import HoverArrow from './user/HoverArrow.jsx'
+import ChangeProfile from './user/ChangeProfile.jsx';
+import RequestAuth from './user/RequestAuth.jsx';
 import { AppData } from '../function/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,6 +31,8 @@ const UserJoinPage = () => {
     const [showPesticides, setShowPesticides] = useState(false);
     // const [showPesticidesDetail, setShowPesticidesDetail] = useState(false);
     const [showMyProfile, setShowMyProfile] = useState(false);
+    const [showChangeProfile, setShowChangeProfile] = useState(false);
+    const [showRequestAuth, setShowRequestAuth] = useState(false);
     
     const userData = useContext(AppData);
     const navigate = useNavigate();
@@ -60,6 +64,8 @@ const UserJoinPage = () => {
         setShowPesticides(buttonType === 'Pesticides')
         // setShowPesticidesDetail(buttonType === 'PesticidesDetail')
         setShowMyProfile(buttonType === 'MyProfile');
+        setShowChangeProfile(buttonType === 'ChangeProfile');
+        setShowRequestAuth(buttonType === 'RequestAuth');
     };
 
     const diagnosis = () => setActiveState('Diagnosis');
@@ -138,7 +144,6 @@ const UserJoinPage = () => {
                 </div>
                 <div id="userRightBox">
                     {showDiagnosis && <Diagnosis setActiveState={setActiveState} />}
-                    {showMyProfile && <MyProfile  setActiveState={setActiveState} />}
                     {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
                     {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} setDpNums={setDpNums}/>}
                     {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
@@ -147,6 +152,9 @@ const UserJoinPage = () => {
                     {showFumigatorPesticides && <FumigatorPesticides setActiveState={setActiveState} />}
                     {showFumigator && <Fumigator />}
                     {showPesticides && <Pesticides />}
+                    {showMyProfile && <MyProfile  setActiveState={setActiveState} />}
+                    {showChangeProfile&&<ChangeProfile/>}
+                    {showRequestAuth&&<RequestAuth/>}
                     {/* {showPesticidesDetail && <PesticidesDetail />} */}
                     <nav id='userBtnNav'>
                         <button id='userNavChange'></button>

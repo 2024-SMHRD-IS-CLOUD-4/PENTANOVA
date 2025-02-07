@@ -5,8 +5,7 @@ import useConfirm from '../../function/UseConfirm';
 import axios from 'axios'
 import logo from '../../assets/logo.png'
 
-const MyProfile = ({setActiveState}) => {
-    const hisDiagnosis = () => setActiveState('HisDiagnosis');
+const MyProfile = ({ setActiveState }) => {
     const confirm = useConfirm();
     const shareData = useContext(AppData);
     const navigate = useNavigate();
@@ -27,9 +26,9 @@ const MyProfile = ({setActiveState}) => {
             }
         }
     };
-    const deleteUser = () =>{
+    const deleteUser = () => {
         const result = confirm('탈퇴?')
-        if(result){
+        if (result) {
             DeleteUser();
         }
     }
@@ -44,14 +43,14 @@ const MyProfile = ({setActiveState}) => {
                 <ul>
                     <li>
                         <p>아이디<span>(이메일형식)</span></p>
-                        <p>{shareData.data ? shareData.data.id: null}</p>
+                        <p>{shareData.data ? shareData.data.id : null}</p>
                     </li>
                     <li>
                         <p>비밀번호</p>
-                        <p>{shareData.data ? shareData.data.pw: null}</p>
+                        <p>{shareData.data ? shareData.data.pw : null}</p>
                     </li>
                     <li>
-                        <p>회원 등급<button onClick={()=>{navigate('/requestAuth')}}>권한 요청</button></p>
+                        <p>회원 등급<button onClick={() => { setActiveState('RequestAuth') }}>권한 요청</button></p>
                         <p>{shareData.data ? shareData.data.role : null}</p>
                     </li>
                     <li>
@@ -62,13 +61,13 @@ const MyProfile = ({setActiveState}) => {
                         <p>지역</p>
                         <p>{shareData.data ? shareData.data.location : null}</p>
                     </li>
-                    <li> 
+                    <li>
                         <p>{shareData.data ? shareData.data.institue : null}</p>
                     </li>
                 </ul>
-                <button onClick={hisDiagnosis}>AI, 자가 진단 이력 관리</button>
-                <button onClick={()=>{navigate('/changeProfile')}}>회원정보 수정</button>
-                <button onClick={deleteUser}>회원탈퇴</button>             
+                <button onClick={() => setActiveState('HisDiagnosis')}>AI, 자가 진단 이력 관리</button>
+                <button onClick={() => setActiveState('ChangeProfile')}>회원정보 수정</button>
+                <button onClick={deleteUser}>회원탈퇴</button>
             </div>
         </div>
     )
