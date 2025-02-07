@@ -72,7 +72,7 @@ const DpDetail = ({ dpNum }) => {
           <p>{dp.crop.name}</p>
           <h2>{dp.name}</h2>
           <p>{dp.eng_name}</p>
-          <img src={!loading ? imageUrl[dp.dp_num] : { testImg }} alt="갈색둥근무늬병" />
+          <img src={!loading ? imageUrl[dp.dp_num] : { testImg }} alt={dp.name} />
           <div>
             <p>발병시기 : {dp.season}</p>
             <p>주 발생 부위 : {dp.site}</p>

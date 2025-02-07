@@ -330,10 +330,26 @@ label:hover, #dlConBoxResult .dlConBox{
     height: 80%;
 }
 
+#dlConBoxResult{
+    height: 90%;
+}
 #dlConBoxSearch, #pestSerch{
+    display: inline-block;
     width: 100%;
 }
-#dlConBoxSearch input, #pestSerch input{
+#dlConBoxSearch > select, #dlConBoxSearch > input, #dlConBoxSearch button{
+    float: left;
+}
+#dlConBoxSearch input{
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    border-bottom: 1px solid #ededed;
+    border-radius: 0px;
+    background-color: transparent;
+}
+#pestSerch input{
     width: 220px;
     height: 30px;
     line-height: 30px;
@@ -511,6 +527,7 @@ label:hover, #dlConBoxResult .dlConBox{
     font-size: 12px;
     font-weight: 300;
     line-height: 160%;
+    overflow-y: scroll;
 }
 
 /*농약 및 방제 정보 FumigatorPesticides*/

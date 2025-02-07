@@ -57,8 +57,10 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
                 <div id='dlConBoxSearch'>
                     <select name="dl03" id="dlchose01">
                         <option value="dl0301">전체</option>
+                        <option value="dl0302">작물명</option>
+                        <option value="dl0303">병명</option>
                     </select>
-                    <select name="dl03" id="dlchose02">
+                    {/* <select name="dl03" id="dlchose02">
                         <option value="dl0301">작물 선택</option>
                         {crops.map((crop, idx)=>{
 
@@ -67,8 +69,8 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
                     <select name="dl03" id="dlchose03">
                         <option value={false}>병</option>
                         <option value={true}>해충</option>
-                    </select>
-                    <input type="text" placeholder='검색할 단어를 작성해주세요.' />
+                    </select> */}
+                    <input type="text" placeholder='검색어 입력' />
                     <button>검색하기</button>
                 </div>
                 <div id='dlConBoxResult'>
