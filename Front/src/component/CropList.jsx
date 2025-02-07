@@ -34,17 +34,16 @@ const CropList = () => {
         };
         cropList();
     }, []);
-
+    
     return (
         <div>
             <h1>CropList</h1>
             {crops.map((crop, idx) => {
                 return <div>
                     <img key={idx} src={imageUrls[crop.name]} onClick={() => navigate('/dpList?')} />
-                    <span>{crop.name}</span>
+                    <button type='button'>{crop.name}</button>
                 </div>
             })}
-
         </div>
     )
 }
