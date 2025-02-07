@@ -29,6 +29,7 @@ const UserJoinPage = () => {
     const [showPesticides, setShowPesticides] = useState(false);
     // const [showPesticidesDetail, setShowPesticidesDetail] = useState(false);
     const [showMyProfile, setShowMyProfile] = useState(false);
+    
     const userData = useContext(AppData);
     const navigate = useNavigate();
     const [dpNum, setDpNum] = useState();

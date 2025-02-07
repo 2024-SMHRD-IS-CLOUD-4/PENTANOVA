@@ -22,7 +22,7 @@ import UserManagement from './component/UserManagement';
 import FieldGuide from './component/FieldGuide';
 import UserDetail from './component/UserDetail';
 import DiagDetail from './component/DiagDetail';
-import ChangeProfile from './component/ChangeProfile';
+import ChangeProfile from './component/user/ChangeProfile';
 import RequestAuth from './component/user/RequestAuth';
 import JipJoinPage from './component/JipJoinPage';
 import CropList from './component/CropList';

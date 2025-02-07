@@ -6,6 +6,7 @@ import { DpData } from '../../function/AuthContext';
 
 const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
     const [dps, setDps] = useState([]);
+    const [crops, setCrops] = useState([]);
     const [searchParams] = useSearchParams();
     const [imageUrls, setImageUrls] = useState([{}]);
     const [loading, setLoading] = useState(true);
@@ -13,7 +14,7 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
         const dpList = async () => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`);
-                console.log(response.data);
+                const response2 = await axios.get(`${process.env.REACT_APP_connect}/crop/cropList`);
                 response.data.map((dp, idx) => {
                     if (dpNums[0]) { 
                         dpNums.map(dp_num => {
@@ -24,6 +25,7 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
                     } else {
                         setDps(dps => [...dps, dp])
                     }
+                    setCrops(response2.data);
                 })
                 const imagePromises = response.data.map(dp =>
                     fetch(`${process.env.REACT_APP_connect}/bucket/getImages/DiseasePests/${dp.crop.eng_name}/${dp.img}`)
@@ -58,6 +60,9 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
                     </select>
                     <select name="dl03" id="dlchose02">
                         <option value="dl0301">작물 선택</option>
+                        {crops.map((crop, idx)=>{
+
+                        })}
                     </select>
                     <select name="dl03" id="dlchose03">
                         <option value={false}>병</option>
