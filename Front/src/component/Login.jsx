@@ -57,8 +57,8 @@ const Login = () => {
   }
 
   const loginButton = () => {
-    const clientId = '22192e7a34b82d69230ba35d1b252067';
-    const redirectUri = 'http://localhost:3000/kakao/callback';
+    const clientId = '${process.env.REACT_APP_redirect_url}';
+    const redirectUri = `${process.env.REACT_APP_redirect_url}`;
     const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`
     window.location.href = kakaoURL
   }

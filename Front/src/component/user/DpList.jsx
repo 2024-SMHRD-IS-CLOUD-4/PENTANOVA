@@ -53,12 +53,9 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
     useEffect(() => {
         setDps(tpDps);
     }, [trigger])
-    console.log(dps)
 
     const findText = async () => {
         if (typeRef.current.value && textRef.current.value) {
-            console.log(textRef.current.value)
-            console.log(typeRef.current.value)
             try {
                 const response = await axios.post(`${process.env.REACT_APP_connect}/dp/findText`, null, {
                     params: {
@@ -69,8 +66,6 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
                 if (!response.data[0]) {
                     alert('일치하는 정보가 없습니다.')
                 }
-                console.log(response.data)
-                console.log(response.data[0].dp_num);
                 if (response.data[0].dp_num) {
                     setDps(response.data);
                 } else {

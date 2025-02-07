@@ -7,7 +7,7 @@ import '../../css/all.css'
 import '../../css/user.css'
 import arrow from '../../assets/right_arrow_black.png'
 
-const AiDiagnosis = () => {
+const AiDiagnosis = ({setActiveState}) => {
     const shareData = useContext(AppData);
     const navigate = useNavigate();
     const [file, setFile] = useState(null);
@@ -102,8 +102,6 @@ const AiDiagnosis = () => {
     };
 
     const saveData = async () => {
-
-        console.log(uploadFile);
         try {
             const response = await axios.post(`${process.env.REACT_APP_connect}/bucket/upload`, uploadFile, {
                 headers: {
@@ -119,7 +117,7 @@ const AiDiagnosis = () => {
                     'Content-Type': 'application/json'
                 }
             })
-            navigate('/hisDiagnosis');
+            setActiveState('HisDiagnosis')
         } catch (error) {
             console.error(error);
         }
