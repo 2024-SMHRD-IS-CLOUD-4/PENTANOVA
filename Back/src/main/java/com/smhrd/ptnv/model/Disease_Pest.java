@@ -39,6 +39,9 @@ public class Disease_Pest {
 
 	@Column(length = 50, nullable = false)
 	private String name;
+	
+	@Column(length = 50)
+	private String eng_name;
 
 	@Column(nullable = false)
 	private boolean category;

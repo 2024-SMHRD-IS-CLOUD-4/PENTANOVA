@@ -46,6 +46,11 @@ public class BucketController {
 	public ResponseEntity<byte[]> testSample(HttpServletRequest request) throws IOException {
 		String currentPath = request.getRequestURI();
 		String path = currentPath.split("/")[4] + "/" + currentPath.split("/")[5];
+		if (currentPath.split("/").length == 7) {
+			path += "/" + currentPath.split("/")[6];
+		} else {
+
+		}
 		S3ObjectInputStream img = fileService.getImages(path);
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(IOUtils.toByteArray(img));
 	}
