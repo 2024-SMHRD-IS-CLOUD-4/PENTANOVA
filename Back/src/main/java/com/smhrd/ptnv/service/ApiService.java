@@ -22,7 +22,6 @@ public class ApiService {
 				.queryParam("apiKey", "2025bf1f57887434fa9bc8ee7093125f1559").queryParam("serviceCode", "SVC05")
 				.queryParam("sickKey", 2).build();
 		System.out.println(result);
-		// GET 방식으로 API 호출하고 결과를 문자열로 반환
 
 		return restTemplate.getForObject(result.toUri(), String.class);
 	}
