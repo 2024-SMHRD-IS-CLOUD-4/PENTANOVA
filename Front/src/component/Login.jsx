@@ -40,7 +40,7 @@ const Login = () => {
       if (user.role === '일반사용자') {
         navigate('/UserJoinPage');
       } else {
-        navigate('/dashboard');
+        navigate('/AdminJoinPage');
       }
     }
   }, [isLoggedIn, navigate, user]);  // isLoggedIn 의존성 추가
