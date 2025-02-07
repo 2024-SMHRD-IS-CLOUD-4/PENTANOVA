@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -40,7 +41,7 @@ public class Disease_Pest {
 	@Column(length = 50, nullable = false)
 	private String name;
 	
-	@Column(length = 50)
+	@Column(length = 50, nullable = false)
 	private String eng_name;
 
 	@Column(nullable = false)
@@ -55,6 +56,10 @@ public class Disease_Pest {
 	@Column(length = 500, nullable = false)
 	private String argu;
 
+	@Lob
+	@Column
+	private String content;
+	
 	@Column(length = 255)
 	private String img;
 

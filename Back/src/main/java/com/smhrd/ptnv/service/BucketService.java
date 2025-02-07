@@ -60,7 +60,6 @@ public class BucketService {
 			try (InputStream inputStream = multipartFile.getInputStream()) {
 
 				String keyName = "HisDiagnosis/" + uploadFileName;
-				System.out.println(keyName);
 				amazonS3Client.putObject(new PutObjectRequest(bucketName, keyName, inputStream, objectMetadata)
 						.withCannedAcl(CannedAccessControlList.PublicRead));
 
@@ -76,7 +75,6 @@ public class BucketService {
 	}
 
 	public S3ObjectInputStream getImages(String path) {
-		System.out.println(path);
 		S3Object s3Object = amazonS3Client.getObject(bucketName, path);
 		S3ObjectInputStream s3ObjectInputStream = s3Object.getObjectContent();
 		return s3ObjectInputStream;
