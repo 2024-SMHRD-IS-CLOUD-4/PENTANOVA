@@ -38,7 +38,6 @@ public class BucketController {
 		MultipartFile multipartFile = new MockMultipartFile("image.png", bis);
 		List<MultipartFile> asd = new ArrayList<MultipartFile>();
 		asd.add(0, multipartFile);
-		System.out.println(multipartFile);
 		return ResponseEntity.status(HttpStatus.OK).body(fileService.uploadFiles(asd, filename));
 	}
 

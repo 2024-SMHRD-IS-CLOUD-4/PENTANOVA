@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smhrd.ptnv.model.Crop;
 import com.smhrd.ptnv.model.Diagnosis;
 import com.smhrd.ptnv.model.Disease_Pest;
+import com.smhrd.ptnv.service.CropService;
 import com.smhrd.ptnv.service.DpService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class DpController {
 
 	private final DpService service;
+	private final CropService cropService;
 
 	@PostMapping("/addDp")
 	public ResponseEntity<Disease_Pest> addDp(Disease_Pest dp) {
@@ -58,8 +61,6 @@ public class DpController {
 	
 	@PostMapping("/selfCheck")
 	public ResponseEntity<Long []> selfCheck(@RequestBody Disease_Pest dp) {
-		System.out.println(dp);
-		System.out.println(dp.getCrop().getCrop_num());
 		Long [] result = service.selfCheck(dp);
 		
 		if (result == null) {
@@ -68,5 +69,20 @@ public class DpController {
 			return ResponseEntity.ok(result);
 		}
 	}
+	
+	@PostMapping("/findText")
+	public ResponseEntity<Object> findText(@RequestParam String text, @RequestParam boolean type) {
+		if(type) {
+			List<Disease_Pest> result = service.findText(text);
+			System.out.println(result);
+			return ResponseEntity.ok(result);
+		}else {
+			List<Crop> result = cropService.findText(text);
+			System.out.println(result);
+			return ResponseEntity.ok(result);
+		}
+		
+	}
+	
 
 }

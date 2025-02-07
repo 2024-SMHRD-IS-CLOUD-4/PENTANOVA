@@ -49,4 +49,9 @@ public class DpService {
 		}
 		return arr;
 	}
+	
+	public List<Disease_Pest> findText(String text){
+		return repository.findByNameContainingIgnoreCase(text);
+	}
+	
 }

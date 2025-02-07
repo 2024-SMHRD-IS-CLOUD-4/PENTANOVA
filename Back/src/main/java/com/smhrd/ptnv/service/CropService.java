@@ -12,11 +12,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class CropService {
-	
+
 	private final CropRepository repository;
 
-	public List<Crop> cropList(){
+	public List<Crop> cropList() {
 		System.out.println("asdfff");
 		return repository.findAll();
+	}
+
+	public List<Crop> findText(String text) {
+		return repository.findByNameContainingIgnoreCase(text);
 	}
 }
