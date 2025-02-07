@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from 'react'
 import axios from 'axios'
-import { AppData } from '../function/AuthContext'
+import { AppData } from '../../function/AuthContext';
 
 const RequestAuth = () => {
     const shareData = useContext(AppData);

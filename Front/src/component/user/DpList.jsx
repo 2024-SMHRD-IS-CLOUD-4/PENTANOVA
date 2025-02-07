@@ -4,11 +4,9 @@ import axios from 'axios'
 import logo from '../../assets/logo.png'
 import { DpData } from '../../function/AuthContext';
 
-const DpList = ({ setActiveState, setDpNum }) => {
-    const dpData = useContext(DpData);
+const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
     const [dps, setDps] = useState([]);
     const [searchParams] = useSearchParams();
-    const crop_num = searchParams.get('crop_num');
     const [imageUrls, setImageUrls] = useState([{}]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -17,8 +15,8 @@ const DpList = ({ setActiveState, setDpNum }) => {
                 const response = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`);
                 console.log(response.data);
                 response.data.map((dp, idx) => {
-                    if (dpData.data[0]) {
-                        dpData.data.map(dp_num => {
+                    if (dpNums[0]) { 
+                        dpNums.map(dp_num => {
                             if (dp.dp_num === dp_num) {
                                 setDps(dps => [...dps, dp])
                             }
@@ -28,12 +26,7 @@ const DpList = ({ setActiveState, setDpNum }) => {
                     }
                 })
                 const imagePromises = response.data.map(dp =>
-                    fetch(`${process.env.REACT_APP_connect}/bucket/getImages/DiseasePests/${dp.crop.eng_name}/${dp.img}`,{
-                        method: "GET",
-                        headers:{
-                            "Content-Type": "application/json; charset=utf-8"
-                        }
-                    })
+                    fetch(`${process.env.REACT_APP_connect}/bucket/getImages/DiseasePests/${dp.crop.eng_name}/${dp.img}`)
                         .then(response => response.blob())
                         .then(blob => ({
                             [dp.name]: URL.createObjectURL(blob)
@@ -85,6 +78,7 @@ const DpList = ({ setActiveState, setDpNum }) => {
                             <div className='dlConBox' key={dp.dp_num} onClick={() => {
                                 setDpNum(dp.dp_num);
                                 setActiveState('DpDetail');
+                                setDpNums([]);
                             }}>
                                 <div className='dlConImg'>
                                 <img key={idx} src={imageUrls[dp.name]} />

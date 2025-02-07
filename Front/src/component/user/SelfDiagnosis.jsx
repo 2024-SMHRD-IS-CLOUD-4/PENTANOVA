@@ -6,15 +6,13 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { DpData } from '../../function/AuthContext'
 
-const SelfDiagnosis = ({setActiveState}) => {
+const SelfDiagnosis = ({ setActiveState, setDpNums }) => {
 
-  const navigate = useNavigate();
-  const dpData = useContext(DpData);
   const [dps, setDps] = useState([]);
   const [crops, setCrops] = useState([]);
   const [selected, setSelected] = useState("토픽 선택");
   const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const sites = ['잎', '과실', '가지']
+  const sites = ['잎', '과실', '가지', '뿌리']
   const [formData, setFormData] = useState({})
   useEffect(() => {
     const dpList = async () => {
@@ -57,7 +55,7 @@ const SelfDiagnosis = ({setActiveState}) => {
     } else {
       if (name == 'crop') {
         setFormData({ ...formData, crop: { crop_num: Number(value) } })
-      }else{
+      } else {
         setFormData({ ...formData, [name]: value })
       }
     }
@@ -71,14 +69,14 @@ const SelfDiagnosis = ({setActiveState}) => {
         },
       });
       console.log(response.data);
-      dpData.setData(response.data)
-      if(!formData["crop"]||!formData["site"]){
+      setDpNums(response.data);
+      if (!formData["crop"] || !formData["site"]) {
         alert('필수 정보를 입력해 주세요');
         return;
       }
-      if(response.data[0]){
+      if (response.data[0]) {
         setActiveState('DpList');
-      }else{
+      } else {
         alert("일치하는 정보가 없습니다.")
       }
     } catch (error) {
@@ -86,7 +84,7 @@ const SelfDiagnosis = ({setActiveState}) => {
       alert("정보를 입력하세요!")
     }
   }
-  
+
   return (
     <div id='sdMainBox'>
       <img className='smallLogo' src={logo} alt="GROWELL" />
@@ -121,13 +119,13 @@ const SelfDiagnosis = ({setActiveState}) => {
               })}
             </select>
           </li>
-          
+
           <li>
             <p>피해 특징 <span>(선택)</span></p>
             <select name="argu" onChange={handleSelect}>
               <option>작물 피해 특징 선택</option>
               {dps.map(dp => {
-                return <option>{dp.argu}</option> 
+                return <option>{dp.argu}</option>
               })}
             </select>
           </li>

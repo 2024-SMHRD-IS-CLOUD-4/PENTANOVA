@@ -32,6 +32,7 @@ const UserJoinPage = () => {
     const userData = useContext(AppData);
     const navigate = useNavigate();
     const [dpNum, setDpNum] = useState();
+    const [dpNums, setDpNums] = useState([]);
 
     const buttonStyle = (button) => {
         return selectedButton === button ? {
@@ -138,9 +139,9 @@ const UserJoinPage = () => {
                     {showDiagnosis && <Diagnosis setActiveState={setActiveState} />}
                     {showMyProfile && <MyProfile  setActiveState={setActiveState} />}
                     {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
-                    {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} />}
+                    {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} setDpNums={setDpNums}/>}
                     {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
-                    {showDpList && <DpList setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
+                    {showDpList && <DpList setActiveState={setActiveState} setDpNum={setDpNum} dpNums={dpNums} setDpNums={setDpNums}/>}
                     {showDpDetail && <DpDetail dpNum={dpNum} />}
                     {showFumigatorPesticides && <FumigatorPesticides setActiveState={setActiveState} />}
                     {showFumigator && <Fumigator />}

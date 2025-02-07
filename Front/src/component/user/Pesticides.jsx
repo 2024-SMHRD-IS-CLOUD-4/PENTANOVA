@@ -3,6 +3,8 @@ import logo from '../../assets/logo.png'
 import arrow from '../../assets/right_arrow_black.png'
 
 function Pesticides() {
+
+  
   return (
     // 농약 검색 페이지
     <div id='pestMainBox'>

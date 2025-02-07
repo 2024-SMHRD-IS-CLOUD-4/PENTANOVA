@@ -23,7 +23,7 @@ import FieldGuide from './component/FieldGuide';
 import UserDetail from './component/UserDetail';
 import DiagDetail from './component/DiagDetail';
 import ChangeProfile from './component/ChangeProfile';
-import RequestAuth from './component/RequestAuth';
+import RequestAuth from './component/user/RequestAuth';
 import JipJoinPage from './component/JipJoinPage';
 import CropList from './component/CropList';
 import LoginApi from './component/api/LoginApi'

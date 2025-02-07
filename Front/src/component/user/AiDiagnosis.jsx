@@ -7,21 +7,20 @@ import '../../css/all.css'
 import '../../css/user.css'
 import arrow from '../../assets/right_arrow_black.png'
 
-const AiDiagnosis = ({ setActiveState }) => {
+const AiDiagnosis = () => {
     const shareData = useContext(AppData);
     const navigate = useNavigate();
     const [file, setFile] = useState(null);
     const [imageBase64, setImageBase64] = useState('');
     const [predictions, setPredictions] = useState([]);
     const [responseMessage, setResponseMessage] = useState('');
-    const [startTime, setStartTime] = useState(null);
-    const [endTime, setEndTime] = useState(null);
-    const [image, setImage] = useState();
     const [imageSrc, setImageSrc] = useState(null);
-    const [dpName, setDpName] = useState(null);
+    const [dpName, setDpName] = useState();
+    const [dpData, setDpData] = useState();
+    const [uploadFile, setUploadFile] = useState({});
     const [formData2, setFormData2] = useState({
         dp_num: {
-            dp_num: 1,
+            dp_num: null,
         },
         diag_content: '',
         diag_region: shareData.data.location.split('/')[0],
@@ -35,7 +34,6 @@ const AiDiagnosis = ({ setActiveState }) => {
     const date = (JSON.stringify(today));
     const filename = date.split('.')[0] + '-appleMango';
     const reviseFilename = filename.replace(/"/g, "");
-    const uploadFile = new FormData();
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
@@ -72,36 +70,29 @@ const AiDiagnosis = ({ setActiveState }) => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            setImage(response.data);
-            console.log(response.data);
+            const data = response.data;
+            setDpData(response.data);
+            setResponseMessage(data.message);
+
             if (response.data.detected_classes[0] === 1) {
-                setDpName("총채벌레")
-                uploadFile.append('dp_num', { dp_num: 2 });
-            } else if (response.data.detected_classes[0] === 2) {
                 setDpName("그을음병")
-                uploadFile.append('dp_num', { dp_num: 1 });
+            } else if (response.data.detected_classes[0] === 2) {
+                setDpName("총채벌레")
             } else {
                 setDpName("정상")
             }
-            const data = response.data;
-            uploadFile.append('img', imageBase64);
-            uploadFile.append('filename', reviseFilename);
-            setResponseMessage(data.message);
 
             if (data.image) {
                 setImageBase64(data.image);
                 setPredictions(data.predictions);
-                setStartTime(data.start_time);
-                setEndTime(data.end_time);
-                setFormData2({ ...formData2, diag_img: reviseFilename + ".png", diag_content: data.predictions[0].confidence.toFixed(2) });
+                setFormData2({ ...formData2, diag_img: reviseFilename + ".png", diag_content: data.predictions[0].confidence.toFixed(2), dp_num: { dp_num: data.detected_classes[0] == 1 ? 1 : 2 } });
                 setImageSrc(
                     `data:image/png;base64,${data.image}`
                 )
+                setUploadFile({ ...uploadFile, img: data.image, filename: reviseFilename })
             } else {
                 setImageBase64('');
                 setPredictions([]);
-                setStartTime(null);
-                setEndTime(null);
             }
 
         } catch (error) {
@@ -112,7 +103,7 @@ const AiDiagnosis = ({ setActiveState }) => {
 
     const saveData = async () => {
 
-
+        console.log(uploadFile);
         try {
             const response = await axios.post(`${process.env.REACT_APP_connect}/bucket/upload`, uploadFile, {
                 headers: {
@@ -128,13 +119,12 @@ const AiDiagnosis = ({ setActiveState }) => {
                     'Content-Type': 'application/json'
                 }
             })
-            setActiveState('HisDiagnosis');
+            navigate('/hisDiagnosis');
         } catch (error) {
             console.error(error);
         }
-
-
     }
+
     const repeat = () => {
         setImageBase64(null);
         setImageSrc(null)
