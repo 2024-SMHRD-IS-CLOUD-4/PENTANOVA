@@ -8,12 +8,12 @@ const ChangeProfile = () => {
 
     const shareData = useContext(AppData);
     const [formData, setFormData] = useState({
-        id: shareData.data.id,
+        id: shareData.data?shareData.data.id:null,
         pw: '',
         phone: '',
         nick: '',
         location: '',
-        role: shareData.data.role,
+        role: shareData.data?shareData.data.role:null,
         institute: ''
     });
     const handleChange = (e) => {
@@ -48,7 +48,7 @@ const ChangeProfile = () => {
     }
     const institute = (
         <li>
-            <label>소속 기관 : </label><input type="text" name="institute" value={formData.institute} onChange={handleChange} placeholder={shareData.data.institute} readOnly/>
+            <label>소속 기관 : </label><input type="text" name="institute" value={formData.institute} onChange={handleChange} placeholder={shareData.data?shareData.data.institute:null} readOnly/>
         </li>
     );
 
@@ -56,7 +56,7 @@ const ChangeProfile = () => {
 
         <div>
             <h1>ChangeProfile</h1>
-            <form onSubmit={updateData}>
+            {shareData.data && <form onSubmit={updateData}>
                 <ul>
                     <li><label>아이디 : </label><input type="text" value={shareData.data.id} readOnly /></li>
                     {shareData.data.pw?<li><label>비밀번호 : </label><input type="password" name="pw" value={formData.pw} onChange={handleChange} /></li>:null}
@@ -66,7 +66,7 @@ const ChangeProfile = () => {
                     {formData.role === '관리자' ? { institute } : null}
                 </ul>
                 <button type='submit' onClick={updateData}>수정하기</button>
-            </form>
+            </form>}
         </div>
     )
 }

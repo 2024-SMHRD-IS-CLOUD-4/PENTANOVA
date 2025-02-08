@@ -103,7 +103,6 @@ const Login = () => {
       }
     }
   };
-
   return (
     <div id='loginBody'>
       {/* 로그인박스, 공지사항 보기, 날씨 총 3개 박스 가운데 정렬하는 div */}

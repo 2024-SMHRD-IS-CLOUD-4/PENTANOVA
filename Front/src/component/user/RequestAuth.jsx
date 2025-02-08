@@ -31,10 +31,10 @@ const RequestAuth = () => {
     return (
         <div>
             <h1>RequestAuth</h1>
-            <form onSubmit={sendAuth}>
+            {shareData && <form onSubmit={sendAuth}>
                 <input type="text" ref={instituteRef} placeholder='소속 기관을 기입하세요.' required/><br/>
                 <button type='submit'>권한 요청하기</button>
-            </form>
+            </form>}
         </div>
     )
 }
