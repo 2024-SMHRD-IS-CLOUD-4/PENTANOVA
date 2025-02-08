@@ -57,7 +57,7 @@ const Login = () => {
   }
 
   const loginButton = () => {
-    const clientId = '${process.env.REACT_APP_redirect_url}';
+    const clientId = `${process.env.REACT_APP_rest_api_key}`;
     const redirectUri = `${process.env.REACT_APP_redirect_url}`;
     const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`
     window.location.href = kakaoURL
