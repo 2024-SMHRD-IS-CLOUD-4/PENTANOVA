@@ -13,7 +13,14 @@ import AdminDpList from './admin/AdminDpList.jsx';
 
 import { AppData } from '../function/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
+
 import Logo from '../assets/logo.png'
+import adminLogout from '../assets/logout.png'
+
+import Db from '../assets/userNavDb.png'; // 대시보드
+import Um from '../assets/userNavUM.png'; // AI 문답
+import Dp from '../assets/userNavDp.png'; // 도감
+import My from '../assets/userNavMy.png'; // 사용자관리
 
 function AdminJoinPage() {
     const [selectedButton, setSelectedButton] = useState('Diagnosis');// 현재 선택된 버튼 추적
@@ -74,28 +81,31 @@ function AdminJoinPage() {
         <div id="adminBody">
             <div id="adminMainBox">
                 <div id="adminLeftBox">
-                    <h3>{shareData.data ? shareData.data.nick : '비회원'}<span> 님</span></h3>
                     <ul id="adminMenuBox">
                         <li>
-                            <button onClick={dashboard} style={buttonStyle('Dashboard')}>대시보드</button>
+                            <button onClick={dashboard} style={buttonStyle('Dashboard')}>
+                                <img src={Db} alt="대시보드" />
+                            </button>
                         </li>
                         <li>
-                            <button onClick={diagDetail} style={buttonStyle('DiagDetail')}>모름</button>
+                            <button onClick={promotionManagement} style={buttonStyle('PromotionManagement')}>
+                                <img src={Um} alt="병해충 AI 검색" />
+                            </button>
                         </li>
                         <li>
-                            <button onClick={promotionManagement} style={buttonStyle('PromotionManagement')}>병해충 AI 검색</button>
+                            <button onClick={pestManagement} style={buttonStyle('PestManagement')}>
+                                <img src={Dp} alt="병해충 도감" />
+                            </button>
                         </li>
                         <li>
-                            <button onClick={pestManagement} style={buttonStyle('PestManagement')}>병해충 도감</button>
-                        </li>
-                        <li>
-                            <button onClick={userManagement} style={buttonStyle('UserManagement')}>사용자 관리</button>
-                        </li>
-                        <li>
-                            <button onClick={userDetail} style={buttonStyle('UserDetail')}>사용자 정보 세부 내역</button>
+                            <button onClick={userManagement} style={buttonStyle('UserManagement')}>
+                                <img src={My} alt="사용자 관리" />
+                            </button>
                         </li>
                     </ul>
-                    <button id="logoutButton" onClick={logout}>로그아웃</button>
+                    <button id="adminLogoutButton" onClick={logout}>
+                        <img src={adminLogout} alt="logout" />
+                    </button>
                 </div>
                 <div id="adminRightBox">
                     <header>

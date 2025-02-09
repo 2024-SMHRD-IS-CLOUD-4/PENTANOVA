@@ -10,11 +10,53 @@
 #adminLeftBox, #adminRightBox{
     float: left;
 }
+
+/*왼쪽 메뉴바 css*/
 #adminLeftBox{ /*메뉴바가 들어있는 박스의 크기 조절하는 곳*/
-    width: 5%;
+    position: relative;
+    width: 70px;
+    height: 100%;
 }
+
+/*메뉴바 위치 및 세부 css*/
+#adminMenuBox{
+    width: 100%;
+    margin-top: 190px;
+}
+#adminMenuBox li{
+    width: 100%;
+    margin-bottom: 50px;
+}
+#adminMenuBox button, #adminLogoutButton{
+    width: 100%;
+    text-align: center;
+    background-color: transparent; /*배경 색 투명*/
+    border: none;
+    border-radius: 0px;
+}
+#adminMenuBox img{
+    width: 29px;
+    height: auto;
+    border-radius: 0px;
+    margin: 0 auto;
+}
+#adminMenuBox >li:nth-child(2)>button>img{
+    width: 40px;
+}
+#adminLogoutButton{
+    position: absolute;
+    bottom: 3%;
+    left: 1%;
+}
+#adminLogoutButton > img{
+    width:21px;
+    height: auto;
+}
+
+
+/*오른쪽 컨텐츠 박스 css*/
 #adminRightBox{ /*컨텐츠가 들어있는 박스의 크기 조절하는 곳*/
-    width: 95%;
+    width: calc(100% - 70px);
     height: 100%;
     overflow-y: scroll;
     border-radius: 20px;
