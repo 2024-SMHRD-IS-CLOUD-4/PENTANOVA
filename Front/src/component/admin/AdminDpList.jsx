@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 
-const AdminDpList = ({ dpNums }) => {
+const AdminDpList = ({ cropNum }) => {
     const [dps, setDps] = useState([]);
     const [tpDps, setTpDps] = useState([]);
     const [imageUrls, setImageUrls] = useState([{}]);
@@ -9,11 +9,11 @@ const AdminDpList = ({ dpNums }) => {
     const [trigger, setTrigger] = useState(false);
     const textRef = useRef();
     const typeRef = useRef();
-
+    console.log(cropNum)
     useEffect(() => {
         const dpList = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`);
+                const response = await axios.get(`${process.env.REACT_APP_connect}/dp/dpListByCrop?crop_num=${cropNum}`);
                 setDps(response.data);
                 const imagePromises = response.data.map(dp =>
                     fetch(`${process.env.REACT_APP_connect}/bucket/getImages/DiseasePests/${dp.crop.eng_name}/${dp.img}`)

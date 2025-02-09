@@ -4,10 +4,9 @@ import DpList from '../user/DpList';
 import axios from 'axios'
 import CropList from './CropList';
 
-const PestManagement = ({setActiveState}) => {
+const PestManagement = ({ setActiveState, setCropNum, cropNum }) => {
 
 
-  
 
 
   return (
@@ -23,7 +22,7 @@ const PestManagement = ({setActiveState}) => {
           <li>잡초</li>
         </ul>
       </div>
-      <CropList setActiveState={setActiveState} />
+      <CropList setActiveState={setActiveState} setCropNum={setCropNum} />
     </div>
   );
 };

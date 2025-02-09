@@ -28,7 +28,7 @@ function AdminJoinPage() {
 
     const shareData = useContext(AppData);
     const navigate = useNavigate();
-    const [dpNum, setDpNum] = useState();
+    const [cropNum, setCropNum] = useState();
     const [dpNums, setDpNums] = useState([]);
 
     const buttonStyle = (button) => {
@@ -109,11 +109,11 @@ function AdminJoinPage() {
 
                     {showDashboard && <Dashboard />}
                     {showDiagDetail && <DiagDetail />}
-                    {showPestManagement && <PestManagement setActiveState={setActiveState} />}
+                    {showPestManagement && <PestManagement setActiveState={setActiveState} setCropNum={setCropNum} cropNum={cropNum}/>}
                     {showPromotionManagement && <PromotionManagement />}
                     {showUserManagement && <UserManagement />}
                     {showUserDetail && <UserDetail />}
-                    {showAdminDpList && <AdminDpList />}
+                    {showAdminDpList && <AdminDpList cropNum={cropNum}/>}
                     {/* {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
                     {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} setDpNums={setDpNums}/>}
                     {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}

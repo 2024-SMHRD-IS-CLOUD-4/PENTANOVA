@@ -29,7 +29,6 @@ import DiagDetail from './component/admin/DiagDetail'; // 이거 어떤 페이�
 import PromotionManagement from './component/admin/PromotionManagement';
 import UserManagement from './component/admin/UserManagement';
 import UserDetail from './component/admin/UserDetail';
-import AdminDpList from './component/admin/AdminDpList';
 
 import Navbar from './component/NavBar';
 import FieldGuide from './component/FieldGuide'; // 이거 어떤 페이지 인지 작성해주세요~
@@ -68,7 +67,6 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/diagnosis" element={<Diagnosis />} />
               <Route path="/dpDetail" element={<DpDetail />} />
-              <Route path="/dpList" element={<AdminDpList />}/>
               <Route path="/selfDiagnosis" element={<SelfDiagnosis />} />
               <Route path="/userDetail" element={<UserDetail />} />
               <Route path="/diagDetail" element={<DiagDetail />} />
