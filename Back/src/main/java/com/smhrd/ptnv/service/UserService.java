@@ -97,4 +97,10 @@ public class UserService {
 		Optional<User> result = repository.findById(id);
 		return result.get();
 	}
+	
+	public void deleteUser(String id) {
+		User user = new User();
+		user.setId(id);
+		repository.delete(user);
+	}
 }

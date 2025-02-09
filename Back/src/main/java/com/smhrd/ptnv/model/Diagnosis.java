@@ -1,5 +1,8 @@
 package com.smhrd.ptnv.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,10 +34,12 @@ public class Diagnosis extends BaseTimeEntity {
 	private Long diag_num;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name="user_id")
 	private User user;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name="dp_num")
 	private Disease_Pest dp_num;
 	

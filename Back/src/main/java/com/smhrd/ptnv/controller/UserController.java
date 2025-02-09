@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.hibernate.annotations.Parameter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,8 +71,6 @@ public class UserController {
 		service.authorization(id);
 	}
 
-	
-	
 	@PostMapping("/selectOne")
 	public ResponseEntity<User> selectOne(@RequestParam String id) {
 		User result = service.selectOne(id);
@@ -109,11 +108,6 @@ public class UserController {
 		}
 	}
 
-	@PostMapping("/loginApi")
-	public void loginApi(@RequestParam String code) {
-		System.out.println(code);
-	}
-	
 	@PostMapping("/sendAuth")
 	public ResponseEntity<Boolean> requestAuth(@RequestParam String id, @RequestParam Boolean requestAuth,
 			@RequestParam String institute) {
@@ -128,5 +122,12 @@ public class UserController {
 		} else {
 			return ResponseEntity.ok(false);
 		}
+	}
+
+	@DeleteMapping("/deleteUser/{id}")
+	public ResponseEntity<String> deleteUser(@PathVariable String id) {
+		System.out.println(id);
+		service.deleteUser(id);
+		return ResponseEntity.ok("회원탈퇴 성공");
 	}
 }

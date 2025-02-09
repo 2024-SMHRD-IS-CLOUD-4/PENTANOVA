@@ -1,5 +1,8 @@
 package com.smhrd.ptnv.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,6 +34,7 @@ public class Report extends BaseTimeEntity {
 	private Long report_num;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JoinColumn(name="user_id")
 	private User id;
 	
