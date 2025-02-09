@@ -10,6 +10,7 @@ const UserDetail = () => {
   const navigate = useNavigate();
   const userId = searchParams.get('id');
   const [user, setUser] = useState();
+
   const authorization = async () => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_connect}/user/authorization`, null, {

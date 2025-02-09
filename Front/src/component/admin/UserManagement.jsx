@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
-const UserManagement = () => {
+const UserManagement = ({ setActiveState, setCropNum }) => {
 
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const userDetail = () => setActiveState('UserDetail');
 
   useEffect(() => {
     const userList = async () => {
@@ -36,7 +37,7 @@ const UserManagement = () => {
             {user.role}
             {user.institute}
             {user.phone}
-            {user.role=='일반사용자'?(user.requestAuth?"O":"X"):null}
+            {user.role==='일반사용자'?(user.requestAuth?"O":"X"):null}
           </li>
         ))}
       </ul>

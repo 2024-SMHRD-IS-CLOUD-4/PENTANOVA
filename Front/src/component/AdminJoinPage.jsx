@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import Logo from '../assets/logo.png'
 import navBar from '../assets/navBar.png'
 import adminLogout from '../assets/logout.png'
+import home from '../assets/userNanHome.png'
 
 import Db from '../assets/userNavDb.png'; // 대시보드
 import Um from '../assets/userNavUM.png'; // AI 문답
@@ -74,7 +75,13 @@ function AdminJoinPage() {
         navigate('/');
     }
 
-    
+    const menuTextMapping = {
+        Dashboard: "대시보드",
+        PromotionManagement: "병해충 AI 검색",
+        PestManagement: "병해충 도감",
+        UserManagement: "사용자 관리",
+        UserDetail:"사용자 관리"
+      };
 
     return (
         <div id="adminBody">
@@ -87,13 +94,13 @@ function AdminJoinPage() {
                             </button>
                         </li>
                         <li>
-                            <button onClick={promotionManagement} style={menuBtnStyle('PromotionManagement')}>
-                                <img src={Um} alt="병해충 AI 검색" />
+                            <button onClick={pestManagement} style={menuBtnStyle('PestManagement')}>
+                                <img src={Dp} alt="병해충 도감" />
                             </button>
                         </li>
                         <li>
-                            <button onClick={pestManagement} style={menuBtnStyle('PestManagement')}>
-                                <img src={Dp} alt="병해충 도감" />
+                            <button onClick={promotionManagement} style={menuBtnStyle('PromotionManagement')}>
+                                <img src={Um} alt="병해충 AI 검색" />
                             </button>
                         </li>
                         <li>
@@ -109,20 +116,23 @@ function AdminJoinPage() {
                 <div id="adminRightBox">
                     <header>
                         <img src={Logo} className='adminLogo' alt="GROWELLLogo" />
-                        <div>
-                            <button>홈버튼</button>
-                            <label htmlFor="">검색하는 곳</label>
+                        {/* 선택된 메뉴에 따라 헤더 텍스트가 변경됩니다 */}
+                        <span>{menuTextMapping[selectedButton]}</span>
+                        <span>
+                            <button id="homeBtn" onClick={dashboard} style={menuBtnStyle('Dashboard')}>
+                                <img src={home} alt="" />
+                            </button>
                             <input type="text" />
-                        </div>
+                        </span>
                     </header>
 
                     {showDashboard && <Dashboard />}
                     {showDiagDetail && <DiagDetail />}
                     {showPestManagement && <PestManagement setActiveState={setActiveState} setCropNum={setCropNum} cropNum={cropNum}/>}
                     {showPromotionManagement && <PromotionManagement />}
-                    {showUserManagement && <UserManagement />}
-                    {showUserDetail && <UserDetail />}
-                    {showAdminDpList && <AdminDpList cropNum={cropNum}/>}
+                    {showUserManagement && <UserManagement setActiveState={setActiveState} cropNum={cropNum} />}
+                    {showUserDetail && <UserDetail/>}
+                    {showAdminDpList && <AdminDpList setActiveState={setActiveState} cropNum={cropNum}/>}
                     {/* {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
                     {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} setDpNums={setDpNums}/>}
                     {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
