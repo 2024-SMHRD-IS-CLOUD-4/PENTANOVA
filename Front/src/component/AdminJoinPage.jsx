@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 
 import '../css/admin.css';
-import RightArrow from '../assets/right_arrow_black.png'
 import Dashboard from './admin/Dashboard.jsx';
 import DiagDetail from './admin/DiagDetail.jsx';
 import PromotionManagement from './admin/PromotionManagement.jsx';
@@ -15,6 +14,7 @@ import { AppData } from '../function/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '../assets/logo.png'
+import navBar from '../assets/navBar.png'
 import adminLogout from '../assets/logout.png'
 
 import Db from '../assets/userNavDb.png'; // 대시보드
@@ -38,27 +38,24 @@ function AdminJoinPage() {
     const [cropNum, setCropNum] = useState();
     const [dpNums, setDpNums] = useState([]);
 
-    const buttonStyle = (button) => {
+    const menuBtnStyle = (button) => {
         return selectedButton === button ? {
-            fontWeight: '700',
-            color: '#333',
-            fontSize: '22px',
-            backgroundImage: 'url(' + RightArrow + ')',  // 배경 이미지 추가
+            backgroundImage: 'url(' + navBar + ')',  // 배경 이미지 추가
             backgroundRepeat: 'no-repeat',  // 이미지 반복 방지
-            backgroundPosition: 'right center',  // 이미지 위치
-            backgroundSize: '13px auto'  // 이미지 크기 조정
+            backgroundPosition: '93% center',  // 이미지 위치
+            backgroundSize: '5px auto'  // 이미지 크기 조정
         } : {};
     };
 
-    const setActiveState = (buttonType) => {
-        setSelectedButton(buttonType);
-        setShowDashboard(buttonType === 'Dashboard');
-        setShowDiagDetail(buttonType === 'DiagDetail');
-        setShowPromotionManagement(buttonType === 'PromotionManagement');
-        setShowUserManagement(buttonType === 'UserManagement');
-        setShowUserDetail(buttonType === 'UserDetail');
-        setShowPestManagement(buttonType === 'PestManagement');
-        setShowAdminDpList(buttonType === 'AdminDpList');
+    const setActiveState = (menuBtnStyle) => {
+        setSelectedButton(menuBtnStyle);
+        setShowDashboard(menuBtnStyle === 'Dashboard');
+        setShowDiagDetail(menuBtnStyle === 'DiagDetail');
+        setShowPromotionManagement(menuBtnStyle === 'PromotionManagement');
+        setShowUserManagement(menuBtnStyle === 'UserManagement');
+        setShowUserDetail(menuBtnStyle === 'UserDetail');
+        setShowPestManagement(menuBtnStyle === 'PestManagement');
+        setShowAdminDpList(menuBtnStyle === 'AdminDpList');
 
     };
 
@@ -77,28 +74,30 @@ function AdminJoinPage() {
         navigate('/');
     }
 
+    
+
     return (
         <div id="adminBody">
             <div id="adminMainBox">
                 <div id="adminLeftBox">
                     <ul id="adminMenuBox">
                         <li>
-                            <button onClick={dashboard} style={buttonStyle('Dashboard')}>
+                            <button onClick={dashboard} style={menuBtnStyle('Dashboard')}>
                                 <img src={Db} alt="대시보드" />
                             </button>
                         </li>
                         <li>
-                            <button onClick={promotionManagement} style={buttonStyle('PromotionManagement')}>
+                            <button onClick={promotionManagement} style={menuBtnStyle('PromotionManagement')}>
                                 <img src={Um} alt="병해충 AI 검색" />
                             </button>
                         </li>
                         <li>
-                            <button onClick={pestManagement} style={buttonStyle('PestManagement')}>
+                            <button onClick={pestManagement} style={menuBtnStyle('PestManagement')}>
                                 <img src={Dp} alt="병해충 도감" />
                             </button>
                         </li>
                         <li>
-                            <button onClick={userManagement} style={buttonStyle('UserManagement')}>
+                            <button onClick={userManagement} style={menuBtnStyle('UserManagement')}>
                                 <img src={My} alt="사용자 관리" />
                             </button>
                         </li>
