@@ -30,7 +30,7 @@ import PromotionManagement from './component/admin/PromotionManagement';
 import UserManagement from './component/admin/UserManagement';
 import UserDetail from './component/admin/UserDetail';
 
-import Navbar from './component/NavBar';
+// import Navbar from './component/NavBar';
 import FieldGuide from './component/FieldGuide'; // 이거 어떤 페이지 인지 작성해주세요~
 import LoginApi from './component/api/LoginApi'
 import AccessObjectStorage from './component/api/AccessObjectStorage';
@@ -52,7 +52,7 @@ function App() {
       <div id="body">
         <AppData value={{ data: user, setData: setUserData }}>
           <DpData value={{ data: dpData, setData: setDpData }}>
-            <Navbar />
+            {/* <Navbar /> */}
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/jip" element={<JipJoinPage />} />
