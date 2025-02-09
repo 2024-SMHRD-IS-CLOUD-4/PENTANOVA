@@ -116,7 +116,7 @@
     height: 72px;
 }
 
-#dlConBoxSearch button,#pestSerch button, #myConBox button, #logoutButton, #raConBox button{
+#dlConBoxSearch button,#pestSerch button, #cpConBox button, #myConBox button, #logoutButton, #raConBox button{
     width: 90px;
     height: 30px;
     line-height: 30px;
@@ -144,17 +144,17 @@
     background-position: center 97%; */
 }
 
-#diMainBox, #fpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #diMainBox ,#myMainBox, #fumMainBox, #raMainBox{
+#cpMainBox, #diMainBox, #fpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #diMainBox ,#myMainBox, #fumMainBox, #raMainBox{
     position: relative;
     width: 100%;
     height: 100%;
     padding-top:80px;
     text-align: center;
 }
-#sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox, #fumMainBox, #diMainBox, #raMainBox{
+#cpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox, #fumMainBox, #diMainBox, #raMainBox{
     padding-top:30px;
 }
-#raConBox, #sdConBox, #hdConBox, #pestContentBox, #dlConBox, #myConBox, #fumConBox, #diConBox, #adConBox{
+#cpConBox, #raConBox, #sdConBox, #hdConBox, #pestContentBox, #dlConBox, #myConBox, #fumConBox, #diConBox, #adConBox{
     position: relative;
     width: 80%;
     height: 80%;
@@ -585,10 +585,10 @@ label:hover, #dlConBoxResult .dlConBox{
     text-align: left;
     margin-top: 10px;
 }
-#myConBox ul{
+#myConBox ul, #cpConBox ul{
     margin-top: 40px;
 }
-#myConBox li, .pestResult div, .fumResult div{
+#myConBox li, .pestResult div, .fumResult div, #cpConBox li{
     border-bottom: 1px solid #ededed;
     padding-top: 30px;
     padding-bottom: 2px;
@@ -625,7 +625,7 @@ label:hover, #dlConBoxResult .dlConBox{
 }
 
 /*사용자 권한 요청 페이지 RequestAuth*/
-#raConBox{
+#raConBox, #cpConBox{
     height: fit-content;
     padding: 10% 0;
     background-color: #fff;
@@ -637,4 +637,29 @@ label:hover, #dlConBoxResult .dlConBox{
 }
 #raConBox input{
     width: 80%;
+}
+/*회원정보 수정 페이지 ChangeProfile*/
+
+#cpConBox ul{
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 10%;
+}
+#cpConBox li{
+    padding-bottom: 30px; 
+}
+#cpConBox p{
+    text-align: left;
+}
+#cpConBox p>span{
+    display: inline-block;
+    width: 70px;
+    border: #333;
+}
+#cpConBox input{
+    width: 70%;
+    border: none;
+    border-bottom: 1px solid #ededed;
+    border-radius: 0px;
+    padding-left: 2%;
 }

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { AppData } from '../../function/AuthContext';
 import Address from '../api/Address';
-import "../../css/all.css"
+import logo from '../../assets/logo.png'
 
 const ChangeProfile = () => {
 
@@ -53,20 +53,29 @@ const ChangeProfile = () => {
     );
 
     return (
-
-        <div>
-            <h1>ChangeProfile</h1>
-            {shareData.data && <form onSubmit={updateData}>
-                <ul>
-                    <li><label>아이디 : </label><input type="text" value={shareData.data.id} readOnly /></li>
-                    {shareData.data.pw?<li><label>비밀번호 : </label><input type="password" name="pw" value={formData.pw} onChange={handleChange} /></li>:null}
-                    <li><label>전화번호 : </label><input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder={shareData.data.phone} /></li>
-                    <li><label>닉네임 : </label><input type="text" name="nick" value={formData.nick} onChange={handleChange} placeholder={shareData.data.nick} /></li>
-                    <Address></Address>
-                    {formData.role === '관리자' ? { institute } : null}
-                </ul>
-                <button type='submit' onClick={updateData}>수정하기</button>
-            </form>}
+        <div id='cpMainBox'>
+            <img className='smallLogo' src={logo} alt="GROWELL" />
+            <div id='cpConBox'>
+                <h3>{shareData.data.nick}<span> 님</span></h3>
+                <h4>수정이 필요한 항목을 기입해주세요.</h4>
+                {shareData.data && <form onSubmit={updateData}>
+                    <ul>
+                        <li>
+                            <p><span>비밀번호</span> {shareData.data.pw?<input type="password" name="pw" value={formData.pw} onChange={handleChange} placeholder={shareData.data.pw}/>:null}</p>
+                        </li>
+                        <li>
+                            <p><span>연락처 </span><input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder={shareData.data.phone} /></p>
+                        </li>
+                        <li>
+                            <p><span>닉네임 </span><input type="text" name="nick" value={formData.nick} onChange={handleChange} placeholder={shareData.data.nick} /></p>
+                        </li>
+                        <li>
+                            <p><span>지역 </span><Address></Address></p>
+                        </li>
+                    </ul>
+                    <button type='submit' onClick={updateData}>수정하기</button>
+                </form>}
+            </div>
         </div>
     )
 }
