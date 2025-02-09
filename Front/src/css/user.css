@@ -116,7 +116,7 @@
     height: 72px;
 }
 
-#dlConBoxSearch button,#pestSerch button, #cpConBox button, #myConBox button, #logoutButton, #raConBox button{
+.fumButton, #dlConBoxSearch button,#pestSerch button, #cpConBox button, #myConBox button, #logoutButton, #raConBox button{
     width: 90px;
     height: 30px;
     line-height: 30px;
@@ -372,7 +372,7 @@ label:hover, #dlConBoxResult .dlConBox{
     border-bottom: 1px solid #ededed;
     border-radius: 0px;
 }
-.dlConBox:last-child, .pestResult:last-child, .fumResult div:last-child{
+.dlConBox:last-child, .pestResult:last-child{
     border-bottom: none;
 }
 .dlConTitle{
@@ -561,17 +561,76 @@ label:hover, #dlConBoxResult .dlConBox{
 #fumConBox{
     height: 80%;
     margin-top: 0;
+    background-color: #fff;
+    padding-top: 20px;
 }
 .fumConBox{
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     margin-top: 30px;
     padding: 20px;
-    background-color: #fff;
+    margin: 0 auto;
 }
 .fumConBox select{
     width: 100%;
     text-align: center;
+}
+.fumConBox li{
+    margin: 5% 0;
+}
+.fumBtnTogle{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    padding-left: 10%;
+    text-align: left;
+    background-image: url('../assets/down_arrow_wite.png');
+    background-repeat: no-repeat;
+    background-position: 90% center;
+    cursor: pointer;
+}
+.fumBtnTogle:focus{
+    background-image: url('../assets/down_arrow_wite.png');
+    background-repeat: no-repeat;
+    background-position: 90% center;
+}
+.fumConBox > ul > li:nth-child(1) .fumBtnTogle {
+    background-color: rgba(209, 31, 31, 1);
+}
+
+.fumConBox > ul > li:nth-child(2) .fumBtnTogle {
+    background-color: rgba(250, 184, 43, 1);
+}
+
+.fumConBox > ul > li:nth-child(3) .fumBtnTogle {
+    background-color: rgba(76, 126, 65, 1);
+}
+
+.fumList {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+  }
+  
+.fumList.open {
+ max-height: 500px; /* 충분히 큰 값으로 설정 */
+}
+.fumList > li{
+    text-align: left;
+    padding-left: 10%;
+}
+.fumList > li > p{
+    font-size: 14px;
+    padding-top: 5px;
+}
+.fumList > li > p:last-child{
+    font-size: 18px;
+}
+.fumList > li > p > img{
+    width: 7px;
 }
 
 /*내정보 확인하기*/
@@ -588,16 +647,16 @@ label:hover, #dlConBoxResult .dlConBox{
 #myConBox ul, #cpConBox ul{
     margin-top: 40px;
 }
-#myConBox li, .pestResult div, .fumResult div, #cpConBox li{
+#myConBox li, .pestResult div, #cpConBox li{
     border-bottom: 1px solid #ededed;
     padding-top: 30px;
     padding-bottom: 2px;
     border-radius: 0px;
 }
-#myConBox li:first-child, .pestResult div, .fumResult div{
+#myConBox li:first-child, .pestResult div{
     padding-top: 0;
 }
-#myConBox li>p>button{
+#myConBox li>p>button, .fumButton{
     float: right;
 }
 #myConBox li>p>span{
