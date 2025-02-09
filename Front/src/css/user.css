@@ -73,12 +73,43 @@
 }
 
 #userBtnNav{
+    width: 100%;
     position: absolute;
     bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
 }
-
+#userBtnNav button:first-child{
+    width: 69px;
+    height: 69px;
+    background-color: rgba(76, 126, 65, 1);
+}
+#userBtnNav button:first-child img{
+    width: auto;
+    height: 35px;
+}
+#userBtnNav button{
+    width: 49px;
+    height: 49px;
+    border-radius: 50px;
+    background-color: rgba(209, 209, 209, 1);
+}
+#userBtnNav button:not(:last-child){
+    margin-right: 15px;
+}
+#userBtnNav button:hover{
+    margin-right: 15px;
+    background-color: rgba(170, 170, 170, 1);
+}
+#userBtnNav button:last-child{
+    margin-right: 0px;
+}
+#userBtnNav button img{
+    width: auto;
+    height: 25px;
+    border-radius: 0px;
+}
 
 /*스크롤바 컨트롤*/
 

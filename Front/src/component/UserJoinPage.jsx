@@ -18,6 +18,11 @@ import RequestAuth from './user/RequestAuth.jsx';
 import { AppData } from '../function/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 
+import Di from '../assets/userNavDi.png';
+import Dp from '../assets/userNavDp.png';
+import Fp from '../assets/userNavFP.png';
+import My from '../assets/userNavMy.png';
+
 const UserJoinPage = () => {
     const [selectedButton, setSelectedButton] = useState('Diagnosis');// 현재 선택된 버튼 추적
     const [showDiagnosis, setShowDiagnosis] = useState(true); // 페이지 처음 로딩 시 Diagnosis 메뉴 활성화
@@ -79,6 +84,14 @@ const UserJoinPage = () => {
     const fumigator = () => setActiveState('Fumigator');
     const pesticides = () => setActiveState('Pesticides');
     // const pesticidesDetail = () => setActiveState('PesticidesDetail');
+
+    const navChangeImages = {
+        Diagnosis: Di,
+        DpList: Dp,
+        FumigatorPesticides: Fp,
+        MyProfile: My,
+      };
+
 
     const logout = () => {
         sessionStorage.clear();
@@ -157,13 +170,25 @@ const UserJoinPage = () => {
                     {showRequestAuth&&<RequestAuth/>}
                     {/* {showPesticidesDetail && <PesticidesDetail />} */}
                     <nav id='userBtnNav'>
-                        <button id='userNavChange'></button>
-                        <button id='userNavDi'>
-                            <img src="../" alt="" />
+                        {/* 선택된 페이지에 따라 해당하는 이미지가 표시됩니다. */}
+                        <button id='userNavChange'>
+                            <img 
+                            src={navChangeImages[selectedButton] /* || defaultImage */} 
+                            alt={selectedButton} 
+                            />
                         </button>
-                        <button id='userNavDp'></button>
-                        <button id='userNavFP'></button>
-                        <button id='userNavMy'></button>
+                        <button id='userNavDi'>
+                            <img src={Di} alt="병해충 진단" onClick={diagnosis} />
+                        </button>
+                        <button id='userNavDp'>
+                            <img src={Dp} alt="병해충 도감" onClick={dpList} />
+                        </button>
+                        <button id='userNavFP'>
+                            <img src={Fp} alt="농약 및 방제 정보" onClick={fumigatorPesticides} />
+                        </button>
+                        <button id='userNavMy'>
+                            <img src={My} alt="내정보 확인하기"  onClick={myProfile} />
+                        </button>
                     </nav>
                 </div>
             </div>
