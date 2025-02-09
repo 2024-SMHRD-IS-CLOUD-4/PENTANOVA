@@ -87,8 +87,14 @@ const UserJoinPage = () => {
 
     const navChangeImages = {
         Diagnosis: Di,
+        AiDiagnosis: Di,
+        SelfDiagnosis: Di,
+        HisDiagnosis: Di,
         DpList: Dp,
+        DpDetail: Dp,
         FumigatorPesticides: Fp,
+        Fumigator: Fp,
+        Pesticides: Fp,
         MyProfile: My,
       };
 
