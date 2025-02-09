@@ -40,7 +40,7 @@
     border-radius: 0px;
     margin: 0 auto;
 }
-#adminMenuBox >li:nth-child(2)>button>img{
+#adminMenuBox >li:nth-child(3)>button>img{
     width: 40px;
 }
 #adminLogoutButton{
@@ -63,8 +63,49 @@
     padding: 30px 40px 40px 50px;
     background-color: rgba(248, 248, 248, 1);
 }
+
+/*adminRightBox header 관련 css*/
+#adminRightBox header{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
 .adminLogo{/*로고 사이즈 설정*/
     width: 134px;
     height: 30px;
     border-radius: 0px; /*기본적으로 모든 이미지, div 태그에 전부 border-radius가 적용되어 있음! */
+}
+#adminRightBox header > span:not(:last-child){
+    width: 326px;
+    height: auto;
+    font-size: 35px;
+    margin-left: 2%;
+}
+#adminRightBox header > span:last-child {
+    position: absolute;
+    right: 0px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+}
+#adminRightBox header > span > input{
+    height: 45px;
+    line-height: 45px;
+    width: 400px;
+    border: #f1f1f1;
+    background-color: #fff;
+    background-image: url('../assets/search.png');
+    background-size: 20px auto;
+    background-repeat: no-repeat;
+    background-position: 5% center;
+    box-sizing: border-box;
+}
+#homeBtn{
+    width:45px;
+    height: 45px;
+    border-radius: 15px;
+    background-color: #fff;
+    border: 1px solid #f1f1f1;
+    line-height: 10px;
+    text-align: center;
 }

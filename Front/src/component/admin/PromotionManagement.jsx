@@ -22,8 +22,10 @@ const PromotionManagement = () => {
   };
 
   return (
+    // 병해충 AI 검색
     <div>
-      <h1>홍보문구 관리 페이지입니다.</h1>
+      
+      <h1></h1>
       {/* <h1>{shareData.data.id}</h1> */}
       <textarea
         value={inputText}
