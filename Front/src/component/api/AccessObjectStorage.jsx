@@ -9,7 +9,7 @@ const AccessObjectStorage = () => {
     AWS.config.update({
         accessKeyId: process.env.REACT_APP_NCP_Access_Key,
         secretAccessKey: process.env.REACT_APP_NCP_Secret_Key,
-        region: 'KR', // 예: 'KR'
+        region: 'KR',
     });
     const s3 = new AWS.S3();
     const getImage = (key) => {

@@ -7,7 +7,6 @@ import logo from "../assets/logo.png";
 import rightArrow from "../assets/right_arrow.png";
 import farmer from "../assets/farmerFit.png"
 import appleM from "../assets/appleM.png"
-import LoginApi from './api/LoginApi';
 import "../css/login.css";
 import "../css/all.css";
 
