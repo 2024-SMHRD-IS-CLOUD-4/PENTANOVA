@@ -116,7 +116,7 @@
     height: 72px;
 }
 
-#dlConBoxSearch button,#pestSerch button, #myConBox button, #logoutButton{
+#dlConBoxSearch button,#pestSerch button, #myConBox button, #logoutButton, #raConBox button{
     width: 90px;
     height: 30px;
     line-height: 30px;
@@ -124,7 +124,7 @@
     border: 1px solid #f1f1f1;
     color: #999;
 }
-#dlConBoxSearch button:hover,#pestSerch button:hover, #logoutButton:hover{
+#dlConBoxSearch button:hover,#pestSerch button:hover, #logoutButton:hover, #raConBox button{
     border: 1px solid rgba(153, 153, 153, 1);
     color: #555;
 }
@@ -144,18 +144,17 @@
     background-position: center 97%; */
 }
 
-#diMainBox, #fpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #diMainBox ,#myMainBox, #fumMainBox{
+#diMainBox, #fpMainBox, #sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #diMainBox ,#myMainBox, #fumMainBox, #raMainBox{
     position: relative;
     width: 100%;
     height: 100%;
     padding-top:80px;
     text-align: center;
 }
-
-#sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox, #fumMainBox, #diMainBox{
+#sdMainBox, #pestMainBox, #hdMainBox, #adMainBox, #dlMainBox, #myMainBox, #fumMainBox, #diMainBox, #raMainBox{
     padding-top:30px;
 }
-#sdConBox, #hdConBox, #pestContentBox, #dlConBox, #myConBox, #fumConBox, #diConBox, #adConBox{
+#raConBox, #sdConBox, #hdConBox, #pestContentBox, #dlConBox, #myConBox, #fumConBox, #diConBox, #adConBox{
     position: relative;
     width: 80%;
     height: 80%;
@@ -340,7 +339,7 @@ label:hover, #dlConBoxResult .dlConBox{
 #dlConBoxSearch > select, #dlConBoxSearch > input, #dlConBoxSearch button{
     float: left;
 }
-#dlConBoxSearch input{
+#dlConBoxSearch input, #raConBox input{
     width: 120px;
     height: 30px;
     line-height: 30px;
@@ -625,3 +624,17 @@ label:hover, #dlConBoxResult .dlConBox{
     float: right;
 }
 
+/*사용자 권한 요청 페이지 RequestAuth*/
+#raConBox{
+    height: fit-content;
+    padding: 10% 0;
+    background-color: #fff;
+}
+#raConBox button{
+    margin-top: 5%;
+    width: fit-content;
+    padding: 0px 5%;
+}
+#raConBox input{
+    width: 80%;
+}
