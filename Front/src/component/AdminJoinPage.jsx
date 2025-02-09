@@ -9,9 +9,11 @@ import PromotionManagement from './admin/PromotionManagement.jsx';
 import UserManagement from './admin/UserManagement.jsx';
 import UserDetail from './admin/UserDetail.jsx';
 import PestManagement from './admin/PestManagement.jsx';
+import AdminDpList from './admin/AdminDpList.jsx';
+
 import { AppData } from '../function/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
-import Logo from'../assets/logo.png'
+import Logo from '../assets/logo.png'
 
 function AdminJoinPage() {
     const [selectedButton, setSelectedButton] = useState('Diagnosis');// 현재 선택된 버튼 추적
@@ -21,7 +23,9 @@ function AdminJoinPage() {
     const [showUserManagement, setShowUserManagement] = useState(false);
     const [showUserDetail, setShowUserDetail] = useState(false);
     const [showPestManagement, setShowPestManagement] = useState(false);
-    
+    const [showAdminDpList, setShowAdminDpList] = useState(false);
+    const [showCropList, setShowCropList] = useState(false);
+
     const shareData = useContext(AppData);
     const navigate = useNavigate();
     const [dpNum, setDpNum] = useState();
@@ -47,7 +51,7 @@ function AdminJoinPage() {
         setShowUserManagement(buttonType === 'UserManagement');
         setShowUserDetail(buttonType === 'UserDetail');
         setShowPestManagement(buttonType === 'PestManagement');
-        
+        setShowAdminDpList(buttonType === 'AdminDpList');
 
     };
 
@@ -57,8 +61,7 @@ function AdminJoinPage() {
     const promotionManagement = () => setActiveState('PromotionManagement');
     const userManagement = () => setActiveState('UserManagement');
     const userDetail = () => setActiveState('UserDetail');
-
-    
+    const adminDpList = () => setActiveState('AdminDpList');
     // const pesticidesDetail = () => setActiveState('PesticidesDetail');
 
     const logout = () => {
@@ -71,7 +74,7 @@ function AdminJoinPage() {
         <div id="adminBody">
             <div id="adminMainBox">
                 <div id="adminLeftBox">
-                    <h3>{shareData.data?shareData.data.nick:'비회원'}<span> 님</span></h3>
+                    <h3>{shareData.data ? shareData.data.nick : '비회원'}<span> 님</span></h3>
                     <ul id="adminMenuBox">
                         <li>
                             <button onClick={dashboard} style={buttonStyle('Dashboard')}>대시보드</button>
@@ -100,16 +103,17 @@ function AdminJoinPage() {
                         <div>
                             <button>홈버튼</button>
                             <label htmlFor="">검색하는 곳</label>
-                            <input type="text"/>
+                            <input type="text" />
                         </div>
                     </header>
-                    
+
                     {showDashboard && <Dashboard />}
                     {showDiagDetail && <DiagDetail />}
-                    {showPestManagement && <PestManagement />}
+                    {showPestManagement && <PestManagement setActiveState={setActiveState} />}
                     {showPromotionManagement && <PromotionManagement />}
                     {showUserManagement && <UserManagement />}
                     {showUserDetail && <UserDetail />}
+                    {showAdminDpList && <AdminDpList />}
                     {/* {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
                     {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} setDpNums={setDpNums}/>}
                     {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}

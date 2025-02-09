@@ -2,14 +2,13 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios'
 import logo from '../../assets/logo.png'
-import { DpData } from '../../function/AuthContext';
 
 const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
     const [dps, setDps] = useState([]);
     const [tpDps, setTpDps] = useState([]);
     const [searchParams] = useSearchParams();
     const [imageUrls, setImageUrls] = useState([{}]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [trigger, setTrigger] = useState(false);
     const textRef = useRef();
     const typeRef = useRef();
@@ -41,7 +40,7 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
                     .then(images => {
                         const newImageUrls = images.reduce((acc, curr) => ({ ...acc, ...curr }), {});
                         setImageUrls(newImageUrls);
-                        setLoading(false);
+                        setLoading(true);
                     });
 
             } catch (error) {
@@ -113,6 +112,7 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
                 </div>
                 <div id='dlConBoxResult'>
                     {/* 반복 박스 */}
+                    {loading?<div>
                     {dps.length === 0 ? (
                         <div className='dlConBox' >
                             <p>검색 결과가 없습니다.</p>
@@ -135,6 +135,7 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
                             </div>
                         ))
                     )}
+                    </div>:null}
                 </div>
             </div>
         </div>

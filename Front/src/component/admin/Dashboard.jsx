@@ -62,6 +62,17 @@ const options = {
     }
   }
 };
+const options1 = {
+  scales: {
+    y: {
+      beginAtZero: true,
+      max: 100,
+      ticks: {
+        stepSize: 1
+      }
+    }
+  }
+};
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -241,7 +252,7 @@ const Dashboard = () => {
         <Grid item xs={12} md={6}>
           <Paper elevation={3} style={{ padding: 16 }}>
             <h2>가입 현황</h2>
-            {data1 ? <Bar data={data1} options={options} /> : null}
+            {data1 ? <Bar data={data1} options={options1} /> : null}
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
