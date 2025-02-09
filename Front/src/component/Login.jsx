@@ -40,7 +40,7 @@ const Login = () => {
       if (user.role === '일반사용자') {
         navigate('/UserJoinPage');
       } else {
-        navigate('/dashboard');
+        navigate('/AdminJoinPage');
       }
     }
   }, [isLoggedIn, navigate, user]);  // isLoggedIn 의존성 추가
@@ -57,7 +57,7 @@ const Login = () => {
   }
 
   const loginButton = () => {
-    const clientId = '${process.env.REACT_APP_redirect_url}';
+    const clientId = `${process.env.REACT_APP_rest_api_key}`;
     const redirectUri = `${process.env.REACT_APP_redirect_url}`;
     const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`
     window.location.href = kakaoURL
@@ -103,7 +103,6 @@ const Login = () => {
       }
     }
   };
-
   return (
     <div id='loginBody'>
       {/* 로그인박스, 공지사항 보기, 날씨 총 3개 박스 가운데 정렬하는 div */}

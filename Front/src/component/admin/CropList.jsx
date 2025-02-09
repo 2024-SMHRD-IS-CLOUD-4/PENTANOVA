@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 const CropList = ({setActiveState}) => {
+    const navigate = useNavigate();
     const [imageUrls, setImageUrls] = useState([{}]);
     const [crops, setCrops] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -39,7 +40,7 @@ const CropList = ({setActiveState}) => {
             <h1>CropList</h1>
             {crops.map((crop, idx) => {
                 return <div>
-                    <img key={idx} src={imageUrls[crop.name]} onClick={() => setActiveState('AdminDpList')} />
+                    <img key={idx} src={imageUrls[crop.name]} onClick={() => setActiveState('DpList')} />
                     <button type='button'>{crop.name}</button>
                 </div>
             })}

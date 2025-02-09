@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { AppData } from '../function/AuthContext';
+import { AppData } from '../../function/AuthContext';
 import axios from 'axios'
 
 

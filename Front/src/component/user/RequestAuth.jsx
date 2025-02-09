@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from 'react'
 import axios from 'axios'
 import { AppData } from '../../function/AuthContext';
+import logo from '../../assets/logo.png'
 
 const RequestAuth = () => {
     const shareData = useContext(AppData);
@@ -29,12 +30,16 @@ const RequestAuth = () => {
     }
 
     return (
-        <div>
-            <h1>RequestAuth</h1>
-            <form onSubmit={sendAuth}>
-                <input type="text" ref={instituteRef} placeholder='소속 기관을 기입하세요.' required/><br/>
-                <button type='submit'>권한 요청하기</button>
-            </form>
+        <div id='raMainBox'>
+            <img className='smallLogo' src={logo} alt="GROWELL" />
+            <div id='raConBox'>
+                <h3>관리자(연구자)로 <br />권한을 요청합니다. </h3>
+                {shareData && <form onSubmit={sendAuth}>
+                    <input type="text" ref={instituteRef} placeholder='소속 기관을 기입하세요.' required/><br/>
+                    <button type='submit'>권한 요청하기</button>
+                </form>}
+            </div>
+           
         </div>
     )
 }

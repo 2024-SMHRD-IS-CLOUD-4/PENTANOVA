@@ -1,33 +1,39 @@
 import React, { createContext, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Login from './component/Login';
+
+import JipJoinPage from './component/JipJoinPage';
 import Join from './component/jip/Join';
 import IdFind from './component/jip/IdFind';
 import PwFind from './component/jip/PwFind';
+
+import UserJoinPage from './component/UserJoinPage';
 import Diagnosis from './component/user/Diagnosis';
 import AiDiagnosis from './component/user/AiDiagnosis';
 import SelfDiagnosis from './component/user/SelfDiagnosis';
 import HisDiagnosis from './component/user/HisDiagnosis';
 import DpDetail from './component/user/DpDetail';
-import DpList from './component/user/DpList';
-import MyProfile from './component/user/MyProfile';
 import FumigatorPesticides from './component/user/FumigatorPesticides';
 import Fumigator from './component/user/Fumigator'
 import Pesticides from './component/user/Pesticides'
-import Navbar from './component/NavBar';
-import Dashboard from './component/Dashboard'; // 각 페이지 컴포넌트 import
-import PestManagement from './component/PestManagement';
-import PromotionManagement from './component/PromotionManagement';
-import UserManagement from './component/UserManagement';
-import FieldGuide from './component/FieldGuide';
-import UserDetail from './component/UserDetail';
-import DiagDetail from './component/DiagDetail';
+import MyProfile from './component/user/MyProfile';
 import ChangeProfile from './component/user/ChangeProfile';
 import RequestAuth from './component/user/RequestAuth';
-import JipJoinPage from './component/JipJoinPage';
-import CropList from './component/CropList';
+
+import AdminJoinPage from './component/AdminJoinPage';
+import Dashboard from './component/admin/Dashboard'; // 각 페이지 컴포넌트 import
+import PestManagement from './component/admin/PestManagement';
+import CropList from './component/admin/CropList';
+import DiagDetail from './component/admin/DiagDetail'; // 이거 어떤 페이지 인지 작성해주세요~
+import PromotionManagement from './component/admin/PromotionManagement';
+import UserManagement from './component/admin/UserManagement';
+import UserDetail from './component/admin/UserDetail';
+import AdminDpList from './component/admin/AdminDpList';
+
+import Navbar from './component/NavBar';
+import FieldGuide from './component/FieldGuide'; // 이거 어떤 페이지 인지 작성해주세요~
 import LoginApi from './component/api/LoginApi'
-import UserJoinPage from './component/UserJoinPage';
 import AccessObjectStorage from './component/api/AccessObjectStorage';
 import KakaoAlarm from './component/api/KakaoAlarm';
 import Test from './test/Test';
@@ -60,23 +66,24 @@ function App() {
               <Route path="/promotion" element={<PromotionManagement />} />
               <Route path="/users" element={<UserManagement />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/diagnosis" element={<Diagnosis />}></Route>
-              <Route path="/dpDetail" element={<DpDetail />}></Route>
-              <Route path="/dpList" element={<DpList />}></Route>
-              <Route path="/selfDiagnosis" element={<SelfDiagnosis />}></Route>
-              <Route path="/userDetail" element={<UserDetail />}></Route>
-              <Route path="/diagDetail" element={<DiagDetail />}></Route>
-              <Route path="/hisDiagnosis" element={<HisDiagnosis />}></Route>
-              <Route path="/fieldGuide" element={<FieldGuide />}></Route>
-              <Route path="/myProfile" element={<MyProfile />}></Route>
-              <Route path="/changeProfile" element={<ChangeProfile />}></Route>
-              <Route path="/fumigatorPesticides" element={<FumigatorPesticides />}></Route>
-              <Route path="/kakao/callback" element={<LoginApi />}></Route>
-              <Route path="/crops" element={<CropList />}></Route>
-              <Route path="/UserJoinPage" element={<UserJoinPage />}></Route>
+              <Route path="/diagnosis" element={<Diagnosis />} />
+              <Route path="/dpDetail" element={<DpDetail />} />
+              <Route path="/dpList" element={<AdminDpList />}/>
+              <Route path="/selfDiagnosis" element={<SelfDiagnosis />} />
+              <Route path="/userDetail" element={<UserDetail />} />
+              <Route path="/diagDetail" element={<DiagDetail />} />
+              <Route path="/hisDiagnosis" element={<HisDiagnosis />} />
+              <Route path="/fieldGuide" element={<FieldGuide />}/>
+              <Route path="/myProfile" element={<MyProfile />} />
+              <Route path="/changeProfile" element={<ChangeProfile />} />
+              <Route path="/fumigatorPesticides" element={<FumigatorPesticides />} />
+              <Route path="/kakao/callback" element={<LoginApi />} />
+              <Route path="/crops" element={<CropList />} />
+              <Route path="/UserJoinPage" element={<UserJoinPage />}/>
+              <Route path="/AdminJoinPage" element={<AdminJoinPage />}/>
               <Route path="/alarm" element={<KakaoAlarm />} />
-              <Route path="/test" element={<Test />}></Route>
-              <Route path="/test2" element={<Test2 />}></Route>
+              <Route path="/test" element={<Test />} />
+              <Route path="/test2" element={<Test2 />} />
             </Routes>
           </DpData>
         </AppData>

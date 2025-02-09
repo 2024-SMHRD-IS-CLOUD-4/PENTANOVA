@@ -70,10 +70,10 @@ const AiDiagnosis = ({setActiveState}) => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
+            console.log(response.data);
             const data = response.data;
             setDpData(response.data);
             setResponseMessage(data.message);
-
             if (response.data.detected_classes[0] === 1) {
                 setDpName("그을음병")
             } else if (response.data.detected_classes[0] === 2) {
@@ -140,7 +140,7 @@ const AiDiagnosis = ({setActiveState}) => {
                             style={{ maxWidth: '100%', height: 'auto' }}
                         />
                         <ul>
-                            {predictions.slice(0, 3).map((prediction, index) => (
+                            {predictions.slice(0, 1).map((prediction, index) => (
                                 <li key={index}>
                                     <p className='adResult'><span>{dpName || "알 수 없음"}</span> <span>{(prediction.confidence * 100).toFixed(0)}%</span></p>
                                     {/* <li key={index}>

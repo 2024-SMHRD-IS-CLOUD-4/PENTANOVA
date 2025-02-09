@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import { AppData } from '../function/AuthContext';
+import { AppData } from '../../function/AuthContext';
 import { Grid, Paper, Select } from '@mui/material';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, BarElement, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
@@ -56,6 +56,17 @@ const options = {
     y: {
       beginAtZero: true,
       max: 10,
+      ticks: {
+        stepSize: 1
+      }
+    }
+  }
+};
+const options1 = {
+  scales: {
+    y: {
+      beginAtZero: true,
+      max: 100,
       ticks: {
         stepSize: 1
       }
@@ -241,7 +252,7 @@ const Dashboard = () => {
         <Grid item xs={12} md={6}>
           <Paper elevation={3} style={{ padding: 16 }}>
             <h2>가입 현황</h2>
-            {data1 ? <Bar data={data1} options={options} /> : null}
+            {data1 ? <Bar data={data1} options={options1} /> : null}
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>

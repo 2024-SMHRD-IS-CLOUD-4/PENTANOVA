@@ -1,10 +1,10 @@
 // pages/Dashboard.js
 import React, { useEffect, useState } from 'react';
-import DpList from './user/DpList';
+import DpList from '../user/DpList';
 import axios from 'axios'
 import CropList from './CropList';
 
-const PestManagement = () => {
+const PestManagement = ({setActiveState}) => {
 
 
   
@@ -23,7 +23,7 @@ const PestManagement = () => {
           <li>잡초</li>
         </ul>
       </div>
-      <CropList></CropList>
+      <CropList setActiveState={setActiveState} />
     </div>
   );
 };

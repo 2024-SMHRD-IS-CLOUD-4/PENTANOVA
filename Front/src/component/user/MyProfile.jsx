@@ -11,8 +11,7 @@ const MyProfile = ({ setActiveState }) => {
     const navigate = useNavigate();
     const DeleteUser = async () => {
         try {
-            const response = await axios.delete(`${process.env.REACT_APP_connect}/user/deleteUser/${shareData.data.id}`);
-            console.log(response.data);
+            const response = await axios.delete(`${process.env.REACT_APP_connect}/user/deleteUser/${shareData.data.id}`)
             alert("회원 탈퇴가 완료되었습니다.");
             shareData.setData(null);
             sessionStorage.clear();
@@ -37,7 +36,7 @@ const MyProfile = ({ setActiveState }) => {
         <div id='myMainBox'>
             <img className='smallLogo' src={logo} alt="GROWELL" />
 
-            <div id='myConBox'>
+            {shareData.data && <div id='myConBox'>
                 <p>반갑습니다!<span></span></p>
                 <h3>{shareData.data.nick}<span> 님</span></h3>
                 <ul>
@@ -68,7 +67,7 @@ const MyProfile = ({ setActiveState }) => {
                 <button onClick={() => setActiveState('HisDiagnosis')}>AI, 자가 진단 이력 관리</button>
                 <button onClick={() => setActiveState('ChangeProfile')}>회원정보 수정</button>
                 <button onClick={deleteUser}>회원탈퇴</button>
-            </div>
+            </div>}
         </div>
     )
 }
