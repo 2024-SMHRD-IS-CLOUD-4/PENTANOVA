@@ -1,13 +1,12 @@
-// pages/Dashboard.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import UserDetail from './UserDetail';
 
-const UserManagement = ({ setActiveState, setUserNum }) => {
-
+const UserManagement = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-  const userDetail = () => setActiveState('UserDetail');
+  const [activeUserId, setActiveUserId] = useState(null); // 선택한 사용자 ID 저장
 
   useEffect(() => {
     const userList = async () => {
@@ -21,28 +20,53 @@ const UserManagement = ({ setActiveState, setUserNum }) => {
     };
     userList();
   }, []);
-// user 컬럼 : REQUEST_AUTH CREATED_AT PW ROLE INSTITUTE ID LOCATION NICK PHONE
+
+  const toggleUserDetail = (userId, event) => {
+    event.stopPropagation(); // 이벤트 버블링 방지
+    setActiveUserId(activeUserId === userId ? null : userId);
+  };
+
   return (
-    <div>
-      <br />
-      <br />
-      <h1>사용자 관리 페이지입니다.</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id} onClick={() => {
-            setActiveState('UserDetail')
-            setUserNum(user.id)
-          }}>
-            {user.id}
-            {user.nick}
-            {user.role}
-            {user.institute}
-            {user.phone}
-            {user.role==='일반사용자'?(user.requestAuth?"O":"X"):null}
-          </li>
-        ))}
-      </ul>
+    <div id='umMainBox'>
+      <div id='umConBox'>
+        <div id='umConBoxL'></div>
+        <div id='umConBoxR'>
+          <p>
+            <span>No.</span>
+            <span>사용자</span>
+            <span>기관명</span>
+            <span>아이디</span>
+            <span>닉네임</span>
+            <span>알람 여부</span>
+            <span>가입일자</span>
+          </p>
+          <ul className='scroll'>
+            {users.map((user, index) => (
+              <li 
+                key={user.id} 
+                onClick={(event) => toggleUserDetail(user.id, event)}
+                className={`user-item ${activeUserId === user.id ? 'active' : ''}`}
+              >
+                <p>
+                  <span>{index + 1}</span>
+                  <span>{user.role}</span>
+                  <span>{user.institute}</span>
+                  <span>{user.id}</span>
+                  <span>{user.nick}</span>
+                  <span>{user.role === '일반사용자' ? (user.requestAuth ? "O" : "X") : null}</span>
+                  <span>{user.createdAt.slice(0,10)}</span>
+                </p>
+                {/* 특정 `user.id`와 `activeUserId`가 일치할 때만 UserDetail 표시 */}
+                <div className='umToggle'>
+                  {activeUserId === user.id && <UserDetail user={user} />}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
+
 export default UserManagement;

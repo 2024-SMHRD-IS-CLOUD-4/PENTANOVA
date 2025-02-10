@@ -6,7 +6,6 @@ import Dashboard from './admin/Dashboard.jsx';
 import DiagDetail from './admin/DiagDetail.jsx';
 import PromotionManagement from './admin/PromotionManagement.jsx';
 import UserManagement from './admin/UserManagement.jsx';
-import UserDetail from './admin/UserDetail.jsx';
 import PestManagement from './admin/PestManagement.jsx';
 import AdminDpList from './admin/AdminDpList.jsx';
 
@@ -29,7 +28,6 @@ function AdminJoinPage() {
     const [showDiagDetail, setShowDiagDetail] = useState(false);
     const [showPromotionManagement, setShowPromotionManagement] = useState(false);
     const [showUserManagement, setShowUserManagement] = useState(false);
-    const [showUserDetail, setShowUserDetail] = useState(false);
     const [showPestManagement, setShowPestManagement] = useState(false);
     const [showAdminDpList, setShowAdminDpList] = useState(false);
 
@@ -54,7 +52,6 @@ function AdminJoinPage() {
         setShowDiagDetail(menuBtnStyle === 'DiagDetail');
         setShowPromotionManagement(menuBtnStyle === 'PromotionManagement');
         setShowUserManagement(menuBtnStyle === 'UserManagement');
-        setShowUserDetail(menuBtnStyle === 'UserDetail');
         setShowPestManagement(menuBtnStyle === 'PestManagement');
         setShowAdminDpList(menuBtnStyle === 'AdminDpList');
 
@@ -65,7 +62,6 @@ function AdminJoinPage() {
     const pestManagement = () => setActiveState('PestManagement');
     const promotionManagement = () => setActiveState('PromotionManagement');
     const userManagement = () => setActiveState('UserManagement');
-    const userDetail = () => setActiveState('UserDetail');
     const adminDpList = () => setActiveState('AdminDpList');
     // const pesticidesDetail = () => setActiveState('PesticidesDetail');
 
@@ -130,8 +126,7 @@ function AdminJoinPage() {
                         {showDiagDetail && <DiagDetail />}
                         {showPestManagement && <PestManagement setActiveState={setActiveState} setCropNum={setCropNum} cropNum={cropNum}/>}
                         {showPromotionManagement && <PromotionManagement />}
-                        {showUserManagement && <UserManagement setActiveState={setActiveState} setUserNum={setUserNum} />}
-                        {showUserDetail && <UserDetail userNum={userNum}/>}
+                        {showUserManagement && <UserManagement/>}
                         {showAdminDpList && <AdminDpList setActiveState={setActiveState} cropNum={cropNum}/>}
                         {/* {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
                         {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} setDpNums={setDpNums}/>}

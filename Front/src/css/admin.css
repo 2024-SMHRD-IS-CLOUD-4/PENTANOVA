@@ -1,4 +1,4 @@
-#adminBody, #adminMainBox{ /*전체 사이즈로 맞춤*/
+#adminBody, #adminMainBox, #udMainBox{ /*전체 사이즈로 맞춤*/
     position: relative;
     width: 100%;
     height: 100%;
@@ -65,7 +65,6 @@
 #adminRightCon{
     width: 100%;
     height: 93%;
-    overflow-y: scroll;
 }
 /*adminRightBox header 관련 css*/
 #adminRightBox header{
@@ -247,3 +246,92 @@
     color: #555;
 }
 /*사용자 관리 CSS*/
+#umMainBox{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    padding:40px 35px;
+}
+#umConBox{
+    width: 100%;
+    height: 100%;
+}
+#umConBoxL, #umConBoxR{
+    float: left;
+}
+#umConBoxL{
+    width: 15%;
+    height: 100%;
+}
+#umConBoxR{
+    width: 85%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px;
+}
+#umConBoxR ul{
+    background-color: rgba(248, 248, 248, 1);
+}
+#umConBoxR li{
+    background-color: transparent; /* 기본 배경 */
+    transition: background-color 0.3s ease-in-out; /* 부드러운 색상 변화 */
+    cursor: pointer;
+}
+#umConBoxR li:hover, #umConBoxR li.active{
+    background-color: #fff;
+    
+}
+#umConBoxR p{
+    display: flex;
+    width: 100%;
+}
+#umConBoxR p > span{
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+}
+#umConBoxR >p{
+    width: 99%;
+    margin-left: 1%;
+    font-size: 20px;
+    padding-bottom: 5%;
+}
+#umConBoxR p > span:nth-child(1) { /* 1번 항목 줄이기 */
+    flex: 0.5; 
+} 
+#umConBoxR p > span:nth-child(4) {/* 3번 항목 늘리기 */
+     flex: 2; 
+} 
+#umConBoxR p > span:not(:nth-child(1)):not(:nth-child(4)) { /* 나머지 동일 크기 */
+     flex: 1; 
+}
+.umToggle{
+    width: 90%;
+    margin-left: 10%;
+}
+/*사용자 관리 세부 내역*/
+#udMainBox{
+    border-radius: 0px;
+}
+
+
+
+/*스크롤 공통 CSS*/
+.scroll{
+    overflow-y: scroll;
+    scrollbar-gutter : stable both-edges;
+}
+.scroll::-webkit-scrollbar{
+    width: 15px;
+}
+.scroll::-webkit-scrollbar-thumb{/*스크롤 디자인 수정*/
+    background-color: rgba(255, 255, 255, 1);
+    background-clip: padding-box;
+    border: 3px solid transparent;
+    border-radius: 10px;
+}
+.scroll::-webkit-scrollbar-track{/*스크롤 디자인 수정*/
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 10px;
+}
