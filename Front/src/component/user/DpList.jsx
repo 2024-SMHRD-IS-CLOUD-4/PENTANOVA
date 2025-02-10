@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios'
 import logo from '../../assets/logo.png'
+import loadingImg from '../../assets/loading2.gif'
 
 const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
     const [dps, setDps] = useState([]);
@@ -112,30 +113,30 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
                 </div>
                 <div id='dlConBoxResult'>
                     {/* 반복 박스 */}
-                    {loading?<div>
-                    {dps.length === 0 ? (
-                        <div className='dlConBox' >
-                            <p>검색 결과가 없습니다.</p>
-                        </div>
-
-                    ) : (
-                        dps.map((dp, idx) => (
-                            <div className='dlConBox' key={dp.dp_num} onClick={() => {
-                                setDpNum(dp.dp_num);
-                                setActiveState('DpDetail');
-                                setDpNums([]);
-                            }}>
-                                <div className='dlConImg'>
-                                    <img key={idx} src={imageUrls[dp.dp_num]} />
-                                </div>
-                                <div className='dlConTitle'>
-                                    <p><span>{dp.crop.name}</span><span>{dp.category ? "해충" : "질병"}</span></p>
-                                    <h3>{dp.name}</h3>
-                                </div>
+                    {loading ? <div>
+                        {dps.length === 0 ? (
+                            <div className='dlConBox' >
+                                <p>검색 결과가 없습니다.</p>
                             </div>
-                        ))
-                    )}
-                    </div>:null}
+
+                        ) : (
+                            dps.map((dp, idx) => (
+                                <div className='dlConBox' key={dp.dp_num} onClick={() => {
+                                    setDpNum(dp.dp_num);
+                                    setActiveState('DpDetail');
+                                    setDpNums([]);
+                                }}>
+                                    <div className='dlConImg'>
+                                        <img key={idx} src={imageUrls[dp.dp_num]} />
+                                    </div>
+                                    <div className='dlConTitle'>
+                                        <p><span>{dp.crop.name}</span><span>{dp.category ? "해충" : "질병"}</span></p>
+                                        <h3>{dp.name}</h3>
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div> : <img src={loadingImg}/>}
                 </div>
             </div>
         </div>

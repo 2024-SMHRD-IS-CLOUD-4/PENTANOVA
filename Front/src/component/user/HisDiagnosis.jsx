@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AppData } from '../../function/AuthContext';
 import logo from '../../assets/logo.png'
+import loadingImg from '../../assets/loading2.gif'
 
-const HisDiagnosis = ({setActiveState, setDpNum}) => {
+
+const HisDiagnosis = ({ setActiveState, setDpNum }) => {
   const navigate = useNavigate();
   const [diags, setDiags] = useState([]);
   const userData = useContext(AppData);
   const [imageUrls, setImageUrls] = useState([{}]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const diagList = async () => {
       try {
@@ -23,7 +26,9 @@ const HisDiagnosis = ({setActiveState, setDpNum}) => {
               [diag.diag_num]: URL.createObjectURL(response2.data)
             };
           });
+
         });
+        setLoading(true);
 
         Promise.all(imagePromises)
           .then(images => {
@@ -56,24 +61,25 @@ const HisDiagnosis = ({setActiveState, setDpNum}) => {
       <img className='smallLogo' src={logo} alt="GROWELL" />
       <div id='hdConBox'>
         {diags.length > 0 ? (
-          diags
-            .filter(diag => diag && diag.createdAt)  // 유효한 데이터만 필터링
+          diags.filter(diag => diag && diag.createdAt)  // 유효한 데이터만 필터링
             .map(diag => (
               <div className='hdConBox' key={diag.diag_num} onClick={() => {
                 setDpNum(diag.dp_num.dp_num);
                 setActiveState('DpDetail');
               }}>
-                <p>
-                  <span className='hdTitle'>AI 진단</span>
-                  <span className='hdDate'>{diag.createdAt ? diag.createdAt.split('T')[0] : '날짜 없음'}</span>
-                </p>
-                <div>
-                  <img src={imageUrls[diag.diag_num]} alt='description' />
-                  <p className='hdName'>
-                    <p>작물 명 : {diag.dp_num.crop.name}</p>
-                    <p>진단병명 : {diag.dp_num.name}&emsp;{Number(diag.diag_content) * 100}%</p>
+                {loading ? <div>
+                  <p>
+                    <span className='hdTitle'>AI 진단</span>
+                    <span className='hdDate'>{diag.createdAt ? diag.createdAt.split('T')[0] : '날짜 없음'}</span>
                   </p>
-                </div>
+                  <div>
+                    <img src={imageUrls[diag.diag_num]} alt='description' />
+                    <p className='hdName'>
+                      <p>작물 명 : {diag.dp_num.crop.name}</p>
+                      <p>진단병명 : {diag.dp_num.name}&emsp;{Number(diag.diag_content) * 100}%</p>
+                    </p>
+                  </div>
+                </div> : <img src={loadingImg} />}
               </div>
             ))
         ) : (

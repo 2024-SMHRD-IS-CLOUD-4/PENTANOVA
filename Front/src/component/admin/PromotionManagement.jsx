@@ -1,29 +1,27 @@
 // pages/Dashboard.js
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
+import loading from '../../assets/loading2.gif'
+import { AppData } from '../../function/AuthContext';
 
 const PromotionManagement = () => {
-  const [responseText, setResponseText] = useState([]);
+  const userData = useContext(AppData);
+  const [responseText, setResponseText] = useState([`안녕하세요 ${userData.data.nick}님!`]);
   const [inputText, setInputText] = useState("");
   const [showInputText, setShowInputTetxt] = useState([]);
-  const textRef = useRef();
+  const [loading, setLoading] = useState(false);
 
 
   const callClovaAPI = async () => {
-    // setResponseText(""); // 초기화
 
     const eventSource = new EventSource(
       `${process.env.REACT_APP_connect}/api/clovaApi?query=${encodeURIComponent(inputText)}`
     );
 
-    // eventSource.onerror = (error) => {
-    //   console.error("SSE 오류 발생:", error);
-    //   eventSource.close();
-    // };
-
     eventSource.addEventListener("result", (event) => {
-      setShowInputTetxt([...showInputText,inputText]);
+      setShowInputTetxt([...showInputText, inputText]);
       const finalData = JSON.parse(event.data);
       setResponseText([...responseText, finalData.message.content]); // 최종 결과 저장
+      setLoading(true);
       eventSource.close();
     });
   };
@@ -36,10 +34,10 @@ const PromotionManagement = () => {
           <div className='pmConChatR'>
             {responseText.map((text, idx) => {
               return (
-                <div key={idx}>
-                  <p>{showInputText[idx]}</p><br /><br />
-                  <p>{responseText[idx]}</p><br /><br />
-                </div>
+                  <div key={idx}>
+                    <p>{showInputText[idx]}</p><br /><br />
+                    <p>{responseText[idx]}</p><br /><br />
+                  </div>
               )
             })}
           </div>
