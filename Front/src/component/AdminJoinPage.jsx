@@ -125,21 +125,22 @@ function AdminJoinPage() {
                             <input type="text" />
                         </span>
                     </header>
-
-                    {showDashboard && <Dashboard />}
-                    {showDiagDetail && <DiagDetail />}
-                    {showPestManagement && <PestManagement setActiveState={setActiveState} setCropNum={setCropNum} cropNum={cropNum}/>}
-                    {showPromotionManagement && <PromotionManagement />}
-                    {showUserManagement && <UserManagement setActiveState={setActiveState} cropNum={cropNum} />}
-                    {showUserDetail && <UserDetail/>}
-                    {showAdminDpList && <AdminDpList setActiveState={setActiveState} cropNum={cropNum}/>}
-                    {/* {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
-                    {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} setDpNums={setDpNums}/>}
-                    {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
-                    {showDpList && <DpList setActiveState={setActiveState} setDpNum={setDpNum} dpNums={dpNums} setDpNums={setDpNums}/>}
-                    {showDpDetail && <DpDetail dpNum={dpNum} />}
-                    {showFumigatorPesticides && <FumigatorPesticides setActiveState={setActiveState} />}
-                    {showMyProfile && <MyProfile  setActiveState={setActiveState} />}*/}
+                    <div id='adminRightCon'>
+                        {showDashboard && <Dashboard />}
+                        {showDiagDetail && <DiagDetail />}
+                        {showPestManagement && <PestManagement setActiveState={setActiveState} setCropNum={setCropNum} cropNum={cropNum}/>}
+                        {showPromotionManagement && <PromotionManagement />}
+                        {showUserManagement && <UserManagement setActiveState={setActiveState} cropNum={cropNum} />}
+                        {showUserDetail && <UserDetail/>}
+                        {showAdminDpList && <AdminDpList setActiveState={setActiveState} cropNum={cropNum}/>}
+                        {/* {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
+                        {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} setDpNums={setDpNums}/>}
+                        {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}
+                        {showDpList && <DpList setActiveState={setActiveState} setDpNum={setDpNum} dpNums={dpNums} setDpNums={setDpNums}/>}
+                        {showDpDetail && <DpDetail dpNum={dpNum} />}
+                        {showFumigatorPesticides && <FumigatorPesticides setActiveState={setActiveState} />}
+                        {showMyProfile && <MyProfile  setActiveState={setActiveState} />}*/}
+                    </div>
                 </div>
             </div>
         </div>
