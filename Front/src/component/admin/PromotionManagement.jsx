@@ -21,8 +21,8 @@ const PromotionManagement = () => {
     // };
 
     eventSource.addEventListener("result", (event) => {
+      setShowInputTetxt([...showInputText,inputText]);
       const finalData = JSON.parse(event.data);
-      console.log(event.data)
       setResponseText([...responseText, finalData.message.content]); // 최종 결과 저장
       eventSource.close();
     });
@@ -35,12 +35,10 @@ const PromotionManagement = () => {
         <div className='pmConBoxR'>
           <div className='pmConChatR'>
             {responseText.map((text, idx) => {
-              { console.log(responseText) }
-              { console.log(responseText.length) }
-              { console.log(idx) }
               return (
                 <div key={idx}>
-                  {responseText[idx]}<br /><br />
+                  <p>{showInputText[idx]}</p><br /><br />
+                  <p>{responseText[idx]}</p><br /><br />
                 </div>
               )
             })}
