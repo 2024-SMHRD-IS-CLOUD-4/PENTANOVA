@@ -1,56 +1,44 @@
 // pages/Dashboard.js
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AppData } from '../../function/AuthContext';
 import { useContext } from 'react';
 import axios from 'axios';
 
 const PromotionManagement = () => {
+  const [inputText, setInputText] = useState(""); // 사용자가 입력하는 텍스트
+  const [responseText, setResponseText] = useState(""); // API 응답 결과
 
-  const [messages, setMessages] = useState([]); // 채팅 메시지 저장
 
-  const clovaApi = async () => {
-    try{
-      const response = await axios.post(`https://clovastudio.stream.ntruss.com/`, null, {
-      headers: {
-        'Content-Type': 'application/json'
-        },
-        params: {
-          Authorization: 'nv-d5ad0526ad2b4faaa9a4b8b6e2ae10b9N6l5'
-        }
-      });
-
-      console.log(response.data); //디버깅용 확인 콘솔
-
-      setMessages(prevMessages => [
-        ...prevMessages,
-        { text: response.data.message || '새로운 메시지', timestamp: new Date().toLocaleTimeString() }
-      ]);
+  const callClovaAPI = async () => {
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_connect}/api/clovaApi`,
+        { query: inputText },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      console.log("스프링 응답:", response.data);
     } catch (error) {
-      console.error(error);
+      console.error("API 호출 오류:", error);
     }
-
   };
 
   return (
     // 병해충 AI 검색
+
+    // 병해충 AI 검색
     <div id='pmMainBox'>
       <div className='pmConBox'>
         <div className='pmConBoxR'>
-          <div className='pmConChatR'>
-            {/* 메시지 출력 */}
-            {messages.map((msg, index) => (
-              <div key={index} className="chatMessage">
-                <p>{msg.text}</p>
-                <span>{msg.timestamp}</span>
-              </div>
-            ))}
+          <div className='pmConChatR'>  
+            <p>{responseText}</p>
           </div>
           <div className='pmConChat'>
-          <input 
-              type="text" 
-              placeholder="메시지를 입력하세요..."
+            <input 
+              type="text"  
+              onChange={(e) => setInputText(e.target.value)}
+              placeholder="질문을 입력하세요..."
             />
-            <button className='sBtn' onClick={clovaApi}>확인하기</button>
+            {/* API 호출 */}
+            <button className='sBtn' onClick={callClovaAPI}>확인하기</button> 
           </div>
         </div>
         <div className='pmConBoxL'>
@@ -72,8 +60,7 @@ const PromotionManagement = () => {
           <button className='sBtn'>더보기</button>
         </div>
       </div>
-      
-    </div>
+    </div>    
   );
 };
 
