@@ -21,11 +21,12 @@ const Test2 = () => {
             <br />
             <br />
             <button onClick={test}>검사</button>
-            <h1>{weather?weather.name:null} 날씨 정보</h1>
-            <p>온도: {weather?weather.main.temp:null}°C</p>
-            <p>날씨: {weather?weather.weather[0].description:null}</p>
-            <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="" />
-            
+            {weather && <div>
+                <h1>{weather ? weather.name : null} 날씨 정보</h1>
+                <p>온도: {weather ? weather.main.temp : null}°C</p>
+                <p>날씨: {weather ? weather.weather[0].description : null}</p>
+                <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="" />
+            </div>}
         </div>
     )
 }

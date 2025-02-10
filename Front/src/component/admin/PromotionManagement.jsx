@@ -1,34 +1,19 @@
 // pages/Dashboard.js
 import React, { useRef, useState } from 'react';
-import { AppData } from '../../function/AuthContext';
-import { useContext } from 'react';
-import axios from 'axios';
 
 const PromotionManagement = () => {
-  const [responseText, setResponseText] = useState();
+  const [responseText, setResponseText] = useState([]);
   const [inputText, setInputText] = useState("");
-  const [showInputText, setShowInputText] = useState("");
+  const [showInputText, setShowInputTetxt] = useState([]);
   const textRef = useRef();
 
 
   const callClovaAPI = async () => {
-    setResponseText(""); // 초기화
+    // setResponseText(""); // 초기화
 
     const eventSource = new EventSource(
       `${process.env.REACT_APP_connect}/api/clovaApi?query=${encodeURIComponent(inputText)}`
     );
-
-    let accumulatedText = ""; // 토큰들을 누적 저장할 변수
-
-    eventSource.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-
-      if (data.message && data.message.content) {
-        accumulatedText += data.message.content; // 받은 데이터 누적
-        setResponseText(accumulatedText);
-        setShowInputText(textRef.current.value);
-      }
-    };
 
     // eventSource.onerror = (error) => {
     //   console.error("SSE 오류 발생:", error);
@@ -37,28 +22,34 @@ const PromotionManagement = () => {
 
     eventSource.addEventListener("result", (event) => {
       const finalData = JSON.parse(event.data);
-      setResponseText(finalData.message.content); // 최종 결과 저장
+      console.log(event.data)
+      setResponseText([...responseText, finalData.message.content]); // 최종 결과 저장
       eventSource.close();
     });
   };
 
   return (
     // 병해충 AI 검색
-
-    // 병해충 AI 검색
     <div id='pmMainBox'>
       <div className='pmConBox'>
         <div className='pmConBoxR'>
           <div className='pmConChatR'>
-            <p>{showInputText}</p>
-            <p>{responseText}</p>
+            {responseText.map((text, idx) => {
+              { console.log(responseText) }
+              { console.log(responseText.length) }
+              { console.log(idx) }
+              return (
+                <div key={idx}>
+                  {responseText[idx]}<br /><br />
+                </div>
+              )
+            })}
           </div>
           <div className='pmConChat'>
             <input
               type="text"
               onChange={(e) => setInputText(e.target.value)}
               placeholder="질문을 입력하세요..."
-              ref={textRef}
             />
             {/* API 호출 */}
             <button className='sBtn' onClick={callClovaAPI}>확인하기</button>
