@@ -6,6 +6,7 @@ import logo from '../../assets/logo.png'
 import '../../css/all.css'
 import '../../css/user.css'
 import arrow from '../../assets/right_arrow_black.png'
+import loadingImg from '../../assets/loading2.gif'
 
 const AiDiagnosis = ({setActiveState}) => {
     const shareData = useContext(AppData);
@@ -18,6 +19,7 @@ const AiDiagnosis = ({setActiveState}) => {
     const [dpName, setDpName] = useState();
     const [dpData, setDpData] = useState();
     const [uploadFile, setUploadFile] = useState({});
+    const [loading, setLoading] = useState(false);
     const [formData2, setFormData2] = useState({
         dp_num: {
             dp_num: null,
@@ -94,7 +96,7 @@ const AiDiagnosis = ({setActiveState}) => {
                 setImageBase64('');
                 setPredictions([]);
             }
-
+            setLoading(true);
         } catch (error) {
             console.error(error);
             setResponseMessage(error.response?.data?.error || '이미지 업로드 실패');
@@ -134,11 +136,11 @@ const AiDiagnosis = ({setActiveState}) => {
             <div id='adConBox'>
                 {imageBase64 ? (
                     <div className='adConBox'>
-                        <img
+                        {loading?<img
                             src={`data:image/jpeg;base64,${imageBase64}`}
                             alt="Analyzed Result"
-                            style={{ maxWidth: '100%', height: 'auto' }}
-                        />
+                           style={{ maxWidth: '100%', height: 'auto' }}
+                         />:<img src={loadingImg}/>} {/*로딩이미지*/}
                         <ul>
                             {predictions.slice(0, 1).map((prediction, index) => (
                                 <li key={index}>

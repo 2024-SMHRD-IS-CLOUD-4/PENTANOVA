@@ -30,12 +30,12 @@ function AdminJoinPage() {
     const [showUserManagement, setShowUserManagement] = useState(false);
     const [showPestManagement, setShowPestManagement] = useState(false);
     const [showAdminDpList, setShowAdminDpList] = useState(false);
-    const [showCropList, setShowCropList] = useState(false);
 
     const shareData = useContext(AppData);
     const navigate = useNavigate();
     const [cropNum, setCropNum] = useState();
     const [dpNums, setDpNums] = useState([]);
+    const [userNum, setUserNum] = useState();
 
     const menuBtnStyle = (button) => {
         return selectedButton === button ? {
@@ -126,7 +126,7 @@ function AdminJoinPage() {
                         {showDiagDetail && <DiagDetail />}
                         {showPestManagement && <PestManagement setActiveState={setActiveState} setCropNum={setCropNum} cropNum={cropNum}/>}
                         {showPromotionManagement && <PromotionManagement />}
-                        {showUserManagement && <UserManagement setActiveState={setActiveState} setCropNum  ={setCropNum } cropNum={cropNum}/>}
+                        {showUserManagement && <UserManagement/>}
                         {showAdminDpList && <AdminDpList setActiveState={setActiveState} cropNum={cropNum}/>}
                         {/* {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
                         {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} setDpNums={setDpNums}/>}

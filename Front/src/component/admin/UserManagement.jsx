@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import UserDetail from './UserDetail';
 
-const UserManagement = ({ setActiveState, setCropNum }) => {
+const UserManagement = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [activeUserId, setActiveUserId] = useState(null); // 선택한 사용자 ID 저장
@@ -21,8 +21,9 @@ const UserManagement = ({ setActiveState, setCropNum }) => {
     userList();
   }, []);
 
-  const toggleUserDetail = (userId) => {
-    setActiveUserId(activeUserId === userId ? null : userId); // 클릭 시 토글
+  const toggleUserDetail = (userId, event) => {
+    event.stopPropagation(); // 이벤트 버블링 방지
+    setActiveUserId(activeUserId === userId ? null : userId);
   };
 
   return (
@@ -43,8 +44,8 @@ const UserManagement = ({ setActiveState, setCropNum }) => {
             {users.map((user, index) => (
               <li 
                 key={user.id} 
-                onClick={() => toggleUserDetail(user.id)}
-                className={activeUserId === user.id ? 'active' : ''}
+                onClick={(event) => toggleUserDetail(user.id, event)}
+                className={`user-item ${activeUserId === user.id ? 'active' : ''}`}
               >
                 <p>
                   <span>{index + 1}</span>

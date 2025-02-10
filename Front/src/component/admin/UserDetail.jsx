@@ -43,10 +43,9 @@ const UserDetail = ({ user }) => { // `props.user`를 받음
     }
   };
 
-  console.log(userData);
-
   return (
     <div>
+      <h1>UserDetail</h1>
       {userData ? (
         <>
           <p>닉네임: {userData.nick}</p>
