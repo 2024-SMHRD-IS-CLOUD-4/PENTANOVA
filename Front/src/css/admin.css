@@ -144,7 +144,25 @@
 }
 .pmConChatR{ /*대화창*/
     height: calc(100% - 100px);
+    padding: 20px;
 }
+
+.pmConChatR .pmClova, .pmConChatR .pmAnser{
+    width: 80%;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+.pmConChatR .pmClova{
+    margin-left:20%;
+    background-color: #fff;
+    background-image: url(../assets/omClova.png);
+    background-repeat: no-repeat;
+    background-position: right 10px top 10px;
+}
+.pmConChatR .pmAnser{
+    background-color: #d9d9d9;
+}
+
 .chatMessage { 
     background-color: #fff;
     padding: 8px;
