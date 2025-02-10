@@ -262,6 +262,15 @@
 #umConBoxL{
     width: 15%;
     height: 100%;
+    padding-top: 9%;
+    text-align: center;
+}
+#umConBoxL select{
+    width: 137px;
+    height: 30px;
+    font-size: 16px ;
+    text-align: center;
+    margin-bottom: 20%;
 }
 #umConBoxR{
     width: 85%;
@@ -286,24 +295,24 @@
     display: flex;
     width: 100%;
 }
-#umConBoxR p > span{
+#umConBoxR > p > span, #umConBoxR > ul>li>p > span{
     display: inline-block;
     text-align: center;
     padding: 10px;
 }
-#umConBoxR >p{
+#umConBoxR > p {
     width: 99%;
     margin-left: 1%;
     font-size: 20px;
     padding-bottom: 5%;
 }
-#umConBoxR p > span:nth-child(1) { /* 1번 항목 줄이기 */
+#umConBoxR > p > span:nth-child(1), #umConBoxR > ul>li>p > span:nth-child(1) { /* 1번 항목 줄이기 */
     flex: 0.5; 
 } 
-#umConBoxR p > span:nth-child(4) {/* 3번 항목 늘리기 */
+#umConBoxR > p > span:nth-child(4), #umConBoxR > ul>li>p > span:nth-child(4) {/* 3번 항목 늘리기 */
      flex: 2; 
 } 
-#umConBoxR p > span:not(:nth-child(1)):not(:nth-child(4)) { /* 나머지 동일 크기 */
+#umConBoxR > p > span:not(:nth-child(1)):not(:nth-child(4)) , #umConBoxR > ul>li>p > span:not(:nth-child(1)):not(:nth-child(4)){ /* 나머지 동일 크기 */
      flex: 1; 
 }
 .umToggle{
@@ -314,7 +323,46 @@
 #udMainBox{
     border-radius: 0px;
 }
+#udConBoxL, #udConBoxR{
+    float: left;
+}
+#udConBoxL{
+    width: 70%;
+}
+#udConBoxL p {
+    width: 100%;
+    font-size: 14px;
+}
 
+#udConBoxL p span {
+    width: 25%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 0px;
+}
+#udConBoxL p:last-child span:last-child {
+    width: 75%;
+    text-align: left;
+    padding-left: 3%;
+}
+#udConBoxL p span:nth-child(2n){
+    border-bottom: 1px solid #ededed;
+}
+#udConBoxR{
+    width: 30%;
+}
+#udConBoxR >div {
+    width: fit-content;
+    margin: 0 auto;
+}
+#udConBoxR .sBtn{
+    height: 25px;
+    font-size: 12px;
+}
+#udConBoxR .sBtn:first-child{
+    width: 200px;
+    margin-bottom: 2%;
+}
 
 
 /*스크롤 공통 CSS*/

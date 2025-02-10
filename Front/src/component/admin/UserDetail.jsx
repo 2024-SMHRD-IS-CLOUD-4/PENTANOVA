@@ -44,16 +44,25 @@ const UserDetail = ({ user }) => { // `props.user`를 받음
   };
 
   return (
-    <div>
-      <h1>UserDetail</h1>
+    <div id='udMainBox'>
       {userData ? (
         <>
-          <p>닉네임: {userData.nick}</p>
-          <p>아이디: {userData.id}</p>
-          {shareData.data.role === "관리자" && userData.requestAuth && (
-            <button onClick={authorization}>권한 부여</button>
-          )}
+          <div id='udConBoxL'>
+            <p><span>비밀번호</span><span>{userData.pw}</span><span>전화번호</span><span>{userData.phone}</span></p>
+            <p><span>거주지역</span><span>{userData.location}</span></p>
+            {shareData.data.role === "관리자" && userData.requestAuth && (
+              <button onClick={authorization}>권한 부여</button>
+            )}
+          </div>
+          <div id='udConBoxR'>
+            <div>
+              <button className='sBtn'> 병충해 등록 데이터 확인</button><br />
+              <button className='sBtn'> 회원정보 수정</button>
+              <button className='sBtn'> 권한 {user.role === '일반사용자' ? (user.requestAuth ? "요청" : "미요청") : null}</button>
+            </div>
+          </div>
         </>
+        
       ) : (
         <p>사용자 정보를 불러오는 중...</p>
       )}

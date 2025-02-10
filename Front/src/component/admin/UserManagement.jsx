@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import UserDetail from './UserDetail';
 
 const UserManagement = () => {
-  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [activeUserId, setActiveUserId] = useState(null); // 선택한 사용자 ID 저장
 
@@ -29,7 +27,29 @@ const UserManagement = () => {
   return (
     <div id='umMainBox'>
       <div id='umConBox'>
-        <div id='umConBoxL'></div>
+        <div id='umConBoxL'>
+          <select name="role" id="">
+            <option value="role01">사용자 구분</option>
+            <option value="role02">일반</option>
+            <option value="role03">연구원</option>
+          </select><br />
+          <select name="institute" id="">
+            <option value="institute01">기관명</option>
+            {/* 데이터에 잇는 기관명 가져오기 */}
+            <option value="institute02">스마트인재개발원</option>
+            <option value="institute03">농업</option>
+          </select><br />
+          <select name="alarm" id="">
+            <option value="alarm01">알람여부</option>
+            <option value="alarm02">알람 O</option>
+            <option value="alarm03">알람 X</option>
+          </select><br />
+          <select name="creatD" id="">
+            <option value="creatD01">가입년도</option>
+            <option value="creatD02">최신순</option>
+            <option value="creatD03">등록일순</option>
+          </select>
+        </div>
         <div id='umConBoxR'>
           <p>
             <span>No.</span>
@@ -53,7 +73,7 @@ const UserManagement = () => {
                   <span>{user.institute}</span>
                   <span>{user.id}</span>
                   <span>{user.nick}</span>
-                  <span>{user.role === '일반사용자' ? (user.requestAuth ? "O" : "X") : null}</span>
+                  <span></span>
                   <span>{user.createdAt.slice(0,10)}</span>
                 </p>
                 {/* 특정 `user.id`와 `activeUserId`가 일치할 때만 UserDetail 표시 */}
