@@ -32,7 +32,6 @@ function AdminJoinPage() {
     const [showUserDetail, setShowUserDetail] = useState(false);
     const [showPestManagement, setShowPestManagement] = useState(false);
     const [showAdminDpList, setShowAdminDpList] = useState(false);
-    const [showCropList, setShowCropList] = useState(false);
 
     const shareData = useContext(AppData);
     const navigate = useNavigate();
