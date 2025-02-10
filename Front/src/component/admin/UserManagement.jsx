@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
-const UserManagement = ({ setActiveState, setCropNum }) => {
+const UserManagement = ({ setActiveState, setUserNum }) => {
 
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
@@ -30,7 +30,8 @@ const UserManagement = ({ setActiveState, setCropNum }) => {
       <ul>
         {users.map(user => (
           <li key={user.id} onClick={() => {
-            navigate(`/userDetail?id=${user.id}`)
+            setActiveState('UserDetail')
+            setUserNum(user.id)
           }}>
             {user.id}
             {user.nick}

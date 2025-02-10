@@ -4,18 +4,17 @@ import { AppData } from '../../function/AuthContext';
 import axios from 'axios'
 
 
-const UserDetail = () => {
+const UserDetail = ({ userNum }) => {
   const shareData = useContext(AppData);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const userId = searchParams.get('id');
   const [user, setUser] = useState();
 
   const authorization = async () => {
     try {
       const response = await axios.post(`${process.env.REACT_APP_connect}/user/authorization`, null, {
         params: {
-          id: userId
+          id: userNum
         },
       });
       alert('갱신 완료!');
@@ -32,7 +31,7 @@ const UserDetail = () => {
       try {
         const response = await axios.post(`${process.env.REACT_APP_connect}/user/selectOne`, null, {
           params: {
-            id: userId
+            id: userNum
           },
         });
         console.log(response.data);
