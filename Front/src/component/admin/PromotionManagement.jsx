@@ -5,20 +5,41 @@ import { useContext } from 'react';
 import axios from 'axios';
 
 const PromotionManagement = () => {
-  const [inputText, setInputText] = useState(""); // 사용자가 입력하는 텍스트
-  const [responseText, setResponseText] = useState(""); // API 응답 결과
+  const [responseText, setResponseText] = useState();
+  const [inputText, setInputText] = useState("");
+  const [showInputText, setShowInputText] = useState("");
+  const textRef = useRef();
 
 
   const callClovaAPI = async () => {
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_connect}/api/clovaApi`,
-        { query: inputText },
-        { headers: { "Content-Type": "application/json" } }
-      );
-      console.log("스프링 응답:", response.data);
-    } catch (error) {
-      console.error("API 호출 오류:", error);
-    }
+    setResponseText(""); // 초기화
+
+    const eventSource = new EventSource(
+      `${process.env.REACT_APP_connect}/api/clovaApi?query=${encodeURIComponent(inputText)}`
+    );
+
+    let accumulatedText = ""; // 토큰들을 누적 저장할 변수
+
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+
+      if (data.message && data.message.content) {
+        accumulatedText += data.message.content; // 받은 데이터 누적
+        setResponseText(accumulatedText);
+        setShowInputText(textRef.current.value);
+      }
+    };
+
+    // eventSource.onerror = (error) => {
+    //   console.error("SSE 오류 발생:", error);
+    //   eventSource.close();
+    // };
+
+    eventSource.addEventListener("result", (event) => {
+      const finalData = JSON.parse(event.data);
+      setResponseText(finalData.message.content); // 최종 결과 저장
+      eventSource.close();
+    });
   };
 
   return (
@@ -28,17 +49,19 @@ const PromotionManagement = () => {
     <div id='pmMainBox'>
       <div className='pmConBox'>
         <div className='pmConBoxR'>
-          <div className='pmConChatR'>  
+          <div className='pmConChatR'>
+            <p>{showInputText}</p>
             <p>{responseText}</p>
           </div>
           <div className='pmConChat'>
-            <input 
-              type="text"  
+            <input
+              type="text"
               onChange={(e) => setInputText(e.target.value)}
               placeholder="질문을 입력하세요..."
+              ref={textRef}
             />
             {/* API 호출 */}
-            <button className='sBtn' onClick={callClovaAPI}>확인하기</button> 
+            <button className='sBtn' onClick={callClovaAPI}>확인하기</button>
           </div>
         </div>
         <div className='pmConBoxL'>
@@ -60,7 +83,7 @@ const PromotionManagement = () => {
           <button className='sBtn'>더보기</button>
         </div>
       </div>
-    </div>    
+    </div>
   );
 };
 
