@@ -105,6 +105,7 @@ const option3 = {
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('이용현황');
   const [data1, setData1] = useState();
   const [data2, setData2] = useState();
   const [data3, setData3] = useState();
@@ -262,27 +263,27 @@ const Dashboard = () => {
   const user = JSON.parse(storedUser);
 
   return (
-    <div>
-      <h1>대시보드 페이지입니다.</h1>
-      <div>
-        <div>
-          <ul>
-            {/* {diagList.map(diag => {
-            return (
-              <li key={diag.diag_num}>
-                <span>실시간 병해충 진단 현황</span>
-                <span>{diag.dp_num.category ? '질병' : '해충'}</span>
-                <span>{diag.dp_num.crop_num.name}</span>
-                <span>{diag.dp_num.name}</span>
-                <span>{diag.diag_region}</span>
-                <span>{diag.user.nick}</span>
-                <span>{diag.createdAt.split('T')[0]}</span>
-              </li>
-            )
-          })} */}
-            <span>질병:{dpTypeCount[1]}회,해충:{dpTypeCount[0]}회</span>
-
-          </ul>
+    <div id='boardMainPage'>
+      <div id='boardConUp'>
+        <span>질병:{dpTypeCount[1]}회,해충:{dpTypeCount[0]}회</span>
+      </div>
+      <div id='boardConDown'>
+        <div id='boardConDL'>
+          <h2>병해충 진단 현황</h2>
+          <select ref={dateRef2} onChange={dateChangeData}>
+            <option value={months[5]}>최근 30일</option>
+            <option value={months[4]}>1달 전</option>
+            <option value={months[3]}>2달 전</option>
+            <option value={months[2]}>3달 전</option>
+            <option value={months[1]}>4달 전</option>
+            <option value={months[0]}>5달 전</option>
+          </select>
+          {data4 ? <Pie data={data4} options={options2}/> : null}
+          {dpList.map((dp, idx) => {
+              return (
+                <li key={dp.dp_num}>{dp.name}: : {dpCount[idx]}회</li>
+              )
+            })}
         </div>
 
         <Grid container spacing={1}>
@@ -299,6 +300,9 @@ const Dashboard = () => {
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
+        <div id='boardConDR'>
+          <div id='boardConDRU'>
+            <h2>지역별 병해충 분포</h2>
             <select ref={dpRef} defaultValue={1} onChange={regionChangeData}>
               {dpList.map(dp => {
                 return (
@@ -342,6 +346,27 @@ const Dashboard = () => {
               )
             })}
           </ul>
+            {data3 ? <Bar data={data3} options={options} /> : null}
+          </div>
+          <div id='boardConDRD'>
+            <button className='sBtn' onClick={() => setActiveTab('이용현황')}>이용현황</button>
+            <button className='sBtn' onClick={() => setActiveTab('가입현황')}>가입현황</button>
+            <div className="chart-container">
+              {activeTab === '가입현황' && (
+                <div className="chart-box">
+                  <h2>가입 현황</h2>
+                  {data1 ? <Bar data={data1} options={options1} /> : null}
+                </div>
+              )}
+
+              {activeTab === '이용현황' && (
+                <div className="chart-box">
+                  <h2>이용 현황</h2>
+                  {data2 ? <Line data={data2} options={options1} /> : null}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
