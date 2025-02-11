@@ -77,8 +77,8 @@ function AdminJoinPage() {
         PromotionManagement: "병해충 AI 검색",
         PestManagement: "병해충 도감",
         UserManagement: "사용자 관리",
-        UserDetail:"사용자 관리"
-      };
+        UserDetail: "사용자 관리"
+    };
 
     return (
         <div id="adminBody">
@@ -100,11 +100,11 @@ function AdminJoinPage() {
                                 <img src={Um} alt="병해충 AI 검색" />
                             </button>
                         </li>
-                        <li>
+                        {shareData.data? shareData.data.role == '최고관리자' ? (<li>
                             <button onClick={userManagement} style={menuBtnStyle('UserManagement')}>
                                 <img src={My} alt="사용자 관리" />
                             </button>
-                        </li>
+                        </li>) : null : null}
                     </ul>
                     <button id="adminLogoutButton" onClick={logout}>
                         <img src={adminLogout} alt="logout" />
@@ -116,6 +116,7 @@ function AdminJoinPage() {
                         {/* 선택된 메뉴에 따라 헤더 텍스트가 변경됩니다 */}
                         <span>{menuTextMapping[selectedButton]}</span>
                         <span>
+                        <button onClick={()=> navigate('/alarm')}>메세지 보내기</button>
                             <button id="homeBtn" onClick={dashboard} style={menuBtnStyle('Dashboard')}>
                                 <img src={home} alt="" />
                             </button>
@@ -125,10 +126,10 @@ function AdminJoinPage() {
                     <div id='adminRightCon'>
                         {showDashboard && <Dashboard />}
                         {showDiagDetail && <DiagDetail />}
-                        {showPestManagement && <PestManagement setActiveState={setActiveState} setCropNum={setCropNum} cropNum={cropNum}/>}
+                        {showPestManagement && <PestManagement setActiveState={setActiveState} setCropNum={setCropNum} cropNum={cropNum} />}
                         {showPromotionManagement && <PromotionManagement />}
-                        {showUserManagement && <UserManagement/>}
-                        {showAdminDpList && <AdminDpList setActiveState={setActiveState} cropNum={cropNum}/>}
+                        {showUserManagement && <UserManagement />}
+                        {showAdminDpList && <AdminDpList setActiveState={setActiveState} cropNum={cropNum} />}
                         {/* {showAiDiagnosis && <AiDiagnosis setActiveState={setActiveState} />}
                         {showSelfDiagnosis && <SelfDiagnosis setActiveState={setActiveState} setDpNums={setDpNums}/>}
                         {showHisDiagnosis && <HisDiagnosis setActiveState={setActiveState} dpNum={dpNum} setDpNum={setDpNum} />}

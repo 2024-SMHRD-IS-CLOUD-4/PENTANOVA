@@ -39,8 +39,19 @@ const AdminDpList = ({ cropNum, searchQuery }) => {
             ) : (
                 <p>로딩 중...</p>
             )}
+
+            {dps.map((dp, idx) => (
+                <div>
+                    <div className='dlConImg' style={{display:'flex'}}>
+                        {/* <img key={idx} src={imageUrls[cropNum.dp_num]}  /> */}
+                    </div>
+                    <div className='dlConTitle'>
+                        <p><span>{dp.crop.name}</span><span>{dp.category ? "해충" : "질병"}</span></p>
+                        <h3>{dp.name}</h3>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };
-
 export default AdminDpList;
