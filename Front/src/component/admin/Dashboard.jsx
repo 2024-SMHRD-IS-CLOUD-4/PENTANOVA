@@ -114,7 +114,6 @@ const option3 = {
   scales: {
     y: {
       beginAtZero: true,
-      max: 5,
       ticks: {
         stepSize: 1
       },
@@ -364,7 +363,7 @@ const Dashboard = () => {
 
               {activeTab === '이용현황' && (
                 <div className="chart-box">
-                  {data2 ? <Line data={data2} options={options1} /> : null}
+                  {data2 ? <Line data={data2} options={option3} /> : null}
                 </div>
               )}
             </div>
