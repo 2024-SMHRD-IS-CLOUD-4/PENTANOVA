@@ -68,7 +68,6 @@ const options1 = {
   scales: {
     y: {
       beginAtZero: true,
-      max: 20,
       ticks: {
         stepSize: 1
       }

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import CropList from './CropList';
 import AdminDpList from './AdminDpList';
+import DpDetail from './DpDetail';
 
 const PestManagement = () => {
   const [activeState, setActiveState] = useState('CropList');
   const [cropNum, setCropNum] = useState(null);
+  const [dpNum, setDpNum] = useState(null);
   const [activeSection, setActiveSection] = useState("cropGuide"); // 현재 활성화된 섹션 관리
   const [selectedItem, setSelectedItem] = useState("열대과일(과수)"); // 기본 선택된 아이템
   const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 관리
@@ -59,10 +61,13 @@ const PestManagement = () => {
       <div id='pastConBoxR'>
         <div className='scroll'>
           {activeState === 'CropList' && (
-            <CropList setActiveState={setActiveState} setCropNum={setCropNum} />
+            <CropList setActiveState={setActiveState} setCropNum={setCropNum} setDpNum={setDpNum} />
           )}
           {activeState === 'AdminDpList' && (
             <AdminDpList cropNum={cropNum} searchQuery={searchQuery} />
+          )}
+          {activeState === 'DpDetail' && (
+            <DpDetail dpNum={dpNum} />
           )}
         </div>
       </div>
