@@ -1,7 +1,6 @@
 import React, { useState, useEffect, searchParams } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios'
-import logo from '../../assets/logo.png'
 import testImg from '../../assets/loading2.gif'
 
 const DpDetail = ({ dpNum }) => {
@@ -66,7 +65,6 @@ const DpDetail = ({ dpNum }) => {
   return (
     //사용자 병해충 도감 상세
     <div id='diMainBox'>
-      <img className='smallLogo' src={logo} alt="GROWELL" />
       <div id='diConBox'>
         {dp && <div>
           <p>{dp.crop.name}</p>

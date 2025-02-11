@@ -141,8 +141,8 @@ const Login = () => {
   return (
     <div id='loginBody'>
       <div id="loginMainBox">
-        {/* 로그인 페이지 오른쪽 날씨 박스 */}
-        <div id="loginWeatherBox">
+         {/* 로그인 페이지 오른쪽 날씨 박스 */}
+         <div id="loginWeatherBox">
           {error ? (
             <p style={{ color: "red", fontSize: "1.2rem" }}>{error}</p>
           ) : weather ? (
@@ -159,7 +159,7 @@ const Login = () => {
               <span>풍속: {weather.wind.speed} km/h</span>
             </div>
           ) : (
-            null
+            <p>날씨 정보를 불러오는 중...</p>
           )}
         </div>
 
