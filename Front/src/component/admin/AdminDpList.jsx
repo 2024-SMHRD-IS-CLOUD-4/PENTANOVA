@@ -1,58 +1,46 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const AdminDpList = ({ cropNum }) => {
-    const [dps, setDps] = useState([]);
-    const [tpDps, setTpDps] = useState([]);
-    const [imageUrls, setImageUrls] = useState([{}]);
+const AdminDpList = ({ cropNum, searchQuery }) => {
+    const [dps, setDps] = useState([]); // 병해충 목록 저장
     const [loading, setLoading] = useState(false);
-    const [trigger, setTrigger] = useState(false);
-    const textRef = useRef();
-    const typeRef = useRef();
-    console.log(cropNum)
+
+    console.log("현재 검색어:", searchQuery);
+
     useEffect(() => {
-        const dpList = async () => {
+        if (!searchQuery) return; // 검색어가 없으면 실행 안 함
+
+        const fetchSearchResults = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_connect}/dp/dpListByCrop?crop_num=${cropNum}`);
+                const response = await axios.get(`${process.env.REACT_APP_connect}/dp/search?query=${searchQuery}`);
                 setDps(response.data);
-                const imagePromises = response.data.map(dp =>
-                    fetch(`${process.env.REACT_APP_connect}/bucket/getImages/DiseasePests/${dp.crop.eng_name}/${dp.img}`)
-                        .then(response => response.blob())
-                        .then(blob => ({
-                            [dp.dp_num]: URL.createObjectURL(blob)
-                        }))
-                );
-
-                Promise.all(imagePromises)
-                    .then(images => {
-                        const newImageUrls = images.reduce((acc, curr) => ({ ...acc, ...curr }), {});
-                        setImageUrls(newImageUrls);
-                        setLoading(true);
-                    });
-
+                setLoading(true);
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error fetching search results:', error);
             }
         };
-        dpList();
-    }, []);
+
+        fetchSearchResults();
+    }, [searchQuery]); // 검색어가 변경될 때 실행
+
     return (
         <div>
-            <div>
-                {dps.map((dp, idx) => (
-                    <div>
-                        <div className='dlConImg'>
-                            <img key={idx} src={imageUrls[dp.dp_num]} />
-                        </div>
-                        <div className='dlConTitle'>
-                            <p><span>{dp.crop.name}</span><span>{dp.category ? "해충" : "질병"}</span></p>
+            <h2>병해충 검색 결과</h2>
+            {loading ? (
+                dps.length > 0 ? (
+                    dps.map((dp, idx) => (
+                        <div key={dp.dp_num}>
                             <h3>{dp.name}</h3>
                         </div>
-                    </div>
-                ))}
-            </div>
+                    ))
+                ) : (
+                    <p>검색 결과가 없습니다.</p>
+                )
+            ) : (
+                <p>로딩 중...</p>
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default AdminDpList
+export default AdminDpList;

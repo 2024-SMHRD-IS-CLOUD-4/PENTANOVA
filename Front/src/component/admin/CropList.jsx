@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const CropList = ({setActiveState}) => {
-    const [imageUrls, setImageUrls] = useState([{}]);
+const CropList = ({ setActiveState }) => {
+    const [imageUrls, setImageUrls] = useState({});
     const [crops, setCrops] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedCrop, setSelectedCrop] = useState(null); // 선택된 작물 저장
+
     useEffect(() => {
         const cropList = async () => {
             try {
@@ -33,17 +34,32 @@ const CropList = ({setActiveState}) => {
         };
         cropList();
     }, []);
-    
+
+    const handleCropClick = (crop) => {
+        setSelectedCrop(crop); // 선택된 작물 저장
+    };
+
     return (
         <div id='clMainBox'>
-            {crops.map((crop, idx) => {
-                return <div>
-                    <img key={idx} src={imageUrls[crop.name]} onClick={() => setActiveState('AdminDpList')} />
-                    <button type='button' className='sBtn'>{crop.name}</button>
+            {selectedCrop ? (
+                <div>
+                    <img src={imageUrls[selectedCrop.name]} />
+                    <button type='button' className='sBtn'>{selectedCrop.name}</button>
+                    <button onClick={() => setSelectedCrop(null)} className='sBtn'>목록으로</button>
                 </div>
-            })}
+            ) : (
+                crops.map((crop, idx) => (
+                    <div key={idx}>
+                        <img 
+                            src={imageUrls[crop.name]} 
+                            onClick={() => handleCropClick(crop)} 
+                        />
+                        <button type='button' className='sBtn'>{crop.name}</button>
+                    </div>
+                ))
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default CropList
+export default CropList;
