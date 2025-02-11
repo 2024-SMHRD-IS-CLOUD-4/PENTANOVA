@@ -5,7 +5,7 @@ import axios from 'axios'
 import { AppData } from '../../function/AuthContext';
 import { Grid, Paper, Select } from '@mui/material';
 import { Bar, Line, Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, BarElement, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, BarElement, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, plugins } from 'chart.js';
 import { Chart } from 'chart.js/auto';
 import loadingImg from '../../assets/loading2.gif'
 
@@ -68,7 +68,7 @@ const options1 = {
   scales: {
     y: {
       beginAtZero: true,
-      max: 100,
+      max: 20,
       ticks: {
         stepSize: 1
       }
@@ -82,6 +82,24 @@ const options2 = {
   plugins: {
     legend: {
       display: false // 🔴 범례 숨김
+    }
+  }
+};
+
+const option3 = {
+  scales: {
+    y: {
+      beginAtZero: true,
+      max: 5,
+      ticks: {
+        stepSize: 1
+      },
+
+    }
+  },
+  plugins: {
+    legend: {
+      display: false
     }
   }
 };
@@ -109,7 +127,7 @@ const Dashboard = () => {
   let dpRef = useRef();
   let dateRef1 = useRef();
   let dateRef2 = useRef();
-  
+
 
   const regionChangeData = async () => {
     const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
@@ -272,7 +290,7 @@ const Dashboard = () => {
           <Grid item xs={12} md={6}>
             <Paper elevation={3} style={{ padding: 16 }}>
               <h2>가입 현황</h2>
-              {data1 ? <Bar data={data1} options={options1} /> : null}
+              {data1 ? <Bar data={data1} options={options} /> : <img src={loadingImg} />}
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -299,7 +317,7 @@ const Dashboard = () => {
             </select>
             <Paper elevation={3} style={{ padding: 16 }}>
               <h2>지역별 병해충 분포</h2>
-              {data3 ? <Bar data={data3} options={options} /> : null}
+              {data3 ? <Bar data={data3} options={option3} /> : null}
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -313,7 +331,7 @@ const Dashboard = () => {
             </select>
             <Paper elevation={3} style={{ padding: 16 }}>
               <h2>병해충 진단 분포</h2>
-              {data4 ? <Pie data={data4} options={options2}/> : null}
+              {data4 ? <Pie data={data4} options={options2} /> : null}
             </Paper>
           </Grid>
         </Grid>
