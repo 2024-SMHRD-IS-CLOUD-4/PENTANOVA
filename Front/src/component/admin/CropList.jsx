@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const CropList = ({ setActiveState }) => {
+const CropList = ({ setActiveState, setDpNum }) => {
     const [imageUrls, setImageUrls] = useState({});
     const [crops, setCrops] = useState([]);
     const [dps, setDps] = useState([]);
@@ -65,7 +65,10 @@ const CropList = ({ setActiveState }) => {
                         console.log('asd')
                         return <div>
                             <p>{dp.name}</p>
-                            <button className='sBtn'>상세보기</button>
+                            <button className='sBtn' onClick={()=>{
+                                setActiveState('DpDetail')
+                                setDpNum(dp.dp_num)
+                            }}>상세보기</button>
                         </div>
                     })}
                 </div>
