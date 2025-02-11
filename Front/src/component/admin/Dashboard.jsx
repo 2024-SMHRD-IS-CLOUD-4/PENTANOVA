@@ -77,13 +77,37 @@ const options1 = {
 };
 
 const options2 = {
-  scales: {
-  },
+  responsive: true, // 반응형 활성화
+  maintainAspectRatio: false, // 부모 컨테이너 크기에 맞게 조정
   plugins: {
     legend: {
-      display: false // 🔴 범례 숨김
-    }
-  }
+      display: true, // 범례 표시
+      position: 'right', // 범례를 오른쪽에 배치
+      labels: {
+        font: {
+          size: 14, // 범례 글자 크기 조정
+        },
+        color: '#333', // 범례 색상 조정
+        generateLabels: (chart) => {
+          const data = chart.data;
+          return data.labels.map((label, index) => {
+            const value = data.datasets[0].data[index]; // 해당 항목의 값 가져오기
+            return {
+              text: `${label} ${value}회`,
+              fillStyle: data.datasets[0].backgroundColor[index],
+              hidden: value === 0, // 데이터가 0이면 숨김
+            };
+          });
+        },
+      },
+    },
+    tooltip: {
+      enabled: true, // 🔴 툴팁 활성화
+      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+      titleFont: { size: 14 },
+      bodyFont: { size: 12 },
+    },
+  },
 };
 
 const option3 = {
@@ -129,6 +153,16 @@ const Dashboard = () => {
   let dateRef1 = useRef();
   let dateRef2 = useRef();
 
+  const filteredData = {
+    labels: data4.labels.filter((_, index) => data4.datasets[0].data[index] > 0),
+    datasets: [
+      {
+        ...data4.datasets[0],
+        data: data4.datasets[0].data.filter(value => value > 0),
+      },
+    ],
+  };
+
 
   const regionChangeData = async () => {
     const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
@@ -172,8 +206,8 @@ const Dashboard = () => {
     dpCount.fill(0);
     dpResponse.data.map((dp, idx) => {
       diagResponse.data.map(diag => {
-        if (diag.dp_num.dp_num == dp.dp_num) {
-          if (dateRef2.current.value == diag.createdAt.split('-')[1]) {
+        if (diag.dp_num.dp_num === dp.dp_num) {
+          if (dateRef2.current.value === diag.createdAt.split('-')[1]) {
             dpCount[idx]++;
           }
         }
@@ -279,21 +313,10 @@ const Dashboard = () => {
             <option value={months[1]}>4달 전</option>
             <option value={months[0]}>5달 전</option>
           </select>
-          {data4 ? <Pie data={data4} options={options2}/> : null}
-          <div className="list-container">
-            {/* 상위 3개 목록 - 왼쪽 */}
-            <ul className="left-list">
-              {dpList.slice(0, 3).map((dp, idx) => (
-                <li key={dp.dp_num}>{dp.name} <span>{dpCount[idx]}회</span></li>
-              ))}
-            </ul>
-
-            {/* 하위 목록 - 오른쪽 */}
-            <ul className="right-list scroll">
-              {dpList.slice(3).map((dp, idx) => (
-                <li key={dp.dp_num}>{dp.name} <span>{dpCount[idx + 3]}회</span></li>
-              ))}
-            </ul>
+          <div>
+            <div className='pieContainer'>
+              {data4 ? <Pie data={filteredData} options={options2} /> : <p>데이터 없음</p>}
+            </div>
           </div>
         </div>
         <div id='boardConDR'>
@@ -313,11 +336,14 @@ const Dashboard = () => {
               <option value={months[1]}>4달 전</option>
               <option value={months[0]}>5달 전</option>
             </select>
-            {data3 ? <Bar data={data3} options={options} /> : null}
+            <div>
+              {data3 ? <Bar data={data3} options={options} /> : null}
+            </div>
           </div>
           <div id='boardConDRD'>
-            <button className='sBtn' onClick={() => setActiveTab('이용현황')}>이용현황</button>
-            <button className='sBtn' onClick={() => setActiveTab('가입현황')}>가입현황</button>
+            <button className={`sBtn ${activeTab === '이용현황' ? 'bdactive' : ''}`}  onClick={() => setActiveTab('이용현황')}>이용현황</button>
+            
+            <button className={`sBtn ${activeTab === '가입현황' ? 'bdactive' : ''}`} onClick={() => setActiveTab('가입현황')}>가입현황</button>
             <div className="chart-container">
               {activeTab === '가입현황' && (
                 <div className="chart-box">
