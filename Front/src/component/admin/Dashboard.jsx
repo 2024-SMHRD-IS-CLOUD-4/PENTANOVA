@@ -316,7 +316,7 @@ const Dashboard = () => {
         <div id='boardConDL'>
           <span>병해충 진단 현황</span>
           <select ref={dateRef2} onChange={dateChangeData}>
-            <option value={months[5]}>최근 30일</option>
+            <option value={months[5]}>이번 달</option>
             <option value={months[4]}>1달 전</option>
             <option value={months[3]}>2달 전</option>
             <option value={months[2]}>3달 전</option>
@@ -339,7 +339,7 @@ const Dashboard = () => {
               })}
             </select>
             <select ref={dateRef1} onChange={regionChangeData}>
-              <option value={months[5]}>최근 30일</option>
+              <option value={months[5]}>이번 달</option>
               <option value={months[4]}>1달 전</option>
               <option value={months[3]}>2달 전</option>
               <option value={months[2]}>3달 전</option>

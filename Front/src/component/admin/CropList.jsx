@@ -69,16 +69,18 @@ const CropList = ({ setActiveState, setDpNum }) => {
                             <p className='clSTitle'>병 피해</p>
                             <div className='scroll'>
                                 {dps.map((dp, idx) => {
-                                return <div className='clConS'>
-                                    <p>주 발병 작물<img src={rightArrow} alt="rightArrow" />식량작물 <img src={rightArrow} alt="rightArrow" /> {selectedCrop.name}</p>
-                                    <p>
-                                        <span>병명<img src={rightArrow} alt="rightArrow" />{dp.name}</span>
-                                        <button className='sBtn' onClick={() => {
-                                            setActiveState('DpDetail')
-                                            setDpNum(dp.dp_num)
-                                        }}>상세보기</button>
-                                    </p>
-                                </div>
+                                    if (dp.category == 0) {
+                                        return <div className='clConS'>
+                                            <p>주 발병 작물<img src={rightArrow} alt="rightArrow" />식량작물 <img src={rightArrow} alt="rightArrow" /> {selectedCrop.name}</p>
+                                            <p>
+                                                <span>병명<img src={rightArrow} alt="rightArrow" />{dp.name}</span>
+                                                <button className='sBtn' onClick={() => {
+                                                    setActiveState('DpDetail')
+                                                    setDpNum(dp.dp_num)
+                                                }}>상세보기</button>
+                                            </p>
+                                        </div>
+                                    }
                                 })}
                             </div>
                         </div>
@@ -86,17 +88,20 @@ const CropList = ({ setActiveState, setDpNum }) => {
                             <p className='clSTitle'>해충 피해</p>
                             <div className='scroll'>
                                 {dps.map((dp, idx) => {
-                                return <div className='clConS'>
-                                    <p>발병 작물<img src={rightArrow} alt="rightArrow" />{selectedCrop.name}</p>
-                                    <p>
-                                        <span>병명<img src={rightArrow} alt="rightArrow" />{dp.name}</span>
-                                        <button className='sBtn' onClick={() => {
-                                            setActiveState('DpDetail')
-                                            setDpNum(dp.dp_num)
-                                        }}>상세보기</button>
-                                    </p>
-                                </div>
+                                    if (dp.category == 1) {
+                                        return <div className='clConS'>
+                                            <p>발병 작물<img src={rightArrow} alt="rightArrow" />{selectedCrop.name}</p>
+                                            <p>
+                                                <span>병명<img src={rightArrow} alt="rightArrow" />{dp.name}</span>
+                                                <button className='sBtn' onClick={() => {
+                                                    setActiveState('DpDetail')
+                                                    setDpNum(dp.dp_num)
+                                                }}>상세보기</button>
+                                            </p>
+                                        </div>
+                                    }
                                 })}
+
                             </div>
                         </div>
                     </div>
