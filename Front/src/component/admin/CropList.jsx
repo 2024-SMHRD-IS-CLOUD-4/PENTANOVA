@@ -35,13 +35,21 @@ const CropList = ({setActiveState}) => {
     }, []);
     
     return (
-        <div id='clMainBox'>
-            {crops.map((crop, idx) => {
-                return <div>
-                    <img key={idx} src={imageUrls[crop.name]} onClick={() => setActiveState('AdminDpList')} />
-                    <button type='button' className='sBtn'>{crop.name}</button>
-                </div>
-            })}
+        <div className="crop-container">
+        <h1 className="title">병해충 도감</h1>
+        <div className="crop-grid">
+          {crops.map((crop, idx) => (
+            <div
+              key={idx}
+              className="crop-card"
+              onClick={() => {
+                setActiveState("AdminDpList");
+              }}
+            >
+              <img src={imageUrls[crop.name]} alt={crop.name} className="crop-image" />
+              <div className="crop-name">{crop.name}</div>
+            </div>
+          ))}
         </div>
       </div>
     )
