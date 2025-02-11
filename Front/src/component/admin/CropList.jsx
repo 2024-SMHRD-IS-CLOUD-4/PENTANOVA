@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
-const CropList = ({ setActiveState, setCropNum }) => {
-    const navigate = useNavigate();
+const CropList = ({setActiveState}) => {
     const [imageUrls, setImageUrls] = useState([{}]);
     const [crops, setCrops] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -34,24 +33,15 @@ const CropList = ({ setActiveState, setCropNum }) => {
         };
         cropList();
     }, []);
-
+    
     return (
-        <div className="crop-container">
-        <h1 className="title">병해충 도감</h1>
-        <div className="crop-grid">
-          {crops.map((crop, idx) => (
-            <div
-              key={idx}
-              className="crop-card"
-              onClick={() => {
-                setActiveState("AdminDpList");
-                setCropNum(crop.crop_num);
-              }}
-            >
-              <img src={imageUrls[crop.name]} alt={crop.name} className="crop-image" />
-              <div className="crop-name">{crop.name}</div>
-            </div>
-          ))}
+        <div id='clMainBox'>
+            {crops.map((crop, idx) => {
+                return <div>
+                    <img key={idx} src={imageUrls[crop.name]} onClick={() => setActiveState('AdminDpList')} />
+                    <button type='button' className='sBtn'>{crop.name}</button>
+                </div>
+            })}
         </div>
       </div>
     )

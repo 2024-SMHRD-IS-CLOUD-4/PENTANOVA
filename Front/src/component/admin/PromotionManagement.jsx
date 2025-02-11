@@ -35,8 +35,8 @@ const PromotionManagement = () => {
             {responseText.map((text, idx) => {
               return (
                   <div key={idx}>
-                    <p>{responseText[idx]}</p><br /><br />
-                    <p>{showInputText[idx]}</p><br /><br />
+                    <p className='pmClova'>{responseText[idx]}</p>
+                    {showInputText[idx] && <p className='pmAnser'>{showInputText[idx]}</p>} {/* 값이 없으면 보이지 않게 함 */}
                   </div>
               )
             })}
