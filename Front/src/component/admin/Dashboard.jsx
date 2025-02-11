@@ -306,11 +306,43 @@ const Dashboard = () => {
   const storedUser = sessionStorage.getItem("user");
   const user = JSON.parse(storedUser);
 
+  const [isExpanded, setIsExpanded] = useState("collapsed");
+
+    // 목록보기 토글 함수
+    const toggleExpand = () => {
+        setIsExpanded(!isExpanded);
+    };
+
   return (
     <div id='boardMainPage'>
-      <div id='boardConUp'>
-        <span>질병:{dpTypeCount[1]}회,해충:{dpTypeCount[0]}회</span>
-      </div>
+      {/* 상단 박스 */}
+      <div id="boardConUp" className={isExpanded ? "expanded" : "collapsed"}>
+        <div className="content">
+            <div>
+                <span>실시간 병해충 진단 현황</span>
+            </div>
+            {/* 내부 내용 (스크롤 가능) */}
+            <div className="details">
+                {[...Array(4)].map((_, index) => (
+                    <p key={index}>
+                        <span>병</span>
+                        <span>애플망고</span>
+                        <span>그을음병 / Sooty Mold</span>
+                        <span>광주광역시 동구</span>
+                        <span>별가네 농장</span>
+                        <span>2025.01.25 12:26</span>
+                    </p>
+                ))}
+            </div>
+        </div>
+        {/* 하단 컨트롤 영역 */}
+        <div className="footer">
+            <span className="toggle-button" onClick={toggleExpand}>
+                {isExpanded ? "목록보기 ▼" : "목록보기 ▲"}
+            </span>
+            <span>질병: {dpTypeCount[1]}회, 해충: {dpTypeCount[0]}회</span>
+        </div>
+    </div>
       <div id='boardConDown'>
         <div id='boardConDL'>
           <span>병해충 진단 현황</span>

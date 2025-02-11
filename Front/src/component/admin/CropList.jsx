@@ -73,7 +73,7 @@ const CropList = ({ setActiveState, setDpNum }) => {
                                         return <div className='clConS'>
                                             <p>주 발병 작물<img src={rightArrow} alt="rightArrow" />식량작물 <img src={rightArrow} alt="rightArrow" /> {selectedCrop.name}</p>
                                             <p>
-                                                <span>병명<img src={rightArrow} alt="rightArrow" />{dp.name}</span>
+                                                <span>병명<img src={rightArrow} alt="rightArrow" />{dp.name} / {dp.eng_name}</span>
                                                 <button className='sBtn' onClick={() => {
                                                     setActiveState('DpDetail')
                                                     setDpNum(dp.dp_num)
@@ -92,7 +92,7 @@ const CropList = ({ setActiveState, setDpNum }) => {
                                         return <div className='clConS'>
                                             <p>발병 작물<img src={rightArrow} alt="rightArrow" />{selectedCrop.name}</p>
                                             <p>
-                                                <span>병명<img src={rightArrow} alt="rightArrow" />{dp.name}</span>
+                                                <span>병명<img src={rightArrow} alt="rightArrow" />{dp.name} / {dp.eng_name}</span>
                                                 <button className='sBtn' onClick={() => {
                                                     setActiveState('DpDetail')
                                                     setDpNum(dp.dp_num)

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import logo from'../../assets/logo.png';
 
 const AdminDpList = ({ searchQuery, setActiveState, setDpNum }) => {
     const [dps, setDps] = useState([]); // 병해충 목록 저장
@@ -21,17 +22,20 @@ const AdminDpList = ({ searchQuery, setActiveState, setDpNum }) => {
     }, [searchQuery]); // 검색어가 변경될 때 실행
 
     return (
-        <div>
-            <h2>병해충 검색 결과</h2>
+        <div id='adDlMainBox'>
+            <h4>검색 결과</h4>
             {dps ? (
                 dps.map((dp, idx) => (
-                    <div>
-                        {/* <div className='dlConImg' style={{ display: 'flex' }}>
-                            <img key={idx} src={imageUrls[cropNum.dp_num]}  />
-                        </div> */}
-                        <div className='dlConTitle'>
-                            <p><span>{dp.crop.name}</span><span>{dp.category ? "해충" : "질병"}</span></p>
-                            <h3>{dp.name}</h3>
+                    <div className='borderB'>
+                        <div className='AdDlConImg'>
+                            <img src={logo}  alt='logo'/>
+                        </div>
+                        <div className='AdDlConTitle'>
+                            <p>
+                                <span>{dp.crop.name}</span>
+                                <span>{dp.category ? "해충" : "질병"}</span>
+                                <span>{dp.name} / {dp.eng_name}</span>
+                            </p>
                             <button className='sBtn' onClick={()=>{
                                 setActiveState('DpDetail');
                                 setDpNum(dp.dp_num);
