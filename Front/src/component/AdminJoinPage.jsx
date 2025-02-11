@@ -8,6 +8,7 @@ import PromotionManagement from './admin/PromotionManagement.jsx';
 import UserManagement from './admin/UserManagement.jsx';
 import PestManagement from './admin/PestManagement.jsx';
 import AdminDpList from './admin/AdminDpList.jsx';
+import Alarm from './api/KakaoAlarm.jsx';
 
 import { AppData } from '../function/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
@@ -80,6 +81,18 @@ function AdminJoinPage() {
         UserDetail: "사용자 관리"
     };
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // 모달 열기 함수
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    // 모달 닫기 함수
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <div id="adminBody">
             <div id="adminMainBox">
@@ -116,7 +129,9 @@ function AdminJoinPage() {
                         {/* 선택된 메뉴에 따라 헤더 텍스트가 변경됩니다 */}
                         <span>{menuTextMapping[selectedButton]}</span>
                         <span>
-                        <button onClick={()=> navigate('/alarm')}>메세지 보내기</button>
+                            <button id="messageBtn" className='sBtn' onClick={openModal}>
+                                알림 발송
+                            </button>
                             <button id="homeBtn" onClick={dashboard} style={menuBtnStyle('Dashboard')}>
                                 <img src={home} alt="" />
                             </button>
@@ -140,6 +155,14 @@ function AdminJoinPage() {
                     </div>
                 </div>
             </div>
+            {isModalOpen && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <Alarm />
+                        <button className='sBtn' onClick={closeModal}>닫기</button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
