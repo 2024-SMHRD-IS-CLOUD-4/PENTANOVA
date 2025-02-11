@@ -339,6 +339,7 @@ const Dashboard = () => {
             <div>
               {data3 ? <Bar data={data3} options={options} /> : null}
             </div>
+
           </div>
           <div id='boardConDRD'>
             <button className={`sBtn ${activeTab === '이용현황' ? 'bdactive' : ''}`}  onClick={() => setActiveTab('이용현황')}>이용현황</button>
