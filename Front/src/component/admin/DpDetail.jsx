@@ -64,51 +64,54 @@ const DpDetail = ({ dpNum }) => {
 
   return (
     //사용자 병해충 도감 상세
-    <div id='diMainBox'>
-      <div id='diConBox'>
-        {dp && <div>
-          <p>{dp.crop.name}</p>
-          <h2>{dp.name}</h2>
-          <p>{dp.eng_name}</p>
+    <div id='adDiMainBox'>
+      {dp && <div id='adDiConT'>
+        <div id='adDiConL'>
           <img src={!loading ? imageUrl[dp.dp_num] : { testImg }} alt={dp.name} />
-          <div>
-            <p>발병시기 : {dp.season}</p>
-            <p>주 발생 부위 : {dp.site}</p>
-            <p>{dp.argu}</p>
-          </div>
-        </div>}
-        <div className="tab_menu">
-          <ul className="list">
-            <li className="is_on">
-              <a href="#tab1" className="btn">발생 환경</a>
-            </li>
-            <li>
-              <a href="#tab2" className="btn">농약 정보</a>
-            </li>
-            <li>
-              <a href="#tab3" className="btn">방제 정보</a>
-            </li>
-          </ul>
+        </div>
+        <div id='adDiConR'>
+          <p className='acDiConTitle'>병 정보</p>
+          <p>병명</p>
+          <p>{dp.name}<br/>{dp.eng_name}</p>
+          <p>주 발병 작물</p>
+          <p>{dp.crop.name}</p>
+        </div>
+      </div>}
+      <div id='adDiConB' className="tab_menu">
+        <ul className="list">
+          <li className="is_on">
+            <a href="#tab1" className="btn">일반 정보</a>
+          </li>
+          <li>
+            <a href="#tab2" className="btn">병원체 정보</a>
+          </li>
+          <li>
+            <a href="#tab3" className="btn">사진 정보</a>
+          </li>
+        </ul>
 
-          <div className="cont_area">
-            <div id="tab1" className="cont">
-              {dp ? dp.content : null}
-            </div>
-            <div id="tab2" className="cont" style={{ display: 'none' }}>
-              <p>아우라 <span>㈜한얼사이언스</span></p>
-              <p>아우라 <span>㈜한얼사이언스</span></p>
-            </div>
-            <div id="tab3" className="cont" style={{ display: 'none' }}>
-              <p><span>주의보</span>2024.09.01~09.30</p>
-              <p><span>예보</span>2024.07.01~08.30</p>
-            </div>
+        <div className="cont_area">
+          <div id="tab1" className="cont">
+            {dp ? dp.content : null}
+          </div>
+          <div id="tab2" className="cont" style={{ display: 'none' }}>
+            {dp ? dp.content : null}
+            {dp ? dp.content : null}
+          </div>
+          <div id="tab3" className="cont" style={{ display: 'none' }}>
+            <img src={testImg} alt="" />
+            <img src={testImg} alt="" />
+            <img src={testImg} alt="" />
+            <img src={testImg} alt="" />
+            <img src={testImg} alt="" />
+            <img src={testImg} alt="" />
           </div>
         </div>
+      </div>
 
 
         {dp ? dp.region : null}
 
-      </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-#adminBody, #adminMainBox, #udMainBox{ /*전체 사이즈로 맞춤*/
+#adminBody, #adminMainBox, #udMainBox, #adDiMainBox{ /*전체 사이즈로 맞춤*/
     position: relative;
     width: 100%;
     height: 100%;
@@ -366,6 +366,85 @@
 .clConBoxD .sBtn{
     float: right;
 }
+
+/*병해충 상세 css*/
+#adDiConT{
+    width: 100%;
+    height: 330px;
+}
+#adDiConL, #adDiConR{
+    float: left;
+}
+#adDiConL{
+    width: 330px;
+    height: 100%;
+}
+#adDiConL > img{
+    width: 100%;
+    height: auto;
+}
+#adDiConR{
+    width: calc(100% - 330px);
+    height: 330px;
+    padding: 40px;
+}
+#adDiConR p{
+    color: #555;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+#adDiConR p:nth-child(2n){
+    color: #333;
+    font-size: 20px;
+    margin-top: 40px;
+    padding: 0px;
+}
+.acDiConTitle{
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 32px;
+    font-size: 16px;
+    color: #f1f1f1 !important;
+    padding: 0px !important;
+    background-color: rgba(76, 126, 65, 1);
+}
+#adDiConB{
+    width: 100%;
+    height: calc(100% - 330px);
+}
+#adDiConB .list{
+    width: 100%;
+    height: 60px;
+    padding: 30px 0px;
+}
+#adDiConB .cont_area{
+    display: inline-block;
+    width: 100%;
+    height: calc(100% - 60px);
+    padding: 0px;
+    position: relative;
+    text-align: left;
+    font-size: 16px !important;
+    font-weight: 300;
+    line-height: 160%;
+}
+#adDiConB .btn{
+    text-align: center;
+    padding: 0 5%;
+}
+#tab2{
+    padding: 0px 20px;
+}
+#tab3 img{
+    float: left;
+    width: 200px;
+    height: auto;
+}
+#tab3 {
+    height: 100%;
+}
+
 
 /*병해충 AI 검색 CSS*/
 #pmMainBox{
