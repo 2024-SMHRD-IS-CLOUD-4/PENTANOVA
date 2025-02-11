@@ -132,5 +132,7 @@ select:focus{
 
 /*로딩 gif 이미지*/
 .loadingImg{
+    width: 20%;
+    height: auto;
     margin: 50% auto;
 }

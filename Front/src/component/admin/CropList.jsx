@@ -57,21 +57,34 @@ const CropList = ({ setActiveState, setDpNum }) => {
     return (
         <div id='clMainBox'>
             {selectedCrop ? (
-                <div>
-                    <img src={imageUrls[selectedCrop.name]} />
-                    <button type='button' className='sBtn'>{selectedCrop.name}</button>
-                    <button onClick={() => setSelectedCrop(null)} className='sBtn'>목록으로</button>
-                    {dps.map((dp, idx) => {
-                        console.log('asd')
-                        return <div>
-                            <p>{dp.name}</p>
-                            <button className='sBtn' onClick={() => {
-                                setActiveState('DpDetail')
-                                setDpNum(dp.dp_num)
-                            }}>상세보기</button>
+                <>
+                    <div class>
+                        <img src={imageUrls[selectedCrop.name]} />
+                        <button type='button' className='sBtn'>{selectedCrop.name}</button>
+                        <button onClick={() => setSelectedCrop(null)} className='sBtn'>목록으로</button>
+                    </div>
+                    <div>
+                        <div>
+                            <p>병 피해</p>
+                            <div>
+                                <p>주 발병 작물 <img src="" alt="" /></p>
+                            </div>
                         </div>
-                    })}
-                </div>
+                        <div>
+                            <p>해충 피해</p>
+                        </div>
+                        {dps.map((dp, idx) => {
+                            console.log('asd')
+                            return <div>
+                                <p>{dp.name}</p>
+                                <button className='sBtn' onClick={() => {
+                                    setActiveState('DpDetail')
+                                    setDpNum(dp.dp_num)
+                                }}>상세보기</button>
+                            </div>
+                        })}
+                    </div>
+                </>
             ) : (
                 crops.map((crop, idx) => (
                     <div key={idx}>

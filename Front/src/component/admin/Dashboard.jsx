@@ -326,7 +326,7 @@ const Dashboard = () => {
           </select>
           <div>
             <div className='pieContainer'>
-              {filteredData ? <Pie data={filteredData} options={options2} /> : <p>데이터 없음</p>}
+              {filteredData ? <Pie data={filteredData} options={options2} /> : <img className='loadingImg' src={loadingImg}/>}
             </div>
           </div>
         </div>
