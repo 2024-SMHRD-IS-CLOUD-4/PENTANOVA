@@ -65,7 +65,7 @@ const CropList = ({ setActiveState, setDpNum }) => {
                         console.log('asd')
                         return <div>
                             <p>{dp.name}</p>
-                            <button className='sBtn' onClick={()=>{
+                            <button className='sBtn' onClick={() => {
                                 setActiveState('DpDetail')
                                 setDpNum(dp.dp_num)
                             }}>상세보기</button>
