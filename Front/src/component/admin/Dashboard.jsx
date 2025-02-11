@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AppData } from '../../function/AuthContext';
-import { Button, Grid, MenuItem, Paper, Select } from '@mui/material';
+import { Grid, Paper, Select } from '@mui/material';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, BarElement, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, plugins } from 'chart.js';
 import { Chart } from 'chart.js/auto';
@@ -68,6 +68,7 @@ const options1 = {
   scales: {
     y: {
       beginAtZero: true,
+      max: 20,
       ticks: {
         stepSize: 1
       }
@@ -106,8 +107,6 @@ const option3 = {
 const Dashboard = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('이용현황');
-  const [selectedDate, setSelectedDate] = useState("30");
-  const [selectedDp, setSelectedDp] = useState(""); // 🔴 기본 선택지 상태
   const [data1, setData1] = useState();
   const [data2, setData2] = useState();
   const [data3, setData3] = useState();
@@ -169,16 +168,12 @@ const Dashboard = () => {
   const dateChangeData = async () => {
     const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
     const dpResponse = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`)
-    setDpList(dpResponse.data);
-    if (dpResponse.data.length > 0) {
-      setSelectedDp(dpResponse.data[0].dp_num);
-    }
 
     dpCount.fill(0);
     dpResponse.data.map((dp, idx) => {
       diagResponse.data.map(diag => {
-        if (diag.dp_num.dp_num === dp.dp_num) {
-          if (dateRef2.current.value === diag.createdAt.split('-')[1]) {
+        if (diag.dp_num.dp_num == dp.dp_num) {
+          if (dateRef2.current.value == diag.createdAt.split('-')[1]) {
             dpCount[idx]++;
           }
         }
@@ -212,7 +207,7 @@ const Dashboard = () => {
         const diagData = diagResponse.data;
         months.map((month, idx) => {
           userData.map(user => {
-            if (user.createdAt.split('-')[1] === month) {
+            if (user.createdAt.split('-')[1] == month) {
               userMonthCount[idx]++;
             }
           })
@@ -239,7 +234,7 @@ const Dashboard = () => {
 
         months.map((month, idx) => {
           diagData.map(diag => {
-            if (diag.createdAt.split('-')[1] === month) {
+            if (diag.createdAt.split('-')[1] == month) {
               diagMonthCount[idx]++;
             }
           })
@@ -269,134 +264,77 @@ const Dashboard = () => {
   const user = JSON.parse(storedUser);
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <Paper elevation={0} sx={{ padding: 2, textAlign: 'center', borderRadius:'20px'}}>
-          <span>질병:{dpTypeCount[1]}회,해충:{dpTypeCount[0]}회</span>
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <Paper elevation={0} sx={{ padding: 2, boxShadow: 'none', borderRadius: '20px' }}>
+    <div id='boardMainPage'>
+      <div id='boardConUp'>
+        <span>질병:{dpTypeCount[1]}회,해충:{dpTypeCount[0]}회</span>
+      </div>
+      <div id='boardConDown'>
+        <div id='boardConDL'>
           <span>병해충 진단 현황</span>
-           {/* 기본값 `30`으로 설정 */}
-           <Select
-            ref={dateRef2}
-            value={selectedDate} 
-            onChange={(e) => setSelectedDate(e.target.value)}
-            sx={{ 
-              width: 'fit-content', 
-              height: '40px', 
-              borderRadius: '20px', 
-              float: 'right', 
-              fontSize: '14px', 
-              marginBottom: '20px' 
-            }}
-          >
-            <MenuItem value="30">최근 30일</MenuItem>
-            <MenuItem value="60">1달 전</MenuItem>
-            <MenuItem value="90">2달 전</MenuItem>
-          </Select>
-          {data4 ? <Pie data={data4} options={options2}/> : <p>데이터 없음</p>}
-          {/* 리스트를 좌우로 정렬 */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '30px' }}>
-              {/* 상위 3개 - 왼쪽 정렬 */}
-              <ul style={{ width: '48%', listStyle: 'none', padding: 0, margin: 0 }}>
-                {dpList.slice(0, 3).map((dp, idx) => (
-                  <li key={dp.dp_num} style={{ padding: '5px 0' }}>
-                    {dp.name} <span style={{ float: 'right' }}>{dpCount[idx]}회</span>
-                  </li>
-                ))}
-              </ul>
+          <select ref={dateRef2} onChange={dateChangeData}>
+            <option value={months[5]}>최근 30일</option>
+            <option value={months[4]}>1달 전</option>
+            <option value={months[3]}>2달 전</option>
+            <option value={months[2]}>3달 전</option>
+            <option value={months[1]}>4달 전</option>
+            <option value={months[0]}>5달 전</option>
+          </select>
+          {data4 ? <Pie data={data4} options={options2}/> : null}
+          <div className="list-container">
+            {/* 상위 3개 목록 - 왼쪽 */}
+            <ul className="left-list">
+              {dpList.slice(0, 3).map((dp, idx) => (
+                <li key={dp.dp_num}>{dp.name} <span>{dpCount[idx]}회</span></li>
+              ))}
+            </ul>
 
-              {/* 나머지 - 오른쪽 정렬 */}
-              <ul className='scroll' style={{ height:'116px', width: '48%', listStyle: 'none', paddingTop:8, paddingBottom: 8, margin: 0, fontSize:'12px', backgroundColor:'#ededed'}}>
-                {dpList.slice(3).map((dp, idx) => (
-                  <li key={dp.dp_num} style={{ padding: '5px 0'}}>
-                    {dp.name} <span style={{ float: 'right' }}>{dpCount[idx + 3]}회</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-        </Paper>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {/* 오른쪽: 지역별 병해충 분포 (상단) */}
-          <Grid item xs={12}>
-            <Paper elevation={0} sx={{ padding: 2, boxShadow: 'none', borderRadius: '20px' }}>
-            <Select
-              ref={dpRef}
-              value={selectedDp} // 🔴 기본 선택지 적용
-              onChange={(e) => setSelectedDp(e.target.value)}
-              sx={{ 
-                width: 'fit-content', 
-                height: '40px', 
-                borderRadius: '20px', 
-                float: 'right', 
-                fontSize: '14px', 
-                marginBottom: '20px' 
-              }}
-            >
-                {dpList.map(dp => (
-                  <MenuItem key={dp.dp_num} value={dp.dp_num}>{dp.name}</MenuItem>
-                ))}
-              </Select>
-              {data3 ? <Bar data={data3} /> : <p>데이터 없음</p>}
-            </Paper>
-          </Grid>
-
-          {/* 오른쪽 아래: 이용현황 */}
-          <Grid item xs={12} sx={{ alignSelf: 'flex-end', marginTop: '20px' }}>
-            <Paper elevation={0} sx={{ padding: 2, boxShadow: 'none', borderRadius: '20px' }}>
-              <Button
-                variant={activeTab === '이용현황' ? 'contained' : 'outlined'}
-                onClick={() => setActiveTab('이용현황')}
-                sx={{ 
-                  borderRadius: '20px',
-                  backgroundColor: activeTab === '이용현황' ? 'transparent' : 'transparent',
-                  color: activeTab === '이용현황' ? '#555' : '#999',
-                  border: activeTab === '이용현황' ? '1px solid #555' : '1px solid #999',
-                  boxShadow: activeTab === '이용현황' ? 'none' : 'none',
-                  marginRight: 2,
-                  marginBottom:4,
-                  '&:hover': {
-                    backgroundColor: activeTab === '이용현황' ? 'transparent' : 'transparent',
-                    color: activeTab === '이용현황' ? '#555' : '#999',
-                    boxShadow: activeTab === '이용현황' ? 'none' : 'none',
-                  }
-                }}
-              >
-                이용 현황
-              </Button>
-              <Button
-                variant={activeTab === '가입현황' ? 'contained' : 'outlined'}
-                onClick={() => setActiveTab('가입현황')}
-                sx={{ 
-                  borderRadius: '20px',
-                  backgroundColor: activeTab === '가입현황' ? 'transparent' : 'transparent',
-                  color: activeTab === '가입현황' ? '#555' : '#999',
-                  border: activeTab === '가입현황' ? '1px solid #555' : '1px solid #999',
-                  boxShadow: activeTab === '가입현황' ? 'none' : 'none',
-                  marginBottom:4,
-                  '&:hover': {
-                    backgroundColor: activeTab === '가입현황' ? 'transparent' : 'transparent',
-                    color: activeTab === '가입현황' ? '#555' : '#999',
-                    boxShadow: activeTab === '가입현황' ? 'none' : 'none',
-                  }
-                }}
-              >
-                가입 현황
-              </Button>
-
-              {/* 탭 전환 */}
-              {activeTab === '이용현황' ? (
-                data2 ? <Line data={data2} /> : <p>이용현황 데이터 없음</p>
-              ) : (
-                data1 ? <Bar data={data1} /> : <p>가입현황 데이터 없음</p>
+            {/* 하위 목록 - 오른쪽 */}
+            <ul className="right-list scroll">
+              {dpList.slice(3).map((dp, idx) => (
+                <li key={dp.dp_num}>{dp.name} <span>{dpCount[idx + 3]}회</span></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div id='boardConDR'>
+          <div id='boardConDRU'>
+            <select ref={dpRef} defaultValue={1} onChange={regionChangeData}>
+              {dpList.map(dp => {
+                return (
+                  <option key={dp.dp_num} value={dp.dp_num}>{dp.name}</option>
+                )
+              })}
+            </select>
+            <select ref={dateRef1} onChange={regionChangeData}>
+              <option value={months[5]}>최근 30일</option>
+              <option value={months[4]}>1달 전</option>
+              <option value={months[3]}>2달 전</option>
+              <option value={months[2]}>3달 전</option>
+              <option value={months[1]}>4달 전</option>
+              <option value={months[0]}>5달 전</option>
+            </select>
+            {data3 ? <Bar data={data3} options={options} /> : null}
+          </div>
+          <div id='boardConDRD'>
+            <button className='sBtn' onClick={() => setActiveTab('이용현황')}>이용현황</button>
+            <button className='sBtn' onClick={() => setActiveTab('가입현황')}>가입현황</button>
+            <div className="chart-container">
+              {activeTab === '가입현황' && (
+                <div className="chart-box">
+                  {data1 ? <Bar data={data1} options={options1} /> : null}
+                </div>
               )}
-            </Paper>
-          </Grid>
-        </Grid>
-    </Grid>
+
+              {activeTab === '이용현황' && (
+                <div className="chart-box">
+                  {data2 ? <Line data={data2} options={options1} /> : null}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 export default Dashboard;
