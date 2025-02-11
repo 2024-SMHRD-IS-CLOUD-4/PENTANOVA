@@ -285,21 +285,6 @@ const Dashboard = () => {
               )
             })}
         </div>
-
-        <Grid container spacing={1}>
-          <Grid item xs={12} md={6}>
-            <Paper elevation={3} style={{ padding: 16 }}>
-              <h2>가입 현황</h2>
-              {data1 ? <Bar data={data1} options={options} /> : <img src={loadingImg} />}
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Paper elevation={3} style={{ padding: 16 }}>
-              <h2>이용 현황</h2>
-              {data2 ? <Line data={data2} options={options1} /> : <img src={loadingImg} />}
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6}>
         <div id='boardConDR'>
           <div id='boardConDRU'>
             <h2>지역별 병해충 분포</h2>
@@ -318,34 +303,6 @@ const Dashboard = () => {
               <option value={months[1]}>4달 전</option>
               <option value={months[0]}>5달 전</option>
             </select>
-            <Paper elevation={3} style={{ padding: 16 }}>
-              <h2>지역별 병해충 분포</h2>
-              {data3 ? <Bar data={data3} options={option3} /> : <img src={loadingImg} />}
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <select ref={dateRef2} onChange={dateChangeData}>
-              <option value={months[5]}>최근 30일</option>
-              <option value={months[4]}>1달 전</option>
-              <option value={months[3]}>2달 전</option>
-              <option value={months[2]}>3달 전</option>
-              <option value={months[1]}>4달 전</option>
-              <option value={months[0]}>5달 전</option>
-            </select>
-            <Paper elevation={3} style={{ padding: 16 }}>
-              <h2>병해충 진단 분포</h2>
-              {data4 ? <Pie data={data4} options={options2} /> : <img src={loadingImg} />}
-            </Paper>
-          </Grid>
-        </Grid>
-        <div>
-          <ul>
-            {dpList.map((dp, idx) => {
-              return (
-                <li key={dp.dp_num}>{dp.name}: : {dpCount[idx]}회</li>
-              )
-            })}
-          </ul>
             {data3 ? <Bar data={data3} options={options} /> : null}
           </div>
           <div id='boardConDRD'>
