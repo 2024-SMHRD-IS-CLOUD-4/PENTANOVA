@@ -4,6 +4,7 @@ import axios from 'axios';
 const CropList = ({ setActiveState }) => {
     const [imageUrls, setImageUrls] = useState({});
     const [crops, setCrops] = useState([]);
+    const [dps, setDps] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedCrop, setSelectedCrop] = useState(null); // 선택된 작물 저장
 
@@ -35,6 +36,20 @@ const CropList = ({ setActiveState }) => {
         cropList();
     }, []);
 
+    useEffect(() => {
+        if (!selectedCrop) return;
+        const dpList = async () => {
+            try {
+                const response = await axios.get(`${process.env.REACT_APP_connect}/dp/dpListByCrop?crop_num=${selectedCrop.crop_num}`);
+                setDps(response.data);
+                console.log(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        dpList();
+    }, [selectedCrop])
+
     const handleCropClick = (crop) => {
         setSelectedCrop(crop); // 선택된 작물 저장
     };
@@ -46,13 +61,20 @@ const CropList = ({ setActiveState }) => {
                     <img src={imageUrls[selectedCrop.name]} />
                     <button type='button' className='sBtn'>{selectedCrop.name}</button>
                     <button onClick={() => setSelectedCrop(null)} className='sBtn'>목록으로</button>
+                    {dps.map((dp, idx) => {
+                        console.log('asd')
+                        return <div>
+                            <p>{dp.name}</p>
+                            <button className='sBtn'>상세보기</button>
+                        </div>
+                    })}
                 </div>
             ) : (
                 crops.map((crop, idx) => (
                     <div key={idx}>
-                        <img 
-                            src={imageUrls[crop.name]} 
-                            onClick={() => handleCropClick(crop)} 
+                        <img
+                            src={imageUrls[crop.name]}
+                            onClick={() => handleCropClick(crop)}
                         />
                         <button type='button' className='sBtn'>{crop.name}</button>
                     </div>

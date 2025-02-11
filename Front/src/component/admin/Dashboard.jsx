@@ -68,7 +68,6 @@ const options1 = {
   scales: {
     y: {
       beginAtZero: true,
-      max: 20,
       ticks: {
         stepSize: 1
       }
@@ -296,7 +295,7 @@ const Dashboard = () => {
           <Grid item xs={12} md={6}>
             <Paper elevation={3} style={{ padding: 16 }}>
               <h2>이용 현황</h2>
-              {data2 ? <Line data={data2} options={options1} /> : null}
+              {data2 ? <Line data={data2} options={options1} /> : <img src={loadingImg} />}
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -317,7 +316,7 @@ const Dashboard = () => {
             </select>
             <Paper elevation={3} style={{ padding: 16 }}>
               <h2>지역별 병해충 분포</h2>
-              {data3 ? <Bar data={data3} options={option3} /> : null}
+              {data3 ? <Bar data={data3} options={option3} /> : <img src={loadingImg} />}
             </Paper>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -331,7 +330,7 @@ const Dashboard = () => {
             </select>
             <Paper elevation={3} style={{ padding: 16 }}>
               <h2>병해충 진단 분포</h2>
-              {data4 ? <Pie data={data4} options={options2} /> : null}
+              {data4 ? <Pie data={data4} options={options2} /> : <img src={loadingImg} />}
             </Paper>
           </Grid>
         </Grid>
