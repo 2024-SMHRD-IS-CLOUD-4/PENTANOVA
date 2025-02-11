@@ -95,6 +95,7 @@
     height: 45px;
     line-height: 45px;
     width: 400px;
+    padding-left: 55px;
     border: #f1f1f1;
     background-color: #fff;
     background-image: url('../assets/search.png');
@@ -102,6 +103,9 @@
     background-repeat: no-repeat;
     background-position: 5% center;
     box-sizing: border-box;
+}
+#adminRightBox header > span > input{
+    outline: none;
 }
 #homeBtn{
     width:45px;
@@ -194,7 +198,7 @@
     height: fit-content;
     float: left;
     text-align: center;
-    padding: 10px;
+    margin: 10px;
 }
 #clMainBox div > img{
     width: 100%;
@@ -234,11 +238,12 @@
 
 .pmConChatR .pmClova, .pmConChatR .pmAnser{
     width: 80%;
-    padding: 20px;
+    padding: 20px 30px 20px 30px;
     margin-bottom: 30px;
 }
 .pmConChatR .pmClova{
     margin-left:20%;
+    padding-right: 80px;
     background-color: #fff;
     background-image: url(../assets/omClova.png);
     background-repeat: no-repeat;
