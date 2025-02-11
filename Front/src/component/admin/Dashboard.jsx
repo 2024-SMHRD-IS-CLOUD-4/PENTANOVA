@@ -114,7 +114,6 @@ const option3 = {
   scales: {
     y: {
       beginAtZero: true,
-      max: 5,
       ticks: {
         stepSize: 1
       },
@@ -316,7 +315,7 @@ const Dashboard = () => {
         <div id='boardConDL'>
           <span>병해충 진단 현황</span>
           <select ref={dateRef2} onChange={dateChangeData}>
-            <option value={months[5]}>최근 30일</option>
+            <option value={months[5]}>이번 달</option>
             <option value={months[4]}>1달 전</option>
             <option value={months[3]}>2달 전</option>
             <option value={months[2]}>3달 전</option>
@@ -339,7 +338,7 @@ const Dashboard = () => {
               })}
             </select>
             <select ref={dateRef1} onChange={regionChangeData}>
-              <option value={months[5]}>최근 30일</option>
+              <option value={months[5]}>이번 달</option>
               <option value={months[4]}>1달 전</option>
               <option value={months[3]}>2달 전</option>
               <option value={months[2]}>3달 전</option>
@@ -364,7 +363,7 @@ const Dashboard = () => {
 
               {activeTab === '이용현황' && (
                 <div className="chart-box">
-                  {data2 ? <Line data={data2} options={options1} /> : null}
+                  {data2 ? <Line data={data2} options={option3} /> : null}
                 </div>
               )}
             </div>
