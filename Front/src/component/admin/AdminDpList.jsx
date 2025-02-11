@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const AdminDpList = ({ cropNum, searchQuery }) => {
+const AdminDpList = ({ searchQuery, setActiveState, setDpNum }) => {
     const [dps, setDps] = useState([]); // 병해충 목록 저장
     const [loading, setLoading] = useState(false);
 
@@ -32,13 +32,16 @@ const AdminDpList = ({ cropNum, searchQuery }) => {
                         <div className='dlConTitle'>
                             <p><span>{dp.crop.name}</span><span>{dp.category ? "해충" : "질병"}</span></p>
                             <h3>{dp.name}</h3>
+                            <button className='sBtn' onClick={()=>{
+                                setActiveState('DpDetail');
+                                setDpNum(dp.dp_num);
+                            }}>상세보기</button>
                         </div>
                     </div>
                 ))
             ) : (
                 <p>검색 결과가 없습니다.</p>
             )}
-
         </div>
     );
 };

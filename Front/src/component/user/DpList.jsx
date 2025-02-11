@@ -86,7 +86,8 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
             alert('검색어를 입력하세요!')
         }
     }
-
+    console.log(imageUrls)
+    console.log(dps)
     return (
         /*병해충 도감*/
         <div id='dlMainBox'>

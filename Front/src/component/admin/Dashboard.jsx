@@ -196,7 +196,6 @@ const Dashboard = () => {
   // data4 바뀔 때 filteredData 수정
   useEffect(()=>{
     if(!data4) return;
-    console.log("qwdasdas")
     setFilteredData({
       labels: data4.labels.filter((_, index) => data4.datasets[0].data[index] > 0),
       datasets: [

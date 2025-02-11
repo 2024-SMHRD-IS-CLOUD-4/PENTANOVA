@@ -38,8 +38,8 @@ const PestManagement = () => {
         <p className={activeSection === "cropGuide" ? "active" : ""}>작물별 도감</p>
         <ul>
           {["열대과일(과수)", "식량작물", "채소", "화훼", "특용작물", "잡초"].map((item) => (
-            <li 
-              key={item} 
+            <li
+              key={item}
               onClick={() => handleLiClick(item)}
               className={selectedItem === item ? "bold" : ""}
             >
@@ -50,21 +50,21 @@ const PestManagement = () => {
 
         {/* 클릭된 상태에 따라 배경색 변경 */}
         <p className={activeSection === "pestSearch" ? "active" : ""}>병해충 검색</p>
-        <input 
-          type="text" 
-          onChange={handleInputChange} 
+        <input
+          type="text"
+          onChange={handleInputChange}
           placeholder='단어를 입력해주세요.'
         />
         <button className='sBtn' onClick={handleSearchClick}>검색하기</button>
       </div>
-      
+
       <div id='pastConBoxR'>
         <div className='scroll'>
           {activeState === 'CropList' && (
             <CropList setActiveState={setActiveState} setCropNum={setCropNum} setDpNum={setDpNum} />
           )}
           {activeState === 'AdminDpList' && (
-            <AdminDpList cropNum={cropNum} searchQuery={searchQuery} />
+            <AdminDpList setDpNum={setDpNum} searchQuery={searchQuery} setActiveState={setActiveState} />
           )}
           {activeState === 'DpDetail' && (
             <DpDetail dpNum={dpNum} />
