@@ -125,7 +125,7 @@ const Login = () => {
       setUser(user);
       shareData.setData(user);
       setIsLoggedIn(true);
-      alert('반갑습니다! 사용자님');
+      alert('반갑습니다!' + user.nick + '님');
 
     } catch (error) {
       if (error.response) {

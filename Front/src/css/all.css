@@ -129,3 +129,8 @@ select:focus{
     border-radius: 0px;
     z-index: -100;
 }
+
+/*로딩 gif 이미지*/
+.loadingImg{
+    margin: 50% auto;
+}

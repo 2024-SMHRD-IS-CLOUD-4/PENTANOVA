@@ -136,7 +136,7 @@ const DpList = ({ setActiveState, setDpNum, dpNums, setDpNums }) => {
                                 </div>
                             ))
                         )}
-                    </div> : <img src={loadingImg}/>}
+                    </div> : <img className='loadingImg' src={loadingImg}/>}
                 </div>
             </div>
         </div>
