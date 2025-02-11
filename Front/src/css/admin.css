@@ -238,11 +238,12 @@
 
 .pmConChatR .pmClova, .pmConChatR .pmAnser{
     width: 80%;
-    padding: 20px;
+    padding: 20px 30px 20px 30px;
     margin-bottom: 30px;
 }
 .pmConChatR .pmClova{
     margin-left:20%;
+    padding-right: 80px;
     background-color: #fff;
     background-image: url(../assets/omClova.png);
     background-repeat: no-repeat;
