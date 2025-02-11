@@ -138,11 +138,55 @@
     display: flex;
 }
 #boardConDL{
+    height: 100%;
     flex: 1;
     margin-right: 15px;
 }
+#boardConDL select{
+    float: right;
+    margin-bottom: 20px;
+}
+.list-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.left-list, .right-list {
+    width: 45%;
+    list-style-type: none;
+}
+.left-list{
+    padding: 5%;
+    align-items: stretch;
+}
+.left-list li{
+    align-items: center;
+    flex-grow: 1;
+    padding: 5%;
+}
+.right-list{
+    height: 120px;
+    font-size: 14px;
+    background-color: #ededed;
+    padding: 3% 0;
+}
+.right-list li{
+    padding: 3%;
+}
+.right-list li{
+    padding: 3%;
+}
+.left-list li span, .right-list li span{
+    float: right;
+}
 #boardConDR{
+    height: 100%;
     flex: 1;
+}
+#boardConDRU, #boardConDRD{
+    height: 50%;
 }
 #boardConDRU{
     margin-bottom: 15px;
