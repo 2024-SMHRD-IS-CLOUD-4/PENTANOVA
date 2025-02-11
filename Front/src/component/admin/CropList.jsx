@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import rightArrow from '../../assets/right_arrow_black.png';
 
 const CropList = ({ setActiveState, setDpNum }) => {
     const [imageUrls, setImageUrls] = useState({});
@@ -58,40 +59,52 @@ const CropList = ({ setActiveState, setDpNum }) => {
         <div id='clMainBox'>
             {selectedCrop ? (
                 <>
-                    <div class>
+                    <div id='clConBoxL'>
                         <img src={imageUrls[selectedCrop.name]} />
-                        <button type='button' className='sBtn'>{selectedCrop.name}</button>
+                        <button type='button' className='sBtn clChose'>{selectedCrop.name}</button>
                         <button onClick={() => setSelectedCrop(null)} className='sBtn'>목록으로</button>
                     </div>
-                    <div>
-                        <div>
-                            <p>병 피해</p>
-                            <div>
-                                <p>주 발병 작물 <img src="" alt="" /></p>
+                    <div id='clConBoxR'>
+                        <div className='clConBoxD'>
+                            <p className='clSTitle'>병 피해</p>
+                            <div className='scroll'>
+                                {dps.map((dp, idx) => {
+                                return <div className='clConS'>
+                                    <p>주 발병 작물<img src={rightArrow} alt="rightArrow" />식량작물 <img src={rightArrow} alt="rightArrow" /> {selectedCrop.name}</p>
+                                    <p>
+                                        <span>병명<img src={rightArrow} alt="rightArrow" />{dp.name}</span>
+                                        <button className='sBtn' onClick={() => {
+                                            setActiveState('DpDetail')
+                                            setDpNum(dp.dp_num)
+                                        }}>상세보기</button>
+                                    </p>
+                                </div>
+                                })}
                             </div>
                         </div>
-                        <div>
-                            <p>해충 피해</p>
-                        </div>
-                        {dps.map((dp, idx) => {
-                            console.log('asd')
-                            return <div>
-                                <p>{dp.name}</p>
-                                <button className='sBtn' onClick={() => {
-                                    setActiveState('DpDetail')
-                                    setDpNum(dp.dp_num)
-                                }}>상세보기</button>
+                        <div className='clConBoxD'>
+                            <p className='clSTitle'>해충 피해</p>
+                            <div className='scroll'>
+                                {dps.map((dp, idx) => {
+                                return <div className='clConS'>
+                                    <p>발병 작물<img src={rightArrow} alt="rightArrow" />{selectedCrop.name}</p>
+                                    <p>
+                                        <span>병명<img src={rightArrow} alt="rightArrow" />{dp.name}</span>
+                                        <button className='sBtn' onClick={() => {
+                                            setActiveState('DpDetail')
+                                            setDpNum(dp.dp_num)
+                                        }}>상세보기</button>
+                                    </p>
+                                </div>
+                                })}
                             </div>
-                        })}
+                        </div>
                     </div>
                 </>
             ) : (
                 crops.map((crop, idx) => (
-                    <div key={idx}>
-                        <img
-                            src={imageUrls[crop.name]}
-                            onClick={() => handleCropClick(crop)}
-                        />
+                    <div className="mousePointer" key={idx} onClick={() => handleCropClick(crop)} >
+                        <img src={imageUrls[crop.name]} />
                         <button type='button' className='sBtn'>{crop.name}</button>
                     </div>
                 ))

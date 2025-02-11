@@ -294,24 +294,77 @@
     height: 100%;
 }
 
+/*CropList*/
 #clMainBox{
     width: 100%;
     height: 100%;
 }
-#clMainBox div{
-    width: 200px;
-    height: fit-content;
+#clConBoxL, #clConBoxR{
     float: left;
-    text-align: center;
-    margin: 10px;
 }
-#clMainBox div > img{
+#clConBoxL{
+    width: 220px;
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+}
+#clConBoxL img{
     width: 100%;
     height: auto;
     margin-bottom: 10px;
 }
-#clMainBox div > .sBtn:nth-child(3){
+#clConBoxL .sBtn:nth-child(3){
     margin-top: 20px;
+}
+.mousePointer{
+    float: left;
+    width: 220px;
+    height: auto;
+    text-align: center;
+    margin: 0 20px 20px 0;
+}
+.mousePointer img{
+    width: 100%;
+    height: auto;
+}
+.mousePointer:hover{
+    cursor: pointer;
+}
+#clConBoxR {
+    width: calc(100% - 220px);
+    height: 100%;
+    padding: 30px;
+}
+#clConBoxR .clSTitle{
+    color: #999;
+    border-color: #999;
+}
+.clConBoxD{
+    height: 49%;
+}
+.clConBoxD > div{
+    height: 210px;
+}
+.clConS{
+    height: 70px;
+    padding: 10px 10px;
+    margin: 15px 10px;
+    border-bottom: 1px solid #f1f1f1;
+    border-radius: 0px;
+}
+.clConS > p:first-of-type{
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+.clConS > p:last-of-type{
+    font-size: 18px;
+}
+.clConBoxD img{
+    width: 7px;
+    margin: 0 1%;
+}
+.clConBoxD .sBtn{
+    float: right;
 }
 
 /*병해충 AI 검색 CSS*/
@@ -324,7 +377,6 @@
     width: 100%;
     height: 100%;
     padding:30px;
-    
 }
 .pmConBoxR,.pmConBoxL{
     float:left;
@@ -448,7 +500,7 @@
     transform: translate(-50%);
 }
 
-.sBtn{ /*공통 버튼 디자인*/
+.sBtn, .clSTitle{ /*공통 버튼 디자인*/
     width: fit-content;
     height: 40px;
     padding: 10px 25px;
@@ -456,7 +508,7 @@
     border: 1px solid #f1f1f1;
     color: #999;
 }
-.sBtn:hover, .sBtn.bdactive{ /*공통 버튼 디자인 (마우스 올렸을 때) */
+.sBtn:hover, .sBtn.bdactive, .clChose{ /*공통 버튼 디자인 (마우스 올렸을 때) */
     background-color: #fff;
     border: 1px solid #999;
     color: #555;
