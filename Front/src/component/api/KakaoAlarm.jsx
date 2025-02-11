@@ -90,13 +90,15 @@ const KakaoAlarm = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh',
+        height: '50vh',
       }}
     >
 
       {!isLoggedIn && (
         <div>
           <div id="kakao-login-btn"></div>
+          <br />
+          <p>로그인 후 이용 가능합니다.</p>
         </div>
       )}
 
