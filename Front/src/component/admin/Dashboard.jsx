@@ -140,6 +140,7 @@ const Dashboard = () => {
   const [diagList, setDiagList] = useState([]);
   const [dpNames, setDpNames] = useState([]);
   const [dpTypeCount, setDpTypeCount] = useState([0, 0]);
+  const [filteredData, setFilteredData] = useState();
   const [loading1, setLoading1] = useState(false);
   const [loading2, setLoading2] = useState(false);
   const [loading3, setLoading3] = useState(false);
@@ -153,15 +154,8 @@ const Dashboard = () => {
   let dateRef1 = useRef();
   let dateRef2 = useRef();
 
-  const filteredData = {
-    labels: data4.labels.filter((_, index) => data4.datasets[0].data[index] > 0),
-    datasets: [
-      {
-        ...data4.datasets[0],
-        data: data4.datasets[0].data.filter(value => value > 0),
-      },
-    ],
-  };
+
+  
 
 
   const regionChangeData = async () => {
@@ -199,6 +193,22 @@ const Dashboard = () => {
     setLoading1(true)
   }
 
+  // data4 바뀔 때 filteredData 수정
+  useEffect(()=>{
+    if(!data4) return;
+    console.log("qwdasdas")
+    setFilteredData({
+      labels: data4.labels.filter((_, index) => data4.datasets[0].data[index] > 0),
+      datasets: [
+        {
+          ...data4.datasets[0],
+          data: data4.datasets[0].data.filter(value => value > 0),
+        },
+      ],
+    });
+  },[data4])
+
+
   const dateChangeData = async () => {
     const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
     const dpResponse = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`)
@@ -221,6 +231,7 @@ const Dashboard = () => {
         }
       ]
     })
+    
     setLoading2(true);
   }
 
@@ -315,7 +326,7 @@ const Dashboard = () => {
           </select>
           <div>
             <div className='pieContainer'>
-              {data4 ? <Pie data={filteredData} options={options2} /> : <p>데이터 없음</p>}
+              {filteredData ? <Pie data={filteredData} options={options2} /> : <p>데이터 없음</p>}
             </div>
           </div>
         </div>
