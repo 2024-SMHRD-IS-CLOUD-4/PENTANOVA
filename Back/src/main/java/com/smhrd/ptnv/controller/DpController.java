@@ -48,6 +48,7 @@ public class DpController {
 
 	@GetMapping("/dpListByCrop")
 	public ResponseEntity<List<Disease_Pest>> dpListByCrop(@RequestParam Long crop_num) {
+		System.out.println("asdas");
 		List<Disease_Pest> result = service.dpListByCrop(crop_num);
 		return ResponseEntity.ok(result);
 	}
