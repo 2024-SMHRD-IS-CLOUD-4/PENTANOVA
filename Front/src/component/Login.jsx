@@ -1,12 +1,11 @@
-import React from 'react';
-import { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppData } from '../function/AuthContext';
-import axios from 'axios'
+import axios from 'axios';
 import logo from "../assets/logo.png";
 import rightArrow from "../assets/right_arrow.png";
-import farmer from "../assets/farmerFit.png"
-import appleM from "../assets/appleM.png"
+import farmer from "../assets/farmerFit.png";
+import appleM from "../assets/appleM.png";
 import "../css/login.css";
 import "../css/all.css";
 
@@ -19,10 +18,29 @@ const Login = () => {
     userId: '',
     userPw: ''
   });
+
+  // 🌟 새로운 날씨 상태 추가
+  const [weather, setWeather] = useState(null);
+  const [error, setError] = useState(null);
+
   const today = new Date();
   let year = today.getFullYear();
   let month = ('0' + (today.getMonth() + 1)).slice(-2);
   let day = ('0' + today.getDate()).slice(-2);
+
+  // 🌟 날씨 설명 매핑
+  const weatherDescriptionMap = {
+    "clear sky": "맑은 하늘",
+    "few clouds": "구름 조금",
+    "scattered clouds": "흩어진 구름",
+    "broken clouds": "조각 구름",
+    "shower rain": "소나기",
+    "rain": "비",
+    "thunderstorm": "천둥번개",
+    "snow": "눈",
+    "mist": "안개",
+  };
+
   useEffect(() => {
     const storedUser = sessionStorage.getItem("user");
     if (storedUser) {
@@ -34,33 +52,50 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
-    // 로그인 상태에 따라 페이지 이동
-    if (isLoggedIn && user) {  // ✅ user가 null이 아닐 때만 실행
+    if (isLoggedIn && user) {
       if (user.role === '일반사용자') {
         navigate('/UserJoinPage');
       } else {
         navigate('/AdminJoinPage');
       }
     }
-  }, [isLoggedIn, navigate, user]);  // isLoggedIn 의존성 추가
+  }, [isLoggedIn, navigate, user]);
+
+  // 🌟 날씨 데이터 가져오기
+  useEffect(() => {
+    const fetchWeather = async () => {
+      try {
+        setError(null);
+        const response = await axios.get(
+          `${process.env.REACT_APP_connect}/api/weatherApi?city=GwangJu`
+        );
+        setWeather(response.data);
+      } catch (error) {
+        setError("날씨 정보를 불러오는 데 실패했습니다.");
+      }
+    };
+    fetchWeather();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
   function joinClick() {
     navigate('/jip');
   }
+
   function idPWClick() {
-    navigate('/jip?type=id')
+    navigate('/jip?type=id');
   }
 
   const loginButton = () => {
     const clientId = `${process.env.REACT_APP_redirect_url}`;
-    const redirectUri = `${process.env.REACT_APP_redirect_uri}`;
-    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`
-    window.location.href = kakaoURL
-  }
+    const redirectUri = `${process.env.REACT_APP_rest_api_key}`;
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code`;
+    window.location.href = kakaoURL;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -102,20 +137,37 @@ const Login = () => {
       }
     }
   };
+
   return (
     <div id='loginBody'>
-      {/* 로그인박스, 공지사항 보기, 날씨 총 3개 박스 가운데 정렬하는 div */}
       <div id="loginMainBox">
         {/* 로그인 페이지 오른쪽 날씨 박스 */}
         <div id="loginWeatherBox">
-
+          {error ? (
+            <p style={{ color: "red", fontSize: "1.2rem" }}>{error}</p>
+          ) : weather ? (
+            <div className="wbAll">
+              <h1 style={{ fontSize: "24px", marginTop:"25px", marginBottom: "25px" }}>오늘의 날씨</h1>
+              <img
+                src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                alt="날씨 아이콘"
+                style={{ width: "203px", height: "auto" }}
+              />
+              <p style={{ fontSize: "3rem", fontWeight: "bold" }}>{weather.main.temp}°C</p>
+              <p>{weatherDescriptionMap[weather.weather[0].description] || weather.weather[0].description}</p>
+              <span style={{marginRight:"20px"}}>습도: {weather.main.humidity}%</span>
+              <span>풍속: {weather.wind.speed} km/h</span>
+            </div>
+          ) : (
+            null
+          )}
         </div>
-        {/* 로그인 페이지 왼쪽 상단 로그인 박스 */}
+
+        {/* 로그인 박스 */}
         <div id="loginBox">
           <img className="logo" src={logo} alt="GROWELL Logo" />
           <div className="loginBox">
             <form className="login-form" onSubmit={handleSubmit}>
-
               <div className="loginIdPwBox">
                 <label htmlFor="id">ID</label>
                 <input type="text" name="id" id="id" placeholder='e-mail@gmail.com' onChange={handleChange} required />
@@ -134,19 +186,21 @@ const Login = () => {
             </div>
           </div>
         </div>
-        {/* 로그인 페이지 왼쪽 하단 최근 공지사항 바로보기 박스 */}
-        <div id="loginNoticeBox" onClick={()=> window.location.href='https://www.rda.go.kr/main/mainPage.do'}> {/*div 외부 링크로 이동시키는 방법 적용하기*/}
+
+        {/* 공지사항 박스 */}
+        <div id="loginNoticeBox" onClick={() => window.location.href = 'https://www.rda.go.kr/main/mainPage.do'}>
           <img src={rightArrow} alt="공지사항 바로가기" />
           <p>{year}.{month}.{day}</p>
           <h1>최근 공지사항 <br />바로보기</h1>
           <p>한국농촌진흥청</p>
         </div>
-
       </div>
+
       {/* 배경 이미지 */}
       <img className="bgimgFarmer" src={farmer} alt="farmer" />
       <img className="bgimgAppleM" src={appleM} alt="appleM" />
     </div>
   );
 };
+
 export default Login;

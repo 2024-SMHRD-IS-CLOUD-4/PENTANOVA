@@ -38,11 +38,10 @@ const AdminDpList = ({ cropNum }) => {
     }, []);
     return (
         <div>
-            <div>
                 {dps.map((dp, idx) => (
                     <div>
-                        <div className='dlConImg'>
-                            <img key={idx} src={imageUrls[dp.dp_num]} />
+                        <div className='dlConImg' style={{display:'flex'}}>
+                            <img key={idx} src={imageUrls[dp.dp_num]}  />
                         </div>
                         <div className='dlConTitle'>
                             <p><span>{dp.crop.name}</span><span>{dp.category ? "해충" : "질병"}</span></p>
@@ -51,7 +50,6 @@ const AdminDpList = ({ cropNum }) => {
                     </div>
                 ))}
             </div>
-        </div>
     )
 }
 

@@ -5,7 +5,7 @@ import { AppData } from '../../function/AuthContext';
 
 const PromotionManagement = () => {
   const userData = useContext(AppData);
-  const [responseText, setResponseText] = useState([`안녕하세요 ${userData.data.nick}님!`]);
+  const [responseText, setResponseText] = useState([`안녕하세요 ${userData.data?(userData.data.nick):null}님!`]);
   const [inputText, setInputText] = useState("");
   const [showInputText, setShowInputTetxt] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -35,8 +35,8 @@ const PromotionManagement = () => {
             {responseText.map((text, idx) => {
               return (
                   <div key={idx}>
-                    <p>{showInputText[idx]}</p><br /><br />
                     <p>{responseText[idx]}</p><br /><br />
+                    <p>{showInputText[idx]}</p><br /><br />
                   </div>
               )
             })}

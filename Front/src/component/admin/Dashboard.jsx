@@ -7,6 +7,8 @@ import { Grid, Paper, Select } from '@mui/material';
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, BarElement, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { Chart } from 'chart.js/auto';
+import loadingImg from '../../assets/loading2.gif'
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -74,6 +76,16 @@ const options1 = {
   }
 };
 
+const options2 = {
+  scales: {
+  },
+  plugins: {
+    legend: {
+      display: false // 🔴 범례 숨김
+    }
+  }
+};
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const [data1, setData1] = useState();
@@ -85,6 +97,9 @@ const Dashboard = () => {
   const [diagList, setDiagList] = useState([]);
   const [dpNames, setDpNames] = useState([]);
   const [dpTypeCount, setDpTypeCount] = useState([0, 0]);
+  const [loading1, setLoading1] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+  const [loading3, setLoading3] = useState(false);
 
   let region = ['경기도', '강원도', '충청도', '전라도', '경상도']
   const userMonthCount = new Array(months.length).fill(0);
@@ -94,6 +109,7 @@ const Dashboard = () => {
   let dpRef = useRef();
   let dateRef1 = useRef();
   let dateRef2 = useRef();
+  
 
   const regionChangeData = async () => {
     const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
@@ -127,11 +143,13 @@ const Dashboard = () => {
           borderWidth: 1
         }],
     })
+    setLoading1(true)
   }
+
   const dateChangeData = async () => {
     const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
     const dpResponse = await axios.get(`${process.env.REACT_APP_connect}/dp/dpList`)
-    
+
     dpCount.fill(0);
     dpResponse.data.map((dp, idx) => {
       diagResponse.data.map(diag => {
@@ -150,6 +168,7 @@ const Dashboard = () => {
         }
       ]
     })
+    setLoading2(true);
   }
 
   useEffect(() => {
@@ -212,12 +231,13 @@ const Dashboard = () => {
             }
           ]
         });
-        dateChangeData();
-        regionChangeData();
 
+        regionChangeData();
+        dateChangeData();
       } catch (error) {
         console.error(error);
       }
+      setLoading3(true);
     }
     getList();
   }, []);
@@ -227,10 +247,10 @@ const Dashboard = () => {
   return (
     <div>
       <h1>대시보드 페이지입니다.</h1>
-
       <div>
-        <ul>
-          {/* {diagList.map(diag => {
+        <div>
+          <ul>
+            {/* {diagList.map(diag => {
             return (
               <li key={diag.diag_num}>
                 <span>실시간 병해충 진단 현황</span>
@@ -243,68 +263,69 @@ const Dashboard = () => {
               </li>
             )
           })} */}
-          <span>질병:{dpTypeCount[1]}회,해충:{dpTypeCount[0]}회</span>
+            <span>질병:{dpTypeCount[1]}회,해충:{dpTypeCount[0]}회</span>
 
-        </ul>
-      </div>
+          </ul>
+        </div>
 
-      <Grid container spacing={1}>
-        <Grid item xs={12} md={6}>
-          <Paper elevation={3} style={{ padding: 16 }}>
-            <h2>가입 현황</h2>
-            {data1 ? <Bar data={data1} options={options1} /> : null}
-          </Paper>
+        <Grid container spacing={1}>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={3} style={{ padding: 16 }}>
+              <h2>가입 현황</h2>
+              {data1 ? <Bar data={data1} options={options1} /> : null}
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={3} style={{ padding: 16 }}>
+              <h2>이용 현황</h2>
+              {data2 ? <Line data={data2} options={options1} /> : null}
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <select ref={dpRef} defaultValue={1} onChange={regionChangeData}>
+              {dpList.map(dp => {
+                return (
+                  <option key={dp.dp_num} value={dp.dp_num}>{dp.name}</option>
+                )
+              })}
+            </select>
+            <select ref={dateRef1} onChange={regionChangeData}>
+              <option value={months[5]}>최근 30일</option>
+              <option value={months[4]}>1달 전</option>
+              <option value={months[3]}>2달 전</option>
+              <option value={months[2]}>3달 전</option>
+              <option value={months[1]}>4달 전</option>
+              <option value={months[0]}>5달 전</option>
+            </select>
+            <Paper elevation={3} style={{ padding: 16 }}>
+              <h2>지역별 병해충 분포</h2>
+              {data3 ? <Bar data={data3} options={options} /> : null}
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <select ref={dateRef2} onChange={dateChangeData}>
+              <option value={months[5]}>최근 30일</option>
+              <option value={months[4]}>1달 전</option>
+              <option value={months[3]}>2달 전</option>
+              <option value={months[2]}>3달 전</option>
+              <option value={months[1]}>4달 전</option>
+              <option value={months[0]}>5달 전</option>
+            </select>
+            <Paper elevation={3} style={{ padding: 16 }}>
+              <h2>병해충 진단 분포</h2>
+              {data4 ? <Pie data={data4} options={options2}/> : null}
+            </Paper>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Paper elevation={3} style={{ padding: 16 }}>
-            <h2>이용 현황</h2>
-            {data2 ? <Line data={data2} /> : null}
-          </Paper>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <select ref={dpRef} defaultValue={1} onChange={regionChangeData}>
-            {dpList.map(dp => {
+        <div>
+          <ul>
+            {dpList.map((dp, idx) => {
               return (
-                <option key={dp.dp_num} value={dp.dp_num}>{dp.name}</option>
+                <li key={dp.dp_num}>{dp.name}: : {dpCount[idx]}회</li>
               )
             })}
-          </select>
-          <select ref={dateRef1} onChange={regionChangeData}>
-            <option value={months[5]}>최근 30일</option>
-            <option value={months[4]}>1달 전</option>
-            <option value={months[3]}>2달 전</option>
-            <option value={months[2]}>3달 전</option>
-            <option value={months[1]}>4달 전</option>
-            <option value={months[0]}>5달 전</option>
-          </select>
-          <Paper elevation={3} style={{ padding: 16 }}>
-            <h2>지역별 병해충 분포</h2>
-            {data3 ? <Bar data={data3} options={options} /> : null}
-          </Paper>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <select ref={dateRef2} onChange={dateChangeData}>
-            <option value={months[5]}>최근 30일</option>
-            <option value={months[4]}>1달 전</option>
-            <option value={months[3]}>2달 전</option>
-            <option value={months[2]}>3달 전</option>
-            <option value={months[1]}>4달 전</option>
-            <option value={months[0]}>5달 전</option>
-          </select>
-          <Paper elevation={3} style={{ padding: 16 }}>
-            <h2>병해충 진단 분포</h2>
-            {data4 ? <Pie data={data4} /> : null}
-          </Paper>
-        </Grid>
-      </Grid>
-      <div>
-        <ul>
-          {dpList.map((dp, idx) => {
-            return (
-              <li key={dp.dp_num}>{dp.name}: : {dpCount[idx]}회</li>
-            )
-          })}
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   );
