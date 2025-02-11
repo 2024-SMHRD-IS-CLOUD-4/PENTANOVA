@@ -5,7 +5,7 @@ import axios from 'axios'
 import { AppData } from '../../function/AuthContext';
 import { Grid, Paper, Select } from '@mui/material';
 import { Bar, Line, Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, BarElement, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, BarElement, ArcElement, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, plugins } from 'chart.js';
 import { Chart } from 'chart.js/auto';
 import loadingImg from '../../assets/loading2.gif'
 
@@ -68,7 +68,7 @@ const options1 = {
   scales: {
     y: {
       beginAtZero: true,
-      max: 100,
+      max: 20,
       ticks: {
         stepSize: 1
       }
@@ -82,6 +82,24 @@ const options2 = {
   plugins: {
     legend: {
       display: false // 🔴 범례 숨김
+    }
+  }
+};
+
+const option3 = {
+  scales: {
+    y: {
+      beginAtZero: true,
+      max: 5,
+      ticks: {
+        stepSize: 1
+      },
+
+    }
+  },
+  plugins: {
+    legend: {
+      display: false
     }
   }
 };
@@ -110,7 +128,7 @@ const Dashboard = () => {
   let dpRef = useRef();
   let dateRef1 = useRef();
   let dateRef2 = useRef();
-  
+
 
   const regionChangeData = async () => {
     const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
