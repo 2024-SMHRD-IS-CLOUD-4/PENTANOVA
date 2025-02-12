@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import "../../css/jip.css"
@@ -30,10 +30,10 @@ const Join = () => {
             let location = parentSido + "/" + parentAddress;
             setFormData({ ...formData, location: location });
             console.log(location);
-        }else if(name==='selcet_alarm'){
+        } else if (name === 'selcet_alarm') {
             console.log(e.target.checked);
             setFormData({ ...formData, selectAlarm: e.target.checked });
-        }else {
+        } else {
             setFormData({ ...formData, [name]: value });
         }
     };
@@ -99,15 +99,16 @@ const Join = () => {
             '울산': '경상도',
             '부산': '경상도',
         };
-        if (isOpen) {
-            if (addressRef) {
-                let location = parentSido + "/" + parentAddress;
-                setFormData({ ...formData, location: location });
-            }
-        }
         setParentSido(regionMap[sido] || '');  // Default to empty string if no match
     };
 
+    useEffect(() => {
+
+        let location = parentSido + "/" + parentAddress;
+        setFormData({ ...formData, location: location });
+    }, [parentAddress, parentSido])
+    console.log(parentSido);
+    console.log(formData);
     return (
         <div id="joinBox">
             <h2>회원가입</h2>
@@ -147,7 +148,7 @@ const Join = () => {
                             type="password"
                             name="pwCheck"
                             onChange={pwChecking}
-                            placeholder='동일한 비밀번호로 다시한번 작성해주세요.'
+                            placeholder='비밀번호를 다시 작성해주세요.'
                             required
                         />
                         <p style={{ color: 'red', fontWeight: '700', float: 'right' }}>
@@ -181,7 +182,7 @@ const Join = () => {
                     <li>
                         <p><b>지역</b>을 선택해주세요.</p>
                         <Address onAddressChange={handleAddressChange} />
-                        <input className='jipInput' name='address' value={parentSido} />
+                        <input className='jipInput' ref={addressRef} name='address' value={parentSido} onChange={handleChange} />
                     </li>
                     <li>
                         <p>
