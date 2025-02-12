@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import logo from'../../assets/logo.png';
 
 const AdminDpList = ({ searchQuery, setActiveState, setDpNum }) => {
     const [dps, setDps] = useState([]); // 병해충 목록 저장
@@ -28,7 +27,7 @@ const AdminDpList = ({ searchQuery, setActiveState, setDpNum }) => {
                 dps.map((dp, idx) => (
                     <div className='borderB'>
                         <div className='AdDlConImg'>
-                            <img src={logo}  alt='logo'/>
+                            <img src={dp.img}  alt={dp.crop.name}/>
                         </div>
                         <div className='AdDlConTitle'>
                             <p>
