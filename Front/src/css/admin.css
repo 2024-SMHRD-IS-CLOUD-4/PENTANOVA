@@ -189,7 +189,8 @@
     overflow-y: auto;
 }
 .details {
-    width: calc(100% - 200px);
+    width: calc(85% - 200px);
+    height: 175px;
     float: left;
     margin-left: 20px;
     transition: opacity 0.3s ease-in-out;
@@ -199,7 +200,12 @@
     margin-bottom: 10px;
 }
 .details span{
-    margin-right: 5%;
+    display: inline-block;
+    width: 150px;
+    margin-right: 1%;
+}
+.details span:nth-of-type(-n+2), .details span:nth-of-type(4){
+    width: 50px;
 }
 .footer {
     position: absolute;
