@@ -144,7 +144,7 @@
     text-align: center;
     overflow-y: auto;
 }
-.modal-content button{
+.modal-content .sBtn{
     position: absolute;
     top: 5%;
     right: 0;
