@@ -316,7 +316,7 @@ const Dashboard = () => {
   return (
     <div id='boardMainPage'>
       {/* 상단 박스 */}
-      <div id="boardConUp" className={isExpanded ? "expanded" : "collapsed"}>
+      <div id="boardConUp" className={isExpanded ? "collapsed" : "expanded"}>
         <div className="content">
             <div>
                 <span>실시간 병해충 진단 현황</span>
@@ -337,7 +337,7 @@ const Dashboard = () => {
         </div>
         {/* 하단 컨트롤 영역 */}
         <div className="footer">
-            <span className="toggle-button" onClick={toggleExpand}>
+            <span style={{cursor:'pointer'}} className="toggle-button" onClick={toggleExpand}>
                 {isExpanded ? "목록보기 ▼" : "목록보기 ▲"}
             </span>
             <span>질병: {dpTypeCount[1]}회, 해충: {dpTypeCount[0]}회</span>

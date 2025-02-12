@@ -185,7 +185,7 @@
 
 /* 펼쳐진 상태 */
 .expanded {
-    height: 200px;
+    height: 200px !important;
     overflow-y: auto;
 }
 .details {

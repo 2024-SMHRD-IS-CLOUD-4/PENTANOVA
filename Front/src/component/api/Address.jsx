@@ -56,7 +56,12 @@ const Address = (props) => {
         <div>
           <button
             type="button"
+            className='sBtn'
             onClick={toggleHandler}
+            style={{
+              margin:'-20px',
+              marginRight:'0px',
+            }}  
           >
             주소 찾기
           </button>

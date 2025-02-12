@@ -119,7 +119,7 @@ const Join = () => {
                             placeholder='예시. e-mail@gmail.com'
                             required
                         />
-                        <button type="button" onClick={UserIdCheck}>중복 확인</button>
+                        <button className="sBtn" type="button" onClick={UserIdCheck}>중복 확인</button>
                         {idCheck && <p>{idCheck}</p>}
                     </li>
                     <li>
@@ -145,7 +145,9 @@ const Join = () => {
                             placeholder='동일한 비밀번호로 다시한번 작성해주세요.'
                             required
                         />
-                        {pwRef.current ? (pwCheck !== pwRef.current.value ? '불일치' : null) : null}
+                        <p style={{color:'red', fontWeight:'700',float:'right'}}>
+                            {pwRef.current ? (pwCheck !== pwRef.current.value ? '불일치' : null) : null}
+                        </p>
                     </li>
                     <li>
                         <p><b>닉네임</b>을 작성해주세요.</p>
@@ -177,7 +179,14 @@ const Join = () => {
                         <input className='jipInput' value={parentSido} />
                     </li>
                     <li>
-                        <p><b>알람여부</b>를 선택해주세요.</p>
+                        <p>
+                            <b>알람여부</b>를 선택해주세요. 
+                            <span className='toggleSlider'>
+                                <input type="checkbox" id='toggleSlider' />
+                                <label htmlFor="toggleSlider">on/of</label>
+                            </span>
+                        </p>
+                        
                     </li>
                 </ul>
                 <button className="button01" type="submit">회원가입</button>
