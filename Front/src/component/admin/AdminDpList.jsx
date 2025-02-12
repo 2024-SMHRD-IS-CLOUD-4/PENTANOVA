@@ -4,6 +4,7 @@ import axios from 'axios';
 const AdminDpList = ({ searchQuery, setActiveState, setDpNum }) => {
     const [dps, setDps] = useState([]); // 병해충 목록 저장
     const [loading, setLoading] = useState(false);
+    const [imageUrls, setImageUrls] = useState([{}]);
 
     useEffect(() => {
         if (!searchQuery) return; // 검색어가 없으면 실행 안 함
@@ -12,6 +13,21 @@ const AdminDpList = ({ searchQuery, setActiveState, setDpNum }) => {
             try {
                 const response = await axios.post(`${process.env.REACT_APP_connect}/dp/findText?text=${searchQuery}&&type=${true}`);
                 setDps(response.data);
+
+                const imagePromises = response.data.map(dp =>
+                    fetch(`${process.env.REACT_APP_connect}/bucket/getImages/DiseasePests/${dp.crop.eng_name}/${dp.img}`)
+                        .then(response => response.blob())
+                        .then(blob => ({
+                            [dp.dp_num]: URL.createObjectURL(blob)
+                        }))
+                );
+
+                Promise.all(imagePromises)
+                    .then(images => {
+                        const newImageUrls = images.reduce((acc, curr) => ({ ...acc, ...curr }), {});
+                        setImageUrls(newImageUrls);
+                        setLoading(true);
+                    });
             } catch (error) {
                 console.error('Error fetching search results:', error);
             }
@@ -27,7 +43,7 @@ const AdminDpList = ({ searchQuery, setActiveState, setDpNum }) => {
                 dps.map((dp, idx) => (
                     <div className='borderB'>
                         <div className='AdDlConImg'>
-                            <img src={dp.img}  alt={dp.crop.name}/>
+                            <img key={idx} src={imageUrls[dp.dp_num]} />
                         </div>
                         <div className='AdDlConTitle'>
                             <p>
@@ -35,7 +51,7 @@ const AdminDpList = ({ searchQuery, setActiveState, setDpNum }) => {
                                 <span>{dp.category ? "해충" : "질병"}</span>
                                 <span>{dp.name} / {dp.eng_name}</span>
                             </p>
-                            <button className='sBtn' onClick={()=>{
+                            <button className='sBtn' onClick={() => {
                                 setActiveState('DpDetail');
                                 setDpNum(dp.dp_num);
                             }}>상세보기</button>
