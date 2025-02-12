@@ -146,8 +146,8 @@
 }
 .modal-content button{
     position: absolute;
-    bottom: 5%;
-    left: 50%;
+    top: 5%;
+    right: 0;
     transform: translate(-50%);
 }
 
