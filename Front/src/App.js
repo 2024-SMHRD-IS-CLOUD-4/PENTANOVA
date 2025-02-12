@@ -71,7 +71,6 @@ function App() {
               <Route path="/userDetail" element={<UserDetail />} />
               <Route path="/diagDetail" element={<DiagDetail />} />
               <Route path="/hisDiagnosis" element={<HisDiagnosis />} />
-              <Route path="/fieldGuide" element={<FieldGuide />}/>
               <Route path="/myProfile" element={<MyProfile />} />
               <Route path="/changeProfile" element={<ChangeProfile />} />
               <Route path="/fumigatorPesticides" element={<FumigatorPesticides />} />

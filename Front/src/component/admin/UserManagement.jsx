@@ -3,9 +3,9 @@ import axios from 'axios';
 import UserDetail from './UserDetail';
 
 const UserManagement = () => {
-  const [users, setUsers] = useState([]);  // 원본 데이터
-  const [filteredUsers, setFilteredUsers] = useState([]); // 필터링된 사용자 목록
-  const [activeUserId, setActiveUserId] = useState(null); // 선택한 사용자 ID 저장
+  const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [activeUserId, setActiveUserId] = useState(null);
 
   // 필터 값 관리
   const [roleFilter, setRoleFilter] = useState('');
