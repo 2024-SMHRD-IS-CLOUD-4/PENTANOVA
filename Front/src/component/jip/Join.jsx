@@ -12,7 +12,8 @@ const Join = () => {
         nick: '',
         location: '',
         role: '일반사용자',
-        institute: ''
+        institute: '',
+        selectAlarm: null
     });
     const pwRef = useRef();
     const [pwCheck, setPwCheck] = useState('');
@@ -27,9 +28,12 @@ const Join = () => {
         const { name, value } = e.target;
         if (name === 'address') {
             let location = parentSido + "/" + parentAddress;
-            console.log(location);
             setFormData({ ...formData, location: location });
-        } else {
+            console.log(location);
+        }else if(name==='selcet_alarm'){
+            console.log(e.target.checked);
+            setFormData({ ...formData, selectAlarm: e.target.checked });
+        }else {
             setFormData({ ...formData, [name]: value });
         }
     };
@@ -103,6 +107,7 @@ const Join = () => {
         }
         setParentSido(regionMap[sido] || '');  // Default to empty string if no match
     };
+
     return (
         <div id="joinBox">
             <h2>회원가입</h2>
@@ -176,14 +181,14 @@ const Join = () => {
                     <li>
                         <p><b>지역</b>을 선택해주세요.</p>
                         <Address onAddressChange={handleAddressChange} />
-                        <input className='jipInput' value={parentSido} />
+                        <input className='jipInput' name='address' value={parentSido} />
                     </li>
                     <li>
                         <p>
                             <b>알람여부</b>를 선택해주세요.
                             <span className='toggleSlider'>
-                                <input type="checkbox" id='toggleSlider' />
-                                <label htmlFor="toggleSlider">on/of</label>
+                                <input type="checkbox" name='selcet_alarm' id='toggleSlider' onChange={handleChange} />
+                                <label htmlFor="toggleSlider">on/off</label>
                             </span>
                         </p>
 

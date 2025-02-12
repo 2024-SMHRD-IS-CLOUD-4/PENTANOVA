@@ -78,8 +78,8 @@
 }
 .jipInput{
     width: 198px;
-    font-size: 10px;
-    color: rgba(209, 209, 209, 1);
+    font-size: 11px;
+    color: #555;
     border: none;
     border-bottom: 0.5px solid rgba(209, 209, 209, 1);
     border-radius: 0px;

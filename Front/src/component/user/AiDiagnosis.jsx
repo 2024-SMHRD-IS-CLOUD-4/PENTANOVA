@@ -180,9 +180,9 @@ const AiDiagnosis = ({setActiveState}) => {
                             <input type="file" name='adFileUp' id='adFileUp' onChange={handleFileChange} accept="image/*" />
                             <button className="userButton" type="submit"><h2>AI 분석 시작</h2></button>
                         </form>
-                        {responseMessage === "예측값이 너무 낮아 탐지할 수 없습니다." && (
+                        {responseMessage === "탐지된 객체가 없습니다." && (
                             <p style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>
-                                {responseMessage}
+                                인식이 어려운 이미지입니다.<br/> 새로운 이미지를 업로드해주세요.
                             </p>
                         )}
                     </div>
