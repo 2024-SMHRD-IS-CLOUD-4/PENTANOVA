@@ -153,10 +153,6 @@ const Dashboard = () => {
   let dateRef1 = useRef();
   let dateRef2 = useRef();
 
-
-  
-
-
   const regionChangeData = async () => {
     const diagResponse = await axios.get(`${process.env.REACT_APP_connect}/diag/diagList`)
     regionCount.fill(0);
@@ -323,14 +319,14 @@ const Dashboard = () => {
             </div>
             {/* 내부 내용 (스크롤 가능) */}
             <div className="details">
-                {[...Array(4)].map((_, index) => (
+                {diagList.map((diag, index) => (
                     <p key={index}>
-                        <span>병</span>
-                        <span>애플망고</span>
-                        <span>그을음병 / Sooty Mold</span>
-                        <span>광주광역시 동구</span>
-                        <span>별가네 농장</span>
-                        <span>2025.01.25 12:26</span>
+                        <span>{diag.dp_num.category?'해충':'질병'}</span>
+                        <span>{diag.dp_num.crop.name}</span>
+                        <span>{diag.dp_num.name} / {diag.dp_num.eng_name}</span>
+                        <span>{diag.diag_region}</span>
+                        <span></span>
+                        <span>{diag.createdAt.split('T')[0]}</span>
                     </p>
                 ))}
             </div>
