@@ -110,7 +110,7 @@ const UserManagement = () => {
               user.role !== '최고관리자' && (
                 <li key={user.id}
                     onClick={(event) => toggleUserDetail(user.id, event)}
-                    className={`user-item ${activeUserId === user.id ? 'active' : ''}`}>
+                    className={`user-item ${activeUserId === user.id ? 'umactive' : ''}`}>
                   <p>
                     <span>{index + 1}</span>
                     <span>{user.role}</span>

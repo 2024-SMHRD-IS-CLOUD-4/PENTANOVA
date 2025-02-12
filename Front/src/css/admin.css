@@ -189,7 +189,8 @@
     overflow-y: auto;
 }
 .details {
-    width: calc(100% - 200px);
+    width: calc(85% - 200px);
+    height: 175px;
     float: left;
     margin-left: 20px;
     transition: opacity 0.3s ease-in-out;
@@ -199,7 +200,12 @@
     margin-bottom: 10px;
 }
 .details span{
-    margin-right: 5%;
+    display: inline-block;
+    width: 150px;
+    margin-right: 1%;
+}
+.details span:nth-of-type(-n+2), .details span:nth-of-type(4){
+    width: 50px;
 }
 .footer {
     position: absolute;
@@ -698,16 +704,22 @@
     width: 99%;
     margin-left: 1%;
     font-size: 20px;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
+}
+#umConBoxR > p > span, #umConBoxR > ul>li>p > span{
+    display: inline-block;
 }
 #umConBoxR > p > span:nth-child(1), #umConBoxR > ul>li>p > span:nth-child(1) { /* 1번 항목 줄이기 */
-    flex: 0.5; 
+    width: 50px;
 } 
 #umConBoxR > p > span:nth-child(4), #umConBoxR > ul>li>p > span:nth-child(4) {/* 3번 항목 늘리기 */
-     flex: 2; 
+     width: 400px;
 } 
 #umConBoxR > p > span:not(:nth-child(1)):not(:nth-child(4)) , #umConBoxR > ul>li>p > span:not(:nth-child(1)):not(:nth-child(4)){ /* 나머지 동일 크기 */
-     flex: 1; 
+     width: 200px;
+}
+#umConBoxR .umactive{
+    background-color: #fff;
 }
 .umToggle{
     width: 90%;
@@ -716,6 +728,7 @@
 /*사용자 관리 세부 내역*/
 #udMainBox{
     border-radius: 0px;
+    padding-bottom: 2%;
 }
 #udConBoxL, #udConBoxR{
     float: left;

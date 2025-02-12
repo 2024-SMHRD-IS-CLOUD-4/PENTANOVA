@@ -318,14 +318,14 @@ const Dashboard = () => {
                 <span>실시간 병해충 진단 현황</span>
             </div>
             {/* 내부 내용 (스크롤 가능) */}
-            <div className="details">
+            <div className="details scroll" >
                 {diagList.map((diag, index) => (
                     <p key={index}>
                         <span>{diag.dp_num.category?'해충':'질병'}</span>
                         <span>{diag.dp_num.crop.name}</span>
                         <span>{diag.dp_num.name} / {diag.dp_num.eng_name}</span>
                         <span>{diag.diag_region}</span>
-                        <span></span>
+                        <span>{diag.user.nick}</span>
                         <span>{diag.createdAt.split('T')[0]}</span>
                     </p>
                 ))}
