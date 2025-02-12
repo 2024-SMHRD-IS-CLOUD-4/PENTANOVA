@@ -1,8 +1,6 @@
 #jipBody{
     width: 100vw;
-    max-width: 1440px;
     height: 100vh;
-    max-height: 1024px;
     position:relative;
     margin: auto;
 }

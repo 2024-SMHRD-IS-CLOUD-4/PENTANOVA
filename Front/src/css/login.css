@@ -2,8 +2,7 @@
 #loginBody{
     position: relative;
     width:100%;
-    max-width: 1440px;
-    min-height: 1024px;
+    height: 100%;
     margin: 0px auto;
     border-radius: 0px;
 }
