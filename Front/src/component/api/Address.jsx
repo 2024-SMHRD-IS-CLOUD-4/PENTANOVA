@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import "../../css/all.css"
 import "../../css/jip.css"
+import shadows from '@mui/material/styles/shadows';
 
 const Address = (props) => {
   const [zonecode, setZonecode] = useState('');
@@ -17,8 +18,14 @@ const Address = (props) => {
   };
 
   const postCodeStyle = {
+    position: 'absolute',
+    top:'30%',
+    left:'50%',
+    transform: 'translateX(-50%)',
     width: '360px',
     height: '480px',
+    border: '1px solid #ededed',
+    boxShadow: '10%'
   };
 
   const completeHandler = (data) => {
@@ -30,13 +37,9 @@ const Address = (props) => {
     setIsOpen(false);
   };
 
-  const closeHandler = (state) => {
-    if (state === 'FORCE_CLOSE') {
-      setIsOpen(false);
-    } else if (state === 'COMPLETE_CLOSE') {
-      setIsOpen(false);
-    }
-  };
+  const closeHandler = () => {
+    setIsOpen(false); // 어떤 경우든 모달을 닫음
+};
 
   const toggleHandler = () => {
     setIsOpen((prevOpenState) => !prevOpenState);
@@ -46,7 +49,6 @@ const Address = (props) => {
     setAddress(event.target.value);
     props.onAddressChange(event.target.value, zonecode);
   };
-
 
   return (
     <div>
@@ -61,13 +63,14 @@ const Address = (props) => {
           <input className='jipInput' value={address} />
         </div>
         {isOpen && (
-          <div>
+          <div style={{width:'100%',height:'100%', position:'absolute',top:'0', left:'0', background:'rgba(0, 0, 0, 0.4)', borderRadius:'0px' }}>
             <DaumPostcode
               theme={themeObj}
               style={postCodeStyle}
               onComplete={completeHandler}
               onClose={closeHandler}
             />
+            <button className='sBtn' onClick={closeHandler} style={{position:'absolute',top:'82%', left:'50%',transform: 'translateX(-50%)'}}>닫기</button>
           </div>
         )}
       </div>

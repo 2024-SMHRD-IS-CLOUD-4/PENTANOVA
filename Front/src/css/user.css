@@ -16,6 +16,16 @@
     float: left;
     overflow: hidden;
 }
+li {
+    margin-bottom: 10px;
+}
+.togle {
+    /* display: none; */
+    padding-left: 8% ;
+}
+.togle.open {
+    display: block;
+}
 
 .smallLogo{
     width: 134px;
@@ -67,11 +77,6 @@
     background-position: right center;
     background-size: 13px auto;
 }
-
-.togle{
-    padding-left: 8% ;
-}
-
 #userBtnNav{
     width: 100%;
     position: absolute;
