@@ -179,7 +179,7 @@ const Login = () => {
               <span>풍속: {weather.wind.speed} km/h</span>
             </div>
           ) : (
-            <p>날씨 정보를 불러오는 중...</p>
+            null
           )}
         </div>
 

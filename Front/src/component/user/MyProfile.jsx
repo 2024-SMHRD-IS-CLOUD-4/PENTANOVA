@@ -26,7 +26,7 @@ const MyProfile = ({ setActiveState }) => {
         }
     };
     const deleteUser = () => {
-        const result = confirm('탈퇴?')
+        const result = confirm('정말 탈퇴하시겠습니까?')
         if (result) {
             DeleteUser();
         }
@@ -60,9 +60,7 @@ const MyProfile = ({ setActiveState }) => {
                         <p>지역</p>
                         <p>{shareData.data ? shareData.data.location : null}</p>
                     </li>
-                    <li>
-                        <p>{shareData.data ? shareData.data.institue : null}</p>
-                    </li>
+                    <br />
                 </ul>
                 <button onClick={() => setActiveState('HisDiagnosis')}>AI, 자가 진단 이력 관리</button>
                 <button onClick={() => setActiveState('ChangeProfile')}>회원정보 수정</button>
