@@ -201,8 +201,8 @@ const Login = () => {
               <button className='button01' type="button" onClick={loginButton}>카카오 로그인</button>
             </form>
             <div className="loginBoxBt">
-              <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
               <button onClick={joinClick}>회원가입</button>
+              <button onClick={idPWClick}>아이디/비밀번호 찾기</button>
             </div>
           </div>
         </div>
