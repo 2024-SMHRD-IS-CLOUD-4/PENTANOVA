@@ -15,7 +15,7 @@ const Join = () => {
         institute: ''
     });
     const pwRef = useRef();
-    const [pwCheck, setPwCheck] = useState(null);
+    const [pwCheck, setPwCheck] = useState('');
     const [idCheck, setIdCheck] = useState(null);
     const addressRef = useRef();
     const addressDetailRef = useRef();
@@ -33,7 +33,7 @@ const Join = () => {
             setFormData({ ...formData, [name]: value });
         }
     };
-    
+
     const UserIdCheck = async () => {
         try {
             const response = await axios.get(`${process.env.REACT_APP_connect}/user/idCheck/${formData.id}`);
@@ -95,11 +95,11 @@ const Join = () => {
             '울산': '경상도',
             '부산': '경상도',
         };
-        if(isOpen){
+        if (isOpen) {
             if (addressRef) {
                 let location = parentSido + "/" + parentAddress;
                 setFormData({ ...formData, location: location });
-            } 
+            }
         }
         setParentSido(regionMap[sido] || '');  // Default to empty string if no match
     };
@@ -145,8 +145,8 @@ const Join = () => {
                             placeholder='동일한 비밀번호로 다시한번 작성해주세요.'
                             required
                         />
-                        <p style={{color:'red', fontWeight:'700',float:'right'}}>
-                            {pwRef.current ? (pwCheck !== pwRef.current.value ? '불일치' : null) : null}
+                        <p style={{ color: 'red', fontWeight: '700', float: 'right' }}>
+                            {pwCheck.length > 0 && pwCheck !== formData.pw && <p style={{ color: 'red' }}>비밀번호가 일치하지 않습니다.</p>}
                         </p>
                     </li>
                     <li>
@@ -180,13 +180,13 @@ const Join = () => {
                     </li>
                     <li>
                         <p>
-                            <b>알람여부</b>를 선택해주세요. 
+                            <b>알람여부</b>를 선택해주세요.
                             <span className='toggleSlider'>
                                 <input type="checkbox" id='toggleSlider' />
                                 <label htmlFor="toggleSlider">on/of</label>
                             </span>
                         </p>
-                        
+
                     </li>
                 </ul>
                 <button className="button01" type="submit">회원가입</button>
