@@ -104,6 +104,8 @@ const UserJoinPage = () => {
         userData.setData(null);
         navigate('/');
     }
+    
+
 
     return (
         <div id="userBody">
