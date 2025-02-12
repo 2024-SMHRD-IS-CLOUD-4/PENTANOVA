@@ -41,6 +41,7 @@ const Login = () => {
   const weatherDescriptionMap = {
     "clear sky": "맑은 하늘",
     "few clouds": "구름 조금",
+    "overcast clouds": "구름 많음",
     "scattered clouds": "흩어진 구름",
     "broken clouds": "조각 구름",
     "shower rain": "소나기",
