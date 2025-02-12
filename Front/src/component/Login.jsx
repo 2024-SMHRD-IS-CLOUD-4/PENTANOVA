@@ -9,6 +9,15 @@ import appleM from "../assets/appleM.png";
 import "../css/login.css";
 import "../css/all.css";
 
+//날씨 아이콘 불러오기
+import clear from "../assets/clear.png";
+import clouds from "../assets/clouds.png";
+import drizzle from "../assets/drizzle.png";
+import humidity from "../assets/humidity.png";
+import mist from "../assets/mist.png";
+import rain from "../assets/rain.png";
+import snow from "../assets/snow.png";
+
 const Login = () => {
   const shareData = useContext(AppData);
   const navigate = useNavigate();
@@ -39,6 +48,17 @@ const Login = () => {
     "thunderstorm": "천둥번개",
     "snow": "눈",
     "mist": "안개",
+  };
+
+   // 🌟 날씨 아이콘 매핑
+   const weatherIcons = {
+    "Clear": clear,        // 맑음
+    "Clouds": clouds,      // 구름 많음
+    "Drizzle": drizzle,    // 이슬비
+    "Humidity": humidity,  // 습도
+    "Mist": mist,          // 안개
+    "Rain": rain,          // 비
+    "Snow": snow,          // 눈
   };
 
   useEffect(() => {
@@ -149,7 +169,7 @@ const Login = () => {
             <div className="wbAll">
               <h1 style={{ fontSize: "24px", marginTop:"25px", marginBottom: "25px" }}>오늘의 날씨</h1>
               <img
-                src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                src={weatherIcons[weather.weather[0].main] || mist} // 기본 아이콘 설정
                 alt="날씨 아이콘"
                 style={{ width: "203px", height: "auto" }}
               />
