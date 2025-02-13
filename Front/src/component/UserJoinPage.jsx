@@ -96,7 +96,8 @@ const UserJoinPage = () => {
         Fumigator: Fp,
         Pesticides: Fp,
         MyProfile: My,
-        RequestAuth: My
+        RequestAuth: My,
+        ChangeProfile: My
       };
 
 

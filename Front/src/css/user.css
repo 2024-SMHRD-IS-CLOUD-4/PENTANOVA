@@ -751,6 +751,9 @@ label:hover, #dlConBoxResult .dlConBox{
     width: 70px;
     border: #333;
 }
+#cpConBox .sBtn{
+    padding: 0 10px;
+} 
 #cpConBox input{
     width: 70%;
     border: none;

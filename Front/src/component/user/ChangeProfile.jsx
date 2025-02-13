@@ -70,7 +70,7 @@ const ChangeProfile = () => {
                             <p><span>닉네임 </span><input type="text" name="nick" value={formData.nick} onChange={handleChange} placeholder={shareData.data.nick} /></p>
                         </li>
                         <li>
-                            <p><span>지역 </span><Address></Address></p>
+                            <p><Address></Address></p>
                         </li>
                     </ul>
                     <button type='submit' onClick={updateData}>수정하기</button>
