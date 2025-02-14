@@ -15,9 +15,19 @@
 3. '대시보드'를 통해 이용 현황 및 병해충 발생 분포를 시각적으로 확인
 4. '챗봇(네이버 클로바 - 초거대 AI)'의 적용을 활용한 병해충 채팅 서비스 
 ## 5. 기술스택
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/eclipseide-2C2255?style=flat&logo=eclipseide&logoColor=white"/> <img src="https://img.shields.io/badge/springboot-6DB33F?style=flat&logo=springboot&logoColor=white"/>
+
+<img src="https://img.shields.io/badge/fastapi-009688?style=flat&logo=fastapi&logoColor=white"/>
+<img src="https://img.shields.io/badge/react-61DAFB?style=flat&logo=react&logoColor=white"/>
+<img src="https://img.shields.io/badge/python-3776AB?style=flat&logo=pythont&logoColor=white"/>
+<img src="https://img.shields.io/badge/kakao-FFCD00?style=flat&logo=kakao API&logoColor=white"/>
+<img src="https://img.shields.io/badge/naver-03C75A?style=flat&logo=naver cloud&logoColor=white"/>
+<img src="https://img.shields.io/badge/html5-E34F26?style=flat&logo=html5&logoColor=white"/>
+<img src="https://img.shields.io/badge/css-663399?style=flat&logo=css&logoColor=white"/>
+<img src="https://img.shields.io/badge/googlecolab-F9AB00?style=flat&logo=googlecolab&logoColor=white"/>
+<img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>
 ## 6. 시스템 아키텍처
-#### ![15](https://github.com/user-attachments/assets/9254a76e-79b8-40ad-9751-4a4c47de93cb)
+![15](https://github.com/user-attachments/assets/9254a76e-79b8-40ad-9751-4a4c47de93cb)
 
 ## 7. 유스케이스
 
