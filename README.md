@@ -72,17 +72,17 @@
    4-1) 사용자 관리
    ![관리자 페이지 - 사용자 관리](https://github.com/user-attachments/assets/72057f3d-2b72-4de0-935b-5d04dee82118)
 
-## 11. 팀원 역할
-![Copy of Green and Brown Illustrative Farming Presentation](https://github.com/user-attachments/assets/aeae037f-05ba-4cb5-a6a4-7e621545f629)
-
-## 12. 트러블 슈팅
+## 11. 트러블 슈팅
 ![34](https://github.com/user-attachments/assets/9b785599-6aa8-4596-8514-39badb09cc63)
 ![35](https://github.com/user-attachments/assets/18c915a2-988b-4ff6-8a08-82e717eb7a13)
 ![36](https://github.com/user-attachments/assets/90f4140f-ba83-43b4-b41e-de423b3e5b74)
 ![37](https://github.com/user-attachments/assets/3dfa0bae-14d9-4ac0-8cc9-ca422548c318)
 
-## 13. 시연연상
+## 12. 팀원 역할
+![Copy of Green and Brown Illustrative Farming Presentation](https://github.com/user-attachments/assets/aeae037f-05ba-4cb5-a6a4-7e621545f629)
 
+## 13. 시연연상
+https://github.com/user-attachments/assets/e5b72983-18a3-42d1-97ba-bf1b063a7753
 
 ## 14. 참고문헌
 1) AI 허브 (국내 재배 아열대ㆍ열대 병해충 데이터)
