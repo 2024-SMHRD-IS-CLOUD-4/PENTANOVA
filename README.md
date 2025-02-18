@@ -1,4 +1,4 @@
-# Welcome To PENTANOVA!!😀
+# Welcome!! This is Team PENTANOVA!!😀
 
 ## 1. 프로젝트명
 ![Copy of Green and Brown Illustrative Farming Presentation](https://github.com/user-attachments/assets/9a53604c-6b60-4234-9e8d-f1de1e352433)
@@ -17,7 +17,7 @@
 ## 5. 기술스택
 | Server | Framework | Database | Back-End | Front-End | API |
 | --- | --- | --- | --- | --- | --- |
-| <img src="https://img.shields.io/badge/naver-03C75A?style=flat&logo=naver cloud&logoColor=white"/> <br> <img src="https://img.shields.io/badge/apachetomcat-F8DC75?style=flat&logo=apachetomcat&logoColor=white"/>  | <img src="https://img.shields.io/badge/springboot-6DB33F?style=flat&logo=springboot&logoColor=white"/> <br> <img src="https://img.shields.io/badge/react-61DAFB?style=flat&logo=react&logoColor=white"/> |  <img src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"> | <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/> <br> <img src="https://img.shields.io/badge/python-3776AB?style=flat&logo=pythont&logoColor=white"/> | <img src="https://img.shields.io/badge/html5-E34F26?style=flat&logo=html5&logoColor=white"/> <br> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>  <br> <img src="https://img.shields.io/badge/css-663399?style=flat&logo=css&logoColor=white"/> | <img src="https://img.shields.io/badge/kakao-FFCD00?style=flat&logo=kakao API&logoColor=white"/> <br> <img src="https://img.shields.io/badge/fastapi-009688?style=flat&logo=fastapi&logoColor=white"/> |
+| <img src="https://img.shields.io/badge/Naver-03C75A?style=flat&logo=naver cloud&logoColor=white"/> <br> <img src="https://img.shields.io/badge/Apachetomcat-F8DC75?style=flat&logo=apachetomcat&logoColor=white"/>  | <img src="https://img.shields.io/badge/Springboot-6DB33F?style=flat&logo=springboot&logoColor=white"/> <br> <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=react&logoColor=white"/> |  <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"> | <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/> <br> <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=pythont&logoColor=white"/> | <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/> <br> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/>  <br> <img src="https://img.shields.io/badge/CSS-663399?style=flat&logo=css&logoColor=white"/> | <img src="https://img.shields.io/badge/Kakao-FFCD00?style=flat&logo=kakao API&logoColor=white"/> <br> <img src="https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white"/> |
 
 
 ## 6. 시스템 아키텍처
@@ -34,6 +34,43 @@
 ![erd](https://github.com/user-attachments/assets/c8248c50-a8c9-42e2-9d0a-77d841a41852)
 
 ## 10. 화면 구성
+### 1) 공통페이지
+
+   1-1) 로그인 페이지
+   ![로그인 페이지](https://github.com/user-attachments/assets/5235c6c5-ea87-4840-b7e8-3d72b0042229)
+
+   1-2) 회원가입 페이지
+   ![회원가입](https://github.com/user-attachments/assets/19ea16b7-9ae5-4681-b11b-a0c89c176191)
+
+### 2) 일반 사용자 페이지
+
+   2-1) 병해충 진단 페이지
+   ![사용자 페이지 - 메인 - 병해충진단 form -  AI병해충진단](https://github.com/user-attachments/assets/97a4e3d9-f6ec-4824-88e4-c92e1ebbb127)
+
+   2-2) 병해충 도감 페이지
+   ![사용자 페이지 - 병해충 도감](https://github.com/user-attachments/assets/04ed60ce-2ebb-4c4f-bb93-d2439e97d846)
+
+   2-3) 농약 및 방제정보 페이지
+   ![사용자 페이지 - 농약 및 방제 정보](https://github.com/user-attachments/assets/60052830-aba1-4d94-b487-4e51ad56042f)
+
+   2-4) 내정보 확인하기 페이지
+   ![사용자 페이지 - 내정보 확인하기](https://github.com/user-attachments/assets/8c2cbd74-ff96-4883-9954-6f9d6da3d1f6)
+
+### 3) 관리자 페이지
+
+  3-1) 대시보드
+  ![관리자 페이지 - 병해충 발병 통계](https://github.com/user-attachments/assets/6c98eed8-bc35-4b79-9d2a-e549127b1bd2)
+
+  3-2) 병해충 도감 페이지
+  ![관리자 페이지 - 병해충 도감_작물별도감](https://github.com/user-attachments/assets/fe224fe4-899b-4a9b-b83b-711990293e0f)
+
+  3-3) 병해충 AI 검색
+  ![관리자 페이지 - 병해충 AI 검색](https://github.com/user-attachments/assets/fa96ba5e-2b06-4502-b847-2ae15298d5d4)
+
+4) 최고 관리자 페이지
+
+   4-1) 사용자 관리
+   ![관리자 페이지 - 사용자 관리](https://github.com/user-attachments/assets/72057f3d-2b72-4de0-935b-5d04dee82118)
 
 ## 11. 팀원 역할
 ![Copy of Green and Brown Illustrative Farming Presentation](https://github.com/user-attachments/assets/aeae037f-05ba-4cb5-a6a4-7e621545f629)
@@ -43,3 +80,14 @@
 ![35](https://github.com/user-attachments/assets/18c915a2-988b-4ff6-8a08-82e717eb7a13)
 ![36](https://github.com/user-attachments/assets/90f4140f-ba83-43b4-b41e-de423b3e5b74)
 ![37](https://github.com/user-attachments/assets/3dfa0bae-14d9-4ac0-8cc9-ca422548c318)
+
+## 13. 시연연상
+
+
+## 14. 참고문헌
+1) AI 허브 (국내 재배 아열대ㆍ열대 병해충 데이터)
+2) 농촌진흥청
+3) NCPMS(국가농작물병해충관리시스템)
+4) 평창군 날씨와 농작물 병해충
+5) 스마트병해충진단서비스
+6) 시사 및 통계 자료(진라일보, 세종특별자치 농업기술센터, 연합뉴스)
