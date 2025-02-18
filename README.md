@@ -67,7 +67,7 @@
   3-3) 병해충 AI 검색
   ![관리자 페이지 - 병해충 AI 검색](https://github.com/user-attachments/assets/fa96ba5e-2b06-4502-b847-2ae15298d5d4)
 
-4) 최고 관리자 페이지
+### 4) 최고 관리자 페이지
 
    4-1) 사용자 관리
    ![관리자 페이지 - 사용자 관리](https://github.com/user-attachments/assets/72057f3d-2b72-4de0-935b-5d04dee82118)
