@@ -1,0 +1,27 @@
+def get_label(image_path, label_path) :
+  with open(label_path) as f :
+    label = json.load(f)
+
+  xc = float(label['annotations']['bbox_info'][0]['bbox_xcrdnt'])
+  yc = float(label['annotations']['bbox_info'][0]['bbox_ycrdnt'])
+  w = float(label['annotations']['bbox_info'][0]['bbox_width'])
+  h = float(label['annotations']['bbox_info'][0]['bbox_height'])
+
+  image = cv2.imread(image_path, cv2.IMREAD_COLOR)
+  # yolo 모델에 맞춰서 x중심,y중심,너비,높이 계산 -> 0~1사이 값으로 정규화
+  xc_rs = (xc + w/2)/image.shape[0]
+  yc_rs = (yc + h/2)/image.shape[1]
+  w_rs = (w)/image.shape[0]
+  h_rs = (h)/image.shape[1]
+
+  # 정답추출
+  cls_num_origin = label['annotations']['object_class_sclas_code']
+  if cls_num_origin == '999' :
+    cls_num = 0
+  elif cls_num_origin == '007' :
+    cls_num = 1
+  elif cls_num_origin == '015' :
+    cls_num = 2
+
+  return cls_num, xc_rs, yc_rs, w_rs, h_rs
+get_label(f"/{file_names[0]}",f"./{file_names[0].split('.')[0]}.json")
