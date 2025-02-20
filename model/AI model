@@ -1,0 +1,124 @@
+// 픽셀화
+def get_label(image_path, label_path) :
+  with open(label_path) as f :
+    label = json.load(f)
+
+  xc = float(label['annotations']['bbox_info'][0]['bbox_xcrdnt'])
+  yc = float(label['annotations']['bbox_info'][0]['bbox_ycrdnt'])
+  w = float(label['annotations']['bbox_info'][0]['bbox_width'])
+  h = float(label['annotations']['bbox_info'][0]['bbox_height'])
+
+  image = cv2.imread(image_path, cv2.IMREAD_COLOR)
+  # yolo 모델에 맞춰서 x중심,y중심,너비,높이 계산 -> 0~1사이 값으로 정규화
+  xc_rs = (xc + w/2)/image.shape[0]
+  yc_rs = (yc + h/2)/image.shape[1]
+  w_rs = (w)/image.shape[0]
+  h_rs = (h)/image.shape[1]
+
+  # 정답추출
+  cls_num_origin = label['annotations']['object_class_sclas_code']
+  if cls_num_origin == '999' :
+    cls_num = 0
+  elif cls_num_origin == '007' :
+    cls_num = 1
+  elif cls_num_origin == '015' :
+    cls_num = 2
+
+  return cls_num, xc_rs, yc_rs, w_rs, h_rs
+
+// 픽셀화
+import os
+import cv2
+import albumentations as A
+
+# 증식된 데이터 저장 경로 (이미 만들어둔 폴더를 사용)
+aug_image_dir = r""
+aug_label_dir = r""
+
+os.makedirs(aug_image_dir, exist_ok=True)
+os.makedirs(aug_label_dir, exist_ok=True)
+
+# 증식 함수
+def augment_image(image_path, label_path, save_image_dir, save_label_dir, num_aug=):
+    image = cv2.imread(image_path)
+    if image is None:
+        print(f"❌ 이미지 로드 실패: {image_path}")
+        return
+
+    # 이미지 크기
+    height, width = image.shape[:2]
+
+    # Albumentations 증식 설정
+    transform = A.Compose([
+        A.HorizontalFlip(p=0.5),  # 좌우 반전
+        A.Rotate(limit=15, p=0.5),  # 회전
+        A.RandomBrightnessContrast(p=0.2),  # 밝기 조절
+        A.GaussianBlur(p=0.2),  # 블러 효과
+    ], bbox_params=A.BboxParams(format="yolo", label_fields=["class_labels"]))
+
+    # 라벨(txt) 로드
+    with open(label_path, "r") as f:
+        lines = f.readlines()
+
+    bboxes = []
+    class_labels = []
+    for line in lines:
+        parts = line.strip().split()
+        class_id = int(parts[0])
+        x_center, y_center, box_width, box_height = map(float, parts[1:])
+        bboxes.append([x_center, y_center, box_width, box_height])
+        class_labels.append(class_id)
+
+    # 증식 수행
+    for i in range(num_aug):  # 배 증식
+        augmented = transform(image=image, bboxes=bboxes, class_labels=class_labels)
+        aug_image = augmented["image"]
+        aug_bboxes = augmented["bboxes"]
+
+        # 증식된 이미지 파일 저장
+        aug_image_name = f"{os.path.splitext(os.path.basename(image_path))[0]}_aug{i}.jpg"
+        aug_image_path = os.path.join(save_image_dir, aug_image_name)
+        cv2.imwrite(aug_image_path, aug_image)
+
+        # 증식된 라벨 파일 저장
+        aug_label_name = f"{os.path.splitext(os.path.basename(label_path))[0]}_aug{i}.txt"
+        aug_label_path = os.path.join(save_label_dir, aug_label_name)
+        with open(aug_label_path, "w") as f:
+            for bbox, class_id in zip(aug_bboxes, class_labels):
+                f.write(f"{class_id} {bbox[0]} {bbox[1]} {bbox[2]} {bbox[3]}\n")
+
+        print(f"✅ 증식 완료: {aug_image_path}, {aug_label_path}")
+
+
+def process_folder(image_dir, label_dir):
+    image_files = [f for f in os.listdir(image_dir) if f.lower().endswith((".jpg", ".jpeg", ".png", ".JPG"))]
+
+    if not image_files:
+        print(f"❌ 이미지 파일이 없습니다: {image_dir}")
+        return
+
+    for idx, image_file in enumerate(image_files, start=1):
+        # 이미 증식된 파일(_aug 포함)은 스킵
+        if "_aug" in image_file:
+            print(f"⏩ 증식된 파일 제외: {image_file}")
+            continue
+
+        image_path = os.path.join(image_dir, image_file)
+        label_path = os.path.join(label_dir, os.path.splitext(image_file)[0] + ".txt")
+
+        if not os.path.exists(label_path):
+            print(f"❌ 라벨 파일이 없습니다: {label_path}")
+            continue
+
+        print(f"🟢 {idx}/{len(image_files)} 증식 시작: {image_file}")
+        augment_image(image_path, label_path, aug_image_dir, aug_label_dir, num_aug=)
+
+
+# 사용자 지정 경로
+image_dir = ""  # 이미지 경로
+label_dir = ""  # 라벨 경로
+
+# 증식 실행
+process_folder(image_dir, label_dir)
+
+print("🔧 모든 증식 작업 완료!")
