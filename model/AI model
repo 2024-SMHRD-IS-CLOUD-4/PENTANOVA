@@ -122,3 +122,23 @@ label_dir = ""  # 라벨 경로
 process_folder(image_dir, label_dir)
 
 print("🔧 모든 증식 작업 완료!")
+
+// 학습
+from ultralytics import YOLO
+
+model = YOLO("") # 모델 설정
+
+model.train(
+  data="",       # 데이터셋 경로
+  epochs=100,    # 학습 반복 횟수 설정
+  imgsz=640,     # 입력 이미지 크기
+  batch=8,       # 배치 크기
+  workers=4,     # 데이터 로드 스레드 갯수
+  optimizer="",  # 옵티마이저 설정
+  lr0=0.001,     # 낮은 초기 학습률
+  lrf=0.0001,    # 최종 학습률
+  weight_decay=0.0001,  # 가중치 감소 적용
+  iou=0.6,       # IoU threshold 증가
+  momentum=0.9   # 모멘텀 값
+)
+print("학습완료")
